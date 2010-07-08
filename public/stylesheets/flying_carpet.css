@@ -1,0 +1,97 @@
+body {
+  background-color: #4e4e4e;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 1.5em;
+  align: center;
+  text-align: center;
+}
+
+.carpet {
+  border-spacing: 3px;
+  border-collapse: separate;
+  empty-cells: show;
+  background-color: #efefef;
+}
+
+.carpet td {
+  background-color: #efefef;
+  border: 2px solid #a6a6a6;
+  height: 100px;
+  width: 100px;
+  align: center;
+  text-align: center;
+
+  font-size: 3em;
+  font-weight: bold;
+  line-height: 0.8em;
+}
+
+#field_1_1 {
+  border-color: #b392d8;
+  color       : #b392d8;
+}
+#field_1_2 {
+  border-color: #1f51a8;
+  color: #1f51a8;
+}
+#field_1_3 {
+  border-color: #565f5e;
+  color: #565f5e;
+}
+#field_1_4 {
+  border-color: #33cac4;
+  color: #33cac4;
+}
+
+#field_2_1 {
+  border-color: #b392d8;
+  color: #b392d8;
+}
+#field_2_2 {
+  border-color: #49c8fa;
+  color: #49c8fa;
+}
+#field_2_3 {
+  border-color: #565f5e;
+  color: #565f5e;
+}
+#field_2_4 {
+  border-color: ;
+  color: ;
+}
+
+#field_3_1 {
+  border-color: ;
+  color: ;
+}
+#field_3_2 {
+  border-color: #e6437f;
+  color: #e6437f;
+}
+#field_3_3 {
+  border-color: #574c48;
+  color: #574c48;
+}
+#field_3_4 {
+  border-color: #e6c949;
+  color: #e6c949;
+}
+
+
+#field_4_1 {
+  border-color: #f1994d;
+  color: #f1994d;
+}
+#field_4_2 {
+  border-color: #1f51a8;
+  color: #1f51a8;
+}
+#field_4_3 {
+  border-color: #f7f078;
+  color: #f7f078;
+}
+#field_4_4 {
+  border-color: #33cac4;
+  color: #33cac4;
+}
