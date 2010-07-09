@@ -2,11 +2,11 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.xml
   def index
-    @words = Word.all
+    @word = Word.new(:word => 'Willkommen')
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @words }
+      format.xml  { render :xml => @word }
     end
   end
 
@@ -16,7 +16,7 @@ class WordsController < ApplicationController
     @word = Word.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render 'index' }
       format.xml  { render :xml => @word }
     end
   end

@@ -1,13 +1,21 @@
-<h1>Fliegender Teppich</h1>
 
-<table class="carpet">
-<% for row in 1..4 %>
-  <tr>
-  <% for column in 1..4 %>
-    <td id="field_<%= "#{row}_#{column}" %>">
-      <%= Word::CHARS[row-1][column-1].map{|c| c.upcase}.join(' ') %>
-    </td>
+<div id="main">
+  <h1><%= @word.word %></h1>
+  <table class="carpet">
+  <% for row in 1..4 %>
+    <tr>
+    <% for column in 1..4 %>
+      <td id="field_<%= "#{row}_#{column}" %>">
+        <%= Word::CHARS[row-1][column-1].select{|c| @word.word.downcase.include?(c)}.map{|c| c.upcase}.join(' ') %>
+      </td>
+    <% end %>
+    </tr>
   <% end %>
-  </tr>
-<% end %>
-</table>
+  </table>
+
+  <h2>Einfach was eingeben:</h2>
+  <%= form_for @word do |f| %>
+    <%= f.text_field :word %>
+    <%= f.submit "Flieg los!" %>
+  <% end %>
+</div>
