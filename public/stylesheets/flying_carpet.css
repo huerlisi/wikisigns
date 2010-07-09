@@ -7,6 +7,11 @@ body {
   text-align: center;
 }
 
+#main {
+  width: 420px;
+  text-align: center;
+}
+
 .carpet {
   border-spacing: 3px;
   border-collapse: separate;
