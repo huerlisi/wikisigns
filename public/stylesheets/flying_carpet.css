@@ -20,7 +20,7 @@ body {
 }
 
 .carpet td {
-  background-color: #efefef;
+  color: #efefef;
   border: 2px solid #a6a6a6;
   height: 100px;
   width: 100px;
@@ -34,69 +34,70 @@ body {
 
 #field_1_1 {
   border-color: #b392d8;
-  color       : #b392d8;
+  background-color       : #b392d8;
 }
 #field_1_2 {
   border-color: #1f51a8;
-  color: #1f51a8;
+  background-color: #1f51a8;
 }
 #field_1_3 {
   border-color: #565f5e;
-  color: #565f5e;
+  background-color: #565f5e;
 }
 #field_1_4 {
   border-color: #33cac4;
-  color: #33cac4;
+  background-color: #33cac4;
 }
 
 #field_2_1 {
   border-color: #b392d8;
-  color: #b392d8;
+  background-color: #b392d8;
 }
 #field_2_2 {
   border-color: #49c8fa;
-  color: #49c8fa;
+  background-color: #49c8fa;
 }
 #field_2_3 {
   border-color: #565f5e;
-  color: #565f5e;
+  background-color: #565f5e;
 }
 #field_2_4 {
   border-color: ;
-  color: ;
+  background-color: ;
 }
 
 #field_3_1 {
   border-color: ;
-  color: ;
+  background-color: ;
 }
 #field_3_2 {
   border-color: #e6437f;
-  color: #e6437f;
+  background-color: #e6437f;
 }
 #field_3_3 {
   border-color: #574c48;
-  color: #574c48;
+  background-color: #574c48;
 }
 #field_3_4 {
   border-color: #e6c949;
-  color: #e6c949;
+  background-color: #e6c949;
 }
 
 
 #field_4_1 {
   border-color: #f1994d;
-  color: #f1994d;
+  background-color: #f1994d;
 }
 #field_4_2 {
   border-color: #1f51a8;
-  color: #1f51a8;
+  background-color: #1f51a8;
 }
 #field_4_3 {
+  color: #b392d8;
   border-color: #f7f078;
-  color: #f7f078;
+  background-color: #f7f078;
 }
 #field_4_4 {
   border-color: #33cac4;
-  color: #33cac4;
+  background-color: #33cac4;
 }
