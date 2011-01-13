@@ -20,15 +20,19 @@ body {
 }
 
 .carpet td {
-  color: #efefef;
-  border: 2px solid #a6a6a6;
+  color: gray;
   height: 100px;
   width: 100px;
   align: center;
   text-align: center;
 
-  font-size: 3em;
+  font-size: 0.81em;
   line-height: 0.8em;
+}
+
+.carpet td.active {
+  color: white;
+  font-size: 1.62em;
 }
 
 #field_1_1 {

@@ -6,7 +6,7 @@
     <tr>
     <% for column in 1..4 %>
       <% chars = Word::CHARS[row-1][column-1].select{|c| @word.word.downcase.include?(c)}.map{|c| c.upcase}.join(' ') %>
-      <td id="<%= "field_#{row}_#{column}" unless chars.empty? %>">
+      <td id="<%= "field_#{row}_#{column}" unless chars.empty? %>" class="<%= "active" unless chars.empty? %>">
         o
       </td>
     <% end %>
