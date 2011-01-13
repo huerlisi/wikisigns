@@ -1,5 +1,4 @@
 body {
-  background-color: #4e4e4e;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size:   13px;
   line-height: 1.5em;
@@ -13,10 +12,18 @@ body {
 }
 
 .carpet {
-  border-spacing: 3px;
+  border-spacing: 3.14px;
   border-collapse: separate;
   empty-cells: show;
   background-color: #efefef;
+  padding: 1em;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: #666666 2px 2px 4px 0; -webkit-box-shadow: #666666 2px 2px 4px 0; -o-box-shadow: #666666 2px 2px 4px 0; box-shadow: #666666 2px 2px 4px 0;
 }
 
 .carpet td {
@@ -33,6 +40,13 @@ body {
 .carpet td.active {
   color: white;
   font-size: 1.62em;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: #666666 2px 2px 4px 0; -webkit-box-shadow: #666666 2px 2px 4px 0; -o-box-shadow: #666666 2px 2px 4px 0; box-shadow: #666666 2px 2px 4px 0;
 }
 
 #field_1_1 {
