@@ -1,29 +1,67 @@
+# Settings
+# ========
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.beta4'
+# Rails
+# =====
+gem 'rails', '~> 3.0.0'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
+# Database
 gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'mysql'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+# Development
+# ===========
+group :development do
+  gem 'rails3-generators'
+  gem 'rspec-rails', "~> 2.1"
+  # Haml generators
+  gem 'hpricot'
+  gem 'ruby_parser'
+  gem 'rcov'
+end
 
-# Deploy with Capistrano
-# gem 'capistrano'
+# Test
+# ====
+group :test do
+  gem 'rspec-rails', "~> 2.1"
+  gem 'mocha'
+  gem 'shoulda'
+  gem 'factory_girl_rails'
+  gem 'cucumber-rails'
+  gem 'cucumber'
+  gem 'webrat'
+end
 
-# To use debugger
-# gem 'ruby-debug'
+# Standard helpers
+# ================
+gem 'haml'
+gem 'compass', '~> 0.10.6'
+gem 'fancy-buttons'
 
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri', '1.4.1'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
+gem 'simple-navigation'
 
-# Bundle gems for certain environments:
-# gem 'rspec', :group => :test
-# group :test do
-#   gem 'webrat'
-# end
+gem 'lyb_sidebar'
+
+gem 'formtastic', '~> 1.2.1'
+gem 'will_paginate', :git => 'git://github.com/huerlisi/will_paginate.git', :branch => 'rails3'
+gem 'inherited_resources'
+gem 'has_scope'
+gem 'i18n_rails_helpers', '~> 0.9'
+
+gem 'jquery-rails'
+group :production do
+  gem 'rack-google_analytics', :require => "rack/google_analytics", :git => 'git://github.com/ambethia/rack-google_analytics.git'
+end
+
+
+# spleasy
+# =======
+# Authentication
+gem 'devise', '~> 1.1'
+
+# Authorization
+gem 'cancan'
+
+# Date/Time handling
+gem 'validates_timeliness', '~> 3.0.0'
