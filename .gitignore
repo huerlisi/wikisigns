@@ -1,13 +1,26 @@
+# Rails
+# =====
 .bundle
 db/*.sqlite3
 log/*.log
 tmp/**/*
 
-# Rails
+# Vendor
 vendor/cache
+vendor/bundle
+
+# Volatile
+doc/api
+doc/app
+public/stylesheets/all.css
 
 # Backup
-*~
-DEADJOE
-.#*
+db/backup
 
+# Local
+config/database.yml
+
+# Plugins
+# =======
+# compass
+public/stylesheets
