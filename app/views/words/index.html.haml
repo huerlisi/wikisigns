@@ -1,0 +1,14 @@
+#main
+  %h1= @word.word
+  %table.carpet
+    - for row in 1..4
+      %tr
+        - for column in 1..4
+          - chars = Word::CHARS[row-1][column-1].select{|c| @word.word.downcase.include?(c)}.map{|c| c.upcase}.join(' ')
+          %td{:class => ("active" unless chars.empty?), :id => ("field_#{row}_#{column}" unless chars.empty?)}
+            o
+
+  %h2 Einfach was eingeben:
+  = form_for @word do |f|
+    = f.text_field :word
+    = f.submit "Flieg los!"
