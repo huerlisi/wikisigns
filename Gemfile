@@ -50,18 +50,3 @@ gem 'has_scope'
 gem 'i18n_rails_helpers', '~> 0.9'
 
 gem 'jquery-rails'
-group :production do
-  gem 'rack-google_analytics', :require => "rack/google_analytics", :git => 'git://github.com/ambethia/rack-google_analytics.git'
-end
-
-
-# spleasy
-# =======
-# Authentication
-gem 'devise', '~> 1.1'
-
-# Authorization
-gem 'cancan'
-
-# Date/Time handling
-gem 'validates_timeliness', '~> 3.0.0'
