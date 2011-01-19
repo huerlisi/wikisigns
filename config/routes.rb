@@ -1,4 +1,4 @@
-FlyingCarpet::Application.routes.draw do |map|
+WikiSigns::Application.routes.draw do |map|
   resources :words
 
   # The priority is based upon order of creation:
