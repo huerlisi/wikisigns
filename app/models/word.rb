@@ -6,7 +6,7 @@ class Word < ActiveRecord::Base
    [['e', 'w', 'x'], ['a'], ['o', 'g', 'q'], ['u']]
   ]
 
-  def self.latest
-    self.all(:limit => 12)
+  def self.latest(amount = 12)
+    self.all(:limit => amount)
   end
 end
