@@ -1,6 +1,6 @@
 module WordsHelper
 
   def latest_words
-    Word.all
+    Word.all.reverse
   end
 end
