@@ -1,6 +1,5 @@
 class WordsController < ApplicationController
   # GET /words
-  # GET /words.xml
   def index
     @word = Word.new(:word => 'Willkommen')
 
@@ -11,7 +10,6 @@ class WordsController < ApplicationController
   end
 
   # GET /words/1
-  # GET /words/1.xml
   def show
     @word = Word.find(params[:id])
 
@@ -22,7 +20,6 @@ class WordsController < ApplicationController
   end
 
   # GET /words/new
-  # GET /words/new.xml
   def new
     @word = Word.new
 
@@ -38,7 +35,6 @@ class WordsController < ApplicationController
   end
 
   # POST /words
-  # POST /words.xml
   def create
     @word = Word.new(params[:word])
 
@@ -54,7 +50,6 @@ class WordsController < ApplicationController
   end
 
   # PUT /words/1
-  # PUT /words/1.xml
   def update
     @word = Word.find(params[:id])
 
@@ -70,7 +65,6 @@ class WordsController < ApplicationController
   end
 
   # DELETE /words/1
-  # DELETE /words/1.xml
   def destroy
     @word = Word.find(params[:id])
     @word.destroy
