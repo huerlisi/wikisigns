@@ -1,14 +1,11 @@
-#main
-  %h1= @word.word
+%h1#title
+  = @word.word
 
-  = render(:partial => 'table', :locals => {:word => @word})
+= render(:partial => 'table', :locals => {:word => @word})
 
-  %h2 Einfach was eingeben:
-  = form_for @word do |f|
-    = f.text_field :word
-    = f.hidden_field :next_word, :value => @word.id if 'show'.eql?action_name
-    = f.submit "Flieg los!"
-
-
-  - latest_words.each do |word|
-    = render(:partial => 'table', :locals => {:word => word})
+%h2#command
+  Einfach was eingeben:
+= form_for @word do |f|
+  = f.text_field :word
+  = f.hidden_field :next_word, :value => @word.id if 'show'.eql?action_name
+  = f.submit "Flieg los!"
