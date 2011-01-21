@@ -10,12 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100708091129) do
+ActiveRecord::Schema.define(:version => 20110121153454) do
 
   create_table "words", :force => true do |t|
     t.string   "word"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "next_word"
   end
 
 end

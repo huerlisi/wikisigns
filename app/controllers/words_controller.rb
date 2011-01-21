@@ -51,7 +51,11 @@ class WordsController < ApplicationController
 
   # PUT /words/1
   def update
-    @word = Word.find(params[:id])
+    unless params[:word][:next_word]
+      @word = Word.find(params[:id])
+    else
+      @word = Word.create(params[:word])
+    end
 
     respond_to do |format|
       if @word.update_attributes(params[:word])
