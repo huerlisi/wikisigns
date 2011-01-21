@@ -7,6 +7,6 @@ class Word < ActiveRecord::Base
   ]
 
   def self.latest(amount = 12)
-    self.all(:limit => amount)
+    self.all(:order => 'created_at DESC', :limit => amount)
   end
 end

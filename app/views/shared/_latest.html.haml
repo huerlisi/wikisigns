@@ -1,2 +1,5 @@
 - latest_words.each do |word|
+  .one-word
     = render(:partial => 'table', :locals => {:word => word})
+    .word-text
+      = word.word
