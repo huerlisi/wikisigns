@@ -54,7 +54,7 @@ class WordsController < ApplicationController
     unless params[:word][:next_word]
       @word = Word.find(params[:id])
     else
-      @word = Word.create(params[:word])
+      @word = Word.create(params[:word].delete(:next_word))
     end
 
     respond_to do |format|
