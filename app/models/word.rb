@@ -5,4 +5,8 @@ class Word < ActiveRecord::Base
    [[], ['d', 'm'], ['k', 's', 'v', 'l', 'r'], ['b', 'n']],
    [['e', 'w', 'x'], ['a'], ['o', 'g', 'q'], ['u']]
   ]
+
+  def self.latest
+    self.all(:limit => 12)
+  end
 end
