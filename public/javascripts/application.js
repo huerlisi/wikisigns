@@ -1,2 +1,11 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+// Initialize behaviours
+function initializeBehaviours() {
+  addFocusTextFieldBehaviour();
+}
+
+function addFocusTextFieldBehaviour() {
+  $('#word_word').focus().select();
+}
+
+// Loads functions after DOM is ready
+$(document).ready(initializeBehaviours);
