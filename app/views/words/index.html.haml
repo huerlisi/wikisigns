@@ -1,7 +1,7 @@
 %h1#title
   = @word.word
 
-= render(:partial => 'table', :locals => {:word => @word})
+= render 'table', :word => @word
 
 %h2#command
   Einfach was eingeben:
