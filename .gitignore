@@ -5,6 +5,9 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 
+# Passenger
+tmp/restart.txt
+
 # Vendor
 vendor/cache
 vendor/bundle
