@@ -8,7 +8,7 @@ h2. About WikiSigns
 
 Speak out on the "Flying Carpet":http://pimensional.ch
 
-Fork on "http://github.com/huerlisi/wikisigns
+Fork on "github":http://github.com/huerlisi/wikisigns
 
 Talk about "#wikisigns":http://twitter.com/#!/search/%23wikisigns
 
