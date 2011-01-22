@@ -67,15 +67,4 @@ class WordsController < ApplicationController
       end
     end
   end
-
-  # DELETE /words/1
-  def destroy
-    @word = Word.find(params[:id])
-    @word.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(words_url) }
-      format.xml  { head :ok }
-    end
-  end
 end
