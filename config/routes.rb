@@ -3,5 +3,5 @@ WikiSigns::Application.routes.draw do |map|
   root :to => "words#index"
 
   # Words
-  resources :words, :except => :destroy
+  resources :words, :except => [:destroy, :edit, :update]
 end

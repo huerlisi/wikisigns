@@ -1,24 +1,19 @@
 class WordsController < InheritedResources::Base
   # GET /words
   def index
-    @word = Word.new(:word => 'Willkommen')
-
-    index!
+    redirect_to new_word_path
   end
 
-  # GET /words/1
-  def show
-    redirect_to words_path
+  # GET /words/new
+  def new
+    last_word = params[:last_word] || 'Willkommen'
+    params[:word] ||= {:word => last_word}
+
+    new!
   end
-
-  # PUT /words/1
-  def update
-    unless params[:word][:next_word]
-      @word = Word.find(params[:id])
-    else
-      @word = Word.create(params[:word])
-    end
-
-    update!
+  
+  # POST /words
+  def create
+    create! { new_word_path(:last_word => @word.word) }
   end
 end
