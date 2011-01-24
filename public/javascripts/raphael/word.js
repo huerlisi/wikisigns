@@ -1,4 +1,3 @@
-
 var canvas_width = 424;
 var canvas_height = 424;
 
@@ -45,12 +44,20 @@ letters[3][2][1] = 'g';
 letters[3][2][2] = 'q';
 letters[3][3] = 'u';
 
-function drawWord() {
+function drawWord(id) {
   var circle_dimension = 95;
-  var margin = 12;
+  var margin = 8;
   var space = 7;
   var word = $('#title').text().trim();
-  var paper = Raphael(document.getElementById('word'), canvas_width, canvas_height);
+  var paper_space = 7;
+  var paper = Raphael(document.getElementById(id), canvas_width, canvas_height);
+  var paper_shadow = paper.rect(5, 5, canvas_width - paper_space, canvas_width - paper_space, 10);
+  paper_shadow.attr({stroke: "none", fill: "#555", translation: "2,2"});
+  paper_shadow.blur(2);
+  var paper_content = paper.rect(0, 0, canvas_width - paper_space, canvas_width - paper_space, 10);
+  paper_content.attr({stroke: "none", fill: "#efefef"});
+  var path_x, path_y;
+  var point_x, point_y;
 
   for(var y = 0; y < 4; y++){
     for(var x = 0; x < 4; x++){
@@ -59,22 +66,44 @@ function drawWord() {
       var block_color = blockColor(word, letters[y][x], coord2color(y, x));
       var point_color = pointColor(block_color);
       var point_width = pointWidth(block_color);
+      var shadow;
+
       if (block_color != 'none') {
-        var shadow = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
+        shadow = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
         shadow.attr({stroke: "none", fill: "gray", translation: "2,2"});
         shadow.blur(2);
-      };
+      }
+
       var block = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
-      var point = paper.circle(margin + circle_dimension/2 + space_x, margin + circle_dimension/2 + space_y, 10);
-      
+      point_x = margin + circle_dimension/2 + space_x;
+      point_y = margin + circle_dimension/2 + space_y;
+      var point = paper.circle(point_x, point_y, 10);
+
+      if(block_color != 'none' && path_x != undefined && path_y != undefined){
+        var path = paper.path("M"+path_x+" "+path_y+"L"+point_x+" "+point_y);
+        path.attr({stroke: point_color, 'stroke-width': 10, 'stroke-linecap': 'round', opacity: 0.75});
+        path.toFront();
+      }
+
       block.attr({fill: block_color, stroke: 'none'});
       point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width})
+      point.toBack();
+      block.toBack();
+
+      if(block_color != 'none'){
+        path_x = point_x;
+        path_y = point_y;
+        shadow.toBack();
+      }
+
     }
   }
   if(hasALetterP(word)){
     var letter_p = paper.circle(canvas_width/2, canvas_height/2, 10);
     letter_p.attr({fill: 'none', stroke: 'white', 'stroke-width': point_width})
   }
+  paper_content.toBack();
+  paper_shadow.toBack();
 }
 
 function hasALetterP(word) {
