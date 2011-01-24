@@ -21,8 +21,10 @@ function addSessionWordsBehaviour(){
     drawWord('word');
     $.ajax({
       type: 'POST',
-      url: '/words/new',
-      success: alert('updated')
+      data: { word : { word : 'word', next_word : 'test'} },
+      url: '/words',
+      dataType: 'json'
+//      success: alert('updated')
     })
   });
 }

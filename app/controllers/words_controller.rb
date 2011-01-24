@@ -1,4 +1,7 @@
 class WordsController < InheritedResources::Base
+
+  respond_to :html, :json
+
   # GET /words
   def index
     redirect_to new_word_path
@@ -8,6 +11,7 @@ class WordsController < InheritedResources::Base
   def new
     last_word = params[:last_word] || 'Willkommen'
     params[:word] ||= {:word => last_word}
+    params[:word] = JSON.parse params[:word] if params[:word].is_a? String
 
     new!
   end
