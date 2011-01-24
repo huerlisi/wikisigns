@@ -9,22 +9,21 @@ function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
   drawWord('word');
-  addSessionWordsBehaviour();
 }
 
 function addSessionWordsBehaviour(){
   $('#center-container').attr('style', 'display:block;');
-  $('#word_submit').click(function(e){
+  $('#new_word').submit(function(e){
     e.preventDefault();
     $('#title').html($('#word_word').val());
     var old_drawing = $('#word').children();
     $('#your-words').prepend(old_drawing);
     drawWord('word');
-//    $.ajax({
-//      type: 'POST',
-//      url: $('#new_word').attr('href'),
-//      success: alert('updated')
-//    })
+    $.ajax({
+      type: 'POST',
+      url: '/words/new',
+      success: alert('updated')
+    })
   });
 }
 
