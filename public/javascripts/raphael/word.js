@@ -88,11 +88,14 @@ function drawWord(id) {
       var block_color = blockColor(word, letters[y][x], colors[y][x]);
       var point_color = pointColor(block_color);
       var point_width = pointWidth(block_color);
+      var shadow;
+
       if (block_color != 'none') {
-        var shadow = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
+        shadow = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
         shadow.attr({stroke: "none", fill: "#555", translation: "2,2"});
         shadow.blur(2);
-      };
+      }
+
       var block = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
       point_x = margin + circle_dimension/2 + space_x;
       point_y = margin + circle_dimension/2 + space_y;
@@ -104,15 +107,17 @@ function drawWord(id) {
         path.toFront();
       }
 
-      if(block_color != 'none'){
-        path_x = point_x;
-        path_y = point_y;
-      }
-      
       block.attr({fill: block_color, stroke: 'none'});
       point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width})
       point.toBack();
       block.toBack();
+
+      if(block_color != 'none'){
+        path_x = point_x;
+        path_y = point_y;
+        shadow.toBack();
+      }
+
     }
   }
   if(hasALetterP(word)){
