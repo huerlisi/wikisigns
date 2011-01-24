@@ -2,33 +2,6 @@
 var canvas_width = 424;
 var canvas_height = 424;
 
-var colors = new Array(4);
-
-colors[0] = new Array(4);
-colors[1] = new Array(4);
-colors[2] = new Array(4);
-colors[3] = new Array(4);
-
-colors[3][0] = '#FF8F35'; 0
-colors[2][0] = 'none';    5
-colors[1][0] = '#b392d8'; 8
-colors[0][0] = '#b392d8'; 8
-
-colors[3][1] = '#1f51a8'; 2
-colors[2][1] = '#e6437f'; 3
-colors[1][1] = '#49c8fa'; 5
-colors[0][1] = '#1f51a8'; 2
-
-colors[3][2] = '#FFF82A'; 9
-colors[2][2] = '#574c48'; 4
-colors[1][2] = '#565f5e'; 1
-colors[0][2] = '#565f5e'; 1
-
-colors[3][3] = '#60FF87'; 7
-colors[2][3] = '#e6c949'; 6
-colors[1][3] = 'none';    4
-colors[0][3] = '#60FF87'; 7
-
 var letters = new Array(4);
 
 letters[0] = new Array(4);
@@ -83,7 +56,7 @@ function drawWord() {
     for(var x = 0; x < 4; x++){
       var space_x = x * circle_dimension + space * x;
       var space_y = y * circle_dimension + space * y;
-      var block_color = blockColor(word, letters[y][x], colors[y][x]);
+      var block_color = blockColor(word, letters[y][x], coord2color(y, x));
       var point_color = pointColor(block_color);
       var point_width = pointWidth(block_color);
       if (block_color != 'none') {
@@ -148,7 +121,31 @@ function pointWidth(color) {
 }
 
 
+function coord2index(x, y) {
+  return 4 * y + (3 - x);
+}
+
 function digit(index) {
   return Math.floor(Math.pow(10, index + 1) /17) % 10;
 }
 
+function coord2digit(x, y) {
+  return digit(coord2index(x, y));
+}
+
+colors = Array(
+ '#FF8F35', // 0
+ '#565f5e', // 1
+ '#1f51a8', // 2
+ '#e6437f', // 3
+ '#574c48', // 4
+ '#49c8fa', // 5
+ '#e6c949', // 6
+ '#60FF87', // 7
+ '#b392d8', // 8
+ '#FFF82A' // 9
+)
+
+function coord2color(x, y) {
+  return colors[coord2digit(x, y)];
+}
