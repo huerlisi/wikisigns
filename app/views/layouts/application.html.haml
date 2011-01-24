@@ -12,7 +12,10 @@
       #left-container
         = yield
       #center-container
+        %h1
+          Deine Wörter
+        #your-words
       #right-container
-        = render 'shared/latest
+        = render 'shared/latest'
     = javascript_include_tag :defaults
     = javascript_include_tag 'raphael/raphael', 'raphael/word'

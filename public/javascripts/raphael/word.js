@@ -71,12 +71,12 @@ letters[3][2][1] = 'g';
 letters[3][2][2] = 'q';
 letters[3][3] = 'u';
 
-function drawWord() {
+function drawWord(id) {
   var circle_dimension = 95;
   var margin = 12;
   var space = 7;
   var word = $('#title').text().trim();
-  var paper = Raphael(document.getElementById('word'), canvas_width, canvas_height);
+  var paper = Raphael(document.getElementById(id), canvas_width, canvas_height);
   var path_x, path_y;
   var point_x, point_y;
 
