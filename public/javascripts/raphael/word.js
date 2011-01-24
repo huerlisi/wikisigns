@@ -78,6 +78,7 @@ function drawWord() {
   var word = $('#title').text().trim();
   var paper = Raphael(document.getElementById('word'), canvas_width, canvas_height);
   var path_x, path_y;
+  var point_x, point_y;
 
   for(var y = 0; y < 4; y++){
     for(var x = 0; x < 4; x++){
@@ -87,8 +88,8 @@ function drawWord() {
       var point_color = pointColor(block_color);
       var point_width = pointWidth(block_color);
       var block = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
-      var point_x = margin + circle_dimension/2 + space_x;
-      var point_y = margin + circle_dimension/2 + space_y;
+      point_x = margin + circle_dimension/2 + space_x;
+      point_y = margin + circle_dimension/2 + space_y;
       var point = paper.circle(point_x, point_y, 10);
 
       if(block_color != 'none' && path_x != undefined && path_y != undefined){
