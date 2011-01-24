@@ -10,7 +10,7 @@ colors[0][2] = '#565f5e';
 colors[0][3] = '#60FF87';
 
 colors[1] = new Array(4);
-colors[1][0] = 'none';//'#b392d8'
+colors[1][0] = '#b392d8';
 colors[1][1] = '#49c8fa';
 colors[1][2] = '#565f5e';
 colors[1][3] = 'none';
@@ -42,10 +42,10 @@ letters[1][1] = 'h';
 letters[1][2] = new Array(2);
 letters[1][2][0] = 'i';
 letters[1][2][1] = 'y';
-letters[1][3] = '';
+letters[1][3] = null;
 
 letters[2] = new Array(4);
-letters[2][0] = '';
+letters[2][0] = null;
 letters[2][1] = new Array(2);
 letters[2][1][0] = 'd';
 letters[2][1][1] = 'm';
@@ -108,19 +108,22 @@ function hasALetterP(word) {
 
 function blockColor(word, letter, color) {
   var block_color = 'none';
-  console.log(color);
+
+  if(letter == null) {
+    return block_color;
+  }
+
   if(letter.constructor == (new Array).constructor){
     for(var i = 0;i<letter.length;i++){
-      if(word.indexOf(letter[1]) != -1){
+      if(word.indexOf(letter[i]) > -1){
         block_color = color;
       }
     }
   }else{
-    if(word.indexOf(letter) != -1){
+    if(word.indexOf(letter) > -1){
       block_color = color;
     }
   }
-
   return block_color;
 }
 
