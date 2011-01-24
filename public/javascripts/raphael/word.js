@@ -88,7 +88,7 @@ function drawWord() {
       var point_width = pointWidth(block_color);
       if (block_color != 'none') {
         var shadow = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
-        shadow.attr({stroke: "none", fill: "#555", translation: "2,2"});
+        shadow.attr({stroke: "none", fill: "gray", translation: "2,2"});
         shadow.blur(2);
       };
       var block = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
@@ -100,7 +100,7 @@ function drawWord() {
   }
   if(hasALetterP(word)){
     var letter_p = paper.circle(canvas_width/2, canvas_height/2, 10);
-    letter_p.attr({fill: 'none', stroke: '#000000', 'stroke-width': point_width})
+    letter_p.attr({fill: 'none', stroke: 'white', 'stroke-width': point_width})
   }
 }
 
@@ -135,9 +135,9 @@ function blockColor(word, letter, color) {
 
 function pointColor(color) {
   if(color == 'none'){
-    return '#000000';
+    return 'black';
   }
-  return '#FFFFFF';
+  return 'white';
 }
 
 function pointWidth(color) {
