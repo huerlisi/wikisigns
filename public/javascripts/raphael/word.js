@@ -5,29 +5,29 @@ var canvas_height = 424;
 var colors = new Array(4);
 
 colors[0] = new Array(4);
-colors[0][0] = '#b392d8';
-colors[0][1] = '#1f51a8';
-colors[0][2] = '#565f5e';
-colors[0][3] = '#60FF87';
-
 colors[1] = new Array(4);
-colors[1][0] = '#b392d8';
-colors[1][1] = '#49c8fa';
-colors[1][2] = '#565f5e';
-colors[1][3] = 'none';
-
 colors[2] = new Array(4);
-colors[2][0] = 'none';
-colors[2][1] = '#e6437f';
-colors[2][2] = '#574c48';
-colors[2][3] = '#e6c949';
-
 colors[3] = new Array(4);
-colors[3][0] = '#FF8F35';
-colors[3][1] = '#1f51a8';
-colors[3][2] = '#FFF82A';
-colors[3][3] = '#60FF87';
 
+colors[3][0] = '#FF8F35'; 0
+colors[2][0] = 'none';    5
+colors[1][0] = '#b392d8'; 8
+colors[0][0] = '#b392d8'; 8
+
+colors[3][1] = '#1f51a8'; 2
+colors[2][1] = '#e6437f'; 3
+colors[1][1] = '#49c8fa'; 5
+colors[0][1] = '#1f51a8'; 2
+
+colors[3][2] = '#FFF82A'; 9
+colors[2][2] = '#574c48'; 4
+colors[1][2] = '#565f5e'; 1
+colors[0][2] = '#565f5e'; 1
+
+colors[3][3] = '#60FF87'; 7
+colors[2][3] = '#e6c949'; 6
+colors[1][3] = 'none';    4
+colors[0][3] = '#60FF87'; 7
 
 var letters = new Array(4);
 
@@ -151,3 +151,4 @@ function pointWidth(color) {
 function digit(index) {
   return Math.floor(Math.pow(10, index + 1) /17) % 10;
 }
+
