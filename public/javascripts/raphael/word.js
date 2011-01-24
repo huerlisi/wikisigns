@@ -162,7 +162,7 @@ function coord2digit(x, y) {
   return digit(coord2index(x, y));
 }
 
-colors = Array(
+var colors = Array(
  '#FF8F35', // 0
  '#565f5e', // 1
  '#1f51a8', // 2
