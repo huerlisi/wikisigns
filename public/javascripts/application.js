@@ -1,6 +1,13 @@
 // Initialize behaviours
 function initializeBehaviours() {
   addFocusTextFieldBehaviour();
+  showCanvasAndHideTableBehaviour();
+  drawWord();
+}
+
+function showCanvasAndHideTableBehaviour() {
+  $('#left-container table.carpet').hide();
+  $('#word').show();
 }
 
 function addFocusTextFieldBehaviour() {

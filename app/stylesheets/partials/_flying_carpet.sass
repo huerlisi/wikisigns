@@ -9,11 +9,13 @@ body
   width: 460px
   text-align: center
 
+$word_background = #efefef
+
 .carpet
   border-spacing: 3.14px
   border-collapse: separate
   empty-cells: show
-  background-color: #efefef
+  background-color: $word_background
   padding: 1em
   +border-radius
   +box-shadow(#666666, 2px, 2px, 4px, 0)
@@ -100,3 +102,11 @@ body
 #field_4_4
   border-color: #60FF87
   background-color: #60FF87
+
+#word
+  width: 424px
+  height: 424px
+  +border-radius
+  +box-shadow(#666666, 2px, 2px, 4px, 0)
+  background-color: $word_background
+  display: none
