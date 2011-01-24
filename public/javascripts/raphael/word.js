@@ -146,3 +146,8 @@ function pointWidth(color) {
   }
   return 4;
 }
+
+
+function digit(index) {
+  return Math.floor(Math.pow(10, index + 1) /17) % 10;
+}
