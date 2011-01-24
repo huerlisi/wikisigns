@@ -18,7 +18,7 @@ function addSessionWordsBehaviour(){
     e.preventDefault();
     $('#title').html($('#word_word').val());
     var old_drawing = $('#word').children();
-    old_drawing.appendTo('#center-container');
+    $('#your-words').prepend(old_drawing);
     drawWord('word');
 //    $.ajax({
 //      type: 'POST',

@@ -1,4 +1,3 @@
-
 var canvas_width = 424;
 var canvas_height = 424;
 
@@ -74,10 +73,16 @@ letters[3][3] = 'u';
 
 function drawWord(id) {
   var circle_dimension = 95;
-  var margin = 12;
+  var margin = 8;
   var space = 7;
   var word = $('#title').text().trim();
+  var paper_space = 7;
   var paper = Raphael(document.getElementById(id), canvas_width, canvas_height);
+  var paper_shadow = paper.rect(5, 5, canvas_width - paper_space, canvas_width - paper_space, 10);
+  paper_shadow.attr({stroke: "none", fill: "#555", translation: "2,2"});
+  paper_shadow.blur(2);
+  var paper_content = paper.rect(0, 0, canvas_width - paper_space, canvas_width - paper_space, 10);
+  paper_content.attr({stroke: "none", fill: "#efefef"});
   var path_x, path_y;
   var point_x, point_y;
 
@@ -124,6 +129,8 @@ function drawWord(id) {
     var letter_p = paper.circle(canvas_width/2, canvas_height/2, 10);
     letter_p.attr({fill: 'none', stroke: '#000000', 'stroke-width': point_width})
   }
+  paper_content.toBack();
+  paper_shadow.toBack();
 }
 
 function hasALetterP(word) {
