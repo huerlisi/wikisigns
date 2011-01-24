@@ -77,6 +77,7 @@ function drawWord() {
   var space = 7;
   var word = $('#title').text().trim();
   var paper = Raphael(document.getElementById('word'), canvas_width, canvas_height);
+  var path_x, path_y;
 
   for(var y = 0; y < 4; y++){
     for(var x = 0; x < 4; x++){
@@ -86,10 +87,25 @@ function drawWord() {
       var point_color = pointColor(block_color);
       var point_width = pointWidth(block_color);
       var block = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
-      var point = paper.circle(margin + circle_dimension/2 + space_x, margin + circle_dimension/2 + space_y, 10);
+      var point_x = margin + circle_dimension/2 + space_x;
+      var point_y = margin + circle_dimension/2 + space_y;
+      var point = paper.circle(point_x, point_y, 10);
+
+      if(block_color != 'none' && path_x != undefined && path_y != undefined){
+        var path = paper.path("M"+path_x+" "+path_y+"L"+point_x+" "+point_y);
+        path.attr({stroke: point_color, 'stroke-width': 10, 'stroke-linecap': 'round', opacity: 0.75});
+        path.toFront();
+      }
+
+      if(block_color != 'none'){
+        path_x = point_x;
+        path_y = point_y;
+      }
       
       block.attr({fill: block_color, stroke: 'none'});
       point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width})
+      point.toBack();
+      block.toBack();
     }
   }
   if(hasALetterP(word)){
