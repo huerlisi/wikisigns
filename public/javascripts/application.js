@@ -40,6 +40,9 @@ function addSessionWordsBehaviour(){
     e.preventDefault();
 
     if(next_word_id) {
+      old_drawing[0].setAttribute('viewBox', '1 1 430 430');
+      old_drawing[0].setAttribute('width', '100');
+      old_drawing[0].setAttribute('height', '100');
       $('#your-words').prepend(old_drawing);
     }else{
       old_drawing.remove();
