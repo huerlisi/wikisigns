@@ -78,14 +78,14 @@ function drawWord(id) {
       point_x = margin + circle_dimension/2 + space_x;
       point_y = margin + circle_dimension/2 + space_y;
       var point = paper.circle(point_x, point_y, 5);
+      point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width})
+      point.toBack();
 
       if (block_color != 'none') {
         // Block
         var block = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
         block.attr({fill: block_color, stroke: 'none'});
 
-        point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width})
-        point.toBack();
         block.toBack();
 
         // Drop shadow
@@ -94,16 +94,16 @@ function drawWord(id) {
         shadow.blur(2);
         shadow.toBack();
 
-        // Path
+/*        // Path
         if(path_x != undefined && path_y != undefined){
           var path = paper.path("M"+path_x+" "+path_y+"L"+point_x+" "+point_y);
           path.attr({stroke: point_color, 'stroke-width': 10, 'stroke-linecap': 'round', opacity: 0.75});
           path.toFront();
         }
-
         // Save coords for path
         path_x = point_x;
         path_y = point_y;
+*/
       }
     }
   }
