@@ -51,10 +51,12 @@ function drawWord(id) {
   var word = $('#title').text().trim();
   var paper_space = 7;
   var paper = Raphael(document.getElementById(id), canvas_width, canvas_height);
-  var paper_shadow = paper.rect(5, 5, canvas_width - paper_space, canvas_width - paper_space, 10);
+
+  var paper_shadow = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, 10);
   paper_shadow.attr({stroke: "none", fill: "#555", translation: "2,2"});
   paper_shadow.blur(2);
-  var paper_content = paper.rect(0, 0, canvas_width - paper_space, canvas_width - paper_space, 10);
+
+  var paper_content = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, 10);
   paper_content.attr({stroke: "none", fill: "#efefef"});
   var path_x, path_y;
   var point_x, point_y;
