@@ -78,6 +78,8 @@ function drawWord(id) {
       point_x = margin + circle_dimension/2 + space_x;
       point_y = margin + circle_dimension/2 + space_y;
       var point = paper.circle(point_x, point_y, 5);
+      point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width})
+      point.toBack();
 
       if (block_color != 'none') {
         // Block
