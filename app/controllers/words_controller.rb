@@ -1,6 +1,7 @@
 class WordsController < InheritedResources::Base
 
   respond_to :html, :json
+  layout 'application', :except => [:random]
 
   # GET /words
   def index
@@ -19,5 +20,11 @@ class WordsController < InheritedResources::Base
   # POST /words
   def create
     create! { new_word_path(:last_word => @word.word) }
+  end
+
+  # GET /words/random
+  def random
+    @word = Word.first(:order => "RANDOM()")
+    show!
   end
 end

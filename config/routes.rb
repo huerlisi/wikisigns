@@ -3,5 +3,9 @@ WikiSigns::Application.routes.draw do |map|
   root :to => "words#index"
 
   # Words
-  resources :words, :except => [:destroy, :edit, :update]
+  resources :words, :except => [:destroy, :edit, :update] do
+    collection do
+      get 'random'
+    end
+  end
 end
