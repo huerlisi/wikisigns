@@ -50,8 +50,7 @@ GEM
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    facebooker (1.0.75)
-      json_pure (>= 1.0.0)
+    facebooker-rails3 (1.0.64)
     factory_girl (1.3.3)
     factory_girl_rails (1.0.1)
       factory_girl (~> 1.3)
@@ -78,7 +77,6 @@ GEM
       rails (~> 3.0)
       thor (~> 0.14.4)
     json (1.4.6)
-    json_pure (1.5.0)
     lyb_sidebar (0.1.0)
     mail (2.2.14)
       activesupport (>= 2.3.6)
@@ -151,7 +149,7 @@ DEPENDENCIES
   compass (~> 0.10.6)
   cucumber
   cucumber-rails
-  facebooker
+  facebooker-rails3
   factory_girl_rails
   fancy-buttons
   formtastic (~> 1.2.1)
