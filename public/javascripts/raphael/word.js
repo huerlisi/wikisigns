@@ -77,7 +77,7 @@ function drawWord(id) {
       var block = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
       point_x = margin + circle_dimension/2 + space_x;
       point_y = margin + circle_dimension/2 + space_y;
-      var point = paper.circle(point_x, point_y, 10);
+      var point = paper.circle(point_x, point_y, 5);
 
       if(block_color != 'none' && path_x != undefined && path_y != undefined){
         var path = paper.path("M"+path_x+" "+path_y+"L"+point_x+" "+point_y);
@@ -137,16 +137,16 @@ function blockColor(word, letter, color) {
 
 function pointColor(color) {
   if(color == 'none'){
-    return 'black';
+    return 'gray';
   }
   return 'white';
 }
 
 function pointWidth(color) {
   if(color == 'none'){
-    return 2;
+    return 1;
   }
-  return 4;
+  return 2;
 }
 
 
