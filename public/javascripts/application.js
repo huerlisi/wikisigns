@@ -7,7 +7,7 @@ function initializeBehaviours() {
 }
 
 function addRandomLatestUpdateBehaviour() {
-  window.setInterval(updateRandomLatest, 10000);
+  window.setInterval(updateRandomLatest, 5000);
 }
 
 function updateRandomLatest() {
