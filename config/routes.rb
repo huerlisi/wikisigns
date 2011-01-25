@@ -6,6 +6,9 @@ WikiSigns::Application.routes.draw do |map|
   resources :words, :except => [:destroy, :edit, :update] do
     collection do
       get 'random'
+      post 'new_word'
     end
   end
+
+  
 end
