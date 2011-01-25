@@ -48,7 +48,7 @@ function drawWord(id) {
   var circle_dimension = 95;
   var margin = 8;
   var space = 7;
-  var word = $('#title').text().trim();
+  var word = $('#title').text().trim().toLowerCase();
   var paper_space = 7;
   var paper = Raphael(document.getElementById(id), canvas_width, canvas_height);
 
