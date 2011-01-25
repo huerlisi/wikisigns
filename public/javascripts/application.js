@@ -35,6 +35,7 @@ function addSessionWordsBehaviour(){
       success: function(data){
         $('#next_word_id').remove();
         $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + data['word']['id'] + '" />');
+        addFocusTextFieldBehaviour();
       }
     })
   });
