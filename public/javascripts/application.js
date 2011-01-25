@@ -18,8 +18,14 @@ function addSessionWordsBehaviour(){
     var next_word_id = $('#next_word_id') ? $('#next_word_id').val() : null;
 
     e.preventDefault();
+
+    if(next_word_id) {
+      $('#your-words').prepend(old_drawing);
+    }else{
+      old_drawing.remove();
+    }
+
     $('#title').html($('#word_word').val());
-    $('#your-words').prepend(old_drawing);
     drawWord('word');
     $.ajax({
       type: 'POST',
