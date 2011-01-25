@@ -3,6 +3,26 @@ function initializeBehaviours() {
   addFocusTextFieldBehaviour();
   showCanvasAndHideTableBehaviour();
   addSessionWordsBehaviour();
+  addRandomLatestUpdateBehaviour();
+}
+
+function addRandomLatestUpdateBehaviour() {
+  window.setInterval(updateRandomLatest, 10000);
+}
+
+function updateRandomLatest() {
+  var container = $('#top-container-scroll');
+  var last_child = container.children('.one-word:last-child');
+
+  $.ajax({
+    type: 'GET',
+    url: '/words/random',
+    success: function(data){
+      last_child.fadeOut(125);
+      last_child.remove();
+      container.prepend(data);
+    }
+  });
 }
 
 function showCanvasAndHideTableBehaviour() {
