@@ -9,13 +9,15 @@
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
   %body
     #container
+      #top-container
+        #top-container-scroll
+          = render 'shared/latest'
       #left-container
         = yield
+      #right-container
         #user-pics-container
           %h1
             Deine Wörter
           #your-words
-      #right-container
-        = render 'shared/latest'
     = javascript_include_tag :defaults
     = javascript_include_tag 'raphael/raphael', 'raphael/word'
