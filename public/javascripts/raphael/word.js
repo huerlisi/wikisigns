@@ -52,15 +52,19 @@ function drawWord(id) {
   var paper_space = 7;
   var paper = Raphael(document.getElementById(id), canvas_width, canvas_height);
 
+  // Drop shadow for carpet
   var paper_shadow = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, 10);
   paper_shadow.attr({stroke: "none", fill: "#555", translation: "2,2"});
   paper_shadow.blur(2);
 
+  // The carpet itself
   var paper_content = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, 10);
   paper_content.attr({stroke: "none", fill: "#efefef"});
+
   var path_x, path_y;
   var point_x, point_y;
 
+  // Paint all 4x4 blocks
   for(var y = 0; y < 4; y++){
     for(var x = 0; x < 4; x++){
       var space_x = x * circle_dimension + space * x;
@@ -70,40 +74,46 @@ function drawWord(id) {
       var point_width = pointWidth(block_color);
       var shadow;
 
-      if (block_color != 'none') {
-        shadow = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
-        shadow.attr({stroke: "none", fill: "gray", translation: "2,2"});
-        shadow.blur(2);
-      }
-
+      // Block
       var block = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
+      block.attr({fill: block_color, stroke: 'none'});
+
+      // Inner Circle
       point_x = margin + circle_dimension/2 + space_x;
       point_y = margin + circle_dimension/2 + space_y;
       var point = paper.circle(point_x, point_y, 5);
 
+      point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width})
+      point.toBack();
+      block.toBack();
+
+      // Drop shadow
+      if (block_color != 'none') {
+        shadow = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
+        shadow.attr({stroke: "none", fill: "gray", translation: "2,2"});
+        shadow.blur(2);
+        shadow.toBack();
+      }
+
+      // Path
       if(block_color != 'none' && path_x != undefined && path_y != undefined){
         var path = paper.path("M"+path_x+" "+path_y+"L"+point_x+" "+point_y);
         path.attr({stroke: point_color, 'stroke-width': 10, 'stroke-linecap': 'round', opacity: 0.75});
         path.toFront();
       }
-
-      block.attr({fill: block_color, stroke: 'none'});
-      point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width})
-      point.toBack();
-      block.toBack();
-
+      // Save coords for path
       if(block_color != 'none'){
         path_x = point_x;
         path_y = point_y;
-        shadow.toBack();
       }
-
     }
   }
+  // Paint P
   if(hasALetterP(word)){
     var letter_p = paper.circle(canvas_width/2, canvas_height/2, 10);
     letter_p.attr({fill: 'none', stroke: 'white', 'stroke-width': point_width})
   }
+
   paper_content.toBack();
   paper_shadow.toBack();
 }
