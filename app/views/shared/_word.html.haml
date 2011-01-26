@@ -1,4 +1,6 @@
 .one-word
-  = render(:partial => 'table', :locals => {:word => word})
+  - if table
+    = render(:partial => 'table', :locals => {:word => word})
+  %div[word]
   .word-text
     = word.word
