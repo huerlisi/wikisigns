@@ -33,16 +33,24 @@ letters[2][3][0] = 'b';
 letters[2][3][1] = 'n';
 
 letters[3] = new Array(4);
-letters[3][0] = new Array(3);
+letters[3][0] = new Array(5);
 letters[3][0][0] = 'e';
 letters[3][0][1] = 'w';
 letters[3][0][2] = 'x';
-letters[3][1] = 'a';
-letters[3][2] = new Array(3);
+letters[3][0][3] = 'ä';
+letters[3][0][4] = 'ü';
+letters[3][0][5] = 'ö';
+letters[3][1] = new Array(1);
+letters[3][1][0] = 'a';
+letters[3][1][1] = 'ä';
+letters[3][2] = new Array(4);
 letters[3][2][0] = 'o';
 letters[3][2][1] = 'g';
 letters[3][2][2] = 'q';
-letters[3][3] = 'u';
+letters[3][2][3] = 'ö';
+letters[3][3] = new Array(1);
+letters[3][3][0] = 'u';
+letters[3][3][1] = 'ü';
 
 function drawWord(id) {
   var circle_dimension = 95;
