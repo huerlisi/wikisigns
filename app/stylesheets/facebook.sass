@@ -1,0 +1,26 @@
+@import blueprint/reset
+@import blueprint
+@import compass/utilities
+@import compass/css3
+
+$title_height = 40px
+
+$blueprint-container-size = 760px
+
+@import 'partials/flying_carpet'
+@import 'partials/layout'
+#right-container,
+#user-pics-container
+  +column(8)
+  +last
+#left-container
+  +column(11)
+#top-container
+  width: $blueprint-container-size
+@import 'partials/content'
+#user-pics-container h1
+  text-align: left
+#your-words
+  height: 400px
+  width: 250px
+  overflow-y: scroll

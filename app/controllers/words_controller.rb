@@ -16,7 +16,10 @@ class WordsController < InheritedResources::Base
 
     new!
   end
-  alias new_word new
+
+  def new_word
+    new
+  end
   
   # POST /words
   def create
