@@ -1,2 +1,17 @@
-#container
-  border: 1px solid red
+@import blueprint/reset
+@import blueprint
+@import compass/utilities
+@import compass/css3
+
+$title_height = 40px
+
+$blueprint-container-size = 760px
+
+@import 'partials/flying_carpet'
+@import 'partials/layout'
+#right-container,
+#user-pics-container
+  +column(8)
+#left-container
+  +column(11)
+@import 'partials/content'
