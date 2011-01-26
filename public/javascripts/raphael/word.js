@@ -17,10 +17,10 @@ letters[1][1] = 'h';
 letters[1][2] = new Array(2);
 letters[1][2][0] = 'i';
 letters[1][2][1] = 'y';
-letters[1][3] = null;
+letters[1][3] = 'pinto*';
 
 letters[2] = new Array(4);
-letters[2][0] = null;
+letters[2][0] = 'penta*';
 letters[2][1] = new Array(2);
 letters[2][1][0] = 'd';
 letters[2][1][1] = 'm';
@@ -33,6 +33,7 @@ letters[2][2][4] = 'r';
 letters[2][3] = new Array(2);
 letters[2][3][0] = 'b';
 letters[2][3][1] = 'n';
+
 
 letters[3] = new Array(4);
 letters[3][0] = new Array(5);
