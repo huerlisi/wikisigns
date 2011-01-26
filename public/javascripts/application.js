@@ -34,23 +34,14 @@ function showCanvasAndHideTableBehaviour() {
 function addSessionWordsBehaviour(){
   $('#center-container').attr('style', 'display:block;');
   $('#new_word').submit(function(e){
-    var old_drawing = $('#word').children();
     var next_word_id = $('#next_word_id') ? $('#next_word_id').val() : null;
-
+    
     e.preventDefault();
-
-    if(next_word_id) {
-      old_drawing[0].setAttribute('viewBox', '1 1 430 430');
-      old_drawing[0].setAttribute('width', '100');
-      old_drawing[0].setAttribute('height', '100');
-      $('#your-words').prepend('<div class="svg"><div class="svg-text">'+ $('#title').text().trim() +'</div></div>');
-      $('#your-words .svg:first-child').prepend(old_drawing);
-    }else{
-      old_drawing.remove();
-    }
-
     $('#title').html($('#word_word').val());
-    drawWord('word');
+    addFocusTextFieldBehaviour();
+    $('#word').children().remove();
+    displaySessionSmallWord(drawWord('word').clone(), $('#title').text().trim());
+
     $.ajax({
       type: 'POST',
       data: { word : { word : $('#word_word').val(), next_word : next_word_id} },
@@ -59,10 +50,17 @@ function addSessionWordsBehaviour(){
       success: function(data){
         $('#next_word_id').remove();
         $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + data['word']['id'] + '" />');
-        addFocusTextFieldBehaviour();
       }
     })
   });
+}
+
+function displaySessionSmallWord(word_picture, text){
+  word_picture[0].setAttribute('viewBox', '1 1 430 430');
+  word_picture[0].setAttribute('width', '100');
+  word_picture[0].setAttribute('height', '100');
+  $('#your-words').append('<div class="svg"><div class="svg-text">'+ text +'</div></div>');
+  $('#your-words .svg:last-child').prepend(word_picture);
 }
 
 function addFocusTextFieldBehaviour() {

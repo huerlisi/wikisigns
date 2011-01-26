@@ -115,6 +115,8 @@ function drawWord(id) {
 
   paper_content.toBack();
   paper_shadow.toBack();
+
+  return $('#' + id + ' svg');
 }
 
 function hasALetterP(word) {
