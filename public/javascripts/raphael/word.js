@@ -109,8 +109,8 @@ function drawWord(id) {
   }
   // Paint P
   if(hasALetterP(word)){
-    var letter_p = paper.circle(canvas_width/2, canvas_height/2, 10);
-    letter_p.attr({fill: 'none', stroke: 'white', 'stroke-width': point_width})
+    var letter_p = paper.circle(canvas_width/2.03, canvas_height/2.03, 3);
+    letter_p.attr({fill: 'none', stroke: 'black', 'stroke-width': point_width})
   }
 
   paper_content.toBack();
