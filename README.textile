@@ -20,6 +20,8 @@ of your right to use this software.
 Copyright 2007-2011 Simon Hürlimann <simon.huerlimann@cyt.ch>
 Copyright 2010-2011 Ramon Egloff <ramon.egloff@cyt.ch>
 Copyright 2010-2011 Roman Simecek <roman.simecek@cyt.ch>
+Copyright 2011 David Hürlimann <david.huerlimann@cyt.ch>
+
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
