@@ -50,5 +50,3 @@ gem 'has_scope'
 gem 'i18n_rails_helpers', '~> 0.9'
 
 gem 'jquery-rails'
-
-gem 'facebooker-rails3'
