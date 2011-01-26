@@ -5,7 +5,9 @@ var letters = new Array(4);
 
 letters[0] = new Array(4);
 letters[0][0] = 'z';
-letters[0][1] = 't';
+letters[0][1] = new Array(1);
+letters[0][1][0] = 't';
+letters[0][1][1] = '@';
 letters[0][2] = 'j';
 letters[0][3] = 'f';
 
@@ -40,9 +42,10 @@ letters[3][0][2] = 'x';
 letters[3][0][3] = 'ä';
 letters[3][0][4] = 'ü';
 letters[3][0][5] = 'ö';
-letters[3][1] = new Array(1);
+letters[3][1] = new Array(2);
 letters[3][1][0] = 'a';
 letters[3][1][1] = 'ä';
+letters[3][1][2] = '@';
 letters[3][2] = new Array(4);
 letters[3][2][0] = 'o';
 letters[3][2][1] = 'g';
