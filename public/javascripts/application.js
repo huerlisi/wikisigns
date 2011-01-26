@@ -35,22 +35,12 @@ function addSessionWordsBehaviour(){
   $('#center-container').attr('style', 'display:block;');
   $('#new_word').submit(function(e){
     var next_word_id = $('#next_word_id') ? $('#next_word_id').val() : null;
-
+    
     e.preventDefault();
     $('#title').html($('#word_word').val());
-
-    if(next_word_id) {
-      var cloned_word = $('#word').children().clone();
-
-      $('#word').children().remove();
-      drawWord('word');
-      displaySessionSmallWord(cloned_word, $('#title').text().trim())
-    }else{
-      $('#word').children().remove();
-      var dump = drawWord('word').clone();
-      
-      displaySessionSmallWord(dump, $('#title').text().trim())
-    }
+    addFocusTextFieldBehaviour();
+    $('#word').children().remove();
+    displaySessionSmallWord(drawWord('word').clone(), $('#title').text().trim());
 
     $.ajax({
       type: 'POST',
@@ -60,7 +50,6 @@ function addSessionWordsBehaviour(){
       success: function(data){
         $('#next_word_id').remove();
         $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + data['word']['id'] + '" />');
-        addFocusTextFieldBehaviour();
       }
     })
   });
