@@ -44,11 +44,11 @@ letters[3][2][1] = 'g';
 letters[3][2][2] = 'q';
 letters[3][3] = 'u';
 
-function drawWord(id) {
+function drawWord(id, input_word) {
   var circle_dimension = 95;
   var margin = 8;
   var space = 7;
-  var word = $('#title').text().trim().toLowerCase();
+  var word = input_word.toLowerCase();
   var paper_space = 7;
   var paper = Raphael(document.getElementById(id), canvas_width, canvas_height);
 
@@ -177,13 +177,13 @@ function coord2digit(x, y) {
 
 var colors = Array(
  '#FF8F35', // 0
- '#565f5e', // 1
+ '#777F7E', // 1
  '#1f51a8', // 2
  '#e6437f', // 3
- '#574c48', // 4
+ '#5F2A17', // 4
  '#49c8fa', // 5
- '#e6c949', // 6
- '#60FF87', // 7
+ '#DFBE29', // 6
+ '#3FFF6B', // 7
  '#b392d8', // 8
  '#FFF82A' // 9
 )
