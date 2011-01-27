@@ -1,4 +1,4 @@
-WikiSigns::Application.routes.draw do |map|
+WikiSigns::Application.routes.draw do
   # Root
   root :to => "words#index"
 
