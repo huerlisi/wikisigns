@@ -10,7 +10,7 @@ class WordsController < InheritedResources::Base
 
   # GET /words/new
   def new
-    last_word = params[:last_word] || 'Willkommen'
+    last_word = params[:last_word] || 'Symbol'
     params[:word] ||= {:word => last_word}
     params[:word] = JSON.parse params[:word] if params[:word].is_a? String
 
