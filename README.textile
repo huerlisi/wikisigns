@@ -17,6 +17,7 @@ h2. License
 Read the "human-readable summary":http://creativecommons.org/licenses/GPL/2.0 to get an idea
 of your right to use this software.
 
+Copyright 2006-ever Thomas Martin Egloff <pinto@pimensional.ch>
 Copyright 2007-2011 Simon Hürlimann <simon.huerlimann@cyt.ch>
 Copyright 2010-2011 Ramon Egloff <ramon.egloff@cyt.ch>
 Copyright 2010-2011 Roman Simecek <roman.simecek@cyt.ch>
