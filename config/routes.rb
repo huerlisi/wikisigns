@@ -1,4 +1,6 @@
 WikiSigns::Application.routes.draw do
+  match "/auth/:provider/callback" => "sessions#create"
+
   devise_for :users
 
   # Root
