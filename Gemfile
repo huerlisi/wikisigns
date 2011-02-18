@@ -51,3 +51,7 @@ gem 'i18n_rails_helpers', '~> 0.9'
 
 gem 'jquery-rails'
 
+# Facebook and Twitter authentication
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => 'v1.2.oauth'
+gem "oa-oauth", :require => "omniauth/oauth"
+

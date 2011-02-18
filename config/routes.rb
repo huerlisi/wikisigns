@@ -1,4 +1,6 @@
 WikiSigns::Application.routes.draw do
+  devise_for :users
+
   # Root
   root :to => "words#index"
 

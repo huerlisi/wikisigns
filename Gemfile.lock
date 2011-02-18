@@ -5,6 +5,16 @@ GIT
   specs:
     will_paginate (3.0.pre3)
 
+GIT
+  remote: git://github.com/plataformatec/devise.git
+  revision: c42a86957ae3ce5955e9da2eaf604e1e3125693e
+  branch: v1.2.oauth
+  specs:
+    devise (1.2.oauth)
+      bcrypt-ruby (~> 2.1.2)
+      orm_adapter (~> 0.0.2)
+      warden (~> 1.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -35,7 +45,9 @@ GEM
       activemodel (= 3.0.3)
       activesupport (= 3.0.3)
     activesupport (3.0.3)
+    addressable (2.2.3)
     arel (2.0.7)
+    bcrypt-ruby (2.1.4)
     builder (2.1.2)
     compass (0.10.6)
       haml (>= 3.0.4)
@@ -56,6 +68,10 @@ GEM
       railties (>= 3.0.0)
     fancy-buttons (1.0.4)
       compass (>= 0.10.6)
+    faraday (0.5.4)
+      addressable (~> 2.2.2)
+      multipart-post (~> 1.1.0)
+      rack (>= 1.1.0, < 2)
     formtastic (1.2.3)
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
@@ -85,8 +101,23 @@ GEM
     mime-types (1.16)
     mocha (0.9.10)
       rake
+    multi_json (0.0.5)
+    multipart-post (1.1.0)
     mysql (2.8.1)
     nokogiri (1.4.4)
+    oa-core (0.1.6)
+      rack (~> 1.1)
+    oa-oauth (0.1.6)
+      multi_json (~> 0.0.2)
+      nokogiri (~> 1.4.2)
+      oa-core (= 0.1.6)
+      oauth (~> 0.4.0)
+      oauth2 (~> 0.1.0)
+    oauth (0.4.4)
+    oauth2 (0.1.1)
+      faraday (~> 0.5.0)
+      multi_json (~> 0.0.4)
+    orm_adapter (0.0.4)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -136,6 +167,8 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
+    warden (1.0.3)
+      rack (>= 1.0.0)
     webrat (0.7.3)
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
@@ -148,6 +181,7 @@ DEPENDENCIES
   compass (~> 0.10.6)
   cucumber
   cucumber-rails
+  devise!
   factory_girl_rails
   fancy-buttons
   formtastic (~> 1.2.1)
@@ -160,6 +194,7 @@ DEPENDENCIES
   lyb_sidebar
   mocha
   mysql
+  oa-oauth
   rails (~> 3.0.0)
   rails3-generators
   rcov
