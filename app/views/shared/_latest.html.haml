@@ -1,2 +1,2 @@
 - Word.latest(params[:per_page] || 12).each do |word|
-  = render :partial => 'shared/word', :locals => {:word => word, :table => true}
+  = render :partial => 'words/word', :locals => {:word => word, :table => true}
