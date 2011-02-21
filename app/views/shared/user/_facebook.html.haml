@@ -2,4 +2,6 @@
   #facebook-user
     %h1
       = t('omnisocial.logged_in_with.facebook')
+    #facebook-user-pic
+      = image_tag current_user.picture_url, :alt => current_user.login
       
