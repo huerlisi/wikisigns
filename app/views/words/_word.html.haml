@@ -4,3 +4,8 @@
   %div[word]
   .word-text
     = word.word
+  - if user_signed_in?
+    .social-media-links
+      - if current_user.from_facebook?
+        %a
+          link to facebook

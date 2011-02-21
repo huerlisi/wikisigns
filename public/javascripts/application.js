@@ -72,7 +72,7 @@ function addSessionWordsBehaviour(){
     text = $('#title').text().trim();
     addFocusTextFieldBehaviour();
     $('#word').children().remove();
-    displaySessionSmallWord(drawWord('word', text).clone(), text);
+
 
     $.ajax({
       type: 'POST',
@@ -80,17 +80,48 @@ function addSessionWordsBehaviour(){
       url: '/words',
       dataType: 'json',
       success: function(data){
+        var id = data['word']['id'];
+
+        displaySessionSmallWord(drawWord('word', text).clone(), text, id);
+
+        if($('.twitter-user').length>0){
+          $('a.twitter-share-button').each(function(){
+            var tweet_button = new twttr.TweetButton( $( this ).get( 0 ) );
+            tweet_button.render();
+          });
+        }
+
         $('#next_word_id').remove();
-        $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + data['word']['id'] + '" />');
+        $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + id + '" />');
       }
     })
   });
 }
 
-function displaySessionSmallWord(word_picture, text){
+function displaySessionSmallWord(word_picture, text, id){
+  var share_link = generateShareLink(id);
+
   word_picture = addSmallWordAttributes(word_picture);
-  $('#your-words').append('<div class="svg"><div class="svg-text">'+ text +'</div></div>');
+  $('#your-words').append('<div class="svg"><div class="svg-text">'+ text +'</div>'+ share_link +'</div>');
   $('#your-words .svg:last-child').prepend(word_picture);
+}
+
+function generateShareLink(id) {
+  var link = "";
+  var url = "";
+
+  if($('.facebook-user').length>0){
+    url = "http://www.facebook.com/sharer.php?u=http://wikisigns.dev/words/" + id + "&src=sp";
+    link = '<div class="social-media-links"><a class="share-on-facebook" href="' + url + '">Share</a></div>';
+  }
+
+  if($('.twitter-user').length>0){
+//    url = "http://twitter.com/home?status=Currently created http://wikisigns.dev/words/" + id;
+    url = "http://twitter.com/share?url=http://wikisigns.dev/words/" + id;
+    link = '<div class="social-media-links"><a class="twitter-share-button" href="' + url + '">Tweet</a></div>';
+  }
+
+  return link;
 }
 
 function addSmallWordAttributes(word_picture){
