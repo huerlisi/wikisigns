@@ -10,12 +10,12 @@
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
-  %body
-    = render 'shared/flash_messages'
-    = render 'shared/login'
-    = render 'shared/twitter'
-    = render 'shared/facebook'
+  %body{:id => controller_name}
     #container
+      #side-container
+        = render 'shared/flash_messages'
+        = render 'shared/user'
+        = render 'shared/login'
       #top-container
         #top-container-scroll
           = render 'shared/latest'

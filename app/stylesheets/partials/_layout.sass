@@ -2,12 +2,17 @@
   +container
   margin-top: 20px
 #left-container
-  +column(12)
+  +column(10)
 #user-pics-container
-  +column(12)
+  +column(9)
   +last
+#side-container
+  +column(5)
+  min-height: 400px
+  text-align: left
 #top-container
-  +column(24)
+  +column(17)
+  width: 880px
   +last
   height: 225px
   overflow-x: hidden
@@ -15,6 +20,8 @@
   margin-bottom: 20px
 #top-container-scroll
   width: 1776px
+  .word-text
+    display: none
 #right-container
-  +column(12)
+  +column(9)
   +last
