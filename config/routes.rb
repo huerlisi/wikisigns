@@ -1,8 +1,12 @@
 WikiSigns::Application.routes.draw do
-  match "/auth/:provider/callback" => "sessions#create"
 
   devise_for :users
 
+#  get '/auth/twitter/callback' do
+#    auth_hash = request.env['omniauth.auth']
+#  end
+  match "/auth/:provider/callback" => "devise/sessions#create"
+  
   # Root
   root :to => "words#index"
 

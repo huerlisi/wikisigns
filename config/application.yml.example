@@ -1,12 +1,19 @@
+twitter: &twitter
+  twitter:
+    consumer_key:
+    consumer_secret:
+
 production: &production
   facebook:
     consumer_key:
     consumer_secret:
+  <<: *twitter
 
 localhost: &localhost
   facebook:
     consumer_key:
-    consumer_secret: 
+    consumer_secret:
+  <<: *twitter
 
 development:
   <<: *localhost
