@@ -55,4 +55,4 @@ gem 'jquery-rails'
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => 'v1.2.oauth'
 gem 'omniauth'
 gem "oa-oauth", :require => "omniauth/oauth"
-
+gem 'settingslogic'

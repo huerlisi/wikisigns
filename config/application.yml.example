@@ -1,0 +1,18 @@
+production: &production
+  facebook:
+    consumer_key:
+    consumer_secret:
+
+localhost: &localhost
+  facebook:
+    consumer_key:
+    consumer_secret: 
+
+development:
+  <<: *localhost
+
+test:
+  <<: *defaults
+
+production:
+  <<: *production
