@@ -5,7 +5,21 @@ function initializeBehaviours() {
   addSessionWordsBehaviour();
   addRandomLatestUpdateBehaviour();
   drawLatestWords();
+//  addLoginBehaviour();
 }
+
+//function addLoginBehaviour() {
+//  $('#user-login').click(function(e){
+//    e.preventDefault();
+//    $.ajax({
+//      url: '/login',
+//      context: document.body,
+//      success: function(){
+//        $(this).addClass("done");
+//      }
+//    });
+//  });
+//}
 
 function drawLatestWords() {
   $('#top-container').attr('style', 'height:155px;');
