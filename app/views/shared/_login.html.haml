@@ -1,3 +1,6 @@
 #logins
-  = link_to "Sign in with Facebook", "/auth/facebook"
-  = link_to "Sign in with Twitter", "/auth/twitter"
+  - unless user_signed_in?
+    = link_to t('login'), login_path
+  - else
+    = link_to t('logout'), logout_path
+    
