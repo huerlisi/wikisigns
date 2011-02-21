@@ -2,3 +2,7 @@ de-CH:
   go: Zeichen setzen
   login: Anmelden
   logout: Abmelden
+  omnisocial:
+    title: Anmeldung
+    description: Melde dich mit Twitter oder Facebook an.
+    prefered_version: Wähle deine gewünschtes Netzwerk aus.
