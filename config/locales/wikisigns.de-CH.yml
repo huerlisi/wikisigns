@@ -6,3 +6,4 @@ de-CH:
     title: Anmeldung
     description: Melde dich mit Twitter oder Facebook an.
     prefered_version: Wähle deine gewünschtes Netzwerk aus.
+    logged_in_with: "Angemeldet mit %{user}"
