@@ -5,3 +5,8 @@
   %body
     #word
       = image_tag "/words/#{@word.id}/svg.png", :alt => "Wikisigns"
+
+#title
+  = @word.word
+
+= link_to 'Hier kannst du selber Zeichen setzen!', words_path
