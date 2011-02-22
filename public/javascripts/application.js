@@ -111,11 +111,11 @@ function generateShareLink(id) {
   var link = "";
 
   if($('.facebook-user').length>0){
-    link = '<fb:share-button class="url" href="http://' + window.location.hostname + '/words/' + id + '" />';
+    link = '<fb:share-button class="url" href="http://' + window.location.hostname + '/words/' + id + '.png&t=bla bla" />';
   }
 
   if($('.twitter-user').length>0){
-    link = '<div class="social-media-links"><a class="twitter-share-button" href="http://twitter.com/share?url=http://' + window.location.hostname + '/words/' + id + '">Tweet</a></div>';
+    link = '<div class="social-media-links"><a class="twitter-share-button" href="http://twitter.com/share?url=http://' + window.location.hostname + '/words/' + id + '.png">Tweet</a></div>';
   }
 
   return link;

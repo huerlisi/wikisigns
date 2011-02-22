@@ -31,4 +31,16 @@ class WordsController < InheritedResources::Base
     @word = Word.first(:order => "RANDOM()")
     show!
   end
+
+  def show
+    show! do |format|
+      format.html
+      format.jpg do
+        send_data( IMGKit.new(word_url(@word), :'crop-w' => 440).to_img, :type => "image/jpeg", :disposition => 'inline' )
+      end
+      format.png do
+        send_data( IMGKit.new(word_url(@word), :'crop-w' => 440, :format => 'png' ).to_img, :type => "image/png", :disposition => 'inline' )
+      end
+    end    
+  end
 end
