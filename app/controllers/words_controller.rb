@@ -1,7 +1,7 @@
 class WordsController < InheritedResources::Base
 
   respond_to :html, :json
-  layout 'application', :except => [:random, :show]
+  layout 'application', :except => [:random, :show, :svg]
 
   # GET /words
   def index
@@ -32,15 +32,14 @@ class WordsController < InheritedResources::Base
     show!
   end
 
-  def show
+  def svg
     show! do |format|
-      format.html
       format.jpg do
-        send_data( IMGKit.new(word_url(@word), :'crop-w' => 440).to_img, :type => "image/jpeg", :disposition => 'inline' )
+        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440).to_img, :type => "image/jpeg", :disposition => 'inline' )
       end
       format.png do
-        send_data( IMGKit.new(word_url(@word), :'crop-w' => 440, :format => 'png' ).to_img, :type => "image/png", :disposition => 'inline' )
+        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440, :format => 'png' ).to_img, :type => "image/png", :disposition => 'inline' )
       end
-    end    
+    end
   end
 end

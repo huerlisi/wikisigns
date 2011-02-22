@@ -16,6 +16,9 @@ WikiSigns::Application.routes.draw do
       get 'random'
       post 'new_word'
     end
+    member do
+      get 'svg'
+    end
   end
 
   
