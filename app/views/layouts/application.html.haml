@@ -10,7 +10,6 @@
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
-    = render 'shared/facebook_header'
   %body{:id => controller_name, :class => (current_user && current_user.from_facebook? ? 'facebook-user ' : '') + (current_user && current_user.from_twitter? ? 'twitter-user' : '')}
     #container
       #side-container
