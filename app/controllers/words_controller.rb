@@ -1,7 +1,7 @@
 class WordsController < InheritedResources::Base
 
   respond_to :html, :json
-  layout 'application', :except => [:random]
+  layout 'application', :except => [:random, :show]
 
   # GET /words
   def index

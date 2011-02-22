@@ -8,6 +8,7 @@ production: &production
     consumer_key:
     consumer_secret:
   <<: *twitter
+  google_analytics: 
 
 localhost: &localhost
   facebook:
