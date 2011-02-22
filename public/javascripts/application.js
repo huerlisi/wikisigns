@@ -111,13 +111,13 @@ function generateShareLink(id) {
   var url = "";
 
   if($('.facebook-user').length>0){
-    url = "http://www.facebook.com/sharer.php?u=http://wikisigns.dev/words/" + id + "&src=sp";
+    url = "http://www.facebook.com/sharer.php?u=http://wikisigns.ch/words/" + id + "&src=sp";
     link = '<div class="social-media-links"><a class="share-on-facebook" href="' + url + '">Share</a></div>';
   }
 
   if($('.twitter-user').length>0){
 //    url = "http://twitter.com/home?status=Currently created http://wikisigns.dev/words/" + id;
-    url = "http://twitter.com/share?url=http://wikisigns.dev/words/" + id;
+    url = "http://twitter.com/share?url=http://wikisigns.ch/words/" + id;
     link = '<div class="social-media-links"><a class="twitter-share-button" href="' + url + '">Tweet</a></div>';
   }
 
