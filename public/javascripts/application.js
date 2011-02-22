@@ -104,21 +104,18 @@ function displaySessionSmallWord(word_picture, text, id){
   word_picture = addSmallWordAttributes(word_picture);
   $('#your-words').append('<div class="svg"><div class="svg-text">'+ text +'</div>'+ share_link +'</div>');
   $('#your-words .svg:last-child').prepend(word_picture);
+  FB.XFBML.parse();
 }
 
 function generateShareLink(id) {
   var link = "";
-  var url = "";
 
   if($('.facebook-user').length>0){
-    url = "http://www.facebook.com/sharer.php?u=http://wikisigns.ch/words/" + id + "&src=sp";
-    link = '<div class="social-media-links"><a class="share-on-facebook" href="' + url + '">Share</a></div>';
+    link = '<fb:share-button class="url" href="http://' + window.location.hostname + '/words/' + id + '" />';
   }
 
   if($('.twitter-user').length>0){
-//    url = "http://twitter.com/home?status=Currently created http://wikisigns.dev/words/" + id;
-    url = "http://twitter.com/share?url=http://wikisigns.ch/words/" + id;
-    link = '<div class="social-media-links"><a class="twitter-share-button" href="' + url + '">Tweet</a></div>';
+    link = '<div class="social-media-links"><a class="twitter-share-button" href="http://twitter.com/share?url=http://' + window.location.hostname + '/words/' + id + '">Tweet</a></div>';
   }
 
   return link;
