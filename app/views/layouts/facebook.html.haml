@@ -17,5 +17,14 @@
             Deine Worte
           #your-words
     = javascript_include_tag :defaults
+    = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
+    <script>
+      FB.init({
+        appId  : "#{Settings.facebook.consumer_key}",
+        status : true, // check login status
+        cookie : true, // enable cookies to allow the server to access the session
+        xfbml  : true  // parse XFBML
+      });
+    </script>
     = javascript_include_tag 'facebook'
     = javascript_include_tag 'raphael/raphael', 'raphael/word'
