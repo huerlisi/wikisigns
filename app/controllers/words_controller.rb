@@ -1,7 +1,7 @@
 class WordsController < InheritedResources::Base
 
   respond_to :html, :json
-  layout 'application', :except => [:random, :show, :svg]
+  layout :words_layout
 
   # GET /words
   def index
@@ -42,4 +42,21 @@ class WordsController < InheritedResources::Base
       end
     end
   end
+
+  private
+
+  def words_layout
+    action = self.action_name
+
+    if 'random'.eql?action or 'show'.eql?action or 'svg'.eql?action
+      return nil
+    end
+
+    if 'new_word'.eql?action
+      return 'facebook'
+    end
+
+    'application'
+  end
+  
 end
