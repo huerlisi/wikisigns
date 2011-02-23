@@ -1,6 +1,6 @@
-$blueprint-container-size = 760px
-
 @import 'base/variables'
+$blueprint-container-size = 760px
+$blueprint-grid-width = 20px
 @import 'base/default_imports'
 
 $title_height = 40px
@@ -9,12 +9,8 @@ $title_height = 40px
 @import 'partials/layout'
 @import 'partials/content'
 
-#right-container,
-#user-pics-container
-  +column(8)
-  +last
 #left-container
-  +column(11)
+  +column(14)
 #top-container
   width: $blueprint-container-size
 #user-pics-container h1
