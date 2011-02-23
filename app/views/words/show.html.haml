@@ -1,12 +1,16 @@
 !!!
 %html
   %head
+    %title
+      = "%s auf http://WikiSigns.ch" % @word.word
     = render 'shared/facebook_header'
-  %body
+    = render 'shared/stylesheets'
+  %body#show-word
     #word
       = image_tag "/words/#{@word.id}/svg.png", :alt => "Wikisigns"
 
-#title
-  = @word.word
+    #title
+      = @word.word
 
-= link_to 'Hier kannst du selber Zeichen setzen!', words_path
+    = link_to 'Hier kannst du selber Zeichen setzen!', words_path, :id => 'add-new-word'
+    
