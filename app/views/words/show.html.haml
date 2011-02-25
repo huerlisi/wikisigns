@@ -12,13 +12,8 @@
     #title
       = @word.word
 
-    = link_to "<", "/words/#{@word.id - 1}", :id => 'add-new-word'
-
+    = link_to_if(@word.id > 1, "<", "/words/#{@word.id - 1}", :id => 'add-new-word')
 
     = link_to 'Hier kannst du selber Zeichen setzen!', words_path, :id => 'add-new-word'
 
-
-    = link_to ">", "/words/#{@word.id + 1}", :id => 'add-new-word'
-
-
-
+    = link_to_if(@word.id < Word.last.id, ">", "/words/#{@word.id + 1}", :id => 'add-new-word')
