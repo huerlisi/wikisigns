@@ -1,6 +1,4 @@
 class Word < ActiveRecord::Base
-  default_scope order(:id)
-  
   CHARS = [
    [['z'], ['t', '@'], ['j'], ['f']],
    [['c'], ['h'], ['i', 'y'], []],
