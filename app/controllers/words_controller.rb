@@ -5,8 +5,12 @@ class WordsController < InheritedResources::Base
 
   def show
     @word = Word.find(params[:id])
+
     @previous_word = Word.where("id < ?", @word.id).last
+    @previous_word ||= Word.last
+    
     @next_word = Word.where("id > ?", @word.id).first
+    @next_word ||= Word.first
     
     show!
   end
