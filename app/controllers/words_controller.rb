@@ -3,6 +3,14 @@ class WordsController < InheritedResources::Base
   respond_to :html, :json
   layout :words_layout
 
+  def show
+    @word = Word.find(params[:id])
+    @previous_word = Word.where("id < ?", @word.id).order(:id).last
+    @next_word = Word.where("id > ?", @word.id).order(:id).first
+    
+    show!
+  end
+  
   # GET /words
   def index
     redirect_to new_word_path
