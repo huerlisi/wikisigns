@@ -11,7 +11,7 @@ function generateShareLink(id) {
   var link = "";
 
   if($('.facebook-user').length>0){
-    link = '<fb:share-button href="http://' + window.location.hostname + '/words/' + id + '"></fb:share-button>';
+    link = '<fb:like layout="button_count" href="http://' + window.location.hostname + '/words/' + id + '"></fb:like>';
   }
 
   if($('.twitter-user').length>0){
