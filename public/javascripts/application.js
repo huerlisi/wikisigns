@@ -7,6 +7,7 @@ function initializeBehaviours() {
   drawLatestWords();
 }
 
+// Draw a new word at the top of the page.
 function drawLatestWords() {
   $('#top-container').attr('style', 'height:155px;');
   $('#top-container-scroll').attr('style', 'width:1320px;');
@@ -18,10 +19,12 @@ function drawLatestWords() {
   });
 }
 
+// Sets the interval for new random entry at the top of the page.
 function addRandomLatestUpdateBehaviour() {
   window.setInterval(updateRandomLatest, 5000);
 }
 
+// Shows a new random entry at the top of the page.
 function updateRandomLatest() {
   var container = $('#top-container-scroll');
   var last_child = container.children('.one-word:last-child');
@@ -41,12 +44,14 @@ function updateRandomLatest() {
   });
 }
 
+// Hides the table variant and shows the canvas alternative.
 function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
   drawWord('word', $('#title').text().trim());
 }
 
+// Draw a new word and submit it to the data base.
 function addSessionWordsBehaviour(){
   $('#center-container').attr('style', 'display:block;');
   $('#new_word').submit(function(e){
@@ -84,6 +89,7 @@ function addSessionWordsBehaviour(){
   });
 }
 
+// Modifies the word picture attributes for the small word picture.
 function addSmallWordAttributes(word_picture){
   word_picture[0].setAttribute('viewBox', '1 1 430 430');
   word_picture[0].setAttribute('width', '100');
@@ -92,6 +98,7 @@ function addSmallWordAttributes(word_picture){
   return word_picture;
 }
 
+// Sets focus to the input field.
 function addFocusTextFieldBehaviour() {
   $('#word_word').focus().select();
 }
