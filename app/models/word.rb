@@ -1,3 +1,6 @@
+# encoding: utf-8
+
+# This class represents an inserted word.
 class Word < ActiveRecord::Base
   CHARS = [
    [['z'], ['t', '@'], ['j'], ['f']],
@@ -6,6 +9,7 @@ class Word < ActiveRecord::Base
    [['e', 'w', 'x'], ['a', 'à', '@'], ['o', 'g', 'q'], ['u']]
   ]
 
+  # The latest words, by default 12 entries.
   def self.latest(amount = 12)
     self.all(:order => 'created_at DESC', :limit => amount)
   end
