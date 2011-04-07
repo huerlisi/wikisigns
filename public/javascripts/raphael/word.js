@@ -258,7 +258,23 @@ letters[3][3][4] = '77';
 letters[3][3][5] = '87';
 letters[3][3][6] = '97';
 
-function drawWord(id, input_word) {
+// Definition of the colors
+var colors = Array(
+ '#FF8F35', // 0
+ '#777F7E', // 1
+ '#1f51a8', // 2
+ '#e6437f', // 3
+ '#5F2A17', // 4
+ '#49c8fa', // 5
+ '#DFBE29', // 6
+ '#09ee6a', // 7
+ '#b392d8', // 8
+ '#FFF82A' // 9
+);
+
+
+// Draws a word as an image.
+function drawWordAsImage(id, input_word) {
   var circle_dimension = 95;
   var margin = 8;
   var space = 7;
@@ -333,6 +349,32 @@ function drawWord(id, input_word) {
   return $('#' + id + ' svg');
 }
 
+// Creates a colored word.
+function drawColoredWord(word) {
+  var output = '';
+
+  for(var i = 0; i < word.length; i++){
+    output += '<span style="background-color:' + getColorForLetter(word[i].toLowerCase()) + ';">' + word[i] + '</span>';
+  }
+
+  $('#title').html(output);
+}
+
+// Returns the color for a letter.
+function getColorForLetter(letter) {
+  for(var i = 0; i < letters.length; i++){
+    for(var j = 0; j < letters[i].length; j++){
+      if($.inArray(letter, letters[i][j]) > -1){
+        //console.log(letters[i][j]);
+        //console.log('i: ' + i + ' j: ' + j + ' color: ' + coord2color(i, j) + ' letter: ' + letter);
+        return coord2color(i, j);
+      }
+    }
+  }
+  return 'none';
+}
+
+// Checks if word has a P.
 function hasALetterP(word) {
   if(word.toLowerCase().indexOf('p') != -1) {
     return true
@@ -376,7 +418,6 @@ function pointWidth(color) {
   return 2;
 }
 
-
 function coord2index(x, y) {
   return 4 * y + (3 - x);
 }
@@ -389,19 +430,7 @@ function coord2digit(x, y) {
   return digit(coord2index(x, y));
 }
 
-var colors = Array(
- '#FF8F35', // 0
- '#777F7E', // 1
- '#1f51a8', // 2
- '#e6437f', // 3
- '#5F2A17', // 4
- '#49c8fa', // 5
- '#DFBE29', // 6
- '#09ee6a', // 7
- '#b392d8', // 8
- '#FFF82A' // 9
-)
-
+// Color for a coordinate.
 function coord2color(x, y) {
   return colors[coord2digit(x, y)];
 }

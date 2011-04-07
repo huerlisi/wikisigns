@@ -12,7 +12,7 @@ function drawLatestWords() {
   $('#top-container').attr('style', 'height:155px;');
   $('#top-container-scroll').attr('style', 'width:1320px;');
   $('#top-container-scroll .one-word .word').each(function(){
-    var word = drawWord($(this).attr('id'), $(this).next('.word-text').text().trim());
+    var word = drawWordAsImage($(this).attr('id'), $(this).next('.word-text').text().trim());
 
     addSmallWordAttributes(word);
     $(this).prev('table.carpet').hide();
@@ -37,7 +37,7 @@ function updateRandomLatest() {
       last_child.remove();
       container.prepend(data);
       
-      var word = drawWord($(data).children('.word').attr('id'), $(data).children('.word-text').text().trim());
+      var word = drawWordAsImage($(data).children('.word').attr('id'), $(data).children('.word-text').text().trim());
 
       addSmallWordAttributes(word);
     }
@@ -48,7 +48,8 @@ function updateRandomLatest() {
 function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
-  drawWord('word', $('#title').text().trim());
+  drawWordAsImage('word', $('#title').text().trim());
+  drawColoredWord($('#word_word').val().trim());
 }
 
 // Draw a new word and submit it to the data base.
@@ -59,7 +60,7 @@ function addSessionWordsBehaviour(){
     var text;
     
     e.preventDefault();
-    $('#title').html($('#word_word').val());
+    drawColoredWord($('#word_word').val().trim());
     text = $('#title').text().trim();
     addFocusTextFieldBehaviour();
     $('#word').children().remove();
@@ -73,7 +74,7 @@ function addSessionWordsBehaviour(){
       success: function(data){
         var id = data['word']['id'];
 
-        displaySessionSmallWord(drawWord('word', text).clone(), text, id);
+        displaySessionSmallWord(drawWordAsImage('word', text).clone(), text, id);
 
         if($('.twitter-user').length>0){
           $('a.twitter-share-button').each(function(){
