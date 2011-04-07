@@ -291,7 +291,7 @@ function drawWordAsImage(id, input_word) {
   var paper_content = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, 10);
   paper_content.attr({stroke: "none", fill: "#efefef"});
 
-  var path_x, path_y;
+  // var path_x, path_y;
   var point_x, point_y;
 
   // Paint all 4x4 blocks
@@ -357,7 +357,7 @@ function drawColoredWord(word) {
     output += '<span style="background-color:' + getColorForLetter(word[i].toLowerCase()) + ';">' + word[i] + '</span>';
   }
 
-  $('#title').html(output);
+  return output;
 }
 
 // Returns the color for a letter.
@@ -365,8 +365,6 @@ function getColorForLetter(letter) {
   for(var i = 0; i < letters.length; i++){
     for(var j = 0; j < letters[i].length; j++){
       if($.inArray(letter, letters[i][j]) > -1){
-        //console.log(letters[i][j]);
-        //console.log('i: ' + i + ' j: ' + j + ' color: ' + coord2color(i, j) + ' letter: ' + letter);
         return coord2color(i, j);
       }
     }

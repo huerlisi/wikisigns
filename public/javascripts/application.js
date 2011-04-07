@@ -12,10 +12,12 @@ function drawLatestWords() {
   $('#top-container').attr('style', 'height:155px;');
   $('#top-container-scroll').attr('style', 'width:1320px;');
   $('#top-container-scroll .one-word .word').each(function(){
-    var word = drawWordAsImage($(this).attr('id'), $(this).next('.word-text').text().trim());
+    var text = $(this).next('.word-text').text().trim();
+    var word = drawWordAsImage($(this).attr('id'), text);
 
     addSmallWordAttributes(word);
     $(this).prev('table.carpet').hide();
+    $(this).next('.word-text').html(drawColoredWord(text));
   });
 }
 
@@ -36,10 +38,12 @@ function updateRandomLatest() {
       last_child.fadeOut(125);
       last_child.remove();
       container.prepend(data);
-      
-      var word = drawWordAsImage($(data).children('.word').attr('id'), $(data).children('.word-text').text().trim());
+
+      var text = $(data).children('.word-text').text().trim();
+      var word = drawWordAsImage($(data).children('.word').attr('id'), text);
 
       addSmallWordAttributes(word);
+      $('#top-container-scroll .one-word:first-child .word-text').html(drawColoredWord(text));
     }
   });
 }
@@ -49,7 +53,7 @@ function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
   drawWordAsImage('word', $('#title').text().trim());
-  drawColoredWord($('#word_word').val().trim());
+  $('#title').html(drawColoredWord($('#word_word').val().trim()));
 }
 
 // Draw a new word and submit it to the data base.
@@ -60,7 +64,7 @@ function addSessionWordsBehaviour(){
     var text;
     
     e.preventDefault();
-    drawColoredWord($('#word_word').val().trim());
+    $('#title').html(drawColoredWord($('#word_word').val().trim()));
     text = $('#title').text().trim();
     addFocusTextFieldBehaviour();
     $('#word').children().remove();
