@@ -354,7 +354,20 @@ function drawColoredWord(word) {
   var output = '';
 
   for(var i = 0; i < word.length; i++){
-    output += '<span style="background-color:' + getColorForLetter(word[i].toLowerCase()) + ';">' + word[i] + '</span>';
+    var color = getColorForLetter(word[i].toLowerCase());
+    var letter = word[i];
+
+    if(word[i] >= 0 && word[i] <= 10){
+      var number = word[i] + '' + word[i+1];
+
+      color = getColorForLetter('0' + word[i]);
+
+      if(number > 9) {
+        color = getColorForLetter(word[i] + '' + word[i+1]);
+      }
+    }
+
+    output += '<span style="background-color:' + color + ';border:2px solid ' + color + ';">' + letter + '</span>';
   }
 
   return output;
