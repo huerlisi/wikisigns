@@ -357,14 +357,8 @@ function drawColoredWord(word) {
     var color = getColorForLetter(word[i].toLowerCase());
     var letter = word[i];
 
-    if(word[i] >= 0 && word[i] <= 10){
-      var number = word[i] + '' + word[i+1];
-
-      color = getColorForLetter('0' + word[i]);
-
-      if(number > 9) {
-        color = getColorForLetter(word[i] + '' + word[i+1]);
-      }
+    if(word[i] >= 0 && word[i] < 10){
+      color = colors[word[i]];
     }
 
     output += '<span style="background-color:' + color + ';border:2px solid ' + color + ';">' + letter + '</span>';
