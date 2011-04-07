@@ -1,10 +1,25 @@
 // Initialize behaviours
 function initializeBehaviours() {
   addFocusTextFieldBehaviour();
-  showCanvasAndHideTableBehaviour();
   addSessionWordsBehaviour();
-  addRandomLatestUpdateBehaviour();
-  drawLatestWords();
+  // initialize only on /words/new page.
+  if($('#words').length > 0){
+    addRandomLatestUpdateBehaviour();
+    drawLatestWords();
+    showCanvasAndHideTableBehaviour();
+  }
+
+  // initialize only on /words/:id page.
+  if($('#show-word').length > 0){
+    addColorizeTextBehaviour();
+  }
+}
+
+// Colorizes the text on the show word page.
+function addColorizeTextBehaviour() {
+  var text_field = $('#title');
+
+  text_field.html(drawColoredWord(text_field.text().trim()));
 }
 
 // Draw a new word at the top of the page.

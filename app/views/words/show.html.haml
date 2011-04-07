@@ -17,3 +17,6 @@
     = link_to 'Hier kannst du selber Zeichen setzen!', words_path, :id => 'add-new-word'
 
     = link_to(">", word_path(@next_word), :id => 'add-new-word')
+
+    = javascript_include_tag :defaults
+    = render 'shared/javascripts'
