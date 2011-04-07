@@ -369,6 +369,19 @@ function drawColoredWord(word) {
 
 // Returns the color for a letter.
 function getColorForLetter(letter) {
+
+  switch(letter) {
+    case 'ä':
+      letter = 'a';
+      break;
+    case 'ö':
+      letter = 'o';
+      break;
+    case 'ü':
+      letter = 'u';
+      break;
+  }
+
   for(var i = 0; i < letters.length; i++){
     for(var j = 0; j < letters[i].length; j++){
       if($.inArray(letter, letters[i][j]) > -1){
@@ -376,6 +389,7 @@ function getColorForLetter(letter) {
       }
     }
   }
+
   return 'none';
 }
 
