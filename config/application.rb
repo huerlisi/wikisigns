@@ -42,5 +42,10 @@ module WikiSigns
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # Google analytics middle ware.
+    if Rails.env == "production"
+      config.middleware.use("Rack::GoogleAnalytics", :web_property_id => Settings.google_analytics)
+    end
   end
 end

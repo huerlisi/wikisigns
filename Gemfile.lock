@@ -141,6 +141,7 @@ GEM
     orm_adapter (0.0.4)
     polyglot (0.3.1)
     rack (1.2.1)
+    rack-google_analytics (1.0.1)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
     rack-test (0.5.7)
@@ -223,6 +224,7 @@ DEPENDENCIES
   mocha
   mysql
   omnisocial
+  rack-google_analytics
   rails (~> 3.0.0)
   rails3-generators
   rcov

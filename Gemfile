@@ -65,3 +65,9 @@ gem 'settingslogic'
 
 # Generate images
 gem 'imgkit'
+
+# Development
+# ===========
+group :production do
+  gem 'rack-google_analytics', :require => "rack/google_analytics"
+end
