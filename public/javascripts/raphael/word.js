@@ -352,11 +352,11 @@ function drawWordAsImage(id, input_word) {
 // Creates a colored word.
 function drawColoredWord(word) {
   var output = '';
-  var style_class = '';
 
   for(var i = 0; i < word.length; i++){
     var letter = word[i].toLowerCase();
     var color = getColorForLetter(letter);
+    var style_class = '';
 
     if(word[i] >= 0 && word[i] < 10){
       color = colors[word[i]];
@@ -364,14 +364,26 @@ function drawColoredWord(word) {
 
     switch(letter) {
       case 'k':
+        style_class = 'silver-letter';
+        break;
       case 'l':
+        style_class = 'silver-letter';
+        break;
       case 'r':
+        style_class = 'silver-letter';
+        break;
       case 's':
+        style_class = 'silver-letter';
+        break;
       case 'v':
         style_class = 'silver-letter';
         break;
       case 'ä':
+        style_class = 'umlaut-letter';
+        break;
       case 'ö':
+        style_class = 'umlaut-letter';
+        break;
       case 'ü':
         style_class = 'umlaut-letter';
         break;
