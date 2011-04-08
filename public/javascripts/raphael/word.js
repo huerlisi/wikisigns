@@ -260,7 +260,7 @@ letters[3][3][6] = '97';
 
 // Definition of the colors
 var colors = Array(
- '#FF8F35', // 0
+ '#FF8F35', // 0: orange
  '#777F7E', // 1
  '#1f51a8', // 2
  '#e6437f', // 3
@@ -352,16 +352,35 @@ function drawWordAsImage(id, input_word) {
 // Creates a colored word.
 function drawColoredWord(word) {
   var output = '';
+  var style_class = '';
 
   for(var i = 0; i < word.length; i++){
-    var color = getColorForLetter(word[i].toLowerCase());
-    var letter = word[i];
+    var letter = word[i].toLowerCase();
+    var color = getColorForLetter(letter);
 
     if(word[i] >= 0 && word[i] < 10){
       color = colors[word[i]];
     }
 
-    output += '<span style="background-color:' + color + ';border:2px solid ' + color + ';">' + letter + '</span>';
+    switch(letter) {
+      case 'k':
+      case 'l':
+      case 'r':
+      case 's':
+      case 'v':
+        style_class = 'silver-letter';
+        break;
+      case 'ä':
+      case 'ö':
+      case 'ü':
+        style_class = 'umlaut-letter';
+        break;
+      case 'p':
+        style_class = 'p-letter';
+        break;
+    }
+
+    output += '<span class="' + style_class + '" style="background-color:' + color + ';border:2px solid ' + color + ';">' + word[i] + '</span>';
   }
 
   return output;
