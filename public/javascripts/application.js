@@ -7,12 +7,23 @@ function initializeBehaviours() {
     addRandomLatestUpdateBehaviour();
     drawLatestWords();
     showCanvasAndHideTableBehaviour();
+    addRealtimeWordDrawingBehaviour();
   }
 
   // initialize only on /words/:id page.
   if($('#show-word').length > 0){
     addColorizeTextBehaviour();
   }
+}
+
+//
+function addRealtimeWordDrawingBehaviour() {
+  $('#word_word').keyup(function(event){
+    //console.log('keypress on: ' + $(this).val().trim());
+    $('#word').children().remove();
+    drawWordAsImage('word', $(this).val().trim());
+    $('#title').html(drawColoredWord($(this).val().trim()));
+  });
 }
 
 // Colorizes the text on the show word page.
