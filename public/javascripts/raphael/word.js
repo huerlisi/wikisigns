@@ -291,12 +291,10 @@ function drawWordAsImage(id, input_word) {
   var paper_content = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, 10);
   paper_content.attr({stroke: "none", fill: "#efefef"});
 
-  // var path_x, path_y;
-  var point_x, point_y;
-
   // Paint all 4x4 blocks
-  for(var y = 0; y < 4; y++){
+  /*for(var y = 0; y < 4; y++){
     for(var x = 0; x < 4; x++){
+      var point_x, point_y;
       var space_x = x * circle_dimension + space * x;
       var space_y = y * circle_dimension + space * y;
       var block_color = blockColor(word, letters[y][x], coord2color(y, x));
@@ -323,20 +321,63 @@ function drawWordAsImage(id, input_word) {
         shadow.attr({stroke: "none", fill: "gray", translation: "2,2"});
         shadow.blur(2);
         shadow.toBack();
-
-/*        // Path
-        if(path_x != undefined && path_y != undefined){
-          var path = paper.path("M"+path_x+" "+path_y+"L"+point_x+" "+point_y);
-          path.attr({stroke: point_color, 'stroke-width': 10, 'stroke-linecap': 'round', opacity: 0.75});
-          path.toFront();
-        }
-        // Save coords for path
-        path_x = point_x;
-        path_y = point_y;
-*/
       }
     }
+  }  */
+
+  // paint the word lines.
+  var coordinates = getCoordinatesFromWord(word);
+  var path_x, path_y;
+
+  for(var i = 0;i < coordinates.length; i++){
+      var x = coordinates[i][0];
+      var y = coordinates[i][1];
+      var point_x, point_y;
+      var space_x = x * circle_dimension + space * x;
+      var space_y = y * circle_dimension + space * y;
+      var block_color = blockColor(word, letters[y][x], coord2color(y, x));
+      var point_color = pointColor(block_color);
+      var point_width = pointWidth(block_color);
+      var shadow;
+
+      // Inner Circle
+      point_x = margin + circle_dimension/2 + space_x;
+      point_y = margin + circle_dimension/2 + space_y;
+      var point = paper.circle(point_x, point_y, 5);
+      point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width})
+      point.toBack();
+
+      if (block_color != 'none') {
+        // Block
+        var block = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
+        block.attr({fill: block_color, stroke: 'none'});
+
+        block.toBack();
+
+        // Drop shadow
+        shadow = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
+        shadow.attr({stroke: "none", fill: "gray", translation: "2,2"});
+        shadow.blur(2);
+        shadow.toBack();
+      }
+
+    // Inner Circle
+    point_x = margin + circle_dimension/2 + space_x;
+    point_y = margin + circle_dimension/2 + space_y;
+
+    if(path_x != undefined && path_y != undefined){
+      var path = paper.path("M"+path_x+" "+path_y+"L"+point_x+" "+point_y);
+
+      path.attr({stroke: point_color, 'stroke-width': 10, 'stroke-linecap': 'round', opacity: 0.75});
+      path.toFront();
+    }
+
+    // Save coords for path
+    path_x = point_x;
+    path_y = point_y;
+    console.log(coordinates[i]);
   }
+
   // Paint P
   if(hasALetterP(word)){
     var letter_p = paper.circle(canvas_width/2.03, canvas_height/2.03, 5);
@@ -347,6 +388,17 @@ function drawWordAsImage(id, input_word) {
   paper_shadow.toBack();
 
   return $('#' + id + ' svg');
+}
+
+// Returns the coordinates in the right order for a word.
+function getCoordinatesFromWord(word) {
+  var coordinates = new Array(word.length);
+
+  for(var i = 0; i < coordinates.length; i++) {
+    coordinates[i] = letter2coord(word[i]);
+  }
+
+  return coordinates;
 }
 
 // Creates a colored word.
@@ -466,6 +518,21 @@ function pointWidth(color) {
     return 1;
   }
   return 2;
+}
+
+function letter2coord(letter) {
+  var coor = new Array(2);
+
+  for(var x = 0; x < letters.length; x++){
+    for(var y = 0; y < letters[x].length; y++) {
+      if(letters[x][y].indexOf(letter.toLowerCase()) > -1){
+        coor[0] = y;
+        coor[1] = x;
+      }
+    }
+  }
+
+  return coor;
 }
 
 function coord2index(x, y) {
