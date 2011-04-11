@@ -23,6 +23,10 @@ function addRealtimeWordDrawingBehaviour() {
       $('#word').children().remove();
       drawWordAsImage('word', $(this).val().trim());
       $('#title').html(drawColoredWord($(this).val().trim()));
+
+      if($(this).val().indexOf(' ', 0) > -1) {
+        newWord();
+      }
     }
   });
 }
@@ -87,38 +91,43 @@ function showCanvasAndHideTableBehaviour() {
 function addSessionWordsBehaviour(){
   $('#center-container').attr('style', 'display:block;');
   $('#new_word').submit(function(e){
-    var next_word_id = $('#next_word_id') ? $('#next_word_id').val() : null;
-    var text;
-    
     e.preventDefault();
-    $('#title').html(drawColoredWord($('#word_word').val().trim()));
-    text = $('#title').text().trim();
-    addFocusTextFieldBehaviour();
-    $('#word').children().remove();
-
-
-    $.ajax({
-      type: 'POST',
-      data: { word : { word : $('#word_word').val(), next_word : next_word_id} },
-      url: '/words',
-      dataType: 'json',
-      success: function(data){
-        var id = data['word']['id'];
-
-        displaySessionSmallWord(drawWordAsImage('word', text).clone(), text, id);
-
-        if($('.twitter-user').length>0){
-          $('a.twitter-share-button').each(function(){
-            var tweet_button = new twttr.TweetButton( $( this ).get( 0 ) );
-            tweet_button.render();
-          });
-        }
-
-        $('#next_word_id').remove();
-        $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + id + '" />');
-      }
-    })
+    newWord();
   });
+}
+
+// Submits and draws a new word.
+function newWord() {
+  var next_word_id = $('#next_word_id') ? $('#next_word_id').val() : null;
+  var text;
+
+  $('#title').html(drawColoredWord($('#word_word').val().trim()));
+  text = $('#title').text().trim();
+  addFocusTextFieldBehaviour();
+  $('#word').children().remove();
+
+
+  $.ajax({
+    type: 'POST',
+    data: { word : { word : $('#word_word').val(), next_word : next_word_id} },
+    url: '/words',
+    dataType: 'json',
+    success: function(data){
+      var id = data['word']['id'];
+
+      displaySessionSmallWord(drawWordAsImage('word', text).clone(), text, id);
+
+      if($('.twitter-user').length>0){
+        $('a.twitter-share-button').each(function(){
+          var tweet_button = new twttr.TweetButton( $( this ).get( 0 ) );
+          tweet_button.render();
+        });
+      }
+
+      $('#next_word_id').remove();
+      $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + id + '" />');
+    }
+  })
 }
 
 // Modifies the word picture attributes for the small word picture.
