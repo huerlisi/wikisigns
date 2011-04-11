@@ -6,4 +6,6 @@
       = link_to t('login'), login_path, :id => 'user-login'
     - else
       = link_to t('logout'), logout_path, :id => 'user-logout'
-    
+- if controller.class.eql?Omnisocial::AuthController
+  #back-link
+    = link_to t('back'), root_path
