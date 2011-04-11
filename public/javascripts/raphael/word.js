@@ -292,7 +292,7 @@ function drawWordAsImage(id, input_word) {
   paper_content.attr({stroke: "none", fill: "#efefef"});
 
   // Paint all 4x4 blocks
-  /*for(var y = 0; y < 4; y++){
+  for(var y = 0; y < 4; y++){
     for(var x = 0; x < 4; x++){
       var point_x, point_y;
       var space_x = x * circle_dimension + space * x;
@@ -323,44 +323,13 @@ function drawWordAsImage(id, input_word) {
         shadow.toBack();
       }
     }
-  }  */
+  }
 
   // paint the word lines.
   var coordinates = getCoordinatesFromWord(word);
   var path_x, path_y;
 
   for(var i = 0;i < coordinates.length; i++){
-      var x = coordinates[i][0];
-      var y = coordinates[i][1];
-      var point_x, point_y;
-      var space_x = x * circle_dimension + space * x;
-      var space_y = y * circle_dimension + space * y;
-      var block_color = blockColor(word, letters[y][x], coord2color(y, x));
-      var point_color = pointColor(block_color);
-      var point_width = pointWidth(block_color);
-      var shadow;
-
-      // Inner Circle
-      point_x = margin + circle_dimension/2 + space_x;
-      point_y = margin + circle_dimension/2 + space_y;
-      var point = paper.circle(point_x, point_y, 5);
-      point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width})
-      point.toBack();
-
-      if (block_color != 'none') {
-        // Block
-        var block = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
-        block.attr({fill: block_color, stroke: 'none'});
-
-        block.toBack();
-
-        // Drop shadow
-        shadow = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
-        shadow.attr({stroke: "none", fill: "gray", translation: "2,2"});
-        shadow.blur(2);
-        shadow.toBack();
-      }
-
     // Inner Circle
     point_x = margin + circle_dimension/2 + space_x;
     point_y = margin + circle_dimension/2 + space_y;
@@ -375,7 +344,6 @@ function drawWordAsImage(id, input_word) {
     // Save coords for path
     path_x = point_x;
     path_y = point_y;
-    console.log(coordinates[i]);
   }
 
   // Paint P
