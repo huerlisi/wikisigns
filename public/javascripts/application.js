@@ -19,10 +19,11 @@ function initializeBehaviours() {
 //
 function addRealtimeWordDrawingBehaviour() {
   $('#word_word').keyup(function(event){
-    //console.log('keypress on: ' + $(this).val().trim());
-    $('#word').children().remove();
-    drawWordAsImage('word', $(this).val().trim());
-    $('#title').html(drawColoredWord($(this).val().trim()));
+    if(event.keyCode != 13) {
+      $('#word').children().remove();
+      drawWordAsImage('word', $(this).val().trim());
+      $('#title').html(drawColoredWord($(this).val().trim()));
+    }
   });
 }
 
