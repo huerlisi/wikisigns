@@ -49,10 +49,10 @@ class WordsController < InheritedResources::Base
   def svg
     show! do |format|
       format.jpg do
-        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440).to_img, :type => "image/jpeg", :disposition => 'inline' )
+        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440, :format => 'jpg', :quality => 60).to_img, :type => "image/jpeg", :disposition => 'inline' )
       end
       format.png do
-        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440, :format => 'png' ).to_img, :type => "image/png", :disposition => 'inline' )
+        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440, :format => 'png', :quality => 60).to_img, :type => "image/png", :disposition => 'inline' )
       end
     end
   end
