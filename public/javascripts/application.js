@@ -80,7 +80,7 @@ function drawLatestWords() {
 
 // Sets the interval for new random entry at the top of the page.
 function addRandomLatestUpdateBehaviour() {
-  //window.setInterval(updateRandomLatest, 5000);
+  window.setInterval(updateRandomLatest, 5000);
 }
 
 // Shows a new random entry at the top of the page.
