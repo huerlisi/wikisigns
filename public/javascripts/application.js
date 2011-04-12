@@ -40,6 +40,9 @@ function showSmallPictureAsBigWord(element) {
   });
 
   text_input.val(word);
+  $('#word svg').remove();
+  drawWordAsImage('word', word);
+  $('#title').html(drawColoredWord(text_input.val().trim()));
 }
 
 //
