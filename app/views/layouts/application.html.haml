@@ -4,6 +4,7 @@
     %title WikiSigns
     = csrf_meta_tag
     = render 'shared/stylesheets'
+    = render 'shared/facebook_header'
   %body{:id => controller_name, :class => (current_user && current_user.from_facebook? ? 'facebook-user ' : '') + (current_user && current_user.from_twitter? ? 'twitter-user' : '')}
     #container
       #side-container
