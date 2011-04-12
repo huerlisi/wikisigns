@@ -4,6 +4,7 @@ de-CH:
   login_information: 'Melde dich hier an und du kannst direkt über Twitter oder Facebook deine Worte veröffentlichen.'
   logout: Abmelden
   back: Zurück
+  help: 'Gib im Textfeld verschiedene Worte ein und lass sie zu Bildern werden.'
   omnisocial:
     title: Anmeldung
     description: Melde dich mit Twitter oder Facebook an.
