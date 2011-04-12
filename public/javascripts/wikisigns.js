@@ -18,7 +18,9 @@ function generateShareLink(id) {
   }
 
   if($('.twitter-user').length>0){
-    link = '<div class="social-media-links"><a class="twitter-share-button" href="http://twitter.com/share?url=http://' + window.location.hostname + '/word/' + id + '">Tweet</a></div>';
+    var url = 'http://' + window.location.hostname + '/word/' + id;
+
+    link = '<div class="social-media-links"><a class="twitter-share-button" href="http://twitter.com/share" data-url="' + url + '">Tweet</a></div>';
   }
 
   return link;
