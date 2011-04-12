@@ -19,6 +19,7 @@ class WordsController < InheritedResources::Base
 
   def show_by_slug
     @word = Word.find_by_word(params[:slug])
+    @word ||= Word.new(:word => 'not found')
   end
   
   # GET /words
