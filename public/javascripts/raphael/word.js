@@ -329,7 +329,7 @@ function drawWordAsImage(id, input_word) {
   var coordinates = getCoordinatesFromWord(word);
   var path_x, path_y;
 
-  for(var i = 0;i < coordinates.length; i++){
+  /*for(var i = 0;i < coordinates.length; i++){
     // Inner Circle
     point_x = margin + circle_dimension/2 + space_x;
     point_y = margin + circle_dimension/2 + space_y;
@@ -344,7 +344,7 @@ function drawWordAsImage(id, input_word) {
     // Save coords for path
     path_x = point_x;
     path_y = point_y;
-  }
+  }*/
 
   // Paint P
   if(hasALetterP(word)){
