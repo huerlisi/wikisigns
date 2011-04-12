@@ -1,13 +1,17 @@
+var text_input = $('#word_word');
+
 // Initialize behaviours
 function initializeBehaviours() {
   addFocusTextFieldBehaviour();
   addSessionWordsBehaviour();
+
   // initialize only on /words/new page.
   if($('#words').length > 0 || $('#word.svg').length > 0 ){
     addRandomLatestUpdateBehaviour();
     drawLatestWords();
     showCanvasAndHideTableBehaviour();
     addRealtimeWordDrawingBehaviour();
+    addInitialResizeBehaviour();
   }
 
   // initialize only on /words/:id page.
@@ -16,9 +20,31 @@ function initializeBehaviours() {
   }
 }
 
+// Adds a mouseover effect to the latest words.
+function addInitialResizeBehaviour() {
+  $('#top-container-scroll div.one-word').each(function(){
+    $(this).addClass('selectable');
+    $(this).click(function(){
+      showSmallPictureAsBigWord(this);
+    });
+  });
+}
+
+// Shows a small word picture in the big main word.
+function showSmallPictureAsBigWord(element) {
+  var word = '';
+
+  // Read the word from within the span tags.
+  $(element).children('.word-text').children('span').each(function(){
+    word += $(this).html().trim();
+  });
+
+  text_input.val(word);
+}
+
 //
 function addRealtimeWordDrawingBehaviour() {
-  $('#word_word').keyup(function(event){
+  text_input.keyup(function(event){
     if(event.keyCode != 13) {
       $('#word').children().remove();
       drawWordAsImage('word', $(this).val().trim());
@@ -54,7 +80,7 @@ function drawLatestWords() {
 
 // Sets the interval for new random entry at the top of the page.
 function addRandomLatestUpdateBehaviour() {
-  window.setInterval(updateRandomLatest, 5000);
+  //window.setInterval(updateRandomLatest, 5000);
 }
 
 // Shows a new random entry at the top of the page.
@@ -75,6 +101,10 @@ function updateRandomLatest() {
 
       addSmallWordAttributes(word);
       $('#top-container-scroll .one-word:first-child .word-text').html(drawColoredWord(text));
+      $('#top-container-scroll .one-word:first-child').addClass('selectable');
+      $('#top-container-scroll .one-word:first-child').click(function(){
+        showSmallPictureAsBigWord(this);
+      });
     }
   });
 }
@@ -84,7 +114,7 @@ function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
   drawWordAsImage('word', $('#title').text().trim());
-  $('#title').html(drawColoredWord($('#word_word').val().trim()));
+  $('#title').html(drawColoredWord(text_input.val().trim()));
 }
 
 // Draw a new word and submit it to the data base.
@@ -101,7 +131,7 @@ function newWord() {
   var next_word_id = $('#next_word_id') ? $('#next_word_id').val() : null;
   var text;
 
-  $('#title').html(drawColoredWord($('#word_word').val().trim()));
+  $('#title').html(drawColoredWord(text_input.val().trim()));
   text = $('#title').text().trim();
   addFocusTextFieldBehaviour();
   $('#word').children().remove();
@@ -109,7 +139,7 @@ function newWord() {
 
   $.ajax({
     type: 'POST',
-    data: { word : { word : $('#word_word').val(), next_word : next_word_id} },
+    data: { word : { word : text_input.val(), next_word : next_word_id} },
     url: '/words',
     dataType: 'json',
     success: function(data){
@@ -141,7 +171,7 @@ function addSmallWordAttributes(word_picture){
 
 // Sets focus to the input field.
 function addFocusTextFieldBehaviour() {
-  $('#word_word').focus().select();
+  text_input.focus().select();
 }
 
 // Loads functions after DOM is ready
