@@ -123,7 +123,13 @@ function showCanvasAndHideTableBehaviour() {
 // Draw a new word and submit it to the data base.
 function addSessionWordsBehaviour(){
   $('#center-container').attr('style', 'display:block;');
+
   $('#new_word').submit(function(e){
+    e.preventDefault();
+    newWord();
+  });
+
+  $('form.edit_word').submit(function(e){
     e.preventDefault();
     newWord();
   });
