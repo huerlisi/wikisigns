@@ -16,6 +16,10 @@ class WordsController < InheritedResources::Base
     
     show!
   end
+
+  def show_by_slug
+    @word = Word.find_by_word(params[:slug])
+  end
   
   # GET /words
   def index

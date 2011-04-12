@@ -10,6 +10,8 @@ WikiSigns::Application.routes.draw do
   # Root
   root :to => "words#index"
 
+  match 'word/:slug', :to => 'words#show_by_slug'
+
   # Words
   resources :words, :except => [:destroy, :edit, :update] do
     collection do
@@ -20,5 +22,4 @@ WikiSigns::Application.routes.draw do
       get 'svg'
     end
   end
-
 end
