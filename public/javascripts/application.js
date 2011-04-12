@@ -12,12 +12,18 @@ function initializeBehaviours() {
     showCanvasAndHideTableBehaviour();
     addRealtimeWordDrawingBehaviour();
     addInitialResizeBehaviour();
+    addReshareBehaviour();
   }
 
   // initialize only on /words/:id page.
   if($('#show-word').length > 0){
     addColorizeTextBehaviour();
   }
+}
+
+// Adds the tweet or facebook-like button for resharing.
+function addReshareBehaviour() {
+  $('#slug-word-share').html(generateShareLink(text_input.val().trim()));
 }
 
 // Adds a mouseover effect to the latest words.
