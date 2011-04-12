@@ -13,7 +13,7 @@ WikiSigns::Application.routes.draw do
   # Words
   resources :words, :except => [:destroy, :edit, :update] do
     collection do
-      get 'random'
+      get  'random'
       post 'new_word'
     end
     member do
@@ -21,5 +21,4 @@ WikiSigns::Application.routes.draw do
     end
   end
 
-  
 end
