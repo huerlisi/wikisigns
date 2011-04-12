@@ -75,13 +75,13 @@ function addColorizeTextBehaviour() {
 
 // Draw a new word at the top of the page.
 function drawLatestWords() {
-  $('#top-container').attr('style', 'height:155px;');
+  $('#top-container').attr('style', 'height: 80px;');
   $('#top-container-scroll').attr('style', 'width:1320px;');
   $('#top-container-scroll .one-word .word').each(function(){
     var text = $(this).next('.word-text').text().trim();
     var word = drawWordAsImage($(this).attr('id'), text);
 
-    addSmallWordAttributes(word);
+    addSmallWordAttributesForRandomView(word);
     $(this).prev('table.carpet').hide();
     $(this).next('.word-text').html(drawColoredWord(text));
   });
@@ -108,7 +108,7 @@ function updateRandomLatest() {
       var text = $(data).children('.word-text').text().trim();
       var word = drawWordAsImage($(data).children('.word').attr('id'), text);
 
-      addSmallWordAttributes(word);
+      addSmallWordAttributesForRandomView(word);
       $('#top-container-scroll .one-word:first-child .word-text').html(drawColoredWord(text));
       $('#top-container-scroll .one-word:first-child').addClass('selectable');
       $('#top-container-scroll .one-word:first-child').click(function(){
@@ -176,11 +176,20 @@ function newWord() {
   })
 }
 
-// Modifies the word picture attributes for the small word picture.
-function addSmallWordAttributes(word_picture){
+// Modifies the word picture attributes for the small word picture for use in the session view (on the right side).
+function addSmallWordAttributesForSessionView(word_picture){
   word_picture[0].setAttribute('viewBox', '1 1 430 430');
   word_picture[0].setAttribute('width', '100');
   word_picture[0].setAttribute('height', '100');
+
+  return word_picture;
+}
+
+// Modifies the word picture attributes for the small word picture for use in the random view (on the top).
+function addSmallWordAttributesForRandomView(word_picture){
+  word_picture[0].setAttribute('viewBox', '1 1 430 430');
+  word_picture[0].setAttribute('width', '50');
+  word_picture[0].setAttribute('height', '50');
 
   return word_picture;
 }
