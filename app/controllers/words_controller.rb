@@ -36,6 +36,7 @@ class WordsController < InheritedResources::Base
     new!
   end
 
+  # Creates a new word.
   def new_word
     new
   end
@@ -51,6 +52,7 @@ class WordsController < InheritedResources::Base
     show!
   end
 
+  # Is here for rendering a svg to a JPG or PNG file.
   def svg
     show! do |format|
       format.jpg do
