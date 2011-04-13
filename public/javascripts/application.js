@@ -6,7 +6,7 @@ function initializeBehaviours() {
   addSessionWordsBehaviour();
 
   // initialize only on /words/new page.
-  if($('#words').length > 0 || $('#word.svg').length > 0 ){
+  if($('#words').length > 0 || $('#word.svg').length > 0 || $('#facebook').length > 0 ){
     addRandomLatestUpdateBehaviour();
     drawLatestWords();
     showCanvasAndHideTableBehaviour();
