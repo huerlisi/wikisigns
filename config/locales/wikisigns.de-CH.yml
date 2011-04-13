@@ -6,6 +6,7 @@ de-CH:
   back: Zurück
   help:
     new: 'Gib im Textfeld verschiedene Worte ein und lass sie zu Bildern werden.'
+    show_by_slug: 'Gib im Textfeld verschiedene Worte ein und lass sie zu Bildern werden.'
     game: 'Versuch das Wort in die richtige Reihenfolge zu bringen.'
   game:
     goto: Starte das Wikisigns spiel!
