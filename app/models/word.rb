@@ -13,4 +13,11 @@ class Word < ActiveRecord::Base
   def self.latest(amount = 12)
     self.all(:order => 'created_at DESC', :limit => amount)
   end
+
+  # Gets a random word.
+  def self.random
+    offset = rand(self.count)
+
+    self.first(:offset => offset)
+  end
 end

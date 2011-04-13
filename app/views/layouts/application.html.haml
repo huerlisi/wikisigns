@@ -13,6 +13,7 @@
         = render 'shared/user'
         = render 'shared/login'
         = render 'shared/description'
+        = render 'shared/game'
       #top-container
         #top-container-scroll
           = render 'shared/latest', :amount => 12
@@ -26,3 +27,4 @@
     = javascript_include_tag :defaults
     = render 'shared/javascripts'
     = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
+    = yield :javascript

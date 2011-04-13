@@ -48,11 +48,14 @@ class WordsController < InheritedResources::Base
 
   # GET /words/random
   def random
-    @word = Word.first(:order => "RANDOM()")
+    @word = Word.random
+
     show!
   end
 
   # Is here for rendering a svg to a JPG or PNG file.
+  # GET /words/:id/svg
+  # format: png or jpg
   def svg
     show! do |format|
       format.jpg do
@@ -62,6 +65,11 @@ class WordsController < InheritedResources::Base
         send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440, :format => 'png', :quality => 60).to_img, :type => image_content_type("png", params[:download]), :disposition => disposition(params[:download]) )
       end
     end
+  end
+
+  # Word game for guessing words.
+  def game
+    @word = Word.random
   end
 
   private
