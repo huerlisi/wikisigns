@@ -201,7 +201,7 @@ function addFocusTextFieldBehaviour() {
 
 // Creates a div with a link to the PNG of the word id.
 function createLinkToPNGDownload(id) {
-  return '<div class="png-download-link"><a href="/words/' + id +'/svg.png">Als Bild speichern</a></div>'
+  return '<div class="png-download-link"><a href="/words/' + id +'/svg.png?download=true">Als Bild speichern</a></div>'
 }
 
 // Loads functions after DOM is ready
