@@ -7,6 +7,7 @@ function displaySessionSmallWord(word_picture, text, id){
   $('#your-words .svg:last-child').click(function(){
     showSmallPictureAsBigWord(this);
   });
+  $('#your-words .svg:last-child').append(createLinkToPNGDownload(id));
   FB.XFBML.parse();
 }
 

@@ -165,7 +165,7 @@ function newWord() {
 
       if($('.twitter-user').length>0){
         $('a.twitter-share-button').each(function(){
-          var tweet_button = new twttr.TweetButton( $( this ).get( 0 ) );
+          var tweet_button = new twttr.TweetButton( $(this).get(0) );
           tweet_button.render();
         });
       }
@@ -197,6 +197,11 @@ function addSmallWordAttributesForRandomView(word_picture){
 // Sets focus to the input field.
 function addFocusTextFieldBehaviour() {
   text_input.focus().select();
+}
+
+// Creates a div with a link to the PNG of the word id.
+function createLinkToPNGDownload(id) {
+  return '<div class="png-download-link"><a href="/words/' + id +'/svg.png">Als Bild speichern</a></div>'
 }
 
 // Loads functions after DOM is ready
