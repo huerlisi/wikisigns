@@ -93,6 +93,10 @@ class WordsController < InheritedResources::Base
       return 'facebook'
     end
 
+    if 'game'.eql?action
+      return 'game'
+    end
+
     'application'
   end
   

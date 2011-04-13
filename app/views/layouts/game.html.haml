@@ -1,0 +1,28 @@
+!!!
+%html{:lang => 'en', 'xmlns:og' => 'http://ogp.me/ns#', 'xmlns:fb' => 'http://www.facebook.com/2008/fbml' }
+  %head
+    %title WikiSigns-Game
+    = csrf_meta_tag
+    = render 'shared/stylesheets'
+    = render 'shared/facebook_header'
+    = stylesheet_link_tag 'compiled/game.css', :media => 'screen, projection, print'
+    = javascript_include_tag 'http://platform.twitter.com/widgets.js'
+  %body#guessing-game{:class => (current_user && current_user.from_facebook? ? 'facebook-user ' : '') + (current_user && current_user.from_twitter? ? 'twitter-user' : '')}
+    #container
+      #side-container
+        = render 'shared/flash_messages'
+        = render 'shared/user'
+        = render 'shared/login'
+        = render 'shared/description'
+        = render 'shared/game'
+      #left-container
+        = yield
+      #right-container
+        #user-pics-container
+          %h1
+            Deine Worte
+          #your-words
+    = javascript_include_tag :defaults
+    = render 'shared/javascripts'
+    = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
+    = javascript_include_tag 'jquery.shuffle', 'guessing_game'
