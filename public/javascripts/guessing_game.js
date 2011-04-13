@@ -5,6 +5,7 @@ var original_word;
 function initializeGuessingGame() {
   original_word = text_input.val().trim();
   text_input.attr('value', '');
+  $('h1#title-inserted').attr('style', 'height:2.5em;');
   randomizeWord();
   drawEmptyCarpet();
   initializeWordClickBehaviour();
@@ -21,8 +22,17 @@ function initializeWordClickBehaviour() {
       drawWordAsImage('word', text_input.val());
       $(this).removeClass('selectable');
       $(this).unbind('click');
+      $(this).fadeOut('slow', function(){
+        $('#title-inserted').append($(this).clone().hide(0, function(){
+          $(this).fadeIn('slow', function(){
+            $('h1#title-inserted').removeAttr('style');
+          });
+        }));
+      });
+
       if(text_input.val().length == original_word.length) {
-        //console.log('finished');
+        //console.log(original_word);
+        alert('Das richtige Wort lautet: ' + original_word);
       }
     });
   });
