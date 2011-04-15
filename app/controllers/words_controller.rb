@@ -69,7 +69,9 @@ class WordsController < InheritedResources::Base
 
   # Word game for guessing words.
   def game
+    headers['Last-Modified'] = Time.now.httpdate
     @word = Word.guess_random
+    expire_page :controller => 'words', :action => 'game'
 
     show!
   end
