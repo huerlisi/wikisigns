@@ -21,11 +21,9 @@ class Word < ActiveRecord::Base
 
   # Gets a random word.
   def self.random
-    uncached do
-      offset = rand(self.count)
+    offset = rand(self.count)
 
-      self.first(:offset => offset)
-    end
+    self.first(:offset => offset)
   end
 
   # Returns a word for guessing of the set level.
@@ -35,11 +33,11 @@ class Word < ActiveRecord::Base
     case level
       when 1
         uncached do
-          self.where("words.word NOT LIKE '% %'").where("words.word REGEXP '^[a-zA-Z ]*$'").first(:offset => rand(self.count))
+          self.without_space.without_special_chars.random
         end
       when 2
         uncached do
-          self.where("words.word NOT LIKE '% %'").first(:offset => rand(self.count))
+          self.without_special_chars.random
         end
     end
   end
