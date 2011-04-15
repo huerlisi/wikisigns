@@ -23,10 +23,4 @@ de-CH:
     solutions:
       yours: Deine Lösungen
       searched: Gesuchte Lösungen
-  omnisocial:
-    title: Anmeldung
-    description: Melde dich mit Twitter oder Facebook an.
-    prefered_version: Wähle deine gewünschtes Netzwerk aus.
-    logged_in_with:
-      twitter: Mit Twitter angemeldet
-      facebook: Mit Facebook angemeldet
+
