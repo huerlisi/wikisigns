@@ -1,7 +1,8 @@
 !!!
 %html{:lang => 'en', 'xmlns:og' => 'http://ogp.me/ns#', 'xmlns:fb' => 'http://www.facebook.com/2008/fbml' }
   %head
-    %title WikiSigns-Game
+    %title
+      = t('title.game')
     = csrf_meta_tag
     = render 'shared/stylesheets'
     = render 'shared/facebook_header'
@@ -18,10 +19,14 @@
       #left-container
         = yield
       #right-container
-        #user-pics-container
+        #game-solutions-container
           %h1
-            Deine Worte
-          #your-words
+            = t('game.solutions.yours')
+          #your-solutions
+          %h1
+            = t('game.solutions.searched')
+          #searched-solutions
+
     = javascript_include_tag :defaults
     = render 'shared/javascripts'
     = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'

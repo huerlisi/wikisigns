@@ -1,4 +1,12 @@
 de-CH:
+  wikisigns: "Wikisigns"
+  title:
+    wikisigns: WikiSigns
+    game: WikiSigns-Game
+    show: "%{word} @ http://WikiSigns.ch"
+  link:
+    new_word: Hier kannst du selber Zeichen setzen!
+  your_words: Deine Worte
   go: Zeichen setzen
   login: Anmelden
   login_information: 'Melde dich hier an und du kannst direkt über Twitter oder Facebook deine Worte veröffentlichen.'
@@ -12,6 +20,9 @@ de-CH:
     goto: Starte das Wikisigns spiel!
     start: Hier gehts los!
     abort: Spiel abbrechen
+    solutions:
+      yours: Deine Lösungen
+      searched: Gesuchte Lösungen
   omnisocial:
     title: Anmeldung
     description: Melde dich mit Twitter oder Facebook an.

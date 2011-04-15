@@ -2,19 +2,19 @@
 %html
   %head
     %title
-      = "%s @ http://WikiSigns.ch" % @word.word
+      = t('title.show', :word => @word.word)
     = render 'shared/facebook_header'
     = render 'shared/stylesheets'
   %body#show-word
     #word
-      = image_tag "/words/#{@word.id}/svg.png", :alt => "Wikisigns", :size => '440x440'
+      = image_tag "/words/#{@word.id}/svg.png", :alt => t('wikisigns'), :size => '440x440'
 
     #title
       = @word.word
 
     = link_to("<", word_path(@previous_word), :id => 'add-new-word')
 
-    = link_to 'Hier kannst du selber Zeichen setzen!', words_path, :id => 'add-new-word'
+    = link_to t('link.new_word'), words_path, :id => 'add-new-word'
 
     = link_to(">", word_path(@next_word), :id => 'add-new-word')
 
