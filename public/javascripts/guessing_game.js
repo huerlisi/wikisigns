@@ -23,7 +23,6 @@ function initializeGuessingGame() {
   randomizeWord();
   drawEmptyCarpet();
   initializeWordClickBehaviour();
-  //startWordObserver();
 }
 
 function reinitializeGuessingGame() {
@@ -56,8 +55,7 @@ function initializeWordClickBehaviour() {
             $(this).click(function(){
               word_counter--;
               guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
-              //$('#word svg').remove();
-              //drawWordAsImage('word', guessed_word);
+
               $(this).fadeOut('slow', function(){
                 $('h1#title').append($(this).clone().hide(0, function(){
                   $(this).fadeIn('slow', function(){
