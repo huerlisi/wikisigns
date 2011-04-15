@@ -71,7 +71,7 @@ class WordsController < InheritedResources::Base
   def game
     headers['Last-Modified'] = Time.now.httpdate
     @word = Word.guess_random
-    expire_page :game
+    expire_page :controller => 'words', :action => 'game'
 
     show!
   end
