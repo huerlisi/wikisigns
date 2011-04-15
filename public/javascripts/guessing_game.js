@@ -52,6 +52,7 @@ function randomizeWord() {
 
   new_word = new_word.join('');
   $('#title').html(drawColoredWord(new_word));
+  $('#title').fadeIn('slow');
 }
 
 // Starts the initialization of the game when the document is fully loaded.
