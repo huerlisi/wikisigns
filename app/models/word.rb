@@ -21,9 +21,11 @@ class Word < ActiveRecord::Base
 
   # Gets a random word.
   def self.random
-    offset = rand(self.count)
+    uncached do
+      offset = rand(self.count)
 
-    self.first(:offset => offset)
+      self.first(:offset => offset)
+    end
   end
 
   # Returns a word for guessing of the set level.
