@@ -32,18 +32,14 @@ class Word < ActiveRecord::Base
   # * Level one means word without special chars and no space.
   # * Level two is the same like level one but everything in lowercase.
   def self.guess_random(level = 1)
-    uncached do
-      offset = rand(self.count)
-    end
-
     case level
       when 1
         uncached do
-          self.where("words.word NOT LIKE '% %'").where("words.word REGEXP '^[a-zA-Z ]*$'").first(:offset => offset)
+          self.where("words.word NOT LIKE '% %'").where("words.word REGEXP '^[a-zA-Z ]*$'").first(:offset => rand(self.count))
         end
       when 2
         uncached do
-          self.where("words.word NOT LIKE '% %'").first(:offset => offset)
+          self.where("words.word NOT LIKE '% %'").first(:offset => rand(self.count))
         end
     end
   end
