@@ -69,7 +69,7 @@ class WordsController < InheritedResources::Base
 
   # Word game for guessing words.
   def game
-    @word = Word.random
+    @word = Word.guess_random
   end
 
   private

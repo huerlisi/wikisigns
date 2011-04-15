@@ -9,6 +9,11 @@ class Word < ActiveRecord::Base
    [['e', 'w', 'x'], ['a', 'à', '@'], ['o', 'g', 'q'], ['u']]
   ]
 
+  # Scope for words without space in it.
+  scope :without_space, lambda { where("words.word NOT LIKE '% %'") }
+  # Scope for words with only ASCII chars without numbers
+  scope :without_special_chars, lambda { where("words.word REGEXP '^[a-zA-Z ]*$'") }
+
   # The latest words, by default 12 entries.
   def self.latest(amount = 12)
     self.all(:order => 'created_at DESC', :limit => amount)
@@ -19,5 +24,17 @@ class Word < ActiveRecord::Base
     offset = rand(self.count)
 
     self.first(:offset => offset)
+  end
+
+  # Returns a word for guessing of the set level.
+  # * Level one means word without special chars and no space.
+  # * Level two is the same like level one but everything in lowercase.
+  def self.guess_random(level = 1)
+    case level
+      when 1
+        self.without_space.without_special_chars.random
+      when 2
+        self.without_special_chars.random
+    end
   end
 end
