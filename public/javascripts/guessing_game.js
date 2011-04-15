@@ -90,8 +90,8 @@ function checkWords() {
       div_class += ' false';
     }
 
-    $('#your-solutions').append('<div class="' + div_class +'">' + guessed + '</div>');
-    $('#searched-solutions').append('<div class="' + div_class +'">' + original + '</div>');
+    $('#your-solutions').prepend('<div class="' + div_class +'">' + guessed + '</div>');
+    $('#searched-solutions').prepend('<div class="' + div_class +'">' + original + '</div>');
     addSmallWordAttributesForSessionView(drawWordAsImage('solution-images', guessed));
 
     $.ajax({
