@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110221111531) do
+ActiveRecord::Schema.define(:version => 20110415141322) do
 
   create_table "login_accounts", :force => true do |t|
     t.string   "type"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20110221111531) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "next_word"
+    t.integer  "user_id"
   end
 
 end

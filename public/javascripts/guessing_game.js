@@ -88,6 +88,18 @@ function checkWords() {
       div_class += ' right';
     }else{
       div_class += ' false';
+      $.ajax({
+        type: 'POST',
+        data: { guessed_word: guessed },
+        url: '/words/game_search',
+        dataType: 'json',
+        beforeSend : function(xhr){
+         xhr.setRequestHeader("Accept", "application/json")
+        },
+        success: function(data){
+          //console.log(data);
+        }
+      });
     }
 
     $('#your-solutions').prepend('<div class="' + div_class +'">' + guessed + '</div>');

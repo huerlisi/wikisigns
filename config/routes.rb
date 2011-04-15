@@ -18,6 +18,7 @@ WikiSigns::Application.routes.draw do
       get  'random'
       post 'new_word'
       get  'game'
+      post 'game_search'
     end
     member do
       get 'svg'
