@@ -1,16 +1,18 @@
 // The original word
 var original_word;
 // The actual guessed word
-var guessed_word = '';
+var guessed_word;
 // The counter how many words are set.
 // It's used for removing the right letter from the guessed word.
-var word_counter = 0;
+var word_counter;
 
 var DATA_WORD_COUNTER = 'data-word-counter';
 
 // initialize the guessing game.
 function initializeGuessingGame() {
   original_word = text_input.val().trim();
+  guessed_word = '';
+  word_counter = 0;
   text_input.attr('value', '');
   $('h1#title-inserted').attr('style', 'height:2.5em;');
   randomizeWord();
@@ -19,13 +21,13 @@ function initializeGuessingGame() {
 }
 
 function initializeWordClickBehaviour() {
-  $('h1#title span').each(function(){
+  $('h1#title span').each(function() {
     $(this).addClass('selectable');
     $(this).unbind('click');
     $(this).click(function(){
       var letter = $(this).html();
 
-      //text_input.attr('value', text_input.val() + letter);
+      $(this).unbind('click');
       guessed_word = guessed_word + letter;
       $('#word svg').remove();
       drawWordAsImage('word', guessed_word);
@@ -55,9 +57,39 @@ function initializeWordClickBehaviour() {
         $(this).remove();
       });
 
+      // Checks if all letters has been selected.
       if(guessed_word.length == original_word.length) {
-        //console.log(original_word);
-        alert('Das richtige Wort lautet: ' + original_word);
+        var found_word_class = 'found-words';
+        var found_word_div = '<div class="' + found_word_class + '"></div>';
+        var your_search_id = 'your-solutions';
+        var searched_id = 'searched-solutions';
+
+        // When the guessed word is right just draw it and do a post on the users facebook wall else create a new word.
+        if(guessed_word == original_word){
+
+        }else{
+
+        }
+
+        $('#' + your_search_id).append(found_word_div);
+        $('#' + searched_id).append(found_word_div);
+        addSmallWordAttributesForSessionView(drawWordAsImage(your_search_id, guessed_word));
+        addSmallWordAttributesForSessionView(drawWordAsImage(searched_id, original_word));
+        $.ajax({
+          type: 'GET',
+          url: '/words/game',
+          dataType: 'json',
+          beforeSend : function(xhr){
+           xhr.setRequestHeader("Accept", "application/json")
+          },
+          success: function(data){
+            text_input.attr('value', data['word']['word']);
+            $('h1#title-inserted span').remove();
+            $('#word svg').remove();
+            // console.log(text_input.val());
+            initializeGuessingGame();
+          }
+        });
       }
     });
   });
@@ -66,6 +98,7 @@ function initializeWordClickBehaviour() {
 // Rearranges the counters for the selected letters.
 function recountSelectedLetters() {
   var counter = 0;
+
   $('#title-inserted span').each(function(){
     $(this).attr(DATA_WORD_COUNTER, counter);
     counter++;
