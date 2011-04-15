@@ -32,9 +32,13 @@ class Word < ActiveRecord::Base
   def self.guess_random(level = 1)
     case level
       when 1
-        self.without_space.without_special_chars.random
+        uncached do
+          self.without_space.without_special_chars.random
+        end
       when 2
-        self.without_special_chars.random
+        uncached do
+          self.without_special_chars.random
+        end
     end
   end
 end
