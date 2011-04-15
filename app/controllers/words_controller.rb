@@ -76,6 +76,14 @@ class WordsController < InheritedResources::Base
     show!
   end
 
+  # Search after a word when it doesn't exists a entry is created.
+  def game_search
+    @word = Word.find_by_word(params[:guessed_word])
+    @word = Word.create(:word => params[:guessed_word], :user_id => current_user.id) unless @word
+
+    show!
+  end
+
   private
 
   def image_content_type(format, download = nil)
