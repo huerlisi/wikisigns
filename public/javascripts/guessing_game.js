@@ -1,5 +1,12 @@
-// The original word.
+// The original word
 var original_word;
+// The actual guessed word
+var guessed_word = '';
+// The counter how many words are set.
+// It's used for removing the right letter from the guessed word.
+var word_counter = 0;
+
+var DATA_WORD_COUNTER = 'data-word-counter';
 
 // initialize the guessing game.
 function initializeGuessingGame() {
@@ -14,23 +21,41 @@ function initializeGuessingGame() {
 function initializeWordClickBehaviour() {
   $('h1#title span').each(function(){
     $(this).addClass('selectable');
+    $(this).unbind('click');
     $(this).click(function(){
       var letter = $(this).html();
 
-      text_input.attr('value', text_input.val() + letter);
+      //text_input.attr('value', text_input.val() + letter);
+      guessed_word = guessed_word + letter;
       $('#word svg').remove();
-      drawWordAsImage('word', text_input.val());
+      drawWordAsImage('word', guessed_word);
       $(this).removeClass('selectable');
-      $(this).unbind('click');
+
       $(this).fadeOut('slow', function(){
         $('#title-inserted').append($(this).clone().hide(0, function(){
           $(this).fadeIn('slow', function(){
             $('h1#title-inserted').removeAttr('style');
+            $(this).attr(DATA_WORD_COUNTER, word_counter);
+            word_counter++;
+            $(this).click(function(){
+              word_counter--;
+              guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
+              $(this).fadeOut('slow', function(){
+                $('h1#title').append($(this).clone().hide(0, function(){
+                  $(this).fadeIn('slow', function(){
+                    recountSelectedLetters();
+                    initializeWordClickBehaviour();
+                  });
+                }));
+                $(this).remove();
+              });
+            });
           });
         }));
+        $(this).remove();
       });
 
-      if(text_input.val().length == original_word.length) {
+      if(guessed_word.length == original_word.length) {
         //console.log(original_word);
         alert('Das richtige Wort lautet: ' + original_word);
       }
@@ -38,7 +63,22 @@ function initializeWordClickBehaviour() {
   });
 }
 
-// Adds a new letter into the input field.
+// Rearranges the counters for the selected letters.
+function recountSelectedLetters() {
+  var counter = 0;
+  $('#title-inserted span').each(function(){
+    $(this).attr(DATA_WORD_COUNTER, counter);
+    counter++;
+  });
+}
+
+// Removes a char from a string at a specified position.
+function removeCharFromPos(string, position){
+  var chars = string.split('');
+
+  chars.splice(position, position);
+  return chars.join('');
+}
 
 // Draws an empty carpet and hides the table version of the carpet.
 function drawEmptyCarpet() {
