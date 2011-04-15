@@ -8,12 +8,25 @@ var word_counter;
 
 var DATA_WORD_COUNTER = 'data-word-counter';
 
-// initialize the guessing game.
-function initializeGuessingGame() {
+// Reset global vars.
+function resetGlobalVars() {
   original_word = text_input.val().trim();
   guessed_word = '';
   word_counter = 0;
   text_input.attr('value', '');
+}
+
+// initialize the guessing game.
+function initializeGuessingGame() {
+  resetGlobalVars();
+  $('h1#title-inserted').attr('style', 'height:2.5em;');
+  randomizeWord();
+  drawEmptyCarpet();
+  initializeWordClickBehaviour();
+  //startWordObserver();
+}
+
+function reinitializeGuessingGame() {
   $('h1#title-inserted').attr('style', 'height:2.5em;');
   randomizeWord();
   drawEmptyCarpet();
@@ -39,9 +52,12 @@ function initializeWordClickBehaviour() {
             $('h1#title-inserted').removeAttr('style');
             $(this).attr(DATA_WORD_COUNTER, word_counter);
             word_counter++;
+            checkWords();
             $(this).click(function(){
               word_counter--;
               guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
+              //$('#word svg').remove();
+              //drawWordAsImage('word', guessed_word);
               $(this).fadeOut('slow', function(){
                 $('h1#title').append($(this).clone().hide(0, function(){
                   $(this).fadeIn('slow', function(){
@@ -56,43 +72,46 @@ function initializeWordClickBehaviour() {
         }));
         $(this).remove();
       });
-
-      // Checks if all letters has been selected.
-      if(guessed_word.length == original_word.length) {
-        var found_word_class = 'found-words';
-        var found_word_div = '<div class="' + found_word_class + '"></div>';
-        var your_search_id = 'your-solutions';
-        var searched_id = 'searched-solutions';
-
-        // When the guessed word is right just draw it and do a post on the users facebook wall else create a new word.
-        if(guessed_word == original_word){
-
-        }else{
-
-        }
-
-        $('#' + your_search_id).append(found_word_div);
-        $('#' + searched_id).append(found_word_div);
-        addSmallWordAttributesForSessionView(drawWordAsImage(your_search_id, guessed_word));
-        addSmallWordAttributesForSessionView(drawWordAsImage(searched_id, original_word));
-        $.ajax({
-          type: 'GET',
-          url: '/words/game',
-          dataType: 'json',
-          beforeSend : function(xhr){
-           xhr.setRequestHeader("Accept", "application/json")
-          },
-          success: function(data){
-            text_input.attr('value', data['word']['word']);
-            $('h1#title-inserted span').remove();
-            $('#word svg').remove();
-            // console.log(text_input.val());
-            initializeGuessingGame();
-          }
-        });
-      }
     });
   });
+}
+
+function checkWords() {
+  // Checks if all letters has been selected.
+  if(guessed_word.length == original_word.length) {
+    var guessed = guessed_word;
+    var original = original_word;
+    var div_class = 'word';
+
+    resetGlobalVars();
+
+    // When the guessed word is right just draw it and do a post on the users facebook wall else create a new word.
+    if(guessed == original){
+      div_class += ' right';
+    }else{
+      div_class += ' false';
+    }
+
+    $('#your-solutions').append('<div class="' + div_class +'">' + guessed + '</div>');
+    $('#searched-solutions').append('<div class="' + div_class +'">' + original + '</div>');
+    addSmallWordAttributesForSessionView(drawWordAsImage('solution-images', guessed));
+
+    $.ajax({
+      type: 'GET',
+      url: '/words/game',
+      dataType: 'json',
+      beforeSend : function(xhr){
+       xhr.setRequestHeader("Accept", "application/json")
+      },
+      success: function(data){
+        text_input.attr('value', data['word']['word']);
+        $('h1#title-inserted span').remove();
+        $('#word svg').remove();
+        original_word = text_input.val();
+        reinitializeGuessingGame();
+      }
+    });
+  }
 }
 
 // Rearranges the counters for the selected letters.
