@@ -21,21 +21,6 @@ ActiveRecord::Schema.define(:version => 20110418113907) do
     t.string   "input"
   end
 
-  create_table "login_accounts", :force => true do |t|
-    t.string   "type"
-    t.integer  "user_id"
-    t.string   "remote_account_id"
-    t.string   "name"
-    t.string   "login"
-    t.string   "picture_url"
-    t.string   "access_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "login_accounts", ["type"], :name => "index_login_accounts_on_type"
-  add_index "login_accounts", ["user_id"], :name => "index_login_accounts_on_user_id"
-
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
