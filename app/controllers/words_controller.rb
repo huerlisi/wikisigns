@@ -3,6 +3,8 @@ class WordsController < InheritedResources::Base
   respond_to :html, :json
   layout :words_layout
 
+  before :user_facebook?, :only => ['game', 'game_search']
+
   # Cache the actions svg and show.
   caches_action :svg, :show
 
@@ -79,12 +81,16 @@ class WordsController < InheritedResources::Base
   # Search after a word when it doesn't exists a entry is created.
   def game_search
     @word = Word.find_by_word(params[:guessed_word])
-    @word = Word.create(:word => params[:guessed_word], :user_id => current_user.id) unless @word
+    @word = Word.create!(:word => params[:guessed_word], :user => current_user) unless @word
 
     show!
   end
 
   private
+
+  def user_facebook?
+    redirect_to root_path unless user_signed_in? && current_user.from_facebook?
+  end
 
   def image_content_type(format, download = nil)
     download ? 'application/x-download' : "image/#{format}"
