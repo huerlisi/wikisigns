@@ -52,7 +52,7 @@ function initializeWordClickBehaviour() {
             $(this).attr(DATA_WORD_COUNTER, word_counter);
             word_counter++;
             checkWords();
-            console.log(word_counter);
+            // console.log(word_counter);
             $(this).click(function(e){
               $(this).unbind(e);
               word_counter--;
@@ -62,7 +62,7 @@ function initializeWordClickBehaviour() {
                 $('h1#title').append($(this).clone().hide(0, function(){
                   $(this).fadeIn('slow', function(){
                     recountSelectedLetters();
-                    console.log(word_counter);
+                    // console.log(word_counter);
                     initializeWordClickBehaviour();
                   });
                 }));
@@ -109,9 +109,9 @@ function checkWords() {
          xhr.setRequestHeader("Accept", "application/json")
         },
         success: function(data){
-          console.log('original_word: ' + original_word);
-          console.log('guessed_word: ' + guessed_word);
-          console.log('word_counter: '+word_counter);
+          //console.log('original_word: ' + original_word);
+          //console.log('guessed_word: ' + guessed_word);
+          //console.log('word_counter: '+word_counter);
         }
       });
     }
