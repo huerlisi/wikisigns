@@ -3,7 +3,7 @@ class WordsController < InheritedResources::Base
   respond_to :html, :json
   layout :words_layout
 
-  before_filter :user_facebook?, :only => ['game', 'game_search']
+  before_filter :user_facebook?, :only => ['game']
 
   # Cache the actions svg and show.
   caches_action :svg, :show

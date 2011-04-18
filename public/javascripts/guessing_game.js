@@ -35,7 +35,7 @@ function reinitializeGuessingGame() {
 function initializeWordClickBehaviour() {
   $('h1#title span').each(function() {
     $(this).addClass('selectable');
-    //$(this).unbind('click');
+    $(this).unbind('click');
     $(this).click(function(e){
       $(this).unbind(e);
       var letter = $(this).html();
@@ -45,24 +45,24 @@ function initializeWordClickBehaviour() {
       drawWordAsImage('word', guessed_word);
       $(this).removeClass('selectable');
 
-      $(this).fadeOut('slow', function(){
+      $(this).fadeOut(125, function(){
         $('#title-inserted').append($(this).clone().hide(0, function(){
           $(this).fadeIn('slow', function(){
+
             $('h1#title-inserted').removeAttr('style');
             $(this).attr(DATA_WORD_COUNTER, word_counter);
             word_counter++;
             checkWords();
-            // console.log(word_counter);
+
             $(this).click(function(e){
               $(this).unbind(e);
               word_counter--;
               guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
 
-              $(this).fadeOut('slow', function(){
+              $(this).fadeOut(125, function(){
                 $('h1#title').append($(this).clone().hide(0, function(){
-                  $(this).fadeIn('slow', function(){
+                  $(this).fadeIn(125, function(){
                     recountSelectedLetters();
-                    // console.log(word_counter);
                     initializeWordClickBehaviour();
                   });
                 }));
@@ -100,6 +100,7 @@ function checkWords() {
       div_class += ' right';
     }else{
       div_class += ' false';
+
       $.ajax({
         type: 'POST',
         data: { guessed_word: guessed },
@@ -109,16 +110,13 @@ function checkWords() {
          xhr.setRequestHeader("Accept", "application/json")
         },
         success: function(data){
-          //console.log('original_word: ' + original_word);
-          //console.log('guessed_word: ' + guessed_word);
-          //console.log('word_counter: '+word_counter);
+          $('#your-solutions').prepend('<div class="points">'+ data['word']['points'] +'</div>');
+          $('#your-solutions').prepend('<div class="' + div_class +'">' + guessed + '</div>');
+          $('#searched-solutions').prepend('<div class="' + div_class +'">' + original + '</div>');
+          addSmallWordAttributesForSessionView(drawWordAsImage('solution-images', guessed));
         }
       });
     }
-
-    $('#your-solutions').prepend('<div class="' + div_class +'">' + guessed + '</div>');
-    $('#searched-solutions').prepend('<div class="' + div_class +'">' + original + '</div>');
-    addSmallWordAttributesForSessionView(drawWordAsImage('solution-images', guessed));
 
     $.ajax({
       type: 'GET',
