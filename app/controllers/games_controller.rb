@@ -10,20 +10,21 @@ class GamesController < ApplicationController
   def new
     headers['Last-Modified'] = Time.now.httpdate
     @word = Word.guess_random
-    expire_page :controller => 'words', :action => 'game'
+    expire_page :controller => 'games', :action => 'new'
 
     new!
   end
 
   def create
-    @word = Word.find(params[:word_id])
+    @word = Word.find_by_word(params[:guessed_word])
+    @word = Word.create(:word => params[:guessed_word], :user => current_user) unless @word
     @game = Game.create(:user => current_user, :word => @word, :input => params[:guessed_word])
     @game.save
-    @new_word = Word.guess_random
+    @new_guess_word = Word.guess_random
 
     respond_to do |format|
       format.json {
-        render :json => [@game, @new_word]
+        render :json => [@game, @new_guess_word]
       }
     end
   end
