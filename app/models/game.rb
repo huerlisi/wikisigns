@@ -10,5 +10,6 @@ class Game < ActiveRecord::Base
     else
       self.score = 0
     end
+    self.save
   end
 end
