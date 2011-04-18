@@ -24,4 +24,6 @@ WikiSigns::Application.routes.draw do
       get 'svg'
     end
   end
+
+  resources :games
 end
