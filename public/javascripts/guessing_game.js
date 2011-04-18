@@ -35,11 +35,11 @@ function reinitializeGuessingGame() {
 function initializeWordClickBehaviour() {
   $('h1#title span').each(function() {
     $(this).addClass('selectable');
-    $(this).unbind('click');
-    $(this).click(function(){
+    //$(this).unbind('click');
+    $(this).click(function(e){
+      $(this).unbind(e);
       var letter = $(this).html();
 
-      $(this).unbind('click');
       guessed_word = guessed_word + letter;
       $('#word svg').remove();
       drawWordAsImage('word', guessed_word);
@@ -52,7 +52,9 @@ function initializeWordClickBehaviour() {
             $(this).attr(DATA_WORD_COUNTER, word_counter);
             word_counter++;
             checkWords();
-            $(this).click(function(){
+            console.log(word_counter);
+            $(this).click(function(e){
+              $(this).unbind(e);
               word_counter--;
               guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
 
@@ -60,6 +62,7 @@ function initializeWordClickBehaviour() {
                 $('h1#title').append($(this).clone().hide(0, function(){
                   $(this).fadeIn('slow', function(){
                     recountSelectedLetters();
+                    console.log(word_counter);
                     initializeWordClickBehaviour();
                   });
                 }));
@@ -74,9 +77,18 @@ function initializeWordClickBehaviour() {
   });
 }
 
+function displayedWords() {
+  var text = '';
+
+  $('#title-inserted span').each(function(){
+    text += $(this).html().trim();
+  });
+
+  return text;
+}
 function checkWords() {
   // Checks if all letters has been selected.
-  if(guessed_word.length == original_word.length) {
+  if(displayedWords().length == original_word.length) {
     var guessed = guessed_word;
     var original = original_word;
     var div_class = 'word';
@@ -97,7 +109,9 @@ function checkWords() {
          xhr.setRequestHeader("Accept", "application/json")
         },
         success: function(data){
-          //console.log(data);
+          console.log('original_word: ' + original_word);
+          console.log('guessed_word: ' + guessed_word);
+          console.log('word_counter: '+word_counter);
         }
       });
     }
