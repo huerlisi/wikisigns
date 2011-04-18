@@ -2,6 +2,10 @@
 
 # This class represents an inserted word.
 class Word < ActiveRecord::Base
+
+  # Relations
+  belongs_to :user
+
   CHARS = [
    [['z'], ['t', '@'], ['j'], ['f']],
    [['c'], ['h'], ['i', 'y'], []],
