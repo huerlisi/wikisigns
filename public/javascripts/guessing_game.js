@@ -6,6 +6,8 @@ var guessed_word;
 // It's used for removing the right letter from the guessed word.
 var word_counter;
 
+var word_id;
+
 var DATA_WORD_COUNTER = 'data-word-counter';
 
 // Reset global vars.
@@ -19,10 +21,18 @@ function resetGlobalVars() {
 // initialize the guessing game.
 function initializeGuessingGame() {
   resetGlobalVars();
+  word_id = getWordId();
   $('h1#title-inserted').attr('style', 'height:2.5em;');
   randomizeWord();
   drawEmptyCarpet();
   initializeWordClickBehaviour();
+}
+
+function getWordId(){
+  var regex = /(\d+)/;
+  var id = $('form.edit_word').attr('id');
+  regex.exec(id);
+  return RegExp.$1;
 }
 
 function reinitializeGuessingGame() {
@@ -104,35 +114,42 @@ function checkWords() {
       $.ajax({
         type: 'POST',
         data: { guessed_word: guessed },
-        url: '/words/game_search',
+        url: '/words/' + word_id + '/games',
         dataType: 'json',
         beforeSend : function(xhr){
          xhr.setRequestHeader("Accept", "application/json")
         },
         success: function(data){
-          $('#your-solutions').prepend('<div class="points">'+ data['word']['points'] +'</div>');
-          $('#your-solutions').prepend('<div class="' + div_class +'">' + guessed + '</div>');
+          $('#your-solutions').prepend('<div class="points">'+ data[0]['game']['score'] +'</div>');
+          $('#your-solutions').prepend('<div class="' + div_class +'">' + data[0]['game']['input'] + '</div>');
           $('#searched-solutions').prepend('<div class="' + div_class +'">' + original + '</div>');
           addSmallWordAttributesForSessionView(drawWordAsImage('solution-images', guessed));
+
+          text_input.attr('value', data[1]['word']['word']);
+          word_id = data[1]['word']['id'];
+          $('h1#title-inserted span').remove();
+          $('#word svg').remove();
+          original_word = text_input.val();
+          reinitializeGuessingGame();
         }
       });
     }
 
-    $.ajax({
-      type: 'GET',
-      url: '/words/game',
+    /*$.ajax({
+      type: 'POST',
+      url: '/words/' + word_id + '/games',
       dataType: 'json',
       beforeSend : function(xhr){
        xhr.setRequestHeader("Accept", "application/json")
       },
       success: function(data){
-        text_input.attr('value', data['word']['word']);
+        text_input.attr('value', data['game']);
         $('h1#title-inserted span').remove();
         $('#word svg').remove();
         original_word = text_input.val();
         reinitializeGuessingGame();
       }
-    });
+    }); */
   }
 }
 
