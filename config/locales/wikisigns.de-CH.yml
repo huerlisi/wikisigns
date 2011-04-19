@@ -19,7 +19,7 @@ de-CH:
   game:
     goto: Starte das Wikisigns spiel!
     start: Hier gehts los!
-    abort: Spiel abbrechen
+    abort: Spiel beenden
     solutions:
       yours: Deine Lösungen
       searched: Gesuchte Lösungen
