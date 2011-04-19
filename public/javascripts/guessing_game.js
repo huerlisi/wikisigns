@@ -28,6 +28,26 @@ function initializeGuessingGame() {
   randomizeWord();
   drawEmptyCarpet();
   initializeWordClickBehaviour();
+  initializeNewWordBehaviour();
+}
+
+function initializeNewWordBehaviour() {
+  $('a#get-new-word').click(function(e){
+    $.ajax({
+      type: 'GET',
+      url: '/words/random',
+      dataType: 'json',
+      beforeSend : function(xhr){
+       xhr.setRequestHeader("Accept", "application/json")
+      },
+      success: function(data){
+        text_input.attr('value', data['word']['word']);
+        word_id = data['word']['id'];
+        original_word = text_input.val();
+        reinitializeGuessingGame();
+      }
+    });
+  });
 }
 
 function getWordId(){
@@ -125,7 +145,7 @@ function checkWords() {
        $('#ajax-loader').slideDown(125);
       },
       success: function(data){
-        $('#ajax-loader').fadeOut(125, function(){
+        $('#ajax-loader').hide(0, function(){
           $('#your-solutions').prepend('<div class="points ' + div_class +'">'+ data[0]['game']['score'] +'</div>');
           $('#your-solutions').prepend('<div class="word' + div_class +' word-text">' + drawColoredWord(data[0]['game']['input']) + '</div>');
           $('#searched-solutions').prepend('<div class="word' + div_class +' word-text">' + drawColoredWord(original) + '</div>');
@@ -181,6 +201,7 @@ function removeCharFromPos(string, position){
 // Draws an empty carpet and hides the table version of the carpet.
 function drawEmptyCarpet() {
   $('table.carpet').remove();
+  $('#word svg').remove();
   drawWordAsImage('word', '');
 }
 

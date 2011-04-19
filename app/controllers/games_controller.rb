@@ -29,13 +29,4 @@ class GamesController < ApplicationController
       }
     end
   end
-
-  # Search after a word when it doesn't exists a entry is created.
-  def search
-    @word = Word.find_by_word(params[:guessed_word])
-    @word = Word.create!(:word => params[:guessed_word], :user => current_user) unless @word
-
-    @word.to_json
-  end
-
 end

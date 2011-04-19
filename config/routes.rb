@@ -25,9 +25,5 @@ WikiSigns::Application.routes.draw do
     resources :games, :only => [:create, :show]
   end
 
-  resources :games, :only => [:new] do
-    collection do
-      post 'search'
-    end
-  end
+  resources :games, :only => [:new]
 end
