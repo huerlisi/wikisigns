@@ -20,6 +20,7 @@ de-CH:
     goto: Starte das Wikisigns spiel!
     start: Hier gehts los!
     abort: Spiel beenden
+    get_new_word: ein neues Wort
     solutions:
       yours: die Punkte
       searched: gesuchte Lösungen

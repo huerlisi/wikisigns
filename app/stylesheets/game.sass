@@ -1,5 +1,5 @@
-@import "compass/css3/border-radius"
-@import "compass/css3/opacity"
+@import 'base/variables'
+@import 'base/default_imports'
 
 form.edit_word
   display: none
@@ -75,3 +75,6 @@ form.edit_word
 #ajax-loader
   display: block
   height: 100px
+
+#game-menu a
+  +fancy-button($button_color)
