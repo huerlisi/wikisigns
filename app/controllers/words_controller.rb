@@ -4,7 +4,7 @@ class WordsController < ApplicationController
   layout :words_layout
 
   # Cache the actions svg and show.
-  caches_action :svg, :show, :random
+  caches_action :svg, :show
 
   def show
     @word = Word.find(params[:id])
@@ -48,9 +48,7 @@ class WordsController < ApplicationController
 
   # GET /words/random
   def random
-    headers['Last-Modified'] = Time.now.httpdate
     @word = Word.random
-    expire_page :controller => 'words', :action => 'random'
 
     show!
   end
