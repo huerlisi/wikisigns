@@ -4,7 +4,7 @@ Omnisocial.setup do |config|
   config.twitter Settings.twitter.consumer_key, Settings.twitter.consumer_secret, :scope => ['publish_stream', 'email']
   
   # ==> Facebook
-  config.facebook Settings.facebook.consumer_key, Settings.facebook.consumer_secret, :scope => ['publish_stream', 'email']
+  config.facebook Settings.facebook.consumer_key, Settings.facebook.consumer_secret, :scope => ['email', 'publish_stream', 'status_update']
 
   if Rails.env.production?
     
