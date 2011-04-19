@@ -37,6 +37,7 @@ function initializeNewWordBehaviour() {
       type: 'GET',
       url: '/words/random.json',
       dataType: 'json',
+      cache: true,
       beforeSend : function(xhr){
        xhr.setRequestHeader("Accept", "application/json")
       },
@@ -140,6 +141,7 @@ function checkWords() {
       data: { guessed_word: guessed },
       url: '/words/' + word_id + '/games',
       dataType: 'json',
+      cache: true,
       beforeSend : function(xhr){
        xhr.setRequestHeader("Accept", "application/json")
        $('#ajax-loader').slideDown(125);
