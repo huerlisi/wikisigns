@@ -119,19 +119,22 @@ function checkWords() {
       dataType: 'json',
       beforeSend : function(xhr){
        xhr.setRequestHeader("Accept", "application/json")
+       $('#ajax-loader').slideDown(125);
       },
       success: function(data){
-        $('#your-solutions').prepend('<div class="points ' + div_class +'">'+ data[0]['game']['score'] +'</div>');
-        $('#your-solutions').prepend('<div class="word' + div_class +'">' + data[0]['game']['input'] + '</div>');
-        $('#searched-solutions').prepend('<div class="word' + div_class +'">' + original + '</div>');
-        addSmallWordAttributesForSessionView(drawWordAsImage('solution-images', guessed));
+        $('#ajax-loader').fadeOut(125, function(){
+          $('#your-solutions').prepend('<div class="points ' + div_class +'">'+ data[0]['game']['score'] +'</div>');
+          $('#your-solutions').prepend('<div class="word' + div_class +'">' + data[0]['game']['input'] + '</div>');
+          $('#searched-solutions').prepend('<div class="word' + div_class +'">' + original + '</div>');
+          addSmallWordAttributesForSessionView(drawWordAsImage('solution-images', guessed));
 
-        text_input.attr('value', data[1]['word']['word']);
-        word_id = data[1]['word']['id'];
-        $('h1#title-inserted span').remove();
-        $('#word svg').remove();
-        original_word = text_input.val();
-        reinitializeGuessingGame();
+          text_input.attr('value', data[1]['word']['word']);
+          word_id = data[1]['word']['id'];
+          $('h1#title-inserted span').remove();
+          $('#word svg').remove();
+          original_word = text_input.val();
+          reinitializeGuessingGame();
+        });
       }
     });
 

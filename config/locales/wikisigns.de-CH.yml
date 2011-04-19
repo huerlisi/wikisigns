@@ -21,9 +21,9 @@ de-CH:
     start: Hier gehts los!
     abort: Spiel beenden
     solutions:
-      yours: Deine Lösungen
-      searched: Gesuchte Lösungen
-      images: Die Bilder
+      yours: die Punkte
+      searched: gesuchte Lösungen
+      images: die Signs
     message:
       score:
         text: Ich habe auf Wikisign.ch %{score} Punkte erreicht.

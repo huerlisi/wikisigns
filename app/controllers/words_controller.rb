@@ -4,7 +4,7 @@ class WordsController < ApplicationController
   layout :words_layout
 
   # Cache the actions svg and show.
-  caches_action :svg, :show
+  caches_action :svg, :show, :random
 
   def show
     @word = Word.find(params[:id])

@@ -26,6 +26,8 @@
             = t('game.solutions.yours')
           %h1
             = t('game.solutions.searched')
+          #ajax-loader{:style => 'display:none;'}
+            = image_tag 'ajax-loader.gif'
           #solution-images
           #your-solutions
           #searched-solutions
