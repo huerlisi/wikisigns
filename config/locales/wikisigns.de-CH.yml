@@ -24,4 +24,7 @@ de-CH:
       yours: Deine Lösungen
       searched: Gesuchte Lösungen
       images: Die Bilder
-
+    message:
+      score:
+        text: Ich habe auf Wikisign.ch %{score} Punkte erreicht.
+        title: Das Wikisigns-Spiel

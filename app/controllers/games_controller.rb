@@ -17,8 +17,9 @@ class GamesController < ApplicationController
 
   def create
     @word = Word.find_by_word(params[:guessed_word])
+    won = true if @word
     @word = Word.create(:word => params[:guessed_word], :user => current_user) unless @word
-    @game = Game.create(:user => current_user, :word => @word, :input => params[:guessed_word])
+    @game = Game.create(:user => current_user, :word => @word, :input => params[:guessed_word], :won => won)
     @game.save
     @new_guess_word = Word.guess_random
 
