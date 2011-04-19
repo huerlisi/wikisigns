@@ -61,6 +61,7 @@ gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => 'v
 #gem 'omniauth'
 #gem "oa-oauth", :require => "omniauth/oauth"
 gem 'omnisocial'
+gem 'koala'
 gem 'settingslogic'
 
 # Generate images

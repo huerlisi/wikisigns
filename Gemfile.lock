@@ -103,6 +103,8 @@ GEM
       rails (~> 3.0)
       thor (~> 0.14.4)
     json (1.4.6)
+    koala (0.10.0)
+      json (>= 1.0)
     lyb_sidebar (0.1.0)
     mail (2.2.15)
       activesupport (>= 2.3.6)
@@ -220,6 +222,7 @@ DEPENDENCIES
   imgkit
   inherited_resources
   jquery-rails
+  koala
   lyb_sidebar
   mocha
   mysql
