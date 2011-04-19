@@ -127,8 +127,8 @@ function checkWords() {
       success: function(data){
         $('#ajax-loader').fadeOut(125, function(){
           $('#your-solutions').prepend('<div class="points ' + div_class +'">'+ data[0]['game']['score'] +'</div>');
-          $('#your-solutions').prepend('<div class="word' + div_class +'">' + data[0]['game']['input'] + '</div>');
-          $('#searched-solutions').prepend('<div class="word' + div_class +'">' + original + '</div>');
+          $('#your-solutions').prepend('<div class="word' + div_class +' word-text">' + drawColoredWord(data[0]['game']['input']) + '</div>');
+          $('#searched-solutions').prepend('<div class="word' + div_class +' word-text">' + drawColoredWord(original) + '</div>');
           addSmallWordAttributesForSessionView(drawWordAsImage('solution-images', guessed));
         });
 
