@@ -1,3 +1,6 @@
+@import "compass/css3/border-radius"
+@import "compass/css3/opacity"
+
 form.edit_word
   display: none
 
@@ -18,18 +21,50 @@ form.edit_word
     width: 32%
   #your-solutions,
   #searched-solutions
-    .word
-      height: 100px
+    .word,
+    .points
+      height: 45px
       display: block
-  #searched-solutions .word.false
-    border: 1px solid red
-    border-left: none
-  #your-solutions .word.false
-    border: 1px solid red
-    border-right: none
-  #searched-solutions .word.right
+    .points
+      margin-bottom: 10px
+  #searched-solutions .word
+    height: 90px
+    margin-bottom: 10px
+    +border-right-radius
+    &.false
+      border: 1px solid red
+      border-left: none
+      +opacity(0.75)
+      background-color: red
+    &.right
+      border: 1px solid green
+      border-left: none
+      +opacity(0.75)
+      background-color: green
+
+  #your-solutions .word,
+  #your-solutions .points
+    &.false
+      border: 1px solid red
+      border-right: none
+      +opacity(0.75)
+      background-color: red
+  #your-solutions .word
+    +border-top-left-radius
+    &.false,
+    &.right
+      border-bottom: none
+  #your-solutions .points
+    +border-bottom-left-radius
+    &.false
+      border-top: none
+  #your-solutions .word.right,
+  #your-solutions .points.right
     border: 1px solid green
-    border-left: none
+    border-right: none
+    +opacity(0.75)
+    background-color: green
   #your-solutions .word.right
-    border: 1px solid green
-    border-right: none
+    border-bottom: none
+  #your-solutions .points.right
+    border-top: none

@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110415141322) do
+ActiveRecord::Schema.define(:version => 20110419085127) do
+
+  create_table "games", :force => true do |t|
+    t.integer  "score"
+    t.integer  "word_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "input"
+    t.boolean  "won",        :default => false
+  end
 
   create_table "login_accounts", :force => true do |t|
     t.string   "type"

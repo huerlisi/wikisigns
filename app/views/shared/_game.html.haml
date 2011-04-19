@@ -1,8 +1,8 @@
-- if user_signed_in? && current_user.from_facebook? && controller.action_name != 'game'
+- if user_signed_in? && current_user.from_facebook? && controller_name != 'games'
   #goto-game
     = t('game.goto')
-    = link_to t('game.start'), game_words_path
+    = link_to t('game.start'), new_game_path
 
-- if user_signed_in? && controller.action_name == 'game'
+- if user_signed_in? && controller_name == 'games' && controller.action_name == 'new'
   #goto-game
     = link_to t('game.abort'), root_path

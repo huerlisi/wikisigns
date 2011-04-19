@@ -17,11 +17,17 @@ WikiSigns::Application.routes.draw do
     collection do
       get  'random'
       post 'new_word'
-      get  'game'
-      post 'game_search'
     end
     member do
       get 'svg'
+    end
+
+    resources :games, :only => [:create, :show]
+  end
+
+  resources :games, :only => [:new] do
+    collection do
+      post 'search'
     end
   end
 end

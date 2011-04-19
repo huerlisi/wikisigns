@@ -61,12 +61,13 @@ gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => 'v
 #gem 'omniauth'
 #gem "oa-oauth", :require => "omniauth/oauth"
 gem 'omnisocial'
+gem 'koala'
 gem 'settingslogic'
 
 # Generate images
 gem 'imgkit'
 
-# Development
+# Google Analytics
 # ===========
 group :production do
   gem 'rack-google_analytics', :require => "rack/google_analytics"
