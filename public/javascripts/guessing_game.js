@@ -101,7 +101,7 @@ function checkWords() {
   if(displayedWords().length == original_word.length) {
     var guessed = guessed_word;
     var original = original_word;
-    var div_class = 'word';
+    var div_class = '';
 
     resetGlobalVars();
 
@@ -121,9 +121,9 @@ function checkWords() {
        xhr.setRequestHeader("Accept", "application/json")
       },
       success: function(data){
-        $('#your-solutions').prepend('<div class="points">'+ data[0]['game']['score'] +'</div>');
-        $('#your-solutions').prepend('<div class="' + div_class +'">' + data[0]['game']['input'] + '</div>');
-        $('#searched-solutions').prepend('<div class="' + div_class +'">' + original + '</div>');
+        $('#your-solutions').prepend('<div class="points ' + div_class +'">'+ data[0]['game']['score'] +'</div>');
+        $('#your-solutions').prepend('<div class="word' + div_class +'">' + data[0]['game']['input'] + '</div>');
+        $('#searched-solutions').prepend('<div class="word' + div_class +'">' + original + '</div>');
         addSmallWordAttributesForSessionView(drawWordAsImage('solution-images', guessed));
 
         text_input.attr('value', data[1]['word']['word']);
