@@ -35,7 +35,7 @@ function initializeNewWordBehaviour() {
   $('a#get-new-word').click(function(e){
     $.ajax({
       type: 'GET',
-      url: '/words/random',
+      url: '/words/random.json',
       dataType: 'json',
       beforeSend : function(xhr){
        xhr.setRequestHeader("Accept", "application/json")
