@@ -5,13 +5,11 @@ class Game < ActiveRecord::Base
   after_create :calculate_score
 
   def calculate_score
-    if self.won?
-      self.score = 5 * rand(500)
-      # send_score
-    else
-      self.score = 0
-    end
-    self.save
+    score = 0
+    score = 5 * rand(500) if won?
+    # send_score
+
+    save
   end
 
   private
