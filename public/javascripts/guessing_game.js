@@ -10,6 +10,8 @@ var word_id;
 
 var DATA_WORD_COUNTER = 'data-word-counter';
 
+var send = false;
+
 // Reset global vars.
 function resetGlobalVars() {
   original_word = text_input.val().trim();
@@ -98,7 +100,8 @@ function displayedWords() {
 }
 function checkWords() {
   // Checks if all letters has been selected.
-  if(displayedWords().length == original_word.length) {
+  if(displayedWords().length == original_word.length && !send) {
+    send = true;
     var guessed = guessed_word;
     var original = original_word;
     var div_class = '';
@@ -127,14 +130,15 @@ function checkWords() {
           $('#your-solutions').prepend('<div class="word' + div_class +'">' + data[0]['game']['input'] + '</div>');
           $('#searched-solutions').prepend('<div class="word' + div_class +'">' + original + '</div>');
           addSmallWordAttributesForSessionView(drawWordAsImage('solution-images', guessed));
-
-          text_input.attr('value', data[1]['word']['word']);
-          word_id = data[1]['word']['id'];
-          $('h1#title-inserted span').remove();
-          $('#word svg').remove();
-          original_word = text_input.val();
-          reinitializeGuessingGame();
         });
+
+        text_input.attr('value', data[1]['word']['word']);
+        word_id = data[1]['word']['id'];
+        $('h1#title-inserted span').remove();
+        $('#word svg').remove();
+        original_word = text_input.val();
+        reinitializeGuessingGame();
+        send = false;
       }
     });
 
