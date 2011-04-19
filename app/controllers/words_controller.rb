@@ -48,7 +48,9 @@ class WordsController < ApplicationController
 
   # GET /words/random
   def random
+    headers['Last-Modified'] = Time.now.httpdate
     @word = Word.random
+    expire_page :controller => 'words', :action => 'random'
 
     show!
   end
