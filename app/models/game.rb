@@ -7,7 +7,7 @@ class Game < ActiveRecord::Base
   def calculate_score
     if self.won?
       self.score = 5 * rand(500)
-      send_score
+      # send_score
     else
       self.score = 0
     end
