@@ -26,4 +26,10 @@ WikiSigns::Application.routes.draw do
   end
 
   resources :games, :only => [:new]
+
+  resources :users, :only => [] do
+    member do
+      post 'daily_score'
+    end
+  end
 end

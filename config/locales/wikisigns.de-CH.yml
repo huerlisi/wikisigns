@@ -21,11 +21,12 @@ de-CH:
     start: Hier gehts los!
     abort: Spiel beenden
     get_new_word: ein neues Wort
+    post_day_score_to_fb: TagesScore auf FB posten
     solutions:
       yours: die Punkte
       searched: gesuchte Lösungen
       images: die Signs
     message:
       score:
-        text: Ich habe auf Wikisign.ch %{score} Punkte erreicht.
+        text: Ich habe heute auf Wikisign.ch total %{score} Punkte erreicht.
         title: Das Wikisigns-Spiel

@@ -29,4 +29,8 @@ class GamesController < ApplicationController
       }
     end
   end
+
+  def daily_score
+
+  end
 end

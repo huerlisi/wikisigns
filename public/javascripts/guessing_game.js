@@ -29,10 +29,30 @@ function initializeGuessingGame() {
   drawEmptyCarpet();
   initializeWordClickBehaviour();
   initializeNewWordBehaviour();
+  initializePublishDayScore();
+}
+
+function initializePublishDayScore() {
+  $('#post-day-score-to-fb').click(function(e){
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '/users/'+ $(this).attr('data-user-id') +'/daily_score',
+      dataType: 'json',
+      cache: true,
+      beforeSend : function(xhr){
+       xhr.setRequestHeader("Accept", "application/json")
+      },
+      success: function(data){
+        console.log(data);
+      }
+    });
+  });
 }
 
 function initializeNewWordBehaviour() {
   $('a#get-new-word').click(function(e){
+    e.preventDefault();
     $.ajax({
       type: 'GET',
       url: '/words/random.json?time=' + timeStamp(),

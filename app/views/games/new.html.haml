@@ -1,7 +1,8 @@
 #game-menu
   %a#get-new-word{:href => '#'}
     = t('game.get_new_word')
-#guessing-game
+  %a#post-day-score-to-fb{:href => '#', 'data-user-id' => current_user ? current_user.id : 0}
+    = t('game.post_day_score_to_fb')
   %h1#title-inserted
 
   = render 'words/new'
