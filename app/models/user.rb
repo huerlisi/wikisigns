@@ -1,6 +1,8 @@
 class User < Omnisocial::User
   has_many :games
 
+  # Facebook
+  include ActionController::UrlWriter
   def post_score_to_fb_wall
     unless self.last_facebook_post && self.last_facebook_post.today?
       graph = Koala::Facebook::GraphAPI.new(self.access_token)
