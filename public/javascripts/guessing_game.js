@@ -42,9 +42,11 @@ function initializeNewWordBehaviour() {
        xhr.setRequestHeader("Accept", "application/json")
       },
       success: function(data){
+        $('h1#title-inserted span').remove();
         text_input.attr('value', data['word']['word']);
         word_id = data['word']['id'];
-        original_word = text_input.val();
+        resetGlobalVars();
+        original_word = data['word']['word'];
         reinitializeGuessingGame();
       }
     });
@@ -196,7 +198,7 @@ function recountSelectedLetters() {
 function removeCharFromPos(string, position){
   var chars = string.split('');
 
-  chars.splice(position, position);
+  chars.splice(position, position + 1);
   return chars.join('');
 }
 
