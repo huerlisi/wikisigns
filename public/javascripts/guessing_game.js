@@ -35,7 +35,7 @@ function initializeNewWordBehaviour() {
   $('a#get-new-word').click(function(e){
     $.ajax({
       type: 'GET',
-      url: '/words/random.json',
+      url: '/words/random.json?time=' + timeStamp(),
       dataType: 'json',
       cache: true,
       beforeSend : function(xhr){

@@ -21,6 +21,12 @@ function initializeBehaviours() {
   }
 }
 
+// Returns a timestamp string, used for ajax requests.
+function timeStamp() {
+  var time = new Date().getTime();
+  return time.toString();
+}
+
 // Adds the tweet or facebook-like button for resharing.
 function addReshareBehaviour() {
   $('#slug-word-share').html(generateShareLink(text_input.val().trim()));
@@ -99,7 +105,7 @@ function updateRandomLatest() {
 
   $.ajax({
     type: 'GET',
-    url: '/words/random',
+    url: '/words/random?time=' + timeStamp(),
     success: function(data){
       last_child.fadeOut(125);
       last_child.remove();
