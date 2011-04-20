@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110419085127) do
+ActiveRecord::Schema.define(:version => 20110420111204) do
 
   create_table "games", :force => true do |t|
     t.integer  "score"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20110419085127) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"
+    t.datetime "last_facebook_post"
   end
 
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
