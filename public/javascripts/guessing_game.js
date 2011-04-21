@@ -12,6 +12,9 @@ var DATA_WORD_COUNTER = 'data-word-counter';
 
 var send = false;
 
+var dayly_score = 0;
+var current_score = 0;
+
 // Reset global vars.
 function resetGlobalVars() {
   original_word = text_input.val().trim();
@@ -30,6 +33,8 @@ function initializeGuessingGame() {
   initializeWordClickBehaviour();
   initializeNewWordBehaviour();
   initializePublishDayScore();
+  dayly_score = parseInt($('#dayly-score').html().trim());
+  current_score = parseInt($('#current-score').html().trim());
 }
 
 function initializePublishDayScore() {
@@ -176,6 +181,7 @@ function checkWords() {
           $('#your-solutions').prepend('<div class="word' + div_class +' word-text">' + drawColoredWord(data[0]['game']['input']) + '</div>');
           $('#searched-solutions').prepend('<div class="word' + div_class +' word-text">' + drawColoredWord(original) + '</div>');
           addSmallWordAttributesForSessionView(drawWordAsImage('solution-images', guessed));
+          updateScores(data[0]['game']['score']);
         });
 
         text_input.attr('value', data[1]['word']['word']);
@@ -204,6 +210,14 @@ function checkWords() {
       }
     }); */
   }
+}
+
+// Updates the current and the dayly score.
+function updateScores(score) {
+  dayly_score += score;
+  current_score += score;
+  $('#dayly-score').html(dayly_score);
+  $('#current-score').html(current_score);
 }
 
 // Rearranges the counters for the selected letters.
