@@ -9,6 +9,7 @@
     = stylesheet_link_tag 'compiled/game.css', :media => 'screen, projection, print'
     = javascript_include_tag 'http://platform.twitter.com/widgets.js'
   %body#guessing-game{:class => (current_user && current_user.from_facebook? ? 'facebook-user ' : '') + (current_user && current_user.from_twitter? ? 'twitter-user' : '')}
+
     #container
       #side-container
         = render 'shared/flash_messages'
@@ -19,6 +20,16 @@
       #left-container
         = yield
       #right-container
+        #highscores
+          %h1
+            = t('game.session_score')
+          %h1
+            = t('game.dayly_score')
+          #sessin-score
+            0
+          #dayly-score
+            - if current_user && current_user.from_facebook?
+              = current_user.daily_score
         #game-solutions-container
           %h1
             = t('game.solutions.images')

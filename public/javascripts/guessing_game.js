@@ -44,7 +44,9 @@ function initializePublishDayScore() {
        xhr.setRequestHeader("Accept", "application/json")
       },
       success: function(data){
-        console.log(data);
+        if(data['id'] != null && data['id'] != ''){
+
+        }
       }
     });
   });
