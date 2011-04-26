@@ -111,16 +111,17 @@ function showSmallPictureAsBigWord(element) {
   text_input.val(word);
   $('#word svg').remove();
   drawWordAsImage('word', word);
-  $('#title').html(drawColoredWord(text_input.val().trim()));
+  $('#title-inserted').html(drawColoredWord(text_input.val().trim()));
 }
 
 //
 function addRealtimeWordDrawingBehaviour() {
   text_input.keyup(function(event){
     if(event.keyCode != 13) {
+      $('#title').hide();
       $('#word').children().remove();
       drawWordAsImage('word', $(this).val().trim());
-      $('#title').html(drawColoredWord($(this).val().trim()));
+      $('#title-inserted').html(drawColoredWord($(this).val().trim()));
 
       if($(this).val().indexOf(' ', 0) > -1) {
         newWord();
@@ -131,7 +132,7 @@ function addRealtimeWordDrawingBehaviour() {
 
 // Colorizes the text on the show word page.
 function addColorizeTextBehaviour() {
-  var text_field = $('#title');
+  var text_field = $('#title-inserted');
 
   text_field.html(drawColoredWord(text_field.text().trim()));
 }
@@ -186,7 +187,7 @@ function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
   drawWordAsImage('word', $('#title').text().trim());
-  $('#title').html(drawColoredWord(text_input.val().trim()));
+  //$('#title').html(drawColoredWord(text_input.val().trim()));
 }
 
 // Draw a new word and submit it to the data base.
@@ -210,8 +211,8 @@ function newWord() {
   var next_word_id = $('#next_word_id') ? $('#next_word_id').val() : null;
   var text;
 
-  $('#title').html(drawColoredWord(text_input.val().trim()));
-  text = $('#title').text().trim();
+  $('#title-inserted').html(drawColoredWord(text_input.val().trim()));
+  text = $('#title-inserted').text().trim();
   addFocusTextFieldBehaviour();
   $('#word').children().remove();
 
@@ -224,6 +225,8 @@ function newWord() {
     success: function(data){
       var id = data['word']['id'];
 
+      $('#title').show();
+      $('#title-inserted span').remove();
       displaySessionSmallWord(drawWordAsImage('word', text).clone(), text, id);
 
       if($('.twitter-user').length>0){
