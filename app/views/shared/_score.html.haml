@@ -1,12 +1,11 @@
-#scores
-  #current-score
-    = t('game.session_score')
-    %span
-      0
-  #daily-score
-    = t('game.dayly_score')
-    %span
-      - if current_user
-        = current_user.daily_score
-      - else
+- if 'words'.eql?controller_name
+  #scores
+    #current-score
+      = t('game.session_score')
+      %span
         0
+    - if current_user
+      #daily-score
+        = t('game.dayly_score')
+        %span
+          = current_user.daily_score

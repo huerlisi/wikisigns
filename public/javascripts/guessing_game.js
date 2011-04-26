@@ -8,8 +8,8 @@ function initializeGuessingGame() {
   initializeWordClickBehaviour();
   initializeNewWordBehaviour();
   initializePublishDayScore();
-  dayly_score = parseInt($('#dayly-score').html().trim());
-  current_score = parseInt($('#current-score').html().trim());
+  dayly_score = parseInt($('#daily-score span').html().trim());
+  current_score = parseInt($('#current-score span').html().trim());
 }
 
 function reinitializeGuessingGame() {

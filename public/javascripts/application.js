@@ -37,6 +37,8 @@ function initializeGame() {
       resetGameGlobalVars(data['word']['word'], data['word']['id']);
       randomizeWord();
       initializeWordClickBehaviour();
+      dayly_score = parseInt($('#daily-score span').html().trim());
+      current_score = parseInt($('#current-score span').html().trim());
     }
   });
 }
@@ -72,6 +74,7 @@ function checkWords() {
         resetGameGlobalVars(data[1]['word']['word'], data[1]['word']['id']);
         randomizeWord();
         initializeWordClickBehaviour();
+        updateScores(data[0]['game']['score']);
         send = false;
       }
     });

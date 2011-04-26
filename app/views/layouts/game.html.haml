@@ -26,10 +26,12 @@
           %h1
             = t('game.dayly_score')
           #current-score
-            0
-          #dayly-score
-            - if current_user && current_user.from_facebook?
-              = current_user.daily_score
+            %span
+              0
+          #daily-score
+            %span
+              - if current_user && current_user.from_facebook?
+                = current_user.daily_score
         #game-solutions-container
           %h1
             = t('game.solutions.images')
