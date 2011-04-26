@@ -27,7 +27,7 @@ function initializeGame() {
   $.ajax({
     type: 'GET',
     dataType: 'json',
-    url: '/words/random.json?time=' + timeStamp(),
+    url: '/words/guess.json?time=' + timeStamp(),
     cache: false,
     beforeSend : function(xhr){
      xhr.setRequestHeader("Accept", "application/json");
