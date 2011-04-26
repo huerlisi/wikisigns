@@ -43,7 +43,24 @@ class WordsController < ApplicationController
   
   # POST /words
   def create
-    create! { new_word_path(:last_word => @word.word) }
+    @word = Word.find_by_word(params[:word][:word])
+    won = nil
+    unless @word
+      @word = Word.new(params[:word])
+      won = true
+    end
+    user = current_user ? current_user : nil
+    @game = Game.create(:user => user, :word => @word, :input => params[:word][:word], :won => won)
+    @game.save
+
+    create! do |format|
+      format.html {
+        new_word_path(:last_word => @word.word)
+      }
+      format.json {
+        render :json => [@word, @game]
+      }
+    end
   end
 
   # GET /words/random

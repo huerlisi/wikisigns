@@ -226,8 +226,9 @@ function newWord() {
     url: '/words',
     dataType: 'json',
     success: function(data){
-      var id = data['word']['id'];
+      var id = data[0]['word']['id'];
 
+      updateScores(data[1]['game']['score']);
       $('#title').show();
       $('#title-inserted span').remove();
       displaySessionSmallWord(drawWordAsImage('word', text).clone(), text, id);
