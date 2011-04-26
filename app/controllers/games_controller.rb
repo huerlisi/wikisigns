@@ -4,8 +4,6 @@ class GamesController < ApplicationController
 
   respond_to :html, :json
 
-  before_filter :user_facebook?, :except => 'search'
-
   # Word game for guessing words.
   def new
     headers['Last-Modified'] = Time.now.httpdate
@@ -18,8 +16,9 @@ class GamesController < ApplicationController
   def create
     @word = Word.find_by_word(params[:guessed_word])
     won = true if @word
-    @word = Word.create(:word => params[:guessed_word], :user => current_user) unless @word
-    @game = Game.create(:user => current_user, :word => @word, :input => params[:guessed_word], :won => won)
+    user = current_user ? current_user : nil
+    @word = Word.create(:word => params[:guessed_word], :user => user) unless @word
+    @game = Game.create(:user => user, :word => @word, :input => params[:guessed_word], :won => won)
     @game.save
     @new_guess_word = Word.guess_random
 
@@ -28,9 +27,5 @@ class GamesController < ApplicationController
         render :json => [@game, @new_guess_word]
       }
     end
-  end
-
-  def daily_score
-
   end
 end
