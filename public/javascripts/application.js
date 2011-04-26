@@ -33,12 +33,49 @@ function initializeGame() {
      xhr.setRequestHeader("Accept", "application/json");
     },
     success: function(data){
-      console.log(data);
+      $('h1#title-inserted span').remove();
       resetGameGlobalVars(data['word']['word'], data['word']['id']);
       randomizeWord();
       initializeWordClickBehaviour();
     }
   });
+}
+
+function checkWords() {
+  // Checks if all letters has been selected.
+  if(displayedWords().length == original_word.length && !send) {
+    send = true;
+    var guessed = guessed_word;
+    var original = original_word;
+    var div_class = '';
+
+    // When the guessed word is right just draw it and do a post on the users facebook wall else create a new word.
+    if(guessed == original){
+      div_class += ' right';
+    }else{
+      div_class += ' false';
+    }
+
+    $.ajax({
+      type: 'POST',
+      data: { guessed_word: guessed },
+      url: '/words/' + word_id + '/games',
+      dataType: 'json',
+      cache: true,
+      beforeSend : function(xhr){
+        xhr.setRequestHeader("Accept", "application/json");
+        $('#ajax-loader').slideDown(125);
+      },
+      success: function(data){
+        $('#ajax-loader').slideUp(125);
+        $('h1#title-inserted span').remove();
+        resetGameGlobalVars(data[1]['word']['word'], data[1]['word']['id']);
+        randomizeWord();
+        initializeWordClickBehaviour();
+        send = false;
+      }
+    });
+  }
 }
 
 // Returns a timestamp string, used for ajax requests.
