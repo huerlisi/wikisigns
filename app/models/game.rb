@@ -9,7 +9,6 @@ class Game < ActiveRecord::Base
   def calculate_score
     self.score = 0
     self.score = word.word.length * rand(500) if won?
-    # send_score
 
     self.save
   end
