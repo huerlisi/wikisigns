@@ -1,6 +1,6 @@
 // initialize the guessing game.
 function initializeGuessingGame() {
-  resetGlobalVars();
+  resetGuessingGameGlobalVars();
   word_id = getWordId();
   $('h1#title-inserted').attr('style', 'height:2.5em;');
   randomizeWord();

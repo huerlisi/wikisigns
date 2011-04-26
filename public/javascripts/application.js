@@ -13,12 +13,32 @@ function initializeBehaviours() {
     addRealtimeWordDrawingBehaviour();
     addInitialResizeBehaviour();
     addReshareBehaviour();
+    // Game merge
+    initializeGame();
   }
 
   // initialize only on /words/:id page.
   if($('#show-word').length > 0){
     addColorizeTextBehaviour();
   }
+}
+
+function initializeGame() {
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    url: '/words/random.json?time=' + timeStamp(),
+    cache: false,
+    beforeSend : function(xhr){
+     xhr.setRequestHeader("Accept", "application/json");
+    },
+    success: function(data){
+      console.log(data);
+      resetGameGlobalVars(data['word']['word'], data['word']['id']);
+      randomizeWord();
+      initializeWordClickBehaviour();
+    }
+  });
 }
 
 // Returns a timestamp string, used for ajax requests.

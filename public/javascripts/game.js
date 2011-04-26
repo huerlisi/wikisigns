@@ -16,11 +16,19 @@ var dayly_score = 0;
 var current_score = 0;
 
 // Reset global vars.
-function resetGlobalVars() {
+function resetGuessingGameGlobalVars() {
   original_word = text_input.val().trim();
   guessed_word = '';
   word_counter = 0;
   text_input.attr('value', '');
+}
+
+// Reset global vars.
+function resetGameGlobalVars(word, id) {
+  original_word = word;
+  word_id = id;
+  guessed_word = '';
+  word_counter = 0;
 }
 
 function initializeWordClickBehaviour() {
@@ -85,7 +93,7 @@ function checkWords() {
     var original = original_word;
     var div_class = '';
 
-    resetGlobalVars();
+    resetGuessingGameGlobalVars();
 
     // When the guessed word is right just draw it and do a post on the users facebook wall else create a new word.
     if(guessed == original){
@@ -122,22 +130,6 @@ function checkWords() {
         send = false;
       }
     });
-
-    /*$.ajax({
-      type: 'POST',
-      url: '/words/' + word_id + '/games',
-      dataType: 'json',
-      beforeSend : function(xhr){
-       xhr.setRequestHeader("Accept", "application/json")
-      },
-      success: function(data){
-        text_input.attr('value', data['game']);
-        $('h1#title-inserted span').remove();
-        $('#word svg').remove();
-        original_word = text_input.val();
-        reinitializeGuessingGame();
-      }
-    }); */
   }
 }
 
@@ -218,7 +210,7 @@ function initializeNewWordBehaviour() {
         $('h1#title-inserted span').remove();
         text_input.attr('value', data['word']['word']);
         word_id = data['word']['id'];
-        resetGlobalVars();
+        resetGuessingGameGlobalVars();
         original_word = data['word']['word'];
         reinitializeGuessingGame();
       }
