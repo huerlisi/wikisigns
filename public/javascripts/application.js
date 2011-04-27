@@ -89,13 +89,15 @@ function checkWords() {
 }
 
 // Returns the border color for the word.
-function getBorderColor(){
-  if(guessed_word == original_word){
+function getBorderColor(won){
+  if(guessed_word == original_word || won){
     return right_border_color;
   }else{
     return false_border_color;
   }
 }
+
+
 
 // Returns a timestamp string, used for ajax requests.
 function timeStamp() {
@@ -247,7 +249,8 @@ function newWord() {
       updateScores(data[1]['game']['score']);
       $('#title').show();
       $('#title-inserted span').remove();
-      displaySessionSmallWord(drawWordAsImage('word', text).clone(), text, id);
+      displaySessionSmallWord(drawWordAsImage('word', text, getBorderColor(data[1]['game']['won'])).clone(), text, id);
+      drawEmptyCarpet();
 
       if($('.twitter-user').length>0){
         $('a.twitter-share-button').each(function(){
