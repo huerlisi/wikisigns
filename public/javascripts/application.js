@@ -23,6 +23,7 @@ function initializeBehaviours() {
   }
 }
 
+// Loads the guessing game on the root page.
 function initializeGame() {
   initializeGameMenu();
   $.ajax({
@@ -45,6 +46,7 @@ function initializeGame() {
   });
 }
 
+// Checks if the guessed word has the same length and shows the result of the guessing.
 function checkWords() {
   // Checks if all letters has been selected.
   if(displayedWords().length == original_word.length && !send) {
