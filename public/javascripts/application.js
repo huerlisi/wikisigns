@@ -24,6 +24,7 @@ function initializeBehaviours() {
 }
 
 function initializeGame() {
+  initializeGameMenu();
   $.ajax({
     type: 'GET',
     dataType: 'json',

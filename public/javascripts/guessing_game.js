@@ -1,13 +1,12 @@
 // initialize the guessing game.
 function initializeGuessingGame() {
+  initializeGameMenu();
   resetGuessingGameGlobalVars();
   word_id = getWordId();
   $('h1#title-inserted').attr('style', 'height:2.5em;');
   randomizeWord();
   drawEmptyCarpet();
   initializeWordClickBehaviour();
-  initializeNewWordBehaviour();
-  initializePublishDayScore();
   dayly_score = parseInt($('#daily-score span').html().trim());
   current_score = parseInt($('#current-score span').html().trim());
 }

@@ -16,6 +16,8 @@
         = render 'shared/user'
         = render 'shared/login'
         = render 'shared/score'
+        - if controller.class.eql?WordsController
+          = render 'shared/game_menu'
       #top-container
         #top-container-scroll
           = render 'shared/latest', :amount => 12

@@ -31,6 +31,13 @@ function resetGameGlobalVars(word, id) {
   word_counter = 0;
 }
 
+// Shows the game menu
+function initializeGameMenu() {
+  initializeNewWordBehaviour();
+  initializePublishDayScore();
+  $('#game-menu').show();
+}
+
 function initializeWordClickBehaviour() {
   $('h1#title span').each(function() {
     $(this).addClass('selectable');
