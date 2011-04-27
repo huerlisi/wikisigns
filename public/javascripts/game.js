@@ -139,8 +139,15 @@ function randomizeWord() {
   var new_word = $.shuffle(original_word.split(''));
 
   new_word = new_word.join('');
+
+  if(original_word == new_word){
+    randomizeWord();
+    return false;
+  }
+
   $('#title').html(drawColoredWord(new_word));
   $('#title').fadeIn('slow');
+  return true;
 }
 
 // Publishes the Day Score to Facebook
