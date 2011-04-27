@@ -17,10 +17,10 @@ var current_score = 0;
 
 // Reset global vars.
 function resetGuessingGameGlobalVars() {
-  original_word = text_input.val().trim();
+  //original_word = text_input.val().trim();
   guessed_word = '';
   word_counter = 0;
-  text_input.attr('value', '');
+  //text_input.attr('value', '');
 }
 
 // Reset global vars.
@@ -171,10 +171,9 @@ function initializeNewWordBehaviour() {
       },
       success: function(data){
         $('h1#title-inserted span').remove();
-        text_input.attr('value', data['word']['word']);
+        original_word = data['word']['word'];
         word_id = data['word']['id'];
         resetGuessingGameGlobalVars();
-        original_word = data['word']['word'];
         reinitializeGuessingGame();
       }
     });
@@ -187,4 +186,12 @@ function getWordId(){
   var id = $('form.edit_word').attr('id');
   regex.exec(id);
   return RegExp.$1;
+}
+
+// Reinitialize the game
+function reinitializeGuessingGame() {
+  $('h1#title-inserted').attr('style', 'height:2.5em;');
+  randomizeWord();
+  drawEmptyCarpet();
+  initializeWordClickBehaviour();
 }

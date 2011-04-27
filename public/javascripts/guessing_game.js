@@ -11,13 +11,6 @@ function initializeGuessingGame() {
   current_score = parseInt($('#current-score span').html().trim());
 }
 
-function reinitializeGuessingGame() {
-  $('h1#title-inserted').attr('style', 'height:2.5em;');
-  randomizeWord();
-  drawEmptyCarpet();
-  initializeWordClickBehaviour();
-}
-
 function checkWords() {
   // Checks if all letters has been selected.
   if(displayedWords().length == original_word.length && !send) {
