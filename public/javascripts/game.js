@@ -33,7 +33,17 @@ function resetGameGlobalVars(word, id) {
 function initializeGameMenu() {
   initializeNewWordBehaviour();
   initializePublishDayScore();
+  initializeRestartGame();
   $('#game-menu').show();
+}
+
+// Initializes the behaviour of the restart button.
+function initializeRestartGame() {
+  $('#restart-guessing').click(function(e){
+    e.preventDefault();
+    resetGuessingGameGlobalVars();
+    reinitializeGuessingGame();
+  });
 }
 
 function initializeWordClickBehaviour() {
@@ -168,7 +178,6 @@ function initializeNewWordBehaviour() {
        xhr.setRequestHeader("Accept", "application/json");
       },
       success: function(data){
-        $('h1#title-inserted span').remove();
         original_word = data['word']['word'];
         word_id = data['word']['id'];
         resetGuessingGameGlobalVars();
@@ -188,6 +197,7 @@ function getWordId(){
 
 // Reinitialize the game
 function reinitializeGuessingGame() {
+  $('h1#title-inserted span').remove();
   $('h1#title-inserted').attr('style', 'height:2.5em;');
   randomizeWord();
   drawEmptyCarpet();
