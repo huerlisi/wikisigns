@@ -135,6 +135,7 @@ function randomizeWord() {
   $('#title').fadeIn('slow');
 }
 
+// Publishes the Day Score to Facebook
 function initializePublishDayScore() {
   $('#post-day-score-to-fb').click(function(e){
     e.preventDefault();
@@ -155,9 +156,11 @@ function initializePublishDayScore() {
   });
 }
 
+// Gets a new Word to guess.
 function initializeNewWordBehaviour() {
   $('a#get-new-word').click(function(e){
     e.preventDefault();
+
     $.ajax({
       type: 'GET',
       url: '/words/random.json?time=' + timeStamp(),
@@ -178,6 +181,7 @@ function initializeNewWordBehaviour() {
   });
 }
 
+// Returns the Word Id form the form.
 function getWordId(){
   var regex = /(\d+)/;
   var id = $('form.edit_word').attr('id');
