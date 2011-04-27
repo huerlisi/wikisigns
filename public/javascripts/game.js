@@ -15,6 +15,10 @@ var send = false;
 var dayly_score = 0;
 var current_score = 0;
 
+// The border colors of the carpet when its right or false
+var right_border_color = 'green';
+var false_border_color = 'red';
+
 // Reset global vars.
 function resetGuessingGameGlobalVars() {
   guessed_word = '';

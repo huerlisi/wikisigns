@@ -275,7 +275,9 @@ var colors = Array(
 
 // Draws a word as an image.
 function drawWordAsImage(id, input_word, border_color) {
-  if(border_color == null) border_color = "#555";
+  if(border_color == null) {
+    border_color = "#555";
+  }
   var circle_dimension = 95;
   var margin = 8;
   var space = 7;
