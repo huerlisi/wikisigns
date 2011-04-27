@@ -30,7 +30,7 @@ function initializeGame() {
     url: '/words/guess.json?time=' + timeStamp(),
     cache: false,
     beforeSend : function(xhr){
-     xhr.setRequestHeader("Accept", "application/json");
+      xhr.setRequestHeader("Accept", "application/json");
     },
     success: function(data){
       $('h1#title-inserted span').remove();
@@ -39,6 +39,7 @@ function initializeGame() {
       initializeWordClickBehaviour();
       dayly_score = parseInt($('#daily-score span').html().trim());
       current_score = parseInt($('#current-score span').html().trim());
+      $('#title').show();
     }
   });
 }
