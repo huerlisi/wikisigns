@@ -75,6 +75,8 @@ function checkWords() {
       success: function(data){
         $('#ajax-loader').slideUp(125);
         $('h1#title-inserted span').remove();
+        $('#word svg').remove();
+        displaySessionSmallWord(drawWordAsImage('word', guessed).clone(), guessed, word_id);
         resetGameGlobalVars(data[1]['word']['word'], data[1]['word']['id']);
         randomizeWord();
         initializeWordClickBehaviour();
