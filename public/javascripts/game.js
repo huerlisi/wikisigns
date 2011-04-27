@@ -17,10 +17,8 @@ var current_score = 0;
 
 // Reset global vars.
 function resetGuessingGameGlobalVars() {
-  //original_word = text_input.val().trim();
   guessed_word = '';
   word_counter = 0;
-  //text_input.attr('value', '');
 }
 
 // Reset global vars.
