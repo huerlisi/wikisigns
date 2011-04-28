@@ -31,6 +31,7 @@ function resetGameGlobalVars(word, id) {
   word_id = id;
   guessed_word = '';
   word_counter = 0;
+  help_counter = 0;
 }
 
 // Shows the game menu
@@ -59,6 +60,7 @@ function initializeWordClickBehaviour() {
       var letter = $(this).html();
 
       guessed_word = guessed_word + letter;
+      clearHelpIntervals();
       $('#word svg').remove();
       drawWordAsImage('word', guessed_word);
       $(this).removeClass('selectable');

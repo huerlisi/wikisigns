@@ -1,5 +1,11 @@
 var text_input = $('#word_word');
 
+var help_initial_interval;
+var help_initial_interval_time = 30000;
+var help_interval;
+var help_interval_time = 5000;
+var help_counter = 0;
+
 // Initialize behaviours
 function initializeBehaviours() {
   addFocusTextFieldBehaviour();
@@ -44,6 +50,69 @@ function initializeGame() {
       $('#title').show();
     }
   });
+  help_initial_interval = setInterval('initializeFirstHelp()', help_initial_interval_time);
+}
+
+function initializeFirstHelp() {
+  moveLetterFromBottomToTop(original_word[help_counter]);
+  help_counter++;
+  clearInterval(help_initial_interval);
+  help_interval = setInterval('nextHelp()', help_interval_time);
+}
+
+function moveLetterFromBottomToTop(letter){
+ $('#title span').each(function(){
+   if($(this).html().trim() == letter){
+     $(this).hide(125, function(){
+       var letter = $(this).html();
+
+       guessed_word = guessed_word + letter;
+       $('#word svg').remove();
+       drawWordAsImage('word', guessed_word);
+
+       $('#title-inserted').append($(this).clone().hide(0, function(){
+          $(this).fadeIn('slow', function(){
+
+            $('h1#title-inserted').removeAttr('style');
+            $(this).attr(DATA_WORD_COUNTER, word_counter);
+            word_counter++;
+            checkWords();
+
+            $(this).click(function(e){
+              $(this).unbind(e);
+              word_counter--;
+              guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
+
+              $(this).fadeOut(125, function(){
+                $('h1#title').append($(this).clone().hide(0, function(){
+                  $(this).fadeIn(125, function(){
+                    recountSelectedLetters();
+                    initializeWordClickBehaviour();
+                  });
+                }));
+                $(this).remove();
+              });
+            });
+          });
+        }));
+       $(this).remove();
+     })
+   }
+ });
+}
+
+function nextHelp() {
+  if(help_counter < original_word.length){
+    moveLetterFromBottomToTop(original_word[help_counter]);
+    help_counter++;
+  }else{
+    clearInterval(help_interval);
+  }
+}
+
+function clearHelpIntervals() {
+  clearInterval(help_initial_interval);
+  clearInterval(help_interval);
 }
 
 // Checks if the guessed word has the same length and shows the result of the guessing.
@@ -64,7 +133,7 @@ function checkWords() {
 
     $.ajax({
       type: 'POST',
-      data: { guessed_word: guessed },
+      data: { guessed_word: guessed, helped_letters: help_counter },
       url: '/words/' + word_id + '/games',
       dataType: 'json',
       cache: true,
