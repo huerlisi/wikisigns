@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110420111204) do
+ActiveRecord::Schema.define(:version => 20110428150930) do
 
   create_table "games", :force => true do |t|
     t.integer  "score"
@@ -19,7 +19,8 @@ ActiveRecord::Schema.define(:version => 20110420111204) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "input"
-    t.boolean  "won",        :default => false
+    t.boolean  "won",            :default => false
+    t.integer  "helped_letters", :default => 0
   end
 
   create_table "login_accounts", :force => true do |t|
