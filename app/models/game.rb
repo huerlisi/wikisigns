@@ -4,6 +4,8 @@ class Game < ActiveRecord::Base
   belongs_to :user
   belongs_to :word
 
+  # Check if word exist before creating.
+  before_create :check_word
   # Calculate the score after creating.
   after_create :calculate_score
 
@@ -16,6 +18,17 @@ class Game < ActiveRecord::Base
     self.score = guessed_letters * rand(500) if won?
 
     self.save
+  end
+
+  def check_word
+    search_word = Word.find_by_word(self.input)
+    if search_word
+      self.word = search_word
+      self.won = true
+    else
+      self.word = Word.create(:word => self.input, :user => self.user)
+      self.won = false
+    end
   end
 
   private
