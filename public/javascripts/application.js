@@ -61,28 +61,27 @@ function initializeFirstHelp() {
 }
 
 function moveLetterFromBottomToTop(letter){
- $('#title span').each(function(){
-   if($(this).html().trim() == letter){
-     $(this).hide(125, function(){
-       var letter = $(this).html();
+  var do_once = true;
 
-       guessed_word = guessed_word + letter;
-       $('#word svg').remove();
-       drawWordAsImage('word', guessed_word);
+  $('#title span').each(function(){
+    if($(this).html().trim() == letter && do_once){
+      do_once = false;
+      $(this).hide(125, function(){
+        var letter = $(this).html();
 
-       $('#title-inserted').append($(this).clone().hide(0, function(){
+        guessed_word = guessed_word + letter;
+        $('#word svg').remove();
+        drawWordAsImage('word', guessed_word);
+        $('#title-inserted').append($(this).clone().hide(0, function(){
           $(this).fadeIn('slow', function(){
-
             $('h1#title-inserted').removeAttr('style');
             $(this).attr(DATA_WORD_COUNTER, word_counter);
             word_counter++;
             checkWords();
-
             $(this).click(function(e){
               $(this).unbind(e);
               word_counter--;
               guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
-
               $(this).fadeOut(125, function(){
                 $('h1#title').append($(this).clone().hide(0, function(){
                   $(this).fadeIn(125, function(){
@@ -95,10 +94,10 @@ function moveLetterFromBottomToTop(letter){
             });
           });
         }));
-       $(this).remove();
-     })
-   }
- });
+        $(this).remove();
+      })
+    }
+  });
 }
 
 function nextHelp() {
