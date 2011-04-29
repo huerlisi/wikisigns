@@ -39,7 +39,6 @@ function initializeGame() {
     type: 'GET',
     dataType: 'json',
     url: '/words/guess.json?time=' + timeStamp(),
-    cache: false,
     beforeSend : function(xhr){
       xhr.setRequestHeader("Accept", "application/json");
     },
