@@ -1,6 +1,0 @@
-- if user_signed_in? && current_user.from_twitter?
-  #twitter-user
-    %h1
-      = t('omnisocial.logged_in_with.twitter')
-    #twitter-user-pic
-      = image_tag current_user.picture_url, :alt => current_user.login
