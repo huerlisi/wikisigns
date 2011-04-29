@@ -144,7 +144,7 @@ function checkWords() {
         $('#ajax-loader').slideUp(125);
         $('h1#title-inserted span').remove();
         $('#word svg').remove();
-        displaySessionSmallWord(drawWordAsImage('word', guessed, getBorderColor()).clone(), guessed, word_id);
+        displaySessionSmallWord(drawWordAsImage('word', guessed, getBorderColor(data[0]['game']['won'])).clone(), guessed, word_id);
         drawEmptyCarpet();
         resetGameGlobalVars(data[1]['word']['word'], data[1]['word']['id']);
         randomizeWord();
@@ -158,7 +158,7 @@ function checkWords() {
 
 // Returns the border color for the word.
 function getBorderColor(won){
-  if(guessed_word == original_word || won){
+  if(won){
     return right_border_color;
   }else{
     return false_border_color;
