@@ -2,7 +2,7 @@
 function initializeGuessingGame() {
   initializeGameMenu();
   resetGuessingGameGlobalVars();
-  word_id = getWordId();
+  word_id = getWordId($('form.edit_word').attr('id'));
   $('h1#title-inserted').attr('style', 'height:2.5em;');
   randomizeWord();
   drawEmptyCarpet();

@@ -201,10 +201,10 @@ function initializeNewWordBehaviour() {
 }
 
 // Returns the Word Id form the form.
-function getWordId(){
+function getWordId(text){
   var regex = /(\d+)/;
-  var id = $('form.edit_word').attr('id');
-  regex.exec(id);
+
+  regex.exec(text);
   return RegExp.$1;
 }
 

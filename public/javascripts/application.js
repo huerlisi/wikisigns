@@ -56,10 +56,14 @@ function initializeGame() {
 
 // Restarts the help.
 function restartHelp() {
+  abortHelp();
+  help_initial_interval = setInterval('initializeFirstHelp()', help_initial_interval_time);
+}
+
+function abortHelp() {
   previous_help_counter = help_counter;
   help_counter = 0;
   clearHelpIntervals();
-  help_initial_interval = setInterval('initializeFirstHelp()', help_initial_interval_time);
 }
 
 // Moves the first letter of the searched word to top as help.
@@ -205,15 +209,18 @@ function addInitialResizeBehaviour() {
 function showSmallPictureAsBigWord(element) {
   var word = '';
 
+  abortHelp();
+
   // Read the word from within the span tags.
   $(element).children('.word-text').children('span').each(function(){
     word += $(this).html().trim();
   });
 
+  resetGameGlobalVars(word, getWordId($(element).children('.word').attr('id')));
   text_input.val(word);
   $('#word svg').remove();
   drawWordAsImage('word', word);
-  $('#title-inserted').html(drawColoredWord(text_input.val().trim()));
+  $('#title-inserted').html(drawColoredWord(original_word));
 }
 
 //
