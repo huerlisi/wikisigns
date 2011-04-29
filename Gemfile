@@ -75,3 +75,5 @@ end
 
 # Monitoring with new relic
 gem 'newrelic_rpm'
+# Hoptoad for error catching
+gem 'hoptoad_notifier'

@@ -4,6 +4,7 @@ twitter: &twitter
     consumer_secret:
 
 production: &production
+  hoptoad:
   facebook:
     consumer_key:
     consumer_secret:
@@ -11,6 +12,7 @@ production: &production
   google_analytics: 
 
 localhost: &localhost
+  hoptoad:
   facebook:
     consumer_key:
     consumer_secret:
