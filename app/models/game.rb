@@ -18,13 +18,6 @@ class Game < ActiveRecord::Base
 
   private
 
-  def check_inserted_word
-    unless Word.find_by_word(self.input)
-      self.word = Word.create(:word => self.input, :user => self.user)
-      self.won = true
-    end
-  end
-
   # Checks if the hole word was guessed with help
   def check_help
     if helped_letters == word.word.length
