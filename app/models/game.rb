@@ -4,13 +4,26 @@ class Game < ActiveRecord::Base
   belongs_to :user
   belongs_to :word
 
-  # Check if word exist before creating.
-  before_create :check_word
   # Calculate the score after creating.
-  after_create :calculate_score
+  after_create :check_game
 
   # Scope for returning the games of the day.
   scope :today, where("created_at >= ? AND created_at < ?", Time.now.at_beginning_of_day, Time.now.tomorrow.at_beginning_of_day)
+
+  def check_game
+    check_word
+    check_help
+    calculate_score
+  end
+
+  private
+
+  # Checks if the hole word was guessed with help
+  def check_help
+    if helped_letters == word.word.length
+      self.won = false
+    end
+  end
 
   # Calculates the game score.
   def calculate_score
@@ -20,6 +33,7 @@ class Game < ActiveRecord::Base
     self.save
   end
 
+  # Checks if the word exists.
   def check_word
     search_word = Word.find_by_word(self.input)
     if search_word
@@ -27,11 +41,8 @@ class Game < ActiveRecord::Base
       self.won = true
     else
       self.word = Word.create(:word => self.input, :user => self.user)
-      self.won = false
     end
   end
-
-  private
 
   # Returns how much the user guessed without the helped letters.
   def guessed_letters
