@@ -28,7 +28,7 @@ class Word < ActiveRecord::Base
   def self.random
     offset = rand(self.count)
 
-    self.first(:offset => offset)
+    self.without_space.first(:offset => offset)
   end
 
   # Returns a word for guessing of the set level.
