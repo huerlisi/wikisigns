@@ -11,12 +11,19 @@ class Game < ActiveRecord::Base
   scope :today, where("created_at >= ? AND created_at < ?", Time.now.at_beginning_of_day, Time.now.tomorrow.at_beginning_of_day)
 
   def check_game
-    check_word
+    check_guessed_word
     check_help
     calculate_score
   end
 
   private
+
+  def check_inserted_word
+    unless Word.find_by_word(self.input)
+      self.word = Word.create(:word => self.input, :user => self.user)
+      self.won = true
+    end
+  end
 
   # Checks if the hole word was guessed with help
   def check_help
@@ -34,7 +41,7 @@ class Game < ActiveRecord::Base
   end
 
   # Checks if the word exists.
-  def check_word
+  def check_guessed_word
     search_word = Word.find_by_word(self.input)
     if search_word
       self.word = search_word

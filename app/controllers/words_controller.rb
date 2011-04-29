@@ -43,14 +43,8 @@ class WordsController < ApplicationController
   
   # POST /words
   def create
-    @word = Word.find_by_word(params[:word][:word])
-    won = nil
-    unless @word
-      @word = Word.new(params[:word])
-      won = true
-    end
-    user = current_user ? current_user : nil
-    @game = Game.create(:user => user, :word => @word, :input => params[:word][:word], :won => won)
+    @game = NewWordGame.create(:user => current_user ? current_user : nil,
+                               :input => params[:word][:word].strip)
     @game.save
 
     create! do |format|
@@ -84,10 +78,16 @@ class WordsController < ApplicationController
   def svg
     show! do |format|
       format.jpg do
-        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440, :format => 'jpg', :quality => 60).to_img, :type => image_content_type("jpeg", params[:download]), :disposition => disposition(params[:download]) )
+        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
+                                                   :format => 'jpg', :quality => 60).to_img,
+                                                   :type => image_content_type("jpeg", params[:download]),
+                              :disposition => disposition(params[:download]) )
       end
       format.png do
-        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440, :format => 'png', :quality => 60).to_img, :type => image_content_type("png", params[:download]), :disposition => disposition(params[:download]) )
+        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
+                                                   :format => 'png', :quality => 60).to_img,
+                                                   :type => image_content_type("png", params[:download]),
+                              :disposition => disposition(params[:download]) )
       end
     end
   end

@@ -15,7 +15,9 @@ class GamesController < ApplicationController
 
   # Creates a new game.
   def create
-    @game = Game.create(:user => current_user ? current_user : nil, :input => params[:guessed_word], :helped_letters => params[:helped_letters])
+    @game = Game.create(:user => current_user ? current_user : nil,
+                        :input => params[:guessed_word].strip,
+                        :helped_letters => params[:helped_letters])
     @game.save
     @new_guess_word = Word.guess_random
 

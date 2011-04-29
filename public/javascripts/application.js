@@ -158,15 +158,23 @@ function checkWords() {
         $('#ajax-loader').slideDown(125);
       },
       success: function(data){
+        var game;
+
+        if(data[0]['game'] != null){
+          game = data[0]['game'];
+        }else{
+          game = data[0]['new_word_game'];
+        }
+
         $('#ajax-loader').slideUp(125);
         $('h1#title-inserted span').remove();
         $('#word svg').remove();
-        displaySessionSmallWord(drawWordAsImage('word', guessed, getBorderColor(data[0]['game']['won'])).clone(), guessed, word_id);
+        displaySessionSmallWord(drawWordAsImage('word', guessed, getBorderColor(game['won'])).clone(), guessed, word_id);
         drawEmptyCarpet();
         resetGameGlobalVars(data[1]['word']['word'], data[1]['word']['id']);
         randomizeWord();
         initializeWordClickBehaviour();
-        updateScores(data[0]['game']['score']);
+        updateScores(game['score']);
         send = false;
       }
     });
@@ -333,11 +341,18 @@ function newWord() {
     dataType: 'json',
     success: function(data){
       var id = data[0]['word']['id'];
+      var game;
 
-      updateScores(data[1]['game']['score']);
+      if(data[1]['game'] != null){
+        game = data[1]['game'];
+      }else{
+        game = data[1]['new_word_game'];
+      }
+
+      updateScores(game['score']);
       $('#title').show();
       $('#title-inserted span').remove();
-      displaySessionSmallWord(drawWordAsImage('word', text, getBorderColor(data[1]['game']['won'])).clone(), text, id);
+      displaySessionSmallWord(drawWordAsImage('word', text, getBorderColor(game['won'])).clone(), text, id);
       drawEmptyCarpet();
 
       if($('.twitter-user').length>0){
