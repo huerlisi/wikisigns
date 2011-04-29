@@ -1,7 +1,20 @@
 class WordsController < ApplicationController
 
   respond_to :html, :json
+
+  # Layout
   layout :words_layout
+
+  def words_layout
+    case self.action_name
+      when 'random', 'show', 'svg'
+        nil
+      when 'new_word'
+        'facebook'
+      else
+        'application'
+    end
+  end
 
   # Cache the actions svg and show.
   caches_action :svg, :show

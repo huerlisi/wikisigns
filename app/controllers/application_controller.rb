@@ -18,15 +18,4 @@ class ApplicationController < ActionController::Base
   def disposition(download = nil)
     download ? 'attachement' : 'inline'
   end
-
-  def words_layout
-    case self.action_name
-      when 'random', 'show', 'svg'
-        nil
-      when 'new_word'
-        'facebook'
-      else
-        'application'
-    end
-  end
 end
