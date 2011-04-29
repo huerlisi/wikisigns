@@ -8,7 +8,7 @@ class Game < ActiveRecord::Base
   after_create :check_game
 
   # Scope for returning the games of the day.
-  scope :today, where("created_at >= ? AND created_at < ?", Time.now.at_beginning_of_day, Time.now.tomorrow.at_beginning_of_day)
+  scope :today, where(:created_at => Time.now.at_beginning_of_day..Time.now.tomorrow.at_beginning_of_day)
 
   def check_game
     check_guessed_word
