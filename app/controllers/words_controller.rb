@@ -32,7 +32,7 @@ class WordsController < ApplicationController
 
   def show_by_slug
     @word = Word.find_by_word(params[:slug])
-    @word ||= Word.new(:word => 'not found')
+    @word ||= Word.new(:word => params[:slug])
   end
   
   # GET /words
