@@ -18,6 +18,8 @@ class Word < ActiveRecord::Base
   scope :without_space, lambda { where("words.word NOT LIKE '% %'") }
   # Scope for words with only ASCII chars without numbers
   scope :without_special_chars, lambda { where("words.word REGEXP '^[a-zA-Z ]*$'") }
+  # Scope for minimal length of 3 chars
+  scope :minimal_length, lambda { where("LENGTH(words.word) > 2") }
 
   # The latest words, by default 12 entries.
   def self.latest(amount = 12)
@@ -28,7 +30,7 @@ class Word < ActiveRecord::Base
   def self.random
     offset = rand(self.count)
 
-    self.without_space.first(:offset => offset)
+    self.without_space.minimal_length.first(:offset => offset)
   end
 
   # Returns a word for guessing of the set level.
