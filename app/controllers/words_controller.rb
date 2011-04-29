@@ -43,12 +43,31 @@ class WordsController < ApplicationController
   
   # POST /words
   def create
-    create! { new_word_path(:last_word => @word.word) }
+    @game = NewWordGame.create(:user => current_user ? current_user : nil,
+                               :input => params[:word][:word].strip)
+    @game.save
+
+    create! do |format|
+      format.html {
+        new_word_path(:last_word => @word.word)
+      }
+      format.json {
+        render :json => [@word, @game]
+      }
+    end
   end
 
   # GET /words/random
   def random
     @word = Word.random
+
+    show!
+  end
+
+  def guess
+    headers['Last-Modified'] = Time.now.httpdate
+    @word = Word.guess_random
+    expire_page :controller => 'games', :action => 'new'
 
     show!
   end
@@ -59,10 +78,16 @@ class WordsController < ApplicationController
   def svg
     show! do |format|
       format.jpg do
-        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440, :format => 'jpg', :quality => 60).to_img, :type => image_content_type("jpeg", params[:download]), :disposition => disposition(params[:download]) )
+        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
+                                                   :format => 'jpg', :quality => 60).to_img,
+                                                   :type => image_content_type("jpeg", params[:download]),
+                              :disposition => disposition(params[:download]) )
       end
       format.png do
-        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440, :format => 'png', :quality => 60).to_img, :type => image_content_type("png", params[:download]), :disposition => disposition(params[:download]) )
+        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
+                                                   :format => 'png', :quality => 60).to_img,
+                                                   :type => image_content_type("png", params[:download]),
+                              :disposition => disposition(params[:download]) )
       end
     end
   end

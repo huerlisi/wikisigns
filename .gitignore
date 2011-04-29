@@ -28,3 +28,4 @@ config/database.yml
 # compass
 public/stylesheets
 config/application.yml
+config/newrelic.yml

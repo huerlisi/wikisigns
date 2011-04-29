@@ -16,6 +16,7 @@ WikiSigns::Application.routes.draw do
   resources :words, :except => [:destroy, :edit, :update] do
     collection do
       get  'random'
+      get  'guess'
       post 'new_word'
     end
     member do

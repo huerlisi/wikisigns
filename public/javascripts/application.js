@@ -1,5 +1,14 @@
 var text_input = $('#word_word');
 
+var help_initial_interval;
+var help_initial_interval_time = 15000;
+var help_interval;
+var help_interval_time = 5000;
+var help_counter = 0;
+var previous_help_counter = 0;
+var small_picture_help_interval;
+var small_picture_help_interval_time = 2000;
+
 // Initialize behaviours
 function initializeBehaviours() {
   addFocusTextFieldBehaviour();
@@ -13,11 +22,199 @@ function initializeBehaviours() {
     addRealtimeWordDrawingBehaviour();
     addInitialResizeBehaviour();
     addReshareBehaviour();
+    // Game merge
+    initializeGame();
   }
 
   // initialize only on /words/:id page.
   if($('#show-word').length > 0){
     addColorizeTextBehaviour();
+  }
+}
+
+// Loads the guessing game on the root page.
+function initializeGame() {
+  initializeGameMenu();
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    url: '/words/guess.json?time=' + timeStamp(),
+    beforeSend : function(xhr){
+      xhr.setRequestHeader("Accept", "application/json");
+    },
+    success: function(data){
+      $('h1#title-inserted span').remove();
+      resetGameGlobalVars(data['word']['word'], data['word']['id']);
+      randomizeWord();
+      initializeWordClickBehaviour();
+      initializeScore();
+      $('#title').show();
+    }
+  });
+  restartHelp();
+}
+
+function initializeScore() {
+  if($('#current-score span').length > 0) current_score = parseInt($('#current-score span').html().trim());
+  if($('#daily-score span').lenght > 0) dayly_score = parseInt($('#daily-score span').html().trim());
+  if($('#alltime-score span').length > 0) total_score = parseInt($('#alltime-score span').html().trim());
+}
+
+// Restarts the help.
+function restartHelp(time) {
+  if(time == null) time = help_initial_interval_time;
+  abortHelp();
+  help_initial_interval = setInterval('initializeFirstHelp()', time);
+}
+
+function abortHelp() {
+  previous_help_counter = help_counter;
+  help_counter = 0;
+  clearHelpIntervals();
+}
+
+// Starts the special animation and help when a small picture was clicked.
+function startSmallPictureHelp() {
+  small_picture_help_interval = setInterval('startFirstSmallPictureHelp()', small_picture_help_interval_time)
+}
+
+function startFirstSmallPictureHelp() {
+  var letters = $('#title-inserted span');
+
+  clearInterval(small_picture_help_interval);
+
+  letters.hide(125, function(){
+    letters.remove();
+  });
+
+  resetGameGlobalVars(text_input.val(), text_input.attr('data-word-id'));
+  randomizeWord();
+  initializeWordClickBehaviour();
+  initializeScore();
+  restartHelp(small_picture_help_interval_time);
+}
+
+// Moves the first letter of the searched word to top as help.
+function initializeFirstHelp() {
+  moveLetterFromBottomToTop(original_word[help_counter]);
+  help_counter++;
+  clearInterval(help_initial_interval);
+  help_interval = setInterval('nextHelp()', help_interval_time);
+}
+
+// Moves one letter to the solution word.
+function moveLetterFromBottomToTop(letter){
+  var do_once = true;
+
+  $('#title span').each(function(){
+    if($(this).html().trim() == letter && do_once){
+      do_once = false;
+      $(this).hide(125, function(){
+        var letter = $(this).html();
+
+        guessed_word = guessed_word + letter;
+        $('#word svg').remove();
+        drawWordAsImage('word', guessed_word);
+        $('#title-inserted').append($(this).clone().hide(0, function(){
+          $(this).fadeIn('slow', function(){
+            $('h1#title-inserted').removeAttr('style');
+            $(this).attr(DATA_WORD_COUNTER, word_counter);
+            word_counter++;
+            checkWords();
+            $(this).click(function(e){
+              $(this).unbind(e);
+              word_counter--;
+              guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
+              $(this).fadeOut(125, function(){
+                $('h1#title').append($(this).clone().hide(0, function(){
+                  $(this).fadeIn(125, function(){
+                    recountSelectedLetters();
+                    initializeWordClickBehaviour();
+                  });
+                }));
+                $(this).remove();
+              });
+            });
+          });
+        }));
+        $(this).remove();
+      })
+    }
+  });
+}
+
+// Shows the next letter as help.
+function nextHelp() {
+  if(help_counter < original_word.length){
+    moveLetterFromBottomToTop(original_word[help_counter]);
+    help_counter++;
+  }else{
+    clearInterval(help_interval);
+  }
+}
+
+// Clears all intervals of the help.
+function clearHelpIntervals() {
+  clearInterval(help_initial_interval);
+  clearInterval(help_interval);
+}
+
+// Checks if the guessed word has the same length and shows the result of the guessing.
+function checkWords() {
+  // Checks if all letters has been selected.
+  if(displayedWords().length == original_word.length && !send) {
+    send = true;
+    var guessed = guessed_word;
+    var original = original_word;
+    var div_class = '';
+
+    // When the guessed word is right just draw it and do a post on the users facebook wall else create a new word.
+    if(guessed == original){
+      div_class += ' right';
+    }else{
+      div_class += ' false';
+    }
+
+    $.ajax({
+      type: 'POST',
+      data: { guessed_word: guessed, helped_letters: help_counter },
+      url: '/words/' + word_id + '/games',
+      dataType: 'json',
+      cache: true,
+      beforeSend : function(xhr){
+        xhr.setRequestHeader("Accept", "application/json");
+        $('#ajax-loader').slideDown(125);
+      },
+      success: function(data){
+        var game;
+
+        if(data[0]['game'] != null){
+          game = data[0]['game'];
+        }else{
+          game = data[0]['new_word_game'];
+        }
+
+        $('#ajax-loader').slideUp(125);
+        $('h1#title-inserted span').remove();
+        $('#word svg').remove();
+        displaySessionSmallWord(drawWordAsImage('word', guessed, getBorderColor(game['won'])).clone(), guessed, word_id);
+        drawEmptyCarpet();
+        resetGameGlobalVars(data[1]['word']['word'], data[1]['word']['id']);
+        randomizeWord();
+        initializeWordClickBehaviour();
+        updateScores(game['score']);
+        send = false;
+      }
+    });
+  }
+}
+
+// Returns the border color for the word.
+function getBorderColor(won){
+  if(won){
+    return right_border_color;
+  }else{
+    return false_border_color;
   }
 }
 
@@ -46,24 +243,32 @@ function addInitialResizeBehaviour() {
 function showSmallPictureAsBigWord(element) {
   var word = '';
 
+  abortHelp();
+
   // Read the word from within the span tags.
   $(element).children('.word-text').children('span').each(function(){
     word += $(this).html().trim();
   });
 
+  text_input.attr('data-word-id', getWordId($(element).children('.word').attr('id')));
   text_input.val(word);
   $('#word svg').remove();
   drawWordAsImage('word', word);
-  $('#title').html(drawColoredWord(text_input.val().trim()));
+  $('#title-inserted').html(drawColoredWord(text_input.val()));
+  $('#title span').hide(125, function(){
+    $(this).remove();
+  });
+  startSmallPictureHelp();
 }
 
 //
 function addRealtimeWordDrawingBehaviour() {
   text_input.keyup(function(event){
     if(event.keyCode != 13) {
+      $('#title').hide();
       $('#word').children().remove();
       drawWordAsImage('word', $(this).val().trim());
-      $('#title').html(drawColoredWord($(this).val().trim()));
+      $('#title-inserted').html(drawColoredWord($(this).val().trim()));
 
       if($(this).val().indexOf(' ', 0) > -1) {
         newWord();
@@ -74,7 +279,7 @@ function addRealtimeWordDrawingBehaviour() {
 
 // Colorizes the text on the show word page.
 function addColorizeTextBehaviour() {
-  var text_field = $('#title');
+  var text_field = $('#title-inserted');
 
   text_field.html(drawColoredWord(text_field.text().trim()));
 }
@@ -129,7 +334,7 @@ function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
   drawWordAsImage('word', $('#title').text().trim());
-  $('#title').html(drawColoredWord(text_input.val().trim()));
+  //$('#title').html(drawColoredWord(text_input.val().trim()));
 }
 
 // Draw a new word and submit it to the data base.
@@ -153,8 +358,8 @@ function newWord() {
   var next_word_id = $('#next_word_id') ? $('#next_word_id').val() : null;
   var text;
 
-  $('#title').html(drawColoredWord(text_input.val().trim()));
-  text = $('#title').text().trim();
+  $('#title-inserted').html(drawColoredWord(text_input.val().trim()));
+  text = $('#title-inserted').text().trim();
   addFocusTextFieldBehaviour();
   $('#word').children().remove();
 
@@ -165,9 +370,20 @@ function newWord() {
     url: '/words',
     dataType: 'json',
     success: function(data){
-      var id = data['word']['id'];
+      var id = data[0]['word']['id'];
+      var game;
 
-      displaySessionSmallWord(drawWordAsImage('word', text).clone(), text, id);
+      if(data[1]['game'] != null){
+        game = data[1]['game'];
+      }else{
+        game = data[1]['new_word_game'];
+      }
+
+      updateScores(game['score']);
+      $('#title').show();
+      $('#title-inserted span').remove();
+      displaySessionSmallWord(drawWordAsImage('word', text, getBorderColor(game['won'])).clone(), text, id);
+      drawEmptyCarpet();
 
       if($('.twitter-user').length>0){
         $('a.twitter-share-button').each(function(){

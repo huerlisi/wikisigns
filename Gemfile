@@ -72,3 +72,8 @@ gem 'imgkit'
 group :production do
   gem 'rack-google_analytics', :require => "rack/google_analytics"
 end
+
+# Monitoring with new relic
+gem 'newrelic_rpm'
+# Hoptoad for error catching
+gem 'hoptoad_notifier'

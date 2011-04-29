@@ -7,7 +7,7 @@ de-CH:
   link:
     new_word: Hier kannst du selber Zeichen setzen!
   your_words: Deine Worte
-  go: Zeichen setzen
+  go: GO
   login: Anmelden
   login_information: 'Melde dich hier an und du kannst direkt über Twitter oder Facebook deine Worte veröffentlichen.'
   logout: Abmelden
@@ -22,6 +22,10 @@ de-CH:
     abort: Spiel beenden
     get_new_word: ein neues Wort
     post_day_score_to_fb: TagesScore auf FB posten
+    dayly_score: Tagesscore
+    session_score: Aktueller Score
+    total_score: Totalscore
+    restart: "zurück-setzen"
     solutions:
       yours: die Punkte
       searched: gesuchte Lösungen

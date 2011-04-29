@@ -12,9 +12,10 @@
       #side-container
         = render 'shared/flash_messages'
         = render 'shared/description'
-        = render 'shared/game'
-        = render 'shared/user'
         = render 'shared/login'
+        = render 'shared/score'
+        - if controller.class.eql?WordsController
+          = render 'shared/game_menu'
       #top-container
         #top-container-scroll
           = render 'shared/latest', :amount => 12
@@ -28,4 +29,6 @@
     = javascript_include_tag :defaults
     = render 'shared/javascripts'
     = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
+    = javascript_include_tag 'jquery.shuffle', 'game'
     = yield :javascript
+    = hoptoad_javascript_notifier
