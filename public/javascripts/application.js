@@ -56,9 +56,9 @@ function initializeGame() {
 }
 
 function initializeScore() {
-  dayly_score = parseInt($('#daily-score span').html().trim());
-  current_score = parseInt($('#current-score span').html().trim());
-  total_score = parseInt($('#alltime-score span').html().trim());
+  if($('#current-score span').length > 0) current_score = parseInt($('#current-score span').html().trim());
+  if($('#daily-score span').lenght > 0) dayly_score = parseInt($('#daily-score span').html().trim());
+  if($('#alltime-score span').length > 0) total_score = parseInt($('#alltime-score span').html().trim());
 }
 
 // Restarts the help.
@@ -83,14 +83,16 @@ function startFirstSmallPictureHelp() {
   var letters = $('#title-inserted span');
 
   clearInterval(small_picture_help_interval);
+
   letters.hide(125, function(){
     letters.remove();
-    resetGameGlobalVars(text_input.val(), text_input.attr('data-word-id'));
-    randomizeWord();
-    initializeWordClickBehaviour();
-    initializeScore();
-    restartHelp(small_picture_help_interval_time);
   });
+
+  resetGameGlobalVars(text_input.val(), text_input.attr('data-word-id'));
+  randomizeWord();
+  initializeWordClickBehaviour();
+  initializeScore();
+  restartHelp(small_picture_help_interval_time);
 }
 
 // Moves the first letter of the searched word to top as help.
