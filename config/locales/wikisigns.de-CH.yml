@@ -24,6 +24,7 @@ de-CH:
     post_day_score_to_fb: TagesScore auf FB posten
     dayly_score: Tagesscore
     session_score: Aktueller Score
+    total_score: Totalscore
     restart: Neustarten
     solutions:
       yours: die Punkte

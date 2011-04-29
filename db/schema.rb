@@ -10,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110428150930) do
+ActiveRecord::Schema.define(:version => 20110429082519) do
 
   create_table "games", :force => true do |t|
-    t.integer  "score"
+    t.integer  "score",          :default => 0
     t.integer  "word_id"
     t.integer  "user_id"
     t.datetime "created_at"
