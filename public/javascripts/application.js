@@ -5,6 +5,7 @@ var help_initial_interval_time = 30000;
 var help_interval;
 var help_interval_time = 5000;
 var help_counter = 0;
+var previous_help_counter = 0;
 
 // Initialize behaviours
 function initializeBehaviours() {
@@ -50,9 +51,18 @@ function initializeGame() {
       $('#title').show();
     }
   });
+  restartHelp();
+}
+
+// Restarts the help.
+function restartHelp() {
+  previous_help_counter = help_counter;
+  help_counter = 0;
+  clearHelpIntervals();
   help_initial_interval = setInterval('initializeFirstHelp()', help_initial_interval_time);
 }
 
+// Moves the first letter of the searched word to top as help.
 function initializeFirstHelp() {
   moveLetterFromBottomToTop(original_word[help_counter]);
   help_counter++;
@@ -60,6 +70,7 @@ function initializeFirstHelp() {
   help_interval = setInterval('nextHelp()', help_interval_time);
 }
 
+// Moves one letter to the solution word.
 function moveLetterFromBottomToTop(letter){
   var do_once = true;
 
@@ -100,6 +111,7 @@ function moveLetterFromBottomToTop(letter){
   });
 }
 
+// Shows the next letter as help.
 function nextHelp() {
   if(help_counter < original_word.length){
     moveLetterFromBottomToTop(original_word[help_counter]);
@@ -109,6 +121,7 @@ function nextHelp() {
   }
 }
 
+// Clears all intervals of the help.
 function clearHelpIntervals() {
   clearInterval(help_initial_interval);
   clearInterval(help_interval);

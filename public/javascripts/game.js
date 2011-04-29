@@ -215,4 +215,5 @@ function reinitializeGuessingGame() {
   randomizeWord();
   drawEmptyCarpet();
   initializeWordClickBehaviour();
+  restartHelp();
 }
