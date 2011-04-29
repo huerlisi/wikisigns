@@ -1,7 +1,7 @@
 var text_input = $('#word_word');
 
 var help_initial_interval;
-var help_initial_interval_time = 30000;
+var help_initial_interval_time = 15000;
 var help_interval;
 var help_interval_time = 5000;
 var help_counter = 0;
