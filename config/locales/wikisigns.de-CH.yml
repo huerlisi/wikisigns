@@ -25,7 +25,7 @@ de-CH:
     dayly_score: Tagesscore
     session_score: Aktueller Score
     total_score: Totalscore
-    restart: zurücksetzen
+    restart: "zurück-setzen"
     solutions:
       yours: die Punkte
       searched: gesuchte Lösungen
