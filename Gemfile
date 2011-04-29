@@ -67,13 +67,13 @@ gem 'settingslogic'
 # Generate images
 gem 'imgkit'
 
-# Google Analytics
-# ===========
+# Monitoring
+# ==========
 group :production do
+  # Google Analytics
   gem 'rack-google_analytics', :require => "rack/google_analytics"
+  # Monitoring with new relic
+  gem 'newrelic_rpm'
+  # Hoptoad for error catching
+  gem 'hoptoad_notifier'
 end
-
-# Monitoring with new relic
-gem 'newrelic_rpm'
-# Hoptoad for error catching
-gem 'hoptoad_notifier'
