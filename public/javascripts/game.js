@@ -14,6 +14,7 @@ var send = false;
 
 var dayly_score = 0;
 var current_score = 0;
+var total_score = 0;
 
 // The border colors of the carpet when its right or false
 var right_border_color = 'green';
@@ -111,8 +112,10 @@ function displayedWords() {
 function updateScores(score) {
   dayly_score += score;
   current_score += score;
+  total_score += score;
   $('#daily-score span').html(dayly_score);
   $('#current-score span').html(current_score);
+  $('#alltime-score span').html(total_score);
 }
 
 // Rearranges the counters for the selected letters.

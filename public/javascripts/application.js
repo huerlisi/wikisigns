@@ -6,6 +6,8 @@ var help_interval;
 var help_interval_time = 5000;
 var help_counter = 0;
 var previous_help_counter = 0;
+var small_picture_help_interval;
+var small_picture_help_interval_time = 2000;
 
 // Initialize behaviours
 function initializeBehaviours() {
@@ -46,24 +48,49 @@ function initializeGame() {
       resetGameGlobalVars(data['word']['word'], data['word']['id']);
       randomizeWord();
       initializeWordClickBehaviour();
-      dayly_score = parseInt($('#daily-score span').html().trim());
-      current_score = parseInt($('#current-score span').html().trim());
+      initializeScore();
       $('#title').show();
     }
   });
   restartHelp();
 }
 
+function initializeScore() {
+  dayly_score = parseInt($('#daily-score span').html().trim());
+  current_score = parseInt($('#current-score span').html().trim());
+  total_score = parseInt($('#alltime-score span').html().trim());
+}
+
 // Restarts the help.
-function restartHelp() {
+function restartHelp(time) {
+  if(time == null) time = help_initial_interval_time;
   abortHelp();
-  help_initial_interval = setInterval('initializeFirstHelp()', help_initial_interval_time);
+  help_initial_interval = setInterval('initializeFirstHelp()', time);
 }
 
 function abortHelp() {
   previous_help_counter = help_counter;
   help_counter = 0;
   clearHelpIntervals();
+}
+
+// Starts the special animation and help when a small picture was clicked.
+function startSmallPictureHelp() {
+  small_picture_help_interval = setInterval('startFirstSmallPictureHelp()', small_picture_help_interval_time)
+}
+
+function startFirstSmallPictureHelp() {
+  var letters = $('#title-inserted span');
+
+  clearInterval(small_picture_help_interval);
+  letters.hide(125, function(){
+    letters.remove();
+    resetGameGlobalVars(text_input.val(), text_input.attr('data-word-id'));
+    randomizeWord();
+    initializeWordClickBehaviour();
+    initializeScore();
+    restartHelp(small_picture_help_interval_time);
+  });
 }
 
 // Moves the first letter of the searched word to top as help.
@@ -190,8 +217,6 @@ function getBorderColor(won){
   }
 }
 
-
-
 // Returns a timestamp string, used for ajax requests.
 function timeStamp() {
   var time = new Date().getTime();
@@ -224,11 +249,15 @@ function showSmallPictureAsBigWord(element) {
     word += $(this).html().trim();
   });
 
-  resetGameGlobalVars(word, getWordId($(element).children('.word').attr('id')));
+  text_input.attr('data-word-id', getWordId($(element).children('.word').attr('id')));
   text_input.val(word);
   $('#word svg').remove();
   drawWordAsImage('word', word);
-  $('#title-inserted').html(drawColoredWord(original_word));
+  $('#title-inserted').html(drawColoredWord(text_input.val()));
+  $('#title span').hide(125, function(){
+    $(this).remove();
+  });
+  startSmallPictureHelp();
 }
 
 //
