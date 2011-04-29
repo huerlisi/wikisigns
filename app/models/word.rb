@@ -38,11 +38,11 @@ class Word < ActiveRecord::Base
     case level
       when 1
         uncached do
-          self.without_space.without_special_chars.random
+          self.without_special_chars.random
         end
       when 2
         uncached do
-          self.without_special_chars.random
+          self.random
         end
     end
   end
