@@ -56,7 +56,7 @@ class WordsController < ApplicationController
   
   # POST /words
   def create
-    @game = NewWordGame.create(:user => current_user ? current_user : nil,
+    @game = NewWordGame.create(:user => current_user || nil,
                                :input => params[:word][:word].strip)
     @game.save
 
