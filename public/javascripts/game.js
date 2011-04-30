@@ -38,7 +38,6 @@ function resetGameGlobalVars(word, id) {
 // Shows the game menu
 function initializeGameMenu() {
   initializeNewWordBehaviour();
-  initializePublishDayScore();
   initializeRestartGame();
   $('#game-menu').show();
 }
@@ -157,27 +156,6 @@ function randomizeWord() {
   $('#title').html(drawColoredWord(new_word));
   $('#title').fadeIn('slow');
   return true;
-}
-
-// Publishes the Day Score to Facebook
-function initializePublishDayScore() {
-  $('#post-day-score-to-fb').click(function(e){
-    e.preventDefault();
-    $.ajax({
-      type: 'POST',
-      url: '/users/'+ $(this).attr('data-user-id') +'/daily_score',
-      dataType: 'json',
-      cache: true,
-      beforeSend : function(xhr){
-       xhr.setRequestHeader("Accept", "application/json");
-      },
-      success: function(data){
-        if(data['id'] != null && data['id'] != ''){
-
-        }
-      }
-    });
-  });
 }
 
 // Gets a new Word to guess.

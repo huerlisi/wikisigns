@@ -58,7 +58,7 @@ class WordsController < ApplicationController
   def create
     @word = Word.new(params[:word])
     @game = @word.games.build(:user => current_user || nil,
-                               :input => params[:word][:word].strip)
+                              :input => params[:word][:word].strip)
     create! do |format|
       format.html {
         new_word_path(:last_word => @word.word)
