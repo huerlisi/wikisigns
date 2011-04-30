@@ -144,9 +144,15 @@ function drawEmptyCarpet() {
 
 // Randomizes the input word and draws it colored.
 function randomizeWord() {
-  var new_word = $.shuffle(original_word.split(''));
-
-  new_word = new_word.join('');
+  var new_word;
+  // Handle very short words
+  if(original_word.length < 2) {
+    new_word = original_word;
+    return true;
+  }
+  
+  // Shuffle
+  new_word = $.shuffle(original_word.split('')).join('');
 
   if(original_word == new_word){
     randomizeWord();
