@@ -12,7 +12,7 @@ var DATA_WORD_COUNTER = 'data-word-counter';
 
 var send = false;
 
-var dayly_score = 0;
+var daily_score = 0;
 var current_score = 0;
 var total_score = 0;
 
@@ -108,12 +108,12 @@ function displayedWords() {
   return text;
 }
 
-// Updates the current and the dayly score.
+// Updates the current and the daily score.
 function updateScores(score) {
-  dayly_score += score;
+  daily_score += score;
   current_score += score;
   total_score += score;
-  $('#daily-score span').html(dayly_score);
+  $('#daily-score span').html(daily_score);
   $('#current-score span').html(current_score);
   $('#alltime-score span').html(total_score);
 }
