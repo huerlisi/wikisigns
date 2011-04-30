@@ -107,6 +107,14 @@ function displayedWords() {
   return text;
 }
 
+// Scopes
+// ======
+function initializeScore() {
+  if($('#current-score span').length > 0) current_score = parseInt($('#current-score span').html().trim());
+  if($('#daily-score span').lenght > 0) daily_score = parseInt($('#daily-score span').html().trim());
+  if($('#alltime-score span').length > 0) total_score = parseInt($('#alltime-score span').html().trim());
+}
+
 // Updates the current and the daily score.
 function updateScores(score) {
   daily_score += score;
