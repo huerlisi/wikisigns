@@ -9,6 +9,12 @@ var previous_help_counter = 0;
 var small_picture_help_interval;
 var small_picture_help_interval_time = 2000;
 
+function resetGame(word, word_id) {
+  resetGameGlobalVars(word, word_id);
+  randomizeWord();
+  initializeWordClickBehaviour();
+}
+
 // Loads the guessing game on the root page.
 function initializeGame() {
   initializeGameMenu();
@@ -21,9 +27,7 @@ function initializeGame() {
     },
     success: function(data){
       $('h1#title-inserted span').remove();
-      resetGameGlobalVars(data['word']['word'], data['word']['id']);
-      randomizeWord();
-      initializeWordClickBehaviour();
+      resetGame(data['word']['word'], data['word']['id']);
       initializeScore();
       $('#title').show();
     }
@@ -64,9 +68,7 @@ function startFirstSmallPictureHelp() {
     letters.remove();
   });
 
-  resetGameGlobalVars(text_input.val(), text_input.attr('data-word-id'));
-  randomizeWord();
-  initializeWordClickBehaviour();
+  resetGame(text_input.val(), text_input.attr('data-word-id'));
   initializeScore();
   restartHelp(small_picture_help_interval_time);
 }
@@ -176,9 +178,7 @@ function checkWords() {
         $('#word svg').remove();
         displaySessionSmallWord(drawWordAsImage('word', guessed, getBorderColor(game['won'])).clone(), guessed, word_id);
         drawEmptyCarpet();
-        resetGameGlobalVars(data[1]['word']['word'], data[1]['word']['id']);
-        randomizeWord();
-        initializeWordClickBehaviour();
+        resetGame(data[1]['word']['word'], data[1]['word']['id']);
         updateScores(game['score']);
         send = false;
       }
