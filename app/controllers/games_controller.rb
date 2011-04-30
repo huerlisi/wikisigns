@@ -15,10 +15,11 @@ class GamesController < ApplicationController
 
   # Creates a new game.
   def create
-    @game = Game.create(:user => current_user || nil,
+    @word = Word.find(params[:word_id])
+    @game = @word.games.create(:user => current_user || nil,
                         :input => params[:guessed_word].strip,
                         :helped_letters => params[:helped_letters])
-    @game.save
+
     @new_guess_word = Word.guess_random
 
     respond_to do |format|
