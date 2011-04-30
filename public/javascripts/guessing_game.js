@@ -23,9 +23,9 @@ function checkWords() {
 
     // When the guessed word is right just draw it else create a new word.
     if(guessed == original){
-      div_class += ' right';
+      div_class = 'right';
     }else{
-      div_class += ' false';
+      div_class = 'false';
     }
 
     $.ajax({
