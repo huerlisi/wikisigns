@@ -8,22 +8,22 @@ class Word < ActiveRecord::Base
   has_many :games
 
   CHARS = [
-   [['z'], ['t', '@'], ['j'], ['f']],
-   [['c'], ['h'], ['i', 'y'], []],
-   [[], ['d', 'm'], ['k', 's', 'v', 'l', 'r'], ['b', 'n']],
-   [['e', 'w', 'x'], ['a', 'à', '@'], ['o', 'g', 'q'], ['u']]
+   [['z'		], ['t', '@'		], ['j'				], ['f'		]],
+   [['c'		], ['h'			], ['i', 'y'			], [		]],
+   [[			], ['d', 'm'		], ['k', 's', 'v', 'l', 'r'	], ['b', 'n'	]],
+   [['e', 'w', 'x'	], ['a', 'à', '@'	], ['o', 'g', 'q'		], ['u'		]]
   ]
 
   # Scope for words without space in it.
-  scope :without_space, lambda { where("words.word NOT LIKE '% %'") }
+  scope :without_space, where("words.word NOT LIKE '% %'")
   # Scope for words with only ASCII chars without numbers
-  scope :without_special_chars, lambda { where("words.word REGEXP '^[a-zA-Z ]*$'") }
+  scope :without_special_chars, where("words.word REGEXP '^[a-zA-Z ]*$'")
   # Scope for minimal length of 3 chars
-  scope :minimal_length, lambda { where("LENGTH(words.word) > 2") }
+  scope :minimal_length, where("LENGTH(words.word) > 2")
 
   # The latest words, by default 12 entries.
   def self.latest(amount = 12)
-    self.all(:order => 'created_at DESC', :limit => amount)
+    order('created_at DESC').limit(amount)
   end
 
   # Gets a random word.

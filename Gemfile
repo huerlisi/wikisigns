@@ -13,8 +13,8 @@ gem 'mysql'
 # Development
 # ===========
 group :development do
+  gem 'rspec-rails', "~> 2.5"
   gem 'rails3-generators'
-  gem 'rspec-rails', "~> 2.1"
   # Haml generators
   gem 'hpricot'
   gem 'ruby_parser'
@@ -29,13 +29,14 @@ end
 # Test
 # ====
 group :test do
-  gem 'rspec-rails', "~> 2.1"
-  gem 'mocha'
+  # Testing
+  gem "rspec", "~> 2.5"
+  gem 'rspec-rails', "~> 2.5"
   gem 'shoulda'
-  gem 'factory_girl_rails'
-  gem 'cucumber-rails'
-  gem 'cucumber'
-  gem 'webrat'
+
+  # Fixtures
+  gem "factory_girl_rails", "~>1.1.beta1"
+  gem "factory_girl", "~>2.0.0.beta2"
 end
 
 # Standard helpers
@@ -67,13 +68,13 @@ gem 'settingslogic'
 # Generate images
 gem 'imgkit'
 
-# Google Analytics
-# ===========
+# Monitoring
+# ==========
 group :production do
+  # Google Analytics
   gem 'rack-google_analytics', :require => "rack/google_analytics"
+  # Monitoring with new relic
+  gem 'newrelic_rpm'
+  # Hoptoad for error catching
+  gem 'hoptoad_notifier'
 end
-
-# Monitoring with new relic
-gem 'newrelic_rpm'
-# Hoptoad for error catching
-gem 'hoptoad_notifier'

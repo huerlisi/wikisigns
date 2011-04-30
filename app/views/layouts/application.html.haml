@@ -32,4 +32,4 @@
     = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
     = javascript_include_tag 'jquery.shuffle', 'game'
     = yield :javascript
-    =# hoptoad_javascript_notifier
+    = hoptoad_javascript_notifier if Object.const_defined?(:HoptoadNotifier)

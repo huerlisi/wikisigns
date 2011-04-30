@@ -18,18 +18,4 @@ class ApplicationController < ActionController::Base
   def disposition(download = nil)
     download ? 'attachement' : 'inline'
   end
-
-  def words_layout
-    action = self.action_name
-
-    if 'random'.eql?action or 'show'.eql?action or 'svg'.eql?action
-      return nil
-    end
-
-    if 'new_word'.eql?action
-      return 'facebook'
-    end
-
-    'application'
-  end
 end
