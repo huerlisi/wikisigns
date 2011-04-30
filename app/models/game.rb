@@ -12,26 +12,43 @@ class Game < ActiveRecord::Base
 
   def check_game
     check_guessed_word
-    check_help
     calculate_score
   end
 
-  private
-
-  # Checks if the hole word was guessed with help
-  def check_help
-    if helped_letters == word.word.length
-      self.won = false
-    end
-  end
-
   # Calculates the game score.
-  def calculate_score
-    self.score = 0
-    self.score = guessed_letters * rand(500) if won?
-
-    self.save
+  def profile_factor
+    return 1 unless user
+    
+    # Use logarithm to PI of the users word count (+2)
+    Math.log(user.words.count + 2)/Math.log(Math::PI**Math::PI)
   end
+  
+  def hint_factor
+    return 1 if helped_letters == 0
+
+    guessed = word.word.length - helped_letters
+    return (guessed.to_f / word.word.length)**(Math::PI*2)
+  end
+  
+  def length_factor
+    (word.word.length - helped_letters)**Math::PI
+  end
+
+  def calculate_score
+    if Word.where(:word => input).exists?
+      word_factor = 1
+    else
+      word_factor = 0
+    end
+    
+    random_factor = rand(7) + 7
+    
+    score = word_factor * length_factor * hint_factor * random_factor * profile_factor
+    
+    self.score = score.round
+  end
+
+  private
 
   # Checks if the word exists.
   def check_guessed_word
@@ -42,10 +59,5 @@ class Game < ActiveRecord::Base
     else
       self.word = Word.create(:word => self.input, :user => self.user)
     end
-  end
-
-  # Returns how much the user guessed without the helped letters.
-  def guessed_letters
-    helped_letters ? word.word.length - helped_letters : word.word.length
   end
 end
