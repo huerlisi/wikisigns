@@ -9,29 +9,6 @@ var previous_help_counter = 0;
 var small_picture_help_interval;
 var small_picture_help_interval_time = 2000;
 
-// Initialize behaviours
-function initializeBehaviours() {
-  addFocusTextFieldBehaviour();
-  addSessionWordsBehaviour();
-
-  // initialize only on /words/new page.
-  if($('#words').length > 0 || $('#word.svg').length > 0 || $('#facebook').length > 0 ){
-    addRandomLatestUpdateBehaviour();
-    drawLatestWords();
-    showCanvasAndHideTableBehaviour();
-    addRealtimeWordDrawingBehaviour();
-    addInitialResizeBehaviour();
-    addReshareBehaviour();
-    // Game merge
-    initializeGame();
-  }
-
-  // initialize only on /words/:id page.
-  if($('#show-word').length > 0){
-    addColorizeTextBehaviour();
-  }
-}
-
 // Loads the guessing game on the root page.
 function initializeGame() {
   initializeGameMenu();
@@ -424,6 +401,29 @@ function addFocusTextFieldBehaviour() {
 // Creates a div with a link to the PNG of the word id.
 function createLinkToPNGDownload(id) {
   return '<div class="png-download-link"><a href="/words/' + id +'/svg.png?download=true">Als Bild speichern</a></div>'
+}
+
+// Initialize behaviours
+function initializeBehaviours() {
+  addFocusTextFieldBehaviour();
+  addSessionWordsBehaviour();
+
+  // initialize only on /words/new page.
+  if($('#words').length > 0 || $('#word.svg').length > 0 || $('#facebook').length > 0 ){
+    addRandomLatestUpdateBehaviour();
+    drawLatestWords();
+    showCanvasAndHideTableBehaviour();
+    addRealtimeWordDrawingBehaviour();
+    addInitialResizeBehaviour();
+    addReshareBehaviour();
+    // Game merge
+    initializeGame();
+  }
+
+  // initialize only on /words/:id page.
+  if($('#show-word').length > 0){
+    addColorizeTextBehaviour();
+  }
 }
 
 // Loads functions after DOM is ready
