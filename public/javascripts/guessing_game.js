@@ -21,7 +21,7 @@ function checkWords() {
 
     resetGuessingGameGlobalVars();
 
-    // When the guessed word is right just draw it and do a post on the users facebook wall else create a new word.
+    // When the guessed word is right just draw it else create a new word.
     if(guessed == original){
       div_class += ' right';
     }else{
