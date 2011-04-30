@@ -28,7 +28,6 @@ function initializeGame() {
     success: function(data){
       $('h1#title-inserted span').remove();
       resetGame(data['word']['word'], data['word']['id']);
-      initializeScore();
       $('#title').show();
     }
   });
@@ -63,7 +62,6 @@ function startFirstSmallPictureHelp() {
   });
 
   resetGame(text_input.val(), text_input.attr('data-word-id'));
-  initializeScore();
   restartHelp(small_picture_help_interval_time);
 }
 

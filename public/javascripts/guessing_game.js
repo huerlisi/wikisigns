@@ -7,8 +7,6 @@ function initializeGuessingGame() {
   randomizeWord();
   drawEmptyCarpet();
   initializeWordClickBehaviour();
-  daily_score = parseInt($('#daily-score span').html().trim());
-  current_score = parseInt($('#current-score span').html().trim());
 }
 
 function checkWords() {

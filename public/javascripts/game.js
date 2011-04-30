@@ -107,22 +107,16 @@ function displayedWords() {
   return text;
 }
 
-// Scopes
-// ======
-function initializeScore() {
-  if($('#current-score span').length > 0) current_score = parseInt($('#current-score span').html().trim());
-  if($('#daily-score span').lenght > 0) daily_score = parseInt($('#daily-score span').html().trim());
-  if($('#alltime-score span').length > 0) total_score = parseInt($('#alltime-score span').html().trim());
-}
-
-// Updates the current and the daily score.
+// Updates scores
 function updateScores(score) {
-  daily_score += score;
-  current_score += score;
-  total_score += score;
-  $('#daily-score span').html(daily_score);
-  $('#current-score span').html(current_score);
-  $('#alltime-score span').html(total_score);
+  if($('#daily-score span').lenght > 0) daily_score = parseInt($('#daily-score span').html().trim());
+  $('#daily-score span').html(daily_score + score);
+
+  if($('#alltime-score span').length > 0) total_score = parseInt($('#alltime-score span').html().trim());
+  $('#alltime-score span').html(total_score + score);
+
+  if($('#current-score span').length > 0) current_score = parseInt($('#current-score span').html().trim());
+  $('#current-score span').html(current_score + score);
 }
 
 // Rearranges the counters for the selected letters.
