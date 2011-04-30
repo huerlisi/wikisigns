@@ -7,6 +7,7 @@
     = render 'shared/stylesheets'
     = render 'shared/facebook_header'
     = javascript_include_tag 'http://platform.twitter.com/widgets.js'
+    %meta{:charset => "UTF-8"}
   %body{:id => controller_name, :class => (current_user && current_user.from_facebook? ? 'facebook-user ' : '') + (current_user && current_user.from_twitter? ? 'twitter-user' : '')}
     #container
       #side-container
