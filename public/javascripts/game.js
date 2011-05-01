@@ -21,18 +21,27 @@ var right_border_color = 'green';
 var false_border_color = 'red';
 
 // Reset global vars.
-function resetGuessingGameGlobalVars() {
-  guessed_word = '';
-  word_counter = 0;
-}
-
-// Reset global vars.
 function resetGameGlobalVars(word, id) {
   original_word = word;
   word_id = id;
   guessed_word = '';
   word_counter = 0;
   help_counter = 0;
+}
+
+// Reinitialize the game
+function reinitializeGuessingGame() {
+  // Reset global vars
+  guessed_word = '';
+  word_counter = 0;
+
+  $('h1#title-inserted span').remove();
+  $('h1#title-inserted').attr('style', 'height:2.5em;');
+
+  randomizeWord();
+  drawEmptyCarpet();
+  initializeWordClickBehaviour();
+  restartHelp();
 }
 
 // Shows the game menu
@@ -46,7 +55,6 @@ function initializeGameMenu() {
 function initializeRestartGame() {
   $('#restart-guessing').click(function(e){
     e.preventDefault();
-    resetGuessingGameGlobalVars();
     reinitializeGuessingGame();
   });
 }
@@ -182,7 +190,6 @@ function initializeNewWordBehaviour() {
       success: function(data){
         original_word = data['word']['word'];
         word_id = data['word']['id'];
-        resetGuessingGameGlobalVars();
         reinitializeGuessingGame();
       }
     });
@@ -197,12 +204,3 @@ function getWordId(text){
   return RegExp.$1;
 }
 
-// Reinitialize the game
-function reinitializeGuessingGame() {
-  $('h1#title-inserted span').remove();
-  $('h1#title-inserted').attr('style', 'height:2.5em;');
-  randomizeWord();
-  drawEmptyCarpet();
-  initializeWordClickBehaviour();
-  restartHelp();
-}
