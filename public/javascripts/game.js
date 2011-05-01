@@ -47,16 +47,7 @@ function reinitializeGuessingGame() {
 // Shows the game menu
 function initializeGameMenu() {
   initializeNewWordBehaviour();
-  initializeRestartGame();
   $('#game-menu').show();
-}
-
-// Initializes the behaviour of the restart button.
-function initializeRestartGame() {
-  $('#restart-guessing').click(function(e){
-    e.preventDefault();
-    reinitializeGuessingGame();
-  });
 }
 
 function initializeWordClickBehaviour() {
