@@ -10,12 +10,4 @@ class NewWordGame < Game
     end
   end
 
-  private
-
-  def check_inserted_word
-    unless Word.where(:word => self.input).exists?
-      self.word = Word.create(:word => self.input, :user => self.user)
-      self.won = true
-    end
-  end
 end
