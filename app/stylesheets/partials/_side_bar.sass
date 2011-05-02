@@ -1,3 +1,5 @@
+$default-box-shadow-inset: true
+
 #auth
   #top-container,
   #right-container
@@ -11,8 +13,7 @@
 #wikisigns-description,
 #twitter-user,
 #goto-game,
-#facebook-user,
-#scores
+#facebook-user
   margin-bottom: 20px
   padding: 0 40px 0 0
   line-height: 0.9em
@@ -37,8 +38,17 @@
 #goto-game a
   margin-top: 10px
 
-#scores span
-  width: 100%
-  margin-top: 5px
-  margin-bottom: 10px
-  display: block
+#scores
+  padding-top: 5px
+  +border-radius
+  +box-shadow(#000, 1px, 1px, 2px, 0, inset)
+
+.score
+  margin-left: 5px
+  margin-right: 5px
+  font-weight: bold
+  margin-bottom: 5px
+  span
+    margin-top: 5px
+    margin-bottom: 10px
+

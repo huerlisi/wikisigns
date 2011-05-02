@@ -1,15 +1,15 @@
 - if 'words'.eql?controller_name
   #scores
-    #current-score
+    #current-score.score
       = t('game.session_score')
       %span
         0
     - if current_user
-      #daily-score
+      #daily-score.score
         = t('game.dayly_score')
         %span
           = current_user.daily_score
-      #alltime-score
+      #alltime-score.score
         = t('game.total_score')
         %span
           = current_user.total_score
