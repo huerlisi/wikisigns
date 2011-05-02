@@ -58,7 +58,8 @@ class WordsController < ApplicationController
   def create
     @word = Word.new(params[:word])
     @game = @word.games.build(:user => current_user || nil,
-                              :input => params[:word][:word].strip)
+                              :input => params[:word][:word].strip,
+                              :type => NewWordGame.type)
     create! do |format|
       format.html {
         new_word_path(:last_word => @word.word)
@@ -92,13 +93,13 @@ class WordsController < ApplicationController
       format.jpg do
         send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
                                                    :format => 'jpg', :quality => 60).to_img,
-                                                   :type => image_content_type("jpeg", params[:download]).to_img,
+                                                   :type => image_content_type("jpeg", params[:download]),
                               :disposition => disposition(params[:download]) )
       end
       format.png do
         send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
                                                    :format => 'png', :quality => 60).to_img,
-                                                   :type => image_content_type("png", params[:download]).to_img,
+                                                   :type => image_content_type("png", params[:download]),
                               :disposition => disposition(params[:download]) )
       end
     end
