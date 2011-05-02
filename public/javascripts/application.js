@@ -18,9 +18,7 @@ function resetGame(word, word_id, interval) {
 
 // Loads the guessing game on the root page.
 function initializeGame() {
-  if(!$('#facebook').length > 0){
-    initializeGameMenu();
-  }
+  initializeGameMenu();
   $.ajax({
     type: 'GET',
     dataType: 'json',
@@ -410,7 +408,9 @@ function initializeBehaviours() {
     addInitialResizeBehaviour();
     addReshareBehaviour();
     // Game merge
-    initializeGame();
+    if(!$('#facebook').length > 0){
+      initializeGame();
+    }
   }
 
   // initialize only on /words/:id page.
