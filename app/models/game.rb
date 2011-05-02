@@ -9,20 +9,25 @@ class Game < ActiveRecord::Base
   # Scope for returning the games of the day.
   scope :today, where(:created_at => Time.now.at_beginning_of_day..Time.now.tomorrow.at_beginning_of_day)
 
-  def check_game
-    check_guessed_word
-    calculate_score
+  # Overall score
+  #
+  # PI is the only allowed constant in these calculations!!!
+  def calculate_score
+    self.score = word_factor * length_factor * hint_factor * random_factor * profile_factor
+    self.won = self.score > 0
   end
+
+  private
 
   # Calculates the game score.
   def profile_factor
     return 1 unless user
-    
+
     # Use logarithm to PI of the users word count
     # Adding PI right away to circumvent problems with log
     Math.log(user.words.count + Math::PI)/Math.log(Math::PI**Math::PI)
   end
-  
+
   # Hint factor
   #
   # We agressively reduce points for hints
@@ -33,7 +38,7 @@ class Game < ActiveRecord::Base
     guessed = word.word.length - helped_letters
     return (guessed.to_f / word.word.length)**(Math::PI+Math::PI)
   end
-  
+
   # Length factor
   #
   # Correctly guessed characters to the power of PI
@@ -46,24 +51,16 @@ class Game < ActiveRecord::Base
   # All or nothing: word in database?
   def word_factor
     if Word.where(:word => input).exists?
-      return 1
+      1
     else
-      return 0
+      0
     end
   end
-  
+
   # Random factor
   #
   # Somewhere betwee two and three PIs
   def random_factor
     rand(Math::PI) + Math::PI*Math::PI
-  end
-  
-  # Overall score
-  #
-  # PI is the only allowed constant in these calculations!!!
-  def calculate_score
-    self.score = word_factor * length_factor * hint_factor * random_factor * profile_factor
-    self.won = self.score > 0
   end
 end
