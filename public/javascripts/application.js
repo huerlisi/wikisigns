@@ -9,10 +9,11 @@ var previous_help_counter = 0;
 var small_picture_help_interval;
 var small_picture_help_interval_time = 2000;
 
-function resetGame(word, word_id) {
+function resetGame(word, word_id, interval) {
   resetGameGlobalVars(word, word_id);
   randomizeWord();
   initializeWordClickBehaviour();
+  restartHelp(interval);
 }
 
 // Loads the guessing game on the root page.
@@ -31,7 +32,6 @@ function initializeGame() {
       $('#title').show();
     }
   });
-  restartHelp();
 }
 
 // Restarts the help.
@@ -61,8 +61,7 @@ function startFirstSmallPictureHelp() {
     letters.remove();
   });
 
-  resetGame(text_input.val(), text_input.attr('data-word-id'));
-  restartHelp(small_picture_help_interval_time);
+  resetGame(text_input.val(), text_input.attr('data-word-id'), small_picture_help_interval_time);
 }
 
 // Moves the first letter of the searched word to top as help.
