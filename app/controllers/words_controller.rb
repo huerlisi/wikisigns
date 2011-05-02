@@ -56,16 +56,14 @@ class WordsController < ApplicationController
   
   # POST /words
   def create
-    @word = Word.new(params[:word])
-    @game = @word.games.build(:user => current_user || nil,
-                              :input => params[:word][:word].strip,
-                              :type => NewWordGame.type)
+    @game = NewWordGame.create(:user => current_user || nil,
+                              :input => params[:word][:word].strip)
     create! do |format|
       format.html {
-        new_word_path(:last_word => @word.word)
+        new_word_path(:last_word => @game.word.word)
       }
       format.json {
-        render :json => [@word, @game]
+        render :json => [@game.word, @game]
       }
     end
   end
