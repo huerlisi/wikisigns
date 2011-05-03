@@ -195,14 +195,20 @@ function initializeFirstHelp() {
 
 // Updates scores
 function updateScores(score) {
-  if($('#daily-score span').lenght > 0) daily_score = parseInt($('#daily-score span').html().trim());
-  $('#daily-score span').html(daily_score + score);
+  if($('#current-score span').length > 0){
+    current_score = parseInt($('#current-score span').html().trim());
+    $('#current-score span').html(current_score + score);
+  }
 
-  if($('#alltime-score span').length > 0) total_score = parseInt($('#alltime-score span').html().trim());
-  $('#alltime-score span').html(total_score + score);
+  if($('#daily-score span').length > 0){
+    daily_score = parseInt($('#daily-score span').html().trim());
+    $('#daily-score span').html(daily_score + score);
+  }
 
-  if($('#current-score span').length > 0) current_score = parseInt($('#current-score span').html().trim());
-  $('#current-score span').html(current_score + score);
+  if($('#alltime-score span').length > 0){
+    total_score = parseInt($('#alltime-score span').html().trim());
+    $('#alltime-score span').html(total_score + score);
+  }
 }
 
 // Rearranges the counters for the selected letters.
