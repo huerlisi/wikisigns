@@ -12,19 +12,3 @@ function displaySessionSmallWord(word_picture, text, id){
   $('#your-words').scrollTop = 0-$('#your-words').scrollHeight;
 }
 
-function generateShareLink(id) {
-  var link = "";
-
-  if($('.facebook-user').length>0){
-    link = '<fb:like layout="button_count" href="http://' + window.location.hostname + '/word/' + id + '"></fb:like>';
-  }
-
-  if($('.twitter-user').length>0){
-    var url = 'http://' + window.location.hostname + '/word/' + id;
-
-    link = '<div class="social-media-links"><a class="twitter-share-button" href="http://twitter.com/share" data-url="' + url + '">Tweet</a></div>';
-    link += '<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>';
-  }
-
-  return link;
-}
