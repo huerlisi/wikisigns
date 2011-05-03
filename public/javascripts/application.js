@@ -36,12 +36,7 @@ function showSmallPictureAsBigWord(element) {
   var word = '';
 
   abortHelp();
-
-  // Read the word from within the span tags.
-  $(element).children('.word-text').children('span').each(function(){
-    word += $(this).html().trim();
-  });
-
+  word = $(element).children('.word-text').html().trim();
   text_input.attr('data-word-id', getWordId($(element).children('.word').attr('id')));
   text_input.val(word);
   $('#word svg').remove();
