@@ -193,16 +193,6 @@ function initializeFirstHelp() {
   help_interval = setInterval('nextHelp()', help_interval_time);
 }
 
-function displayedWords() {
-  var text = '';
-
-  $('#title-inserted span').each(function(){
-    text += $(this).html().trim();
-  });
-
-  return text;
-}
-
 // Updates scores
 function updateScores(score) {
   if($('#daily-score span').lenght > 0) daily_score = parseInt($('#daily-score span').html().trim());
@@ -330,7 +320,7 @@ function clearHelpIntervals() {
 // Checks if the guessed word has the same length and shows the result of the guessing.
 function checkWords() {
   // Checks if all letters has been selected.
-  if(displayedWords().length == original_word.length && !send) {
+  if(guessed_word.length == original_word.length && !send) {
     send = true;
     var guessed = guessed_word;
     var original = original_word;
