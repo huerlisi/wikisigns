@@ -117,8 +117,10 @@ function updateRandomLatest() {
       var word = drawWordAsImage($(data).children('.word').attr('id'), text);
 
       resizeWord(word, 50);
-      $('#random-words-container .one-word:first-child').addClass('selectable');
-      $('#random-words-container .one-word:first-child').click(function(){
+
+      var one_word = $('#random-words-container .one-word:first-child');
+      one_word.addClass('selectable');
+      one_word.click(function(){
         showSmallPictureAsBigWord(this);
       });
     }
@@ -153,12 +155,16 @@ function displaySessionSmallWord(word_picture, text, id){
   var share_link = generateShareLink(text);
 
   word_picture = resizeWord(word_picture, 100);
-  $('#your-words').append('<div class="svg selectable"><div class="word-text svg-text">'+ drawColoredWord(text) +'</div>'+ share_link +'</div>');
-  $('#your-words .svg:last-child').prepend(word_picture);
-  $('#your-words .svg:last-child').click(function(){
+  $('#your-words').append('<div class="one-word"><div class="word-text">'+ drawColoredWord(text) +'</div>'+ share_link +'</div>');
+  $('#your-words .one-word:last-child').prepend(word_picture);
+
+  var one_word = $('#your-words .one-word:last-child');
+  one_word.addClass('selectable');
+  one_word.click(function(){
     showSmallPictureAsBigWord(this);
   });
-  $('#your-words .svg:last-child').append(createLinkToPNGDownload(id));
+
+  $('#your-words .one-word:last-child').append(createLinkToPNGDownload(id));
   FB.XFBML.parse();
   $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
 }
