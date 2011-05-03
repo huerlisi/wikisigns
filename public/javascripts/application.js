@@ -94,7 +94,7 @@ function drawLatestWords() {
 
 // Sets the interval for new random entry at the top of the page.
 function addRandomLatestUpdateBehaviour() {
-  window.setInterval(updateRandomLatest, 5000);
+  if($('#random-words-container').length > 0) window.setInterval(updateRandomLatest, 5000);
 }
 
 // Make random words clickable
