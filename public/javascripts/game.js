@@ -48,12 +48,34 @@ function reinitializeGuessingGame() {
   word_counter = 0;
 
   $('h1#title-inserted span').remove();
-  $('h1#title-inserted').attr('style', 'height:2.5em;');
+  $('h1#title-inserted').height('2.5em');
 
   randomizeWord();
   drawEmptyCarpet();
   initializeWordClickBehaviour();
   restartHelp();
+}
+
+// Gets a new Word to guess.
+function initializeNewWordBehaviour() {
+  $('a#get-new-word').click(function(e){
+    e.preventDefault();
+
+    $.ajax({
+      type: 'GET',
+      url: '/words/random.json?time=' + timeStamp(),
+      dataType: 'json',
+      cache: true,
+      beforeSend : function(xhr){
+       xhr.setRequestHeader("Accept", "application/json");
+      },
+      success: function(data){
+        original_word = data['word']['word'];
+        word_id = data['word']['id'];
+        reinitializeGuessingGame();
+      }
+    });
+  });
 }
 
 // Shows the game menu
@@ -175,28 +197,6 @@ function randomizeWord() {
   $('#title').html(drawColoredWord(new_word));
   $('#title').fadeIn('slow');
   return true;
-}
-
-// Gets a new Word to guess.
-function initializeNewWordBehaviour() {
-  $('a#get-new-word').click(function(e){
-    e.preventDefault();
-
-    $.ajax({
-      type: 'GET',
-      url: '/words/random.json?time=' + timeStamp(),
-      dataType: 'json',
-      cache: true,
-      beforeSend : function(xhr){
-       xhr.setRequestHeader("Accept", "application/json");
-      },
-      success: function(data){
-        original_word = data['word']['word'];
-        word_id = data['word']['id'];
-        reinitializeGuessingGame();
-      }
-    });
-  });
 }
 
 // Returns the Word Id form the form.
