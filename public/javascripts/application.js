@@ -160,6 +160,7 @@ function displaySessionSmallWord(word_picture, text, id){
   });
   $('#your-words .svg:last-child').append(createLinkToPNGDownload(id));
   FB.XFBML.parse();
+  $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
 }
 
 // Submits and draws a new word.
