@@ -6,6 +6,8 @@ function timeStamp() {
   return time.toString();
 }
 
+// Sharing
+// =======
 // Adds the tweet or facebook-like button for resharing.
 function generateShareLink(slug) {
   var link = "";
@@ -28,15 +30,6 @@ function addReshareBehaviour() {
   $('#slug-word-share').html(generateShareLink(text_input.val().trim()));
 }
 
-// Adds a mouseover effect to the latest words.
-function addInitialResizeBehaviour() {
-  $('#top-container-scroll div.one-word').each(function(){
-    $(this).addClass('selectable');
-    $(this).click(function(){
-      showSmallPictureAsBigWord(this);
-    });
-  });
-}
 
 // Shows a small word picture in the big main word.
 function showSmallPictureAsBigWord(element) {
@@ -83,6 +76,9 @@ function addColorizeTextBehaviour() {
   text_field.html(drawColoredWord(text_field.text().trim()));
 }
 
+
+// Random words
+// ============
 // Draw a new word at the top of the page.
 function drawLatestWords() {
   $('#top-container').attr('style', 'height: 465px;');
@@ -100,6 +96,16 @@ function drawLatestWords() {
 // Sets the interval for new random entry at the top of the page.
 function addRandomLatestUpdateBehaviour() {
   window.setInterval(updateRandomLatest, 5000);
+}
+
+// Make random words clickable
+function addInitialResizeBehaviour() {
+  $('#top-container-scroll div.one-word').each(function(){
+    $(this).addClass('selectable');
+    $(this).click(function(){
+      showSmallPictureAsBigWord(this);
+    });
+  });
 }
 
 // Shows a new random entry at the top of the page.
