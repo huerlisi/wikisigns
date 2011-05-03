@@ -4,10 +4,8 @@ class NewWordGame < Game
   #
   # PI is the only allowed constant in these calculations!!!
   def calculate_score
-    unless Word.where(:word => self.input).exists?
-      self.word = Word.create(:word => self.input, :user => self.user)
-      self.won = true
-    end
+    self.word = Word.find_or_initialize_by_word(self.input)
+    self.won = self.word.new_record?
   end
 
 end
