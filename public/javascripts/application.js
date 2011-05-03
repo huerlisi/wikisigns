@@ -93,10 +93,7 @@ function addRandomLatestUpdateBehaviour() {
 
 // Make random words clickable
 function addInitialResizeBehaviour() {
-  var one_word = $('.one-word');
-
-  one_word.addClass('selectable');
-  one_word.live('click', function(){
+  $('.one-word').live('click', function(){
     showSmallPictureAsBigWord(this);
   });
 }
@@ -117,9 +114,6 @@ function updateRandomLatest() {
       var word = drawWordAsImage($(data).children('.word').attr('id'), text);
 
       resizeWord(word, 50);
-
-      var one_word = $('#random-words-container .one-word:first-child');
-      one_word.addClass('selectable');
     }
   });
 }
@@ -154,7 +148,6 @@ function displaySessionSmallWord(word_picture, text, id){
   $('#your-words .one-word:last-child').prepend(word_picture);
 
   var one_word = $('#your-words .one-word:last-child');
-  one_word.addClass('selectable');
 
   // Actions
   one_word.append(generateShareLink(text));
