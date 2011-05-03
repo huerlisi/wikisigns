@@ -9,6 +9,5 @@ function displaySessionSmallWord(word_picture, text, id){
   });
   $('#your-words .svg:last-child').append(createLinkToPNGDownload(id));
   FB.XFBML.parse();
-  $('#your-words').scrollTop = 0-$('#your-words').scrollHeight;
 }
 
