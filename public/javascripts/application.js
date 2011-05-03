@@ -81,9 +81,8 @@ function addColorizeTextBehaviour() {
 // ============
 // Draw a new word at the top of the page.
 function drawLatestWords() {
-  $('#top-container').height('465px');
-  $('#top-container-scroll').height('1320px');
-  $('#top-container-scroll .one-word .word').each(function(){
+  $('#random-words-container').height('465px');
+  $('#random-words-container .one-word .word').each(function(){
     var text = $(this).next('.word-text').text().trim();
     var word = drawWordAsImage($(this).attr('id'), text);
 
@@ -100,7 +99,7 @@ function addRandomLatestUpdateBehaviour() {
 
 // Make random words clickable
 function addInitialResizeBehaviour() {
-  $('#top-container-scroll div.one-word').each(function(){
+  $('#random-words-container div.one-word').each(function(){
     $(this).addClass('selectable');
     $(this).click(function(){
       showSmallPictureAsBigWord(this);
@@ -110,7 +109,7 @@ function addInitialResizeBehaviour() {
 
 // Shows a new random entry at the top of the page.
 function updateRandomLatest() {
-  var container = $('#top-container-scroll');
+  var container = $('#random-words-container');
   var last_child = container.children('.one-word:last-child');
 
   $.ajax({
@@ -125,9 +124,9 @@ function updateRandomLatest() {
       var word = drawWordAsImage($(data).children('.word').attr('id'), text);
 
       addSmallWordAttributesForRandomView(word);
-      $('#top-container-scroll .one-word:first-child .word-text').html(drawColoredWord(text));
-      $('#top-container-scroll .one-word:first-child').addClass('selectable');
-      $('#top-container-scroll .one-word:first-child').click(function(){
+      $('#random-words-container .one-word:first-child .word-text').html(drawColoredWord(text));
+      $('#random-words-container .one-word:first-child').addClass('selectable');
+      $('#random-words-container .one-word:first-child').click(function(){
         showSmallPictureAsBigWord(this);
       });
     }
