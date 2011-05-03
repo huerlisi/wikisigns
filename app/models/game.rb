@@ -59,7 +59,7 @@ class Game < ActiveRecord::Base
 
   # Random factor
   #
-  # Somewhere betwee two and three PIs
+  # Somewhere between two and three PIs
   def random_factor
     rand(Math::PI) + Math::PI*Math::PI
   end
