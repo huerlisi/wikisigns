@@ -81,7 +81,6 @@ function addColorizeTextBehaviour() {
 // ============
 // Draw a new word at the top of the page.
 function drawLatestWords() {
-  $('#random-words-container').height('465px');
   $('#random-words-container .one-word .word').each(function(){
     var text = $(this).next('.word-text').text().trim();
     var word = drawWordAsImage($(this).attr('id'), text);
