@@ -6,7 +6,7 @@ Pintograms on Life, the Universe and Everything.
 
 h2. About WikiSigns
 
-Speak out on the "Flying Carpet":http://pimensional.ch
+Speak out on the "Flying Carpet":http://wikisigns.ch
 
 Fork on "github":http://github.com/huerlisi/wikisigns
 
