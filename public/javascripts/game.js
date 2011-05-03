@@ -383,4 +383,3 @@ function getBorderColor(won){
     return false_border_color;
   }
 }
-
