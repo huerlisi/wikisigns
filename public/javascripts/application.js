@@ -87,7 +87,6 @@ function drawLatestWords() {
 
     resizeWord(word, 50);
     $(this).prev('table.carpet').hide();
-    $(this).next('.word-text').html(drawColoredWord(text));
   });
 }
 
@@ -123,7 +122,6 @@ function updateRandomLatest() {
       var word = drawWordAsImage($(data).children('.word').attr('id'), text);
 
       resizeWord(word, 50);
-      $('#random-words-container .one-word:first-child .word-text').html(drawColoredWord(text));
       $('#random-words-container .one-word:first-child').addClass('selectable');
       $('#random-words-container .one-word:first-child').click(function(){
         showSmallPictureAsBigWord(this);
