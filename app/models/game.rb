@@ -23,7 +23,7 @@ class Game < ActiveRecord::Base
   def profile_factor
     return 1 unless user
 
-    # Use logarithm to PI of the users word count
+    # Use logarithm to PI square of the users word count
     # Adding PI right away to circumvent problems with log
     Math.log(user.words.count + Math::PI)/Math.log(Math::PI**Math::PI)
   end
@@ -36,7 +36,8 @@ class Game < ActiveRecord::Base
     return 1 if helped_letters == 0
 
     guessed = word.word.length - helped_letters
-    return (guessed.to_f / word.word.length)**(Math::PI+Math::PI)
+
+    (guessed.to_f / word.word.length)**(Math::PI+Math::PI)
   end
 
   # Length factor
@@ -50,11 +51,7 @@ class Game < ActiveRecord::Base
   #
   # All or nothing: word in database?
   def word_factor
-    if Word.where(:word => input).exists?
-      1
-    else
-      0
-    end
+    Word.where(:word => input).exists? ? 1 : 0
   end
 
   # Random factor
