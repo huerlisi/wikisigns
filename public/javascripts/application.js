@@ -152,10 +152,8 @@ function addSessionWordsBehaviour(){
 }
 
 function displaySessionSmallWord(word_picture, text, id){
-  var share_link = generateShareLink(text);
-
   word_picture = resizeWord(word_picture, 100);
-  $('#your-words').append('<div class="one-word"><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div>'+ share_link +'</div>');
+  $('#your-words').append('<div class="one-word"><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div></div>');
   $('#your-words .one-word:last-child').prepend(word_picture);
 
   var one_word = $('#your-words .one-word:last-child');
@@ -164,8 +162,11 @@ function displaySessionSmallWord(word_picture, text, id){
     showSmallPictureAsBigWord(this);
   });
 
-  $('#your-words .one-word:last-child').append(createLinkToPNGDownload(id));
+  // Actions
+  one_word.append(generateShareLink(text));
   FB.XFBML.parse();
+  one_word.append(createLinkToPNGDownload(id));
+
   $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
 }
 
