@@ -93,11 +93,11 @@ function addRandomLatestUpdateBehaviour() {
 
 // Make random words clickable
 function addInitialResizeBehaviour() {
-  $('#random-words-container div.one-word').each(function(){
-    $(this).addClass('selectable');
-    $(this).click(function(){
-      showSmallPictureAsBigWord(this);
-    });
+  var one_word = $('#random-words-container div.one-word');
+
+  one_word.addClass('selectable');
+  one_word.click(function(){
+    showSmallPictureAsBigWord(this);
   });
 }
 
