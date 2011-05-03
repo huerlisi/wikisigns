@@ -81,8 +81,8 @@ function addColorizeTextBehaviour() {
 // ============
 // Draw a new word at the top of the page.
 function drawLatestWords() {
-  $('#top-container').attr('style', 'height: 465px;');
-  $('#top-container-scroll').attr('style', 'height:1320px;');
+  $('#top-container').height('465px');
+  $('#top-container-scroll').height('1320px');
   $('#top-container-scroll .one-word .word').each(function(){
     var text = $(this).next('.word-text').text().trim();
     var word = drawWordAsImage($(this).attr('id'), text);
@@ -144,7 +144,7 @@ function showCanvasAndHideTableBehaviour() {
 
 // Draw a new word and submit it to the data base.
 function addSessionWordsBehaviour(){
-  $('#center-container').attr('style', 'display:block;');
+  $('#center-container').css('display', 'block');
 
   $('#new_word').submit(function(e){
     e.preventDefault();

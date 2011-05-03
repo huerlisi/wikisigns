@@ -48,7 +48,7 @@ function reinitializeGuessingGame() {
   word_counter = 0;
 
   $('h1#title-inserted span').remove();
-  $('h1#title-inserted').attr('style', 'height:2.5em;');
+  $('h1#title-inserted').height('2.5em');
 
   randomizeWord();
   drawEmptyCarpet();
