@@ -130,6 +130,69 @@ function initializeWordClickBehaviour() {
   });
 }
 
+function resetGame(word, word_id, interval) {
+  resetGameGlobalVars(word, word_id);
+  randomizeWord();
+  initializeWordClickBehaviour();
+  restartHelp(interval);
+}
+
+// Loads the guessing game on the root page.
+function initializeGame() {
+  initializeGameMenu();
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    url: '/words/guess.json?time=' + timeStamp(),
+    beforeSend : function(xhr){
+      xhr.setRequestHeader("Accept", "application/json");
+    },
+    success: function(data){
+      $('h1#title-inserted span').remove();
+      resetGame(data['word']['word'], data['word']['id']);
+      $('#title').show();
+    }
+  });
+}
+
+// Restarts the help.
+function restartHelp(time) {
+  if(time == null) time = help_initial_interval_time;
+  abortHelp();
+  help_initial_interval = setInterval('initializeFirstHelp()', time);
+}
+
+function abortHelp() {
+  previous_help_counter = help_counter;
+  help_counter = 0;
+  clearHelpIntervals();
+}
+
+// Starts the special animation and help when a small picture was clicked.
+function startSmallPictureHelp() {
+  small_picture_help_interval = setInterval('startFirstSmallPictureHelp()', small_picture_help_interval_time)
+}
+
+function startFirstSmallPictureHelp() {
+  var letters = $('#title-inserted span');
+
+  clearInterval(small_picture_help_interval);
+
+  letters.hide(125, function(){
+    letters.remove();
+  });
+
+  resetGame(text_input.val(), text_input.attr('data-word-id'), small_picture_help_interval_time);
+}
+
+// Moves the first letter of the searched word to top as help.
+function initializeFirstHelp() {
+  moveLetterFromBottomToTop(original_word[help_counter]);
+  help_counter++;
+  clearInterval(help_initial_interval);
+  help_interval = setInterval('nextHelp()', help_interval_time);
+}
+
 function displayedWords() {
   var text = '';
 
@@ -205,69 +268,6 @@ function getWordId(text){
 
   regex.exec(text);
   return RegExp.$1;
-}
-
-function resetGame(word, word_id, interval) {
-  resetGameGlobalVars(word, word_id);
-  randomizeWord();
-  initializeWordClickBehaviour();
-  restartHelp(interval);
-}
-
-// Loads the guessing game on the root page.
-function initializeGame() {
-  initializeGameMenu();
-  $.ajax({
-    type: 'GET',
-    dataType: 'json',
-    url: '/words/guess.json?time=' + timeStamp(),
-    beforeSend : function(xhr){
-      xhr.setRequestHeader("Accept", "application/json");
-    },
-    success: function(data){
-      $('h1#title-inserted span').remove();
-      resetGame(data['word']['word'], data['word']['id']);
-      $('#title').show();
-    }
-  });
-}
-
-// Restarts the help.
-function restartHelp(time) {
-  if(time == null) time = help_initial_interval_time;
-  abortHelp();
-  help_initial_interval = setInterval('initializeFirstHelp()', time);
-}
-
-function abortHelp() {
-  previous_help_counter = help_counter;
-  help_counter = 0;
-  clearHelpIntervals();
-}
-
-// Starts the special animation and help when a small picture was clicked.
-function startSmallPictureHelp() {
-  small_picture_help_interval = setInterval('startFirstSmallPictureHelp()', small_picture_help_interval_time)
-}
-
-function startFirstSmallPictureHelp() {
-  var letters = $('#title-inserted span');
-
-  clearInterval(small_picture_help_interval);
-
-  letters.hide(125, function(){
-    letters.remove();
-  });
-
-  resetGame(text_input.val(), text_input.attr('data-word-id'), small_picture_help_interval_time);
-}
-
-// Moves the first letter of the searched word to top as help.
-function initializeFirstHelp() {
-  moveLetterFromBottomToTop(original_word[help_counter]);
-  help_counter++;
-  clearInterval(help_initial_interval);
-  help_interval = setInterval('nextHelp()', help_interval_time);
 }
 
 // Moves one letter to the solution word.
