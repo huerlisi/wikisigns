@@ -14,9 +14,8 @@
         = render 'shared/flash_messages'
         = render 'shared/score'
         = render 'shared/login'
-      #top-container
-        #top-container-scroll
-          = render 'shared/latest', :amount => 12
+      #random-words-container
+        = render 'shared/latest', :amount => 12
       #left-container
         = yield
       #right-container
