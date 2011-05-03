@@ -12,17 +12,16 @@
     #container
       #side-container
         = render 'shared/flash_messages'
-        = render 'shared/description'
-        = render 'shared/login'
         = render 'shared/score'
-        - if controller.class.eql?WordsController
-          = render 'shared/game_menu'
+        = render 'shared/login'
       #top-container
         #top-container-scroll
           = render 'shared/latest', :amount => 12
       #left-container
         = yield
       #right-container
+        - if controller.class.eql?WordsController
+          = render 'shared/game_menu'
         #user-pics-container
           %h1
             = t('your_words')
