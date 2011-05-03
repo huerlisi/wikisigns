@@ -91,13 +91,6 @@ function addRandomLatestUpdateBehaviour() {
   if($('#random-words-container').length > 0) window.setInterval(updateRandomLatest, 5000);
 }
 
-// Make random words clickable
-function addInitialResizeBehaviour() {
-  $('.one-word').live('click', function(){
-    showSmallPictureAsBigWord(this);
-  });
-}
-
 // Shows a new random entry at the top of the page.
 function updateRandomLatest() {
   var container = $('#random-words-container');
@@ -219,6 +212,13 @@ function addFocusTextFieldBehaviour() {
 // Creates a div with a link to the PNG of the word id.
 function createLinkToPNGDownload(id) {
   return '<div class="png-download-link"><a href="/words/' + id +'/svg.png?download=true">Als Bild speichern</a></div>'
+}
+
+// Make random words clickable
+function addInitialResizeBehaviour() {
+  $('.one-word').live('click', function(){
+    showSmallPictureAsBigWord(this);
+  });
 }
 
 // Initialize behaviours
