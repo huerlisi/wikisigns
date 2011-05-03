@@ -155,7 +155,7 @@ function displaySessionSmallWord(word_picture, text, id){
   var share_link = generateShareLink(text);
 
   word_picture = resizeWord(word_picture, 100);
-  $('#your-words').append('<div class="one-word"><div class="word-text">'+ drawColoredWord(text) +'</div>'+ share_link +'</div>');
+  $('#your-words').append('<div class="one-word"><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div>'+ share_link +'</div>');
   $('#your-words .one-word:last-child').prepend(word_picture);
 
   var one_word = $('#your-words .one-word:last-child');
