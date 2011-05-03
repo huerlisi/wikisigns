@@ -1,7 +1,5 @@
 class GamesController < ApplicationController
 
-  layout 'game'
-
   respond_to :html, :json
 
   # Word game for guessing words.
