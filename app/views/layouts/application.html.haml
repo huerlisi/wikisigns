@@ -15,7 +15,8 @@
         = render 'shared/score'
         = render 'shared/login'
       #random-words-container
-        = render 'shared/latest', :amount => 12
+        - if controller.class.eql?WordsController
+          = render 'shared/latest', :amount => 12
       #left-container
         = yield
       #right-container
