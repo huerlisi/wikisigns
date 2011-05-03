@@ -85,7 +85,7 @@ function drawLatestWords() {
     var text = $(this).next('.word-text').text().trim();
     var word = drawWordAsImage($(this).attr('id'), text);
 
-    addSmallWordAttributesForRandomView(word);
+    resizeWord(word, 50);
     $(this).prev('table.carpet').hide();
     $(this).next('.word-text').html(drawColoredWord(text));
   });
@@ -122,7 +122,7 @@ function updateRandomLatest() {
       var text = $(data).children('.word-text').text().trim();
       var word = drawWordAsImage($(data).children('.word').attr('id'), text);
 
-      addSmallWordAttributesForRandomView(word);
+      resizeWord(word, 50);
       $('#random-words-container .one-word:first-child .word-text').html(drawColoredWord(text));
       $('#random-words-container .one-word:first-child').addClass('selectable');
       $('#random-words-container .one-word:first-child').click(function(){
@@ -159,7 +159,7 @@ function addSessionWordsBehaviour(){
 function displaySessionSmallWord(word_picture, text, id){
   var share_link = generateShareLink(text);
 
-  word_picture = addSmallWordAttributesForSessionView(word_picture);
+  word_picture = resizeWord(word_picture, 100);
   $('#your-words').append('<div class="svg selectable"><div class="word-text svg-text">'+ drawColoredWord(text) +'</div>'+ share_link +'</div>');
   $('#your-words .svg:last-child').prepend(word_picture);
   $('#your-words .svg:last-child').click(function(){
@@ -214,20 +214,11 @@ function newWord() {
   })
 }
 
-// Modifies the word picture attributes for the small word picture for use in the session view (on the right side).
-function addSmallWordAttributesForSessionView(word_picture){
+// Resize word picture.
+function resizeWord(word_picture, size){
   word_picture[0].setAttribute('viewBox', '1 1 430 430');
-  word_picture[0].setAttribute('width', '100');
-  word_picture[0].setAttribute('height', '100');
-
-  return word_picture;
-}
-
-// Modifies the word picture attributes for the small word picture for use in the random view (on the top).
-function addSmallWordAttributesForRandomView(word_picture){
-  word_picture[0].setAttribute('viewBox', '1 1 430 430');
-  word_picture[0].setAttribute('width', '50');
-  word_picture[0].setAttribute('height', '50');
+  word_picture[0].setAttribute('width', size);
+  word_picture[0].setAttribute('height', size);
 
   return word_picture;
 }
