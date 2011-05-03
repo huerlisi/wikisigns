@@ -1,13 +1,16 @@
 var text_input = $('#word_word');
 
+// Timers
 var help_initial_interval;
 var help_initial_interval_time = 15000;
 var help_interval;
 var help_interval_time = 5000;
-var help_counter = 0;
-var previous_help_counter = 0;
 var small_picture_help_interval;
 var small_picture_help_interval_time = 2000;
+
+// Counters
+var help_counter = 0;
+var previous_help_counter = 0;
 
 function resetGame(word, word_id, interval) {
   resetGameGlobalVars(word, word_id);
