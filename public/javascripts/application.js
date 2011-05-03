@@ -114,8 +114,7 @@ function updateRandomLatest() {
     type: 'GET',
     url: '/words/random?time=' + timeStamp(),
     success: function(data){
-      last_child.fadeOut(125);
-      last_child.remove();
+      last_child.fadeOut(125).remove();
       container.prepend(data);
 
       var text = $(data).children('.word-text').text().trim();
