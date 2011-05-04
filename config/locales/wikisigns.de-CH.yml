@@ -7,7 +7,7 @@ de-CH:
   link:
     new_word: Hier kannst du selber Zeichen setzen!
   your_words: Deine Worte
-  go: GO
+  go: ">"
   login: Anmelden
   login_information: 'Melde dich hier an und du kannst direkt über Twitter oder Facebook deine Worte veröffentlichen.'
   logout: Abmelden
@@ -20,13 +20,18 @@ de-CH:
     goto: Starte das Wikisigns spiel!
     start: Hier gehts los!
     abort: Spiel beenden
-    get_new_word: ein neues Wort
-    post_day_score_to_fb: TagesScore auf FB posten
+    get_new_word: ">>"
+    post_day_score_to_fb: fb
     last_score: "Letzter Pimon:"
     dayly_score: "Tagespimons:"
     session_score: "Aktuelle Pimons:"
     total_score: "Gesamtpimons:"
-    restart: "zurücksetzen"
+    restart: "<<"
+    tooltip:
+      get_new_word: ein neues Wort
+      post_day_score_to_fb: TagesScore auf FB posten
+      restart: "zurücksetzen"
+      go: GO
     solutions:
       yours: die Punkte
       searched: gesuchte Lösungen
