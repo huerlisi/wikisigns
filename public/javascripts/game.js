@@ -34,24 +34,6 @@ var false_border_color = 'red';
 
 // Loads the guessing game on the root page.
 function initializeGame() {
-  initializeGameMenu();
-  $.ajax({
-    type: 'GET',
-    dataType: 'json',
-    url: '/words/guess.json?time=' + timeStamp(),
-    beforeSend : function(xhr){
-      xhr.setRequestHeader("Accept", "application/json");
-    },
-    success: function(data){
-      $('h1#title-inserted span').remove();
-      resetGame(data['word']['word'], data['word']['id']);
-      $('#title').show();
-    }
-  });
-}
-
-// Shows the game menu
-function initializeGameMenu() {
   $('a#get-new-word').click(function(e){
     e.preventDefault();
 
@@ -70,7 +52,22 @@ function initializeGameMenu() {
       }
     });
   });
+
   $('#game-menu').show();
+
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    url: '/words/guess.json?time=' + timeStamp(),
+    beforeSend : function(xhr){
+      xhr.setRequestHeader("Accept", "application/json");
+    },
+    success: function(data){
+      $('h1#title-inserted span').remove();
+      resetGame(data['word']['word'], data['word']['id']);
+      $('#title').show();
+    }
+  });
 }
 
 // Moves the first letter of the searched word to top as help.
@@ -128,14 +125,11 @@ function initializeWordClickBehaviour() {
 }
 
 // Reinitialize the game
+// It's also used in app/views/shared/game_menu.
 function reinitializeGuessingGame() {
-  // Reset global vars
-  guessed_word = '';
-  word_counter = 0;
-
+  resetGameGlobalVars();
   $('h1#title-inserted span').remove();
   $('h1#title-inserted').height('2.5em');
-
   randomizeWord();
   drawEmptyCarpet();
   initializeWordClickBehaviour();
@@ -145,12 +139,17 @@ function reinitializeGuessingGame() {
 function resetGame(word, id, interval) {
   original_word = word;
   word_id = id;
-  guessed_word = '';
-  word_counter = 0;
   help_counter = 0;
+  resetGameGlobalVars();
   randomizeWord();
   initializeWordClickBehaviour();
   restartHelp(interval);
+}
+
+// Reset global vars of the game
+function resetGameGlobalVars() {
+  guessed_word = '';
+  word_counter = 0;
 }
 
 // Restarts the help.
@@ -343,7 +342,6 @@ function checkWords() {
         $('#ajax-loader').slideUp(125);
         $('h1#title-inserted span').remove();
         $('#word svg').remove();
-        displaySessionSmallWord(drawWordAsImage('word', guessed, getBorderColor(game['won'])).clone(), guessed, word_id);
         drawEmptyCarpet();
         resetGame(data[1]['word']['word'], data[1]['word']['id']);
         updateScores(game['score']);

@@ -6,7 +6,10 @@ class NewWordGame < Game
   def calculate_score
     self.score = word_factor * random_factor * profile_factor * new_word_factor
     self.word = Word.find_or_initialize_by_word(self.input)
-    self.won = self.word.new_record?
+    if self.word.new_record?
+      self.won = true
+      self.word.user = self.user
+    end
   end
 
   private

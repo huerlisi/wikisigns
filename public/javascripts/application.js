@@ -35,6 +35,7 @@ function addReshareBehaviour() {
 function showSmallPictureAsBigWord(element) {
   var word = '';
 
+  random_word = $(element).attr('data-random-word');
   abortHelp();
   word = $(element).children('.word-text').html().trim();
   text_input.attr('data-word-id', $(element).attr('data-word-id'));
@@ -155,7 +156,7 @@ function displaySessionSmallWord(word_picture, text, id){
   var share_link = generateShareLink(text);
 
   word_picture = resizeWord(word_picture, 100);
-  $('#your-words').append('<div class="one-word"><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div>'+ share_link +'</div>');
+  $('#your-words').append('<div class="one-word" data-word-id="' + id + '"><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div>'+ share_link +'</div>');
   $('#your-words .one-word:last-child').prepend(word_picture);
 
   var one_word = $('#your-words .one-word:last-child');

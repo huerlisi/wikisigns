@@ -1,7 +1,7 @@
 class Game < ActiveRecord::Base
   # Associations
   belongs_to :user
-  belongs_to :word
+  belongs_to :word, :autosave => true
 
   # Calculate the score after creating.
   before_save :calculate_score
