@@ -142,20 +142,15 @@ function reinitializeGuessingGame() {
   restartHelp();
 }
 
-function resetGame(word, word_id, interval) {
-  resetGameGlobalVars(word, word_id);
-  randomizeWord();
-  initializeWordClickBehaviour();
-  restartHelp(interval);
-}
-
-// Reset global vars.
-function resetGameGlobalVars(word, id) {
+function resetGame(word, id, interval) {
   original_word = word;
   word_id = id;
   guessed_word = '';
   word_counter = 0;
   help_counter = 0;
+  randomizeWord();
+  initializeWordClickBehaviour();
+  restartHelp(interval);
 }
 
 // Restarts the help.

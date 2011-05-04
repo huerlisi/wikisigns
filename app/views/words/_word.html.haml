@@ -1,4 +1,4 @@
-.one-word
+.one-word{:'data-word-id' => word.id}
   - if table
     = render(:partial => 'words/table', :locals => {:word => word})
   %div[word]
