@@ -32,32 +32,26 @@ var total_score = 0;
 var right_border_color = 'green';
 var false_border_color = 'red';
 
-// Reset global vars.
-function resetGameGlobalVars(word, id) {
-  original_word = word;
-  word_id = id;
-  guessed_word = '';
-  word_counter = 0;
-  help_counter = 0;
+// Loads the guessing game on the root page.
+function initializeGame() {
+  initializeGameMenu();
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    url: '/words/guess.json?time=' + timeStamp(),
+    beforeSend : function(xhr){
+      xhr.setRequestHeader("Accept", "application/json");
+    },
+    success: function(data){
+      $('h1#title-inserted span').remove();
+      resetGame(data['word']['word'], data['word']['id']);
+      $('#title').show();
+    }
+  });
 }
 
-// Reinitialize the game
-function reinitializeGuessingGame() {
-  // Reset global vars
-  guessed_word = '';
-  word_counter = 0;
-
-  $('h1#title-inserted span').remove();
-  $('h1#title-inserted').height('2.5em');
-
-  randomizeWord();
-  drawEmptyCarpet();
-  initializeWordClickBehaviour();
-  restartHelp();
-}
-
-// Gets a new Word to guess.
-function initializeNewWordBehaviour() {
+// Shows the game menu
+function initializeGameMenu() {
   $('a#get-new-word').click(function(e){
     e.preventDefault();
 
@@ -76,12 +70,15 @@ function initializeNewWordBehaviour() {
       }
     });
   });
+  $('#game-menu').show();
 }
 
-// Shows the game menu
-function initializeGameMenu() {
-  initializeNewWordBehaviour();
-  $('#game-menu').show();
+// Moves the first letter of the searched word to top as help.
+function initializeFirstHelp() {
+  moveLetterFromBottomToTop(original_word[help_counter]);
+  help_counter++;
+  clearInterval(help_initial_interval);
+  help_interval = setInterval('nextHelp()', help_interval_time);
 }
 
 function initializeWordClickBehaviour() {
@@ -130,6 +127,21 @@ function initializeWordClickBehaviour() {
   });
 }
 
+// Reinitialize the game
+function reinitializeGuessingGame() {
+  // Reset global vars
+  guessed_word = '';
+  word_counter = 0;
+
+  $('h1#title-inserted span').remove();
+  $('h1#title-inserted').height('2.5em');
+
+  randomizeWord();
+  drawEmptyCarpet();
+  initializeWordClickBehaviour();
+  restartHelp();
+}
+
 function resetGame(word, word_id, interval) {
   resetGameGlobalVars(word, word_id);
   randomizeWord();
@@ -137,22 +149,13 @@ function resetGame(word, word_id, interval) {
   restartHelp(interval);
 }
 
-// Loads the guessing game on the root page.
-function initializeGame() {
-  initializeGameMenu();
-  $.ajax({
-    type: 'GET',
-    dataType: 'json',
-    url: '/words/guess.json?time=' + timeStamp(),
-    beforeSend : function(xhr){
-      xhr.setRequestHeader("Accept", "application/json");
-    },
-    success: function(data){
-      $('h1#title-inserted span').remove();
-      resetGame(data['word']['word'], data['word']['id']);
-      $('#title').show();
-    }
-  });
+// Reset global vars.
+function resetGameGlobalVars(word, id) {
+  original_word = word;
+  word_id = id;
+  guessed_word = '';
+  word_counter = 0;
+  help_counter = 0;
 }
 
 // Restarts the help.
@@ -185,12 +188,14 @@ function startFirstSmallPictureHelp() {
   resetGame(text_input.val(), text_input.attr('data-word-id'), small_picture_help_interval_time);
 }
 
-// Moves the first letter of the searched word to top as help.
-function initializeFirstHelp() {
-  moveLetterFromBottomToTop(original_word[help_counter]);
-  help_counter++;
-  clearInterval(help_initial_interval);
-  help_interval = setInterval('nextHelp()', help_interval_time);
+// Shows the next letter as help.
+function nextHelp() {
+  if(help_counter < original_word.length){
+    moveLetterFromBottomToTop(original_word[help_counter]);
+    help_counter++;
+  }else{
+    clearInterval(help_interval);
+  }
 }
 
 // Updates scores
@@ -305,16 +310,6 @@ function moveLetterFromBottomToTop(letter){
       })
     }
   });
-}
-
-// Shows the next letter as help.
-function nextHelp() {
-  if(help_counter < original_word.length){
-    moveLetterFromBottomToTop(original_word[help_counter]);
-    help_counter++;
-  }else{
-    clearInterval(help_interval);
-  }
 }
 
 // Clears all intervals of the help.
