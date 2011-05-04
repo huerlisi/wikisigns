@@ -193,6 +193,10 @@ function clearHelpIntervals() {
 
 // Updates scores
 function updateScores(score) {
+  if($('#last-score span').length > 0){
+    $('#last-score span').html(score);
+  }
+
   if($('#current-score span').length > 0){
     current_score = parseInt($('#current-score span').html().trim());
     $('#current-score span').html(current_score + score);

@@ -22,9 +22,10 @@ de-CH:
     abort: Spiel beenden
     get_new_word: ein neues Wort
     post_day_score_to_fb: TagesScore auf FB posten
-    dayly_score: "Tagesscore:"
-    session_score: "Aktueller Score:"
-    total_score: "Totalscore:"
+    last_score: "Letzter Pimon:"
+    dayly_score: "Tagespimons:"
+    session_score: "Aktuelle Pimons:"
+    total_score: "Gesamtpimons:"
     restart: "zurücksetzen"
     solutions:
       yours: die Punkte
