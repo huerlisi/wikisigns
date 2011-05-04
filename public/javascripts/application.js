@@ -92,16 +92,6 @@ function addRandomLatestUpdateBehaviour() {
   if($('#random-words-container').length > 0) window.setInterval(updateRandomLatest, 5000);
 }
 
-// Make random words clickable
-function addInitialResizeBehaviour() {
-  $('#random-words-container div.one-word').each(function(){
-    $(this).addClass('selectable');
-    $(this).click(function(){
-      showSmallPictureAsBigWord(this);
-    });
-  });
-}
-
 // Shows a new random entry at the top of the page.
 function updateRandomLatest() {
   var container = $('#random-words-container');
@@ -118,12 +108,6 @@ function updateRandomLatest() {
       var word = drawWordAsImage($(data).children('.word').attr('id'), text);
 
       resizeWord(word, 50);
-
-      var one_word = $('#random-words-container .one-word:first-child');
-      one_word.addClass('selectable');
-      one_word.click(function(){
-        showSmallPictureAsBigWord(this);
-      });
     }
   });
 }
@@ -153,20 +137,17 @@ function addSessionWordsBehaviour(){
 }
 
 function displaySessionSmallWord(word_picture, text, id){
-  var share_link = generateShareLink(text);
-
   word_picture = resizeWord(word_picture, 100);
-  $('#your-words').append('<div class="one-word" data-word-id="' + id + '"><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div>'+ share_link +'</div>');
+  $('#your-words').append('<div class="one-word" data-word-id="' + id + '"><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div></div>');
   $('#your-words .one-word:last-child').prepend(word_picture);
 
   var one_word = $('#your-words .one-word:last-child');
-  one_word.addClass('selectable');
-  one_word.click(function(){
-    showSmallPictureAsBigWord(this);
-  });
 
-  $('#your-words .one-word:last-child').append(createLinkToPNGDownload(id));
+  // Actions
+  one_word.append(generateShareLink(text));
   FB.XFBML.parse();
+  one_word.append(createLinkToPNGDownload(id));
+
   $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
 }
 
@@ -232,6 +213,13 @@ function addFocusTextFieldBehaviour() {
 // Creates a div with a link to the PNG of the word id.
 function createLinkToPNGDownload(id) {
   return '<div class="png-download-link"><a href="/words/' + id +'/svg.png?download=true">Als Bild speichern</a></div>'
+}
+
+// Make random words clickable
+function addInitialResizeBehaviour() {
+  $('.one-word').live('click', function(){
+    showSmallPictureAsBigWord(this);
+  });
 }
 
 // Initialize behaviours
