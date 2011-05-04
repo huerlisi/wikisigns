@@ -40,7 +40,7 @@ function showSmallPictureAsBigWord(element) {
   text_input.attr('data-word-id', getWordId($(element).children('.word').attr('id')));
   text_input.val(word);
   $('#word svg').remove();
-  drawWordAsImage('word', word);
+  drawWordAsImage($('#word'), word);
   $('#title-inserted').html(drawColoredWord(text_input.val()));
   $('#title span').hide(125, function(){
     $(this).remove();
@@ -55,7 +55,7 @@ function addRealtimeWordDrawingBehaviour() {
     if(event.keyCode != 13) {
       $('#title').hide();
       $('#word').children().remove();
-      drawWordAsImage('word', $(this).val().trim());
+      drawWordAsImage('#word', $(this).val().trim());
       $('#title-inserted').html(drawColoredWord($(this).val().trim()));
 
       if($(this).val().indexOf(' ', 0) > -1) {
@@ -79,7 +79,7 @@ function addColorizeTextBehaviour() {
 function drawLatestWords() {
   $('#random-words-container .one-word .word').each(function(){
     var text = $(this).next('.word-text').text().trim();
-    var word = drawWordAsImage($(this).attr('id'), text);
+    var word = drawWordAsImage(this, text);
 
     resizeWord(word, 50);
     $(this).prev('table.carpet').hide();
@@ -94,19 +94,19 @@ function addRandomLatestUpdateBehaviour() {
 // Shows a new random entry at the top of the page.
 function updateRandomLatest() {
   var container = $('#random-words-container');
-  var last_child = container.children('.one-word:last-child');
+  var last_child = container.children('.one-word').eq(Math.floor(Math.random()*11));
 
   $.ajax({
     type: 'GET',
     url: '/words/random?time=' + timeStamp(),
     success: function(data){
-      last_child.fadeOut(125).remove();
-      container.prepend(data);
-
+      last_child.fadeOut(1000);
+      last_child.replaceWith($(data).fadeIn(1000));
       var text = $(data).children('.word-text').text().trim();
-      var word = drawWordAsImage($(data).children('.word').attr('id'), text);
+      var word = drawWordAsImage($(data).children('.word'), text);
 
       resizeWord(word, 50);
+
     }
   });
 }
@@ -115,7 +115,7 @@ function updateRandomLatest() {
 function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
-  drawWordAsImage('word', $('#title').text().trim());
+  drawWordAsImage($('#word'), $('#title').text().trim());
   //$('#title').html(drawColoredWord(text_input.val().trim()));
 }
 
@@ -179,7 +179,7 @@ function newWord() {
       updateScores(game['score']);
       $('#title').show();
       $('#title-inserted span').remove();
-      displaySessionSmallWord(drawWordAsImage('word', text, getBorderColor(game['won'])).clone(), text, id);
+      displaySessionSmallWord(drawWordAsImage('#word', text, getBorderColor(game['won'])).clone(), text, id);
       drawEmptyCarpet();
 
       if($('.twitter-user').length>0){

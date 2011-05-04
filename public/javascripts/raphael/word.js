@@ -274,7 +274,7 @@ var colors = Array(
 
 
 // Draws a word as an image.
-function drawWordAsImage(id, input_word, border_color) {
+function drawWordAsImage(element, input_word, border_color) {
   if(border_color == null) {
     border_color = "#555";
   }
@@ -283,7 +283,7 @@ function drawWordAsImage(id, input_word, border_color) {
   var space = 7;
   var word = input_word.toLowerCase();
   var paper_space = 7;
-  var paper = Raphael(document.getElementById(id), canvas_width, canvas_height);
+  var paper = Raphael(element, canvas_width, canvas_height);
 
   // Drop shadow for carpet
   var paper_shadow = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, 10);
@@ -358,7 +358,7 @@ function drawWordAsImage(id, input_word, border_color) {
   paper_content.toBack();
   paper_shadow.toBack();
 
-  return $('#' + id + ' svg');
+  return $(element).find('svg');
 }
 
 // Returns the coordinates in the right order for a word.
