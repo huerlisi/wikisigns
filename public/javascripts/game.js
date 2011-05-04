@@ -171,14 +171,7 @@ function startSmallPictureHelp() {
 }
 
 function startFirstSmallPictureHelp() {
-  var letters = $('#title-inserted span');
-
   clearInterval(small_picture_help_interval);
-
-  letters.hide(125, function(){
-    letters.remove();
-  });
-
   resetGame(text_input.val(), text_input.attr('data-word-id'), small_picture_help_interval_time);
 }
 

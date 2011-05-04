@@ -42,10 +42,10 @@ function showSmallPictureAsBigWord(element) {
   text_input.val(word);
   $('#word svg').remove();
   drawWordAsImage('word', word);
-  $('#title-inserted').html(drawColoredWord(text_input.val()));
-  $('#title span').hide(125, function(){
+  $('#title-inserted span').hide(125, function(){
     $(this).remove();
   });
+  $('#title span').hide().remove();
   startSmallPictureHelp();
 }
 
