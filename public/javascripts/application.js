@@ -140,7 +140,7 @@ function addSessionWordsBehaviour(){
 
 function displaySessionSmallWord(word_picture, text, id){
   word_picture = resizeWord(word_picture, 100);
-  $('#your-words').append(oneWordDiv(id, text));
+  $('#your-words').append(oneWordDiv(id, text, false));
   $('#your-words .one-word:last-child').prepend(word_picture);
 
   var one_word = $('#your-words .one-word:last-child');

@@ -9,6 +9,7 @@ class NewWordGame < Game
     if self.word.new_record?
       self.won = true
       self.word.user = self.user
+      self.word.save
     end
   end
 

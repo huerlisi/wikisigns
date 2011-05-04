@@ -5,8 +5,8 @@ class Word < ActiveRecord::Base
 
   # Relations
   belongs_to :user
-  has_many :games
-  has_many :new_word_games
+  has_many :games, :autosave => true
+  has_many :new_word_games, :autosave => true
 
   CHARS = [
    [['z'		], ['t', '@'		], ['j'				], ['f'		]],
