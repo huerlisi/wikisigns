@@ -198,6 +198,12 @@ function nextHelp() {
   }
 }
 
+// Clears all intervals of the help.
+function clearHelpIntervals() {
+  clearInterval(help_initial_interval);
+  clearInterval(help_interval);
+}
+
 // Updates scores
 function updateScores(score) {
   if($('#current-score span').length > 0){
@@ -263,14 +269,6 @@ function randomizeWord() {
   return true;
 }
 
-// Returns the Word Id form the form.
-function getWordId(text){
-  var regex = /(\d+)/;
-
-  regex.exec(text);
-  return RegExp.$1;
-}
-
 // Moves one letter to the solution word.
 function moveLetterFromBottomToTop(letter){
   var do_once = true;
@@ -310,12 +308,6 @@ function moveLetterFromBottomToTop(letter){
       })
     }
   });
-}
-
-// Clears all intervals of the help.
-function clearHelpIntervals() {
-  clearInterval(help_initial_interval);
-  clearInterval(help_interval);
 }
 
 // Checks if the guessed word has the same length and shows the result of the guessing.

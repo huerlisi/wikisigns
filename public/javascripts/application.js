@@ -34,10 +34,12 @@ function addReshareBehaviour() {
 // Shows a small word picture in the big main word.
 function showSmallPictureAsBigWord(element) {
   var word = '';
+  var regex = /(\d+)/;
 
+  regex.exec($(element).children('.word').attr('id'));
   abortHelp();
   word = $(element).children('.word-text').html().trim();
-  text_input.attr('data-word-id', getWordId($(element).children('.word').attr('id')));
+  text_input.attr('data-word-id', RegExp.$1);
   text_input.val(word);
   $('#word svg').remove();
   drawWordAsImage('word', word);
