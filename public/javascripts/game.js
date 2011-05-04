@@ -32,32 +32,8 @@ var total_score = 0;
 var right_border_color = 'green';
 var false_border_color = 'red';
 
-// Reset global vars.
-function resetGameGlobalVars(word, id) {
-  original_word = word;
-  word_id = id;
-  guessed_word = '';
-  word_counter = 0;
-  help_counter = 0;
-}
-
-// Reinitialize the game
-function reinitializeGuessingGame() {
-  // Reset global vars
-  guessed_word = '';
-  word_counter = 0;
-
-  $('h1#title-inserted span').remove();
-  $('h1#title-inserted').height('2.5em');
-
-  randomizeWord();
-  drawEmptyCarpet();
-  initializeWordClickBehaviour();
-  restartHelp();
-}
-
-// Gets a new Word to guess.
-function initializeNewWordBehaviour() {
+// Loads the guessing game on the root page.
+function initializeGame() {
   $('a#get-new-word').click(function(e){
     e.preventDefault();
 
@@ -76,12 +52,30 @@ function initializeNewWordBehaviour() {
       }
     });
   });
+
+  $('#game-menu').show();
+
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    url: '/words/guess.json?time=' + timeStamp(),
+    beforeSend : function(xhr){
+      xhr.setRequestHeader("Accept", "application/json");
+    },
+    success: function(data){
+      $('h1#title-inserted span').remove();
+      resetGame(data['word']['word'], data['word']['id']);
+      $('#title').show();
+    }
+  });
 }
 
-// Shows the game menu
-function initializeGameMenu() {
-  initializeNewWordBehaviour();
-  $('#game-menu').show();
+// Moves the first letter of the searched word to top as help.
+function initializeFirstHelp() {
+  moveLetterFromBottomToTop(original_word[help_counter]);
+  help_counter++;
+  clearInterval(help_initial_interval);
+  help_interval = setInterval('nextHelp()', help_interval_time);
 }
 
 function initializeWordClickBehaviour() {
@@ -130,29 +124,32 @@ function initializeWordClickBehaviour() {
   });
 }
 
-function resetGame(word, word_id, interval) {
-  resetGameGlobalVars(word, word_id);
+// Reinitialize the game
+// It's also used in app/views/shared/game_menu.
+function reinitializeGuessingGame() {
+  resetGameGlobalVars();
+  $('h1#title-inserted span').remove();
+  $('h1#title-inserted').height('2.5em');
+  randomizeWord();
+  drawEmptyCarpet();
+  initializeWordClickBehaviour();
+  restartHelp();
+}
+
+function resetGame(word, id, interval) {
+  original_word = word;
+  word_id = id;
+  help_counter = 0;
+  resetGameGlobalVars();
   randomizeWord();
   initializeWordClickBehaviour();
   restartHelp(interval);
 }
 
-// Loads the guessing game on the root page.
-function initializeGame() {
-  initializeGameMenu();
-  $.ajax({
-    type: 'GET',
-    dataType: 'json',
-    url: '/words/guess.json?time=' + timeStamp(),
-    beforeSend : function(xhr){
-      xhr.setRequestHeader("Accept", "application/json");
-    },
-    success: function(data){
-      $('h1#title-inserted span').remove();
-      resetGame(data['word']['word'], data['word']['id']);
-      $('#title').show();
-    }
-  });
+// Reset global vars of the game
+function resetGameGlobalVars() {
+  guessed_word = '';
+  word_counter = 0;
 }
 
 // Restarts the help.
@@ -185,12 +182,20 @@ function startFirstSmallPictureHelp() {
   resetGame(text_input.val(), text_input.attr('data-word-id'), small_picture_help_interval_time);
 }
 
-// Moves the first letter of the searched word to top as help.
-function initializeFirstHelp() {
-  moveLetterFromBottomToTop(original_word[help_counter]);
-  help_counter++;
+// Shows the next letter as help.
+function nextHelp() {
+  if(help_counter < original_word.length){
+    moveLetterFromBottomToTop(original_word[help_counter]);
+    help_counter++;
+  }else{
+    clearInterval(help_interval);
+  }
+}
+
+// Clears all intervals of the help.
+function clearHelpIntervals() {
   clearInterval(help_initial_interval);
-  help_interval = setInterval('nextHelp()', help_interval_time);
+  clearInterval(help_interval);
 }
 
 // Updates scores
@@ -258,14 +263,6 @@ function randomizeWord() {
   return true;
 }
 
-// Returns the Word Id form the form.
-function getWordId(text){
-  var regex = /(\d+)/;
-
-  regex.exec(text);
-  return RegExp.$1;
-}
-
 // Moves one letter to the solution word.
 function moveLetterFromBottomToTop(letter){
   var do_once = true;
@@ -307,22 +304,6 @@ function moveLetterFromBottomToTop(letter){
   });
 }
 
-// Shows the next letter as help.
-function nextHelp() {
-  if(help_counter < original_word.length){
-    moveLetterFromBottomToTop(original_word[help_counter]);
-    help_counter++;
-  }else{
-    clearInterval(help_interval);
-  }
-}
-
-// Clears all intervals of the help.
-function clearHelpIntervals() {
-  clearInterval(help_initial_interval);
-  clearInterval(help_interval);
-}
-
 // Checks if the guessed word has the same length and shows the result of the guessing.
 function checkWords() {
   // Checks if all letters has been selected.
@@ -361,7 +342,6 @@ function checkWords() {
         $('#ajax-loader').slideUp(125);
         $('h1#title-inserted span').remove();
         $('#word svg').remove();
-        displaySessionSmallWord(drawWordAsImage('word', guessed, getBorderColor(game['won'])).clone(), guessed, word_id);
         drawEmptyCarpet();
         resetGame(data[1]['word']['word'], data[1]['word']['id']);
         updateScores(game['score']);

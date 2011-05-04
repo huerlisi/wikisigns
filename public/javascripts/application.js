@@ -35,9 +35,10 @@ function addReshareBehaviour() {
 function showSmallPictureAsBigWord(element) {
   var word = '';
 
+  random_word = $(element).attr('data-random-word');
   abortHelp();
   word = $(element).children('.word-text').html().trim();
-  text_input.attr('data-word-id', getWordId($(element).children('.word').attr('id')));
+  text_input.attr('data-word-id', $(element).attr('data-word-id'));
   text_input.val(word);
   $('#word svg').remove();
   drawWordAsImage($('#word'), word);
@@ -99,12 +100,15 @@ function updateRandomLatest() {
   $.ajax({
     type: 'GET',
     url: '/words/random?time=' + timeStamp(),
+    dataType: 'json',
+    beforeSend : function(xhr){
+      xhr.setRequestHeader("Accept", "application/json");
+    },
     success: function(data){
-      last_child.fadeOut(1000);
-      last_child.replaceWith($(data).fadeIn(1000));
-      var text = $(data).children('.word-text').text().trim();
-      var word = drawWordAsImage($(data).children('.word'), text);
 
+      last_child.fadeOut(1000);
+      last_child.replaceWith($(oneWordDiv(data['word']['id'], data['word']['word'], true)).fadeIn(1000));
+      var word = drawWordAsImage('word_' + data['word']['id'], data['word']['word']);
       resizeWord(word, 50);
 
     }
@@ -137,7 +141,7 @@ function addSessionWordsBehaviour(){
 
 function displaySessionSmallWord(word_picture, text, id){
   word_picture = resizeWord(word_picture, 100);
-  $('#your-words').append('<div class="one-word"><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div></div>');
+  $('#your-words').append(oneWordDiv(id, text, false));
   $('#your-words .one-word:last-child').prepend(word_picture);
 
   var one_word = $('#your-words .one-word:last-child');
@@ -148,6 +152,12 @@ function displaySessionSmallWord(word_picture, text, id){
   one_word.append(createLinkToPNGDownload(id));
 
   $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
+}
+
+// Returns the container for a small word.
+function oneWordDiv(id, text, random) {
+  if(random == null) random = false;
+  return '<div class="one-word" data-random-word="' + random + '" data-word-id="' + id + '"><div id="word_' + id + '" class="word"></div><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div></div>';
 }
 
 // Submits and draws a new word.
