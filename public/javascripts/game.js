@@ -34,27 +34,7 @@ var false_border_color = 'red';
 
 // Loads the guessing game on the root page.
 function initializeGame() {
-  $('a#get-new-word').click(function(e){
-    e.preventDefault();
-
-    $.ajax({
-      type: 'GET',
-      url: '/words/random.json?time=' + timeStamp(),
-      dataType: 'json',
-      cache: true,
-      beforeSend : function(xhr){
-       xhr.setRequestHeader("Accept", "application/json");
-      },
-      success: function(data){
-        original_word = data['word']['word'];
-        word_id = data['word']['id'];
-        reinitializeGuessingGame();
-      }
-    });
-  });
-
   $('#game-menu').show();
-
   $.ajax({
     type: 'GET',
     dataType: 'json',
@@ -134,6 +114,25 @@ function reinitializeGuessingGame() {
   drawEmptyCarpet();
   initializeWordClickBehaviour();
   restartHelp();
+}
+
+// Gets a new random word.
+// It's used in app/views/shared/game_menu
+function getANewWord() {
+  $.ajax({
+    type: 'GET',
+    url: '/words/random.json?time=' + timeStamp(),
+    dataType: 'json',
+    cache: true,
+    beforeSend : function(xhr){
+     xhr.setRequestHeader("Accept", "application/json");
+    },
+    success: function(data){
+      original_word = data['word']['word'];
+      word_id = data['word']['id'];
+      reinitializeGuessingGame();
+    }
+  });
 }
 
 function resetGame(word, id, interval) {
