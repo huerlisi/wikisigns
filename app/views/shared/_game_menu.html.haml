@@ -3,3 +3,4 @@
   - if current_user && current_user.from_facebook?
     = link_to t('game.post_day_score_to_fb'), daily_score_user_path(current_user), :remote => true, :method => :post
   = link_to_function t('game.get_new_word'), 'getANewWord()'
+= render 'shared/login'

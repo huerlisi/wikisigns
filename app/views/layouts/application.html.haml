@@ -13,7 +13,8 @@
       #side-container
         = render 'shared/flash_messages'
         = render 'shared/score'
-        = render 'shared/login'
+        - if controller.class.eql?Omnisocial::AuthController
+          = render 'shared/login'
       #random-words-container
         - if controller.class.eql?WordsController
           = render 'shared/latest', :amount => 12
