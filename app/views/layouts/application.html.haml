@@ -14,7 +14,8 @@
         = render 'shared/flash_messages'
         = render 'shared/score'
         - if controller.class.eql?Omnisocial::AuthController
-          = render 'shared/login'
+          #back-link
+            = link_to t('back'), root_path
       #random-words-container
         - if controller.class.eql?WordsController
           = render 'shared/latest', :amount => 12
