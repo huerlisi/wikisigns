@@ -107,6 +107,7 @@ function initializeWordClickBehaviour() {
 // Reinitialize the game
 // It's also used in app/views/shared/game_menu.
 function reinitializeGuessingGame() {
+  clearSessionViewerIntervals();
   resetGameGlobalVars();
   $('h1#title-inserted span').remove();
   $('h1#title-inserted').height('2.5em');
@@ -119,6 +120,7 @@ function reinitializeGuessingGame() {
 // Gets a new random word.
 // It's used in app/views/shared/game_menu
 function getANewWord() {
+  clearSessionViewerIntervals();
   $.ajax({
     type: 'GET',
     url: '/words/random.json?time=' + timeStamp(),
