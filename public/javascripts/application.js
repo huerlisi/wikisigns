@@ -146,7 +146,10 @@ function displaySessionSmallWord(word_picture, text, id){
   $('#your-words .one-word:last-child').prepend(word_picture);
 
   var one_word = $('#your-words .one-word:last-child');
-
+  startSessionViewer();
+  one_word.click(function(){
+    $('#title').html(drawColoredWord(one_word.attr('data-word-word')));
+  });
   // Actions
   one_word.append(generateShareLink(text));
   FB.XFBML.parse();
