@@ -149,6 +149,8 @@ function displaySessionSmallWord(word_picture, text, id){
   startSessionViewer();
   one_word.click(function(){
     $('#title').html(drawColoredWord(one_word.attr('data-word-word')));
+    $('#word svg').remove();
+    drawWordAsImage('word', one_word.attr('data-word-word'));
   });
   // Actions
   one_word.append(generateShareLink(text));
