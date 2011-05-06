@@ -16,6 +16,6 @@ class NewWordGame < Game
   private
 
   def new_word_factor
-    Math::PI*Math::PI*(1 + rand(5))
+    Math::PI*Math::PI*(Math::PI + rand(Math::PI))
   end
 end
