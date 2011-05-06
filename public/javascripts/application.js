@@ -37,7 +37,7 @@ function showSmallPictureAsBigWord(element) {
 
   random_word = $(element).attr('data-random-word');
   abortHelp();
-  word = $(element).children('.word-text').html().trim();
+  word = $(element).attr('data-word-word');
   text_input.attr('data-word-id', $(element).attr('data-word-id'));
   text_input.val(word);
   $('#word svg').remove();
@@ -156,7 +156,7 @@ function displaySessionSmallWord(word_picture, text, id){
 // Returns the container for a small word.
 function oneWordDiv(id, text, random) {
   if(random == null) random = false;
-  return '<div class="one-word" data-random-word="' + random + '" data-word-id="' + id + '"><div id="word_' + id + '" class="word"></div><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div></div>';
+  return '<div class="one-word" data-random-word="' + random + '" data-word-id="' + id + '" data-word-word="' + text + '"><div id="word_' + id + '" class="word"></div><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div></div>';
 }
 
 // Submits and draws a new word.
