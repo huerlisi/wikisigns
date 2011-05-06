@@ -136,6 +136,7 @@ function getANewWord() {
 }
 
 function resetGame(word, id, interval) {
+  clearSessionViewerIntervals();
   original_word = word;
   word_id = id;
   help_counter = 0;
