@@ -347,11 +347,3 @@ function checkWords() {
   }
 }
 
-// Returns the border color for the word.
-function getBorderColor(won){
-  if(won){
-    return right_border_color;
-  }else{
-    return false_border_color;
-  }
-}

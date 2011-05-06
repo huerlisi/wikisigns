@@ -167,7 +167,6 @@ function newWord() {
   $('#title-inserted').html(drawColoredWord(text_input.val().trim()));
   text = $('#title-inserted').text().trim();
   addFocusTextFieldBehaviour();
-  $('#word').children().remove();
 
 
   $.ajax({
@@ -185,11 +184,13 @@ function newWord() {
         game = data[1]['new_word_game'];
       }
 
+      $('#word').children().remove();
       updateScores(game['score']);
+      $('#title span').remove();
+      $('#title').html(drawColoredWord(text));
       $('#title').show();
       $('#title-inserted span').remove();
-      displaySessionSmallWord(drawWordAsImage('word', text, getBorderColor(game['won'])).clone(), text, id);
-      drawEmptyCarpet();
+      displaySessionSmallWord(drawWordAsImage('word', text).clone(), text, id);
 
       if($('.twitter-user').length>0){
         $('a.twitter-share-button').each(function(){
