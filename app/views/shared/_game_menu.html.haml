@@ -1,6 +1,6 @@
 #game-menu{:style => 'display:none;'}
-  = link_to_function t('game.restart'), 'reinitializeGuessingGame()'
+  = link_to_function image_tag('icons/16x16/fast_backward.png'), 'reinitializeGuessingGame()', :id => 'reinitialize-guessing-game'
   - if current_user && current_user.from_facebook?
-    = link_to t('game.post_day_score_to_fb'), daily_score_user_path(current_user), :remote => true, :method => :post
-  = link_to_function t('game.get_new_word'), 'getANewWord()'
+    = link_to image_tag('icons/16x16/facebook.png'), daily_score_user_path(current_user), :remote => true, :method => :post
+  = link_to_function image_tag('icons/16x16/fast_forward.png'), 'getANewWord()'
 = render 'shared/login'
