@@ -5,7 +5,11 @@ var picture_to_show = 1;
 // Start des Session viewers
 function startSessionViewer() {
   clearSessionViewerIntervals();
-  session_viewer = setInterval('showSessionViewer()', 30000)
+  session_viewer_start = setInterval('initializeShowSessionViewer()', 30000)
+}
+
+function initializeShowSessionViewer() {
+  session_viewer = setInterval('showSessionViewer()', 1000);
 }
 
 // Bild anzeigen als Session viewer.
