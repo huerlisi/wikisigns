@@ -55,6 +55,7 @@ function showSmallPictureAsBigWord(element) {
 function addRealtimeWordDrawingBehaviour() {
   text_input.keyup(function(event){
     abortHelp();
+    clearSessionViewerIntervals();
     if(event.keyCode != 13) {
       $('#title').hide();
       $('#word').children().remove();

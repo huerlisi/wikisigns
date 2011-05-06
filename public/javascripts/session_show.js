@@ -9,6 +9,7 @@ function startSessionViewer() {
 }
 
 function initializeShowSessionViewer() {
+  clearSessionViewerIntervals();
   session_viewer = setInterval('showSessionViewer()', 1000);
 }
 
