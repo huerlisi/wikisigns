@@ -246,8 +246,7 @@ function randomizeWord() {
   // Shuffle
   new_word = $.shuffle(original_word.split('')).join('');
 
-  $('#title').html(drawColoredWord(new_word));
-  $('#title').fadeIn('slow');
+  $('#title').html(drawColoredWord(new_word)).fadeIn(125);
   return true;
 }
 
