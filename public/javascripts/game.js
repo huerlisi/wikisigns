@@ -4,7 +4,7 @@ var help_initial_interval_time = 15000;
 var help_interval;
 var help_interval_time = 5000;
 var small_picture_help_interval;
-var small_picture_help_interval_time = 2000;
+var small_picture_help_interval_time = 15000;
 
 // Counters
 var help_counter = 0;
@@ -164,14 +164,9 @@ function abortHelp() {
   clearHelpIntervals();
 }
 
-// Starts the special animation and help when a small picture was clicked.
-function startSmallPictureHelp() {
-  small_picture_help_interval = setInterval('startFirstSmallPictureHelp()', small_picture_help_interval_time)
-}
-
 function startFirstSmallPictureHelp() {
   clearInterval(small_picture_help_interval);
-  resetGame(text_input.val(), text_input.attr('data-word-id'), small_picture_help_interval_time);
+  resetGame(original_word, text_input.attr('data-word-id'), small_picture_help_interval_time);
 }
 
 // Shows the next letter as help.
@@ -242,17 +237,13 @@ function randomizeWord() {
   var new_word;
   // Handle very short words
   if(original_word.length < 2) {
-    new_word = original_word;
+    $('#title').html(drawColoredWord(original_word));
+    $('#title').fadeIn('slow');
     return true;
   }
   
   // Shuffle
   new_word = $.shuffle(original_word.split('')).join('');
-
-  if(original_word == new_word){
-    randomizeWord();
-    return false;
-  }
 
   $('#title').html(drawColoredWord(new_word));
   $('#title').fadeIn('slow');

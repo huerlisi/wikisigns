@@ -39,14 +39,16 @@ function showSmallPictureAsBigWord(element) {
   abortHelp();
   word = $(element).attr('data-word-word');
   text_input.attr('data-word-id', $(element).attr('data-word-id'));
-  text_input.val(word);
+  //text_input.val(word);
   $('#word svg').remove();
   drawWordAsImage('word', word);
   $('#title-inserted span').hide(125, function(){
     $(this).remove();
   });
   $('#title span').hide().remove();
-  startSmallPictureHelp();
+  original_word = word;
+  clearInterval(small_picture_help_interval);
+  resetGame(original_word, text_input.attr('data-word-id'), small_picture_help_interval_time);
 }
 
 //
@@ -226,7 +228,7 @@ function createLinkToPNGDownload(id) {
 
 // Make random words clickable
 function addInitialResizeBehaviour() {
-  $('.one-word').live('click', function(){
+  $('#random-words-container .one-word').live('click', function(){
     showSmallPictureAsBigWord(this);
   });
 }
