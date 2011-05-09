@@ -17,8 +17,6 @@
           #back-link
             = link_to t('back'), root_path
         #random-words-container
-          - if controller.class.eql?WordsController
-            = render 'shared/latest', :amount => 12
       #left-container
         = yield
       #right-container

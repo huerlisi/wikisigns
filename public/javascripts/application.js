@@ -77,24 +77,6 @@ function addColorizeTextBehaviour() {
 }
 
 
-// Random words
-// ============
-// Draw a new word at the top of the page.
-function drawLatestWords() {
-  $('#random-words-container .one-word .word').each(function(){
-    var text = $(this).next('.word-text').text().trim();
-    var word = drawWordAsImage($(this).attr('id'), text);
-
-    resizeWord(word, 50);
-    $(this).prev('table.carpet').hide();
-  });
-}
-
-// Sets the interval for new random entry at the top of the page.
-function addRandomLatestUpdateBehaviour() {
-  if($('#random-words-container').length > 0) window.setInterval(updateRandomLatest, 5000);
-}
-
 // Shows a new random entry at the top of the page.
 function updateRandomLatest() {
   var container = $('#random-words-container');
@@ -236,6 +218,7 @@ function createLinkToPNGDownload(id) {
 function addInitialResizeBehaviour() {
   $('#random-words-container .one-word').live('click', function(){
     showSmallPictureAsBigWord(this);
+    $(this).fadeOut(125).remove();
   });
 }
 
@@ -245,9 +228,6 @@ function initializeBehaviours() {
   addSessionWordsBehaviour();
 
   if($('#words').length > 0 || $('#word.svg').length > 0 || $('#facebook').length > 0 ){
-    addRandomLatestUpdateBehaviour();
-    drawLatestWords();
-
     showCanvasAndHideTableBehaviour();
     addRealtimeWordDrawingBehaviour();
     addInitialResizeBehaviour();

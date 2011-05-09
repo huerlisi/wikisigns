@@ -331,6 +331,9 @@ function checkWords() {
         $('h1#title-inserted span').remove();
         $('#word svg').remove();
         drawEmptyCarpet();
+        $('#random-words-container').append(oneWordDiv(word_id, guessed, false));
+        var word = drawWordAsImage('word_' + word_id, guessed);
+        resizeWord(word, 50);
         resetGame(data[1]['word']['word'], data[1]['word']['id']);
         updateScores(game['score']);
         send = false;
