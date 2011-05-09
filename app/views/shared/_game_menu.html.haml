@@ -2,7 +2,6 @@
   = link_to_function image_tag('icons/16x16/fast_backward.png'), 'reinitializeGuessingGame()', :id => 'reinitialize-guessing-game'
   - if current_user && current_user.from_facebook?
     = link_to image_tag('icons/16x16/facebook.png'), daily_score_user_path(current_user), :remote => true, :method => :post
-  - if current_user && user_signed_in?
-    = link_to_function image_tag('icons/16x16/play.png'), 'initializeShowSessionViewer()'
+  = link_to_function image_tag('icons/16x16/play.png'), 'initializeShowSessionViewer()'
   = link_to_function image_tag('icons/16x16/fast_forward.png'), 'getANewWord()'
 = render 'shared/login'
