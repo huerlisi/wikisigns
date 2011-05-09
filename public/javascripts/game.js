@@ -240,8 +240,7 @@ function randomizeWord() {
   var new_word;
   // Handle very short words
   if(original_word.length < 2) {
-    $('#title').html(drawColoredWord(original_word));
-    $('#title').fadeIn('slow');
+    $('#title').html(drawColoredWord(original_word)).fadeIn(125);
     return true;
   }
   
