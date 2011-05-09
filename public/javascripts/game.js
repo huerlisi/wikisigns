@@ -334,6 +334,7 @@ function checkWords() {
         $('#random-words-container').append(oneWordDiv(word_id, guessed, false));
         var word = drawWordAsImage('word_' + word_id, guessed);
         resizeWord(word, 50);
+        $('#random-words-container').animate({scrollTop: $('#random-words-container')[0].scrollHeight});
         resetGame(data[1]['word']['word'], data[1]['word']['id']);
         updateScores(game['score']);
         send = false;
