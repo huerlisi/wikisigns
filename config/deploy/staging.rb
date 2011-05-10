@@ -1,4 +1,4 @@
-set :rails_env, 'production'
+set :rails_env, 'staging'
 set :branch, "master"
 
 set :deploy_to, '/srv/cyt.ch/wikisigns'
