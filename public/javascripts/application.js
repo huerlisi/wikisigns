@@ -103,7 +103,6 @@ function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
   drawWordAsImage('word', $('#title').text().trim());
-  //$('#title').html(drawColoredWord(text_input.val().trim()));
 }
 
 // Draw a new word and submit it to the data base.
