@@ -1,11 +1,6 @@
 WikiSigns::Application.routes.draw do
 
   devise_for :users
-
-#  get '/auth/twitter/callback' do
-#    auth_hash = request.env['omniauth.auth']
-#  end
-#  match "/auth/:provider/callback" => "devise/sessions#create"
   
   # Root
   root :to => "words#index"
@@ -28,7 +23,7 @@ WikiSigns::Application.routes.draw do
 
   resources :games, :only => [:new]
 
-  resources :users, :only => [] do
+  resources :users, :only => [:edit, :show, :update] do
     member do
       post 'daily_score'
     end
