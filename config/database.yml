@@ -8,7 +8,7 @@ sqlite: &sqlite
 
 # MySQL
 mysql: &mysql
-  adapter:  mysql
+  adapter:  mysql2
   pool:     5
   timeout:  5000
   host:     localhost
