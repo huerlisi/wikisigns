@@ -17,9 +17,9 @@ class Word < ActiveRecord::Base
 
   # Scope for words without space in it.
   scope :without_space, where("words.word NOT LIKE '% %'")
-  # Scope for words with only ASCII chars without numbers
-  scope :without_special_chars, where("words.word REGEXP '^[a-zA-Z ]*$'")
-  # Scope for minimal length of 3 chars
+  # Scope for words with only ASCII chars without numbers.
+  scope :without_special_chars, where("words.word REGEXP '^[a-zA-Z]*$'")
+  # Scope for minimal length of 3 chars.
   scope :minimal_length, where("LENGTH(words.word) > 2")
 
   # The latest words, by default 12 entries.

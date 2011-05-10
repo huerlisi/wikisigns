@@ -274,10 +274,7 @@ var colors = Array(
 
 
 // Draws a word as an image.
-function drawWordAsImage(element, input_word, border_color) {
-  if(border_color == null) {
-    border_color = "#555";
-  }
+function drawWordAsImage(element, input_word) {
   var circle_dimension = 95;
   var margin = 8;
   var space = 7;
@@ -287,7 +284,7 @@ function drawWordAsImage(element, input_word, border_color) {
 
   // Drop shadow for carpet
   var paper_shadow = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, 10);
-  paper_shadow.attr({stroke: "none", fill: border_color, translation: "2,2"});
+  paper_shadow.attr({stroke: "none", fill: "#555", translation: "2,2"});
   paper_shadow.blur(2);
 
   // The carpet itself

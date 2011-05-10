@@ -4,7 +4,7 @@ var help_initial_interval_time = 15000;
 var help_interval;
 var help_interval_time = 5000;
 var small_picture_help_interval;
-var small_picture_help_interval_time = 2000;
+var small_picture_help_interval_time = 15000;
 
 // Counters
 var help_counter = 0;
@@ -34,27 +34,7 @@ var false_border_color = 'red';
 
 // Loads the guessing game on the root page.
 function initializeGame() {
-  $('a#get-new-word').click(function(e){
-    e.preventDefault();
-
-    $.ajax({
-      type: 'GET',
-      url: '/words/random.json?time=' + timeStamp(),
-      dataType: 'json',
-      cache: true,
-      beforeSend : function(xhr){
-       xhr.setRequestHeader("Accept", "application/json");
-      },
-      success: function(data){
-        original_word = data['word']['word'];
-        word_id = data['word']['id'];
-        reinitializeGuessingGame();
-      }
-    });
-  });
-
   $('#game-menu').show();
-
   $.ajax({
     type: 'GET',
     dataType: 'json',
@@ -127,6 +107,7 @@ function initializeWordClickBehaviour() {
 // Reinitialize the game
 // It's also used in app/views/shared/game_menu.
 function reinitializeGuessingGame() {
+  clearSessionViewerIntervals();
   resetGameGlobalVars();
   $('h1#title-inserted span').remove();
   $('h1#title-inserted').height('2.5em');
@@ -136,7 +117,28 @@ function reinitializeGuessingGame() {
   restartHelp();
 }
 
+// Gets a new random word.
+// It's used in app/views/shared/game_menu
+function getANewWord() {
+  clearSessionViewerIntervals();
+  $.ajax({
+    type: 'GET',
+    url: '/words/random.json?time=' + timeStamp(),
+    dataType: 'json',
+    cache: true,
+    beforeSend : function(xhr){
+     xhr.setRequestHeader("Accept", "application/json");
+    },
+    success: function(data){
+      original_word = data['word']['word'];
+      word_id = data['word']['id'];
+      reinitializeGuessingGame();
+    }
+  });
+}
+
 function resetGame(word, id, interval) {
+  clearSessionViewerIntervals();
   original_word = word;
   word_id = id;
   help_counter = 0;
@@ -165,21 +167,9 @@ function abortHelp() {
   clearHelpIntervals();
 }
 
-// Starts the special animation and help when a small picture was clicked.
-function startSmallPictureHelp() {
-  small_picture_help_interval = setInterval('startFirstSmallPictureHelp()', small_picture_help_interval_time)
-}
-
 function startFirstSmallPictureHelp() {
-  var letters = $('#title-inserted span');
-
   clearInterval(small_picture_help_interval);
-
-  letters.hide(125, function(){
-    letters.remove();
-  });
-
-  resetGame(text_input.val(), text_input.attr('data-word-id'), small_picture_help_interval_time);
+  resetGame(original_word, text_input.attr('data-word-id'), small_picture_help_interval_time);
 }
 
 // Shows the next letter as help.
@@ -200,6 +190,10 @@ function clearHelpIntervals() {
 
 // Updates scores
 function updateScores(score) {
+  if($('#last-score span').length > 0){
+    $('#last-score span').html(score);
+  }
+
   if($('#current-score span').length > 0){
     current_score = parseInt($('#current-score span').html().trim());
     $('#current-score span').html(current_score + score);
@@ -246,20 +240,14 @@ function randomizeWord() {
   var new_word;
   // Handle very short words
   if(original_word.length < 2) {
-    new_word = original_word;
+    $('#title').html(drawColoredWord(original_word)).fadeIn(125);
     return true;
   }
   
   // Shuffle
   new_word = $.shuffle(original_word.split('')).join('');
 
-  if(original_word == new_word){
-    randomizeWord();
-    return false;
-  }
-
-  $('#title').html(drawColoredWord(new_word));
-  $('#title').fadeIn('slow');
+  $('#title').html(drawColoredWord(new_word)).fadeIn(125);
   return true;
 }
 
@@ -343,6 +331,10 @@ function checkWords() {
         $('h1#title-inserted span').remove();
         $('#word svg').remove();
         drawEmptyCarpet();
+        $('#random-words-container').append(oneWordDiv(word_id, guessed, false));
+        var word = drawWordAsImage('word_' + word_id, guessed);
+        resizeWord(word, 50);
+        $('#random-words-container').animate({scrollTop: $('#random-words-container')[0].scrollHeight});
         resetGame(data[1]['word']['word'], data[1]['word']['id']);
         updateScores(game['score']);
         send = false;
@@ -351,11 +343,3 @@ function checkWords() {
   }
 }
 
-// Returns the border color for the word.
-function getBorderColor(won){
-  if(won){
-    return right_border_color;
-  }else{
-    return false_border_color;
-  }
-}

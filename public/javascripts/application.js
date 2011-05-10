@@ -37,22 +37,25 @@ function showSmallPictureAsBigWord(element) {
 
   random_word = $(element).attr('data-random-word');
   abortHelp();
-  word = $(element).children('.word-text').html().trim();
+  word = $(element).attr('data-word-word');
   text_input.attr('data-word-id', $(element).attr('data-word-id'));
-  text_input.val(word);
   $('#word svg').remove();
   drawWordAsImage($('#word'), word);
   $('#title-inserted').html(drawColoredWord(text_input.val()));
   $('#title span').hide(125, function(){
     $(this).remove();
   });
-  startSmallPictureHelp();
+  $('#title span').hide().remove();
+  original_word = word;
+  clearInterval(small_picture_help_interval);
+  resetGame(original_word, text_input.attr('data-word-id'), small_picture_help_interval_time);
 }
 
 //
 function addRealtimeWordDrawingBehaviour() {
   text_input.keyup(function(event){
     abortHelp();
+    clearSessionViewerIntervals();
     if(event.keyCode != 13) {
       $('#title').hide();
       $('#word').children().remove();
@@ -71,25 +74,6 @@ function addColorizeTextBehaviour() {
   var text_field = $('#title-inserted');
 
   text_field.html(drawColoredWord(text_field.text().trim()));
-}
-
-
-// Random words
-// ============
-// Draw a new word at the top of the page.
-function drawLatestWords() {
-  $('#random-words-container .one-word .word').each(function(){
-    var text = $(this).next('.word-text').text().trim();
-    var word = drawWordAsImage(this, text);
-
-    resizeWord(word, 50);
-    $(this).prev('table.carpet').hide();
-  });
-}
-
-// Sets the interval for new random entry at the top of the page.
-function addRandomLatestUpdateBehaviour() {
-  if($('#random-words-container').length > 0) window.setInterval(updateRandomLatest, 5000);
 }
 
 // Shows a new random entry at the top of the page.
@@ -120,7 +104,6 @@ function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
   drawWordAsImage($('#word'), $('#title').text().trim());
-  //$('#title').html(drawColoredWord(text_input.val().trim()));
 }
 
 // Draw a new word and submit it to the data base.
@@ -145,7 +128,12 @@ function displaySessionSmallWord(word_picture, text, id){
   $('#your-words .one-word:last-child').prepend(word_picture);
 
   var one_word = $('#your-words .one-word:last-child');
-
+  startSessionViewer();
+  one_word.click(function(){
+    $('#title').html(drawColoredWord(one_word.attr('data-word-word')));
+    $('#word svg').remove();
+    drawWordAsImage('word', one_word.attr('data-word-word'));
+  });
   // Actions
   one_word.append(generateShareLink(text));
   FB.XFBML.parse();
@@ -157,23 +145,24 @@ function displaySessionSmallWord(word_picture, text, id){
 // Returns the container for a small word.
 function oneWordDiv(id, text, random) {
   if(random == null) random = false;
-  return '<div class="one-word" data-random-word="' + random + '" data-word-id="' + id + '"><div id="word_' + id + '" class="word"></div><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div></div>';
+  return '<div class="one-word" data-random-word="' + random + '" data-word-id="' + id + '" data-word-word="' + text + '"><div id="word_' + id + '" class="word"></div><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div></div>';
 }
 
 // Submits and draws a new word.
 function newWord() {
   var next_word_id = $('#next_word_id') ? $('#next_word_id').val() : null;
   var text;
+  var word = text_input.val();
 
-  $('#title-inserted').html(drawColoredWord(text_input.val().trim()));
+  text_input.val('');
+  $('#title-inserted').html(drawColoredWord(word.trim()));
   text = $('#title-inserted').text().trim();
   addFocusTextFieldBehaviour();
-  $('#word').children().remove();
 
 
   $.ajax({
     type: 'POST',
-    data: { word : { word : text_input.val(), next_word : next_word_id} },
+    data: { word : { word : word, next_word : next_word_id} },
     url: '/words',
     dataType: 'json',
     success: function(data){
@@ -186,11 +175,13 @@ function newWord() {
         game = data[1]['new_word_game'];
       }
 
+      $('#word').children().remove();
       updateScores(game['score']);
+      $('#title span').remove();
+      $('#title').html(drawColoredWord(text));
       $('#title').show();
       $('#title-inserted span').remove();
-      displaySessionSmallWord(drawWordAsImage('#word', text, getBorderColor(game['won'])).clone(), text, id);
-      drawEmptyCarpet();
+      displaySessionSmallWord(drawWordAsImage('word', text).clone(), text, id);
 
       if($('.twitter-user').length>0){
         $('a.twitter-share-button').each(function(){
@@ -226,8 +217,9 @@ function createLinkToPNGDownload(id) {
 
 // Make random words clickable
 function addInitialResizeBehaviour() {
-  $('.one-word').live('click', function(){
+  $('#random-words-container .one-word').live('click', function(){
     showSmallPictureAsBigWord(this);
+    $(this).fadeOut(125).remove();
   });
 }
 
@@ -237,9 +229,6 @@ function initializeBehaviours() {
   addSessionWordsBehaviour();
 
   if($('#words').length > 0 || $('#word.svg').length > 0 || $('#facebook').length > 0 ){
-    addRandomLatestUpdateBehaviour();
-    drawLatestWords();
-
     showCanvasAndHideTableBehaviour();
     addRealtimeWordDrawingBehaviour();
     addInitialResizeBehaviour();
@@ -254,6 +243,13 @@ function initializeBehaviours() {
   if($('#show-word').length > 0){
     addColorizeTextBehaviour();
   }
+  initializeTooltips();
+}
+
+// iOS detection
+// Code snippet from: http://www.barklund.org/blog/2010/04/23/ipad-detection/
+function isAiOS() {
+  return (navigator && navigator.platform && navigator.platform.match(/^(iPad|iPod|iPhone)$/));
 }
 
 // Loads functions after DOM is ready

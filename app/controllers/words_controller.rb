@@ -42,7 +42,7 @@ class WordsController < ApplicationController
 
   # GET /words/new
   def new
-    last_word = params[:last_word] || 'Symbol'
+    last_word = params[:last_word] || ''
     params[:word] ||= {:word => last_word}
     params[:word] = JSON.parse params[:word] if params[:word].is_a? String
 
