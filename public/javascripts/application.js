@@ -39,7 +39,6 @@ function showSmallPictureAsBigWord(element) {
   abortHelp();
   word = $(element).attr('data-word-word');
   text_input.attr('data-word-id', $(element).attr('data-word-id'));
-  //text_input.val(word);
   $('#word svg').remove();
   drawWordAsImage('word', word);
   $('#title-inserted span').hide(125, function(){
