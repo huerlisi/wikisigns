@@ -153,10 +153,7 @@ function newWord() {
   var text;
   var word = text_input.val();
 
-  if(isAiOS()){
-    text_input.val('');
-  }
-
+  text_input.val('');
   $('#title-inserted').html(drawColoredWord(word.trim()));
   text = $('#title-inserted').text().trim();
   addFocusTextFieldBehaviour();
