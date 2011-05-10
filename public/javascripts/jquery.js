@@ -1,1 +1,1 @@
-jquery-1.4.4.js
+jquery-1.6.js
