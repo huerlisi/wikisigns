@@ -151,15 +151,20 @@ function oneWordDiv(id, text, random) {
 function newWord() {
   var next_word_id = $('#next_word_id') ? $('#next_word_id').val() : null;
   var text;
+  var word = text_input.val();
 
-  $('#title-inserted').html(drawColoredWord(text_input.val().trim()));
+  if(isAiOS()){
+    text_input.val('');
+  }
+
+  $('#title-inserted').html(drawColoredWord(word.trim()));
   text = $('#title-inserted').text().trim();
   addFocusTextFieldBehaviour();
 
 
   $.ajax({
     type: 'POST',
-    data: { word : { word : text_input.val(), next_word : next_word_id} },
+    data: { word : { word : word, next_word : next_word_id} },
     url: '/words',
     dataType: 'json',
     success: function(data){
@@ -240,6 +245,12 @@ function initializeBehaviours() {
   if($('#show-word').length > 0){
     addColorizeTextBehaviour();
   }
+}
+
+// iOS detection
+// Code snippet from: http://www.barklund.org/blog/2010/04/23/ipad-detection/
+function isAiOS() {
+  return (navigator && navigator.platform && navigator.platform.match(/^(iPad|iPod|iPhone)$/));
 }
 
 // Loads functions after DOM is ready
