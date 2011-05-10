@@ -28,4 +28,6 @@ WikiSigns::Application.routes.draw do
       post 'daily_score'
     end
   end
+
+  resources :gamers
 end

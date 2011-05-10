@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_filter :check_user
+
   def daily_score
     @user = User.find(params[:id])
 
@@ -14,5 +16,23 @@ class UsersController < ApplicationController
     @user.save
 
     render :json => @user
+  end
+
+  def edit
+    edit!
+  end
+
+  def update
+    update! do |format|
+      format.html {
+        redirect_to root_path
+      }
+    end
+  end
+
+  private
+
+  def check_user
+    redirect_to root_path unless user_signed_in?
   end
 end

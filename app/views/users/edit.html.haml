@@ -1,0 +1,8 @@
+= semantic_form_for @user, resource_url(@user) do |f|
+  = f.inputs :game_name
+  - if current_user.from_facebook?
+    = merge_twitter_login_button
+  - if current_user.from_twitter?
+    = merge_facebook_login_button
+  = f.buttons do
+    = f.commit_button

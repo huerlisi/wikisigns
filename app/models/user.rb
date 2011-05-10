@@ -1,6 +1,8 @@
 class User < Omnisocial::User
+
   has_many :games
   has_many :words
+  belongs_to :gamer
 
   def daily_score
     score = 0
