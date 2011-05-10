@@ -1,7 +1,7 @@
 #game-menu{:style => 'display:none;'}
-  = link_to_function image_tag('icons/16x16/fast_backward.png'), 'reinitializeGuessingGame()', :id => 'reinitialize-guessing-game'
+  = link_to_function image_tag('icons/16x16/fast_backward.png'), 'reinitializeGuessingGame()', :id => 'reinitialize-guessing-game', :'data-tooltip' => t('tooltip.restart')
   - if current_user && current_user.from_facebook?
-    = link_to image_tag('icons/16x16/facebook.png'), daily_score_user_path(current_user), :remote => true, :method => :post
-  = link_to_function image_tag('icons/16x16/play.png'), 'initializeShowSessionViewer()'
-  = link_to_function image_tag('icons/16x16/fast_forward.png'), 'getANewWord()'
+    = link_to image_tag('icons/16x16/facebook.png'), daily_score_user_path(current_user), :remote => true, :method => :post, :'data-tooltip' => t('tooltip.post_day_score_to_fb')
+  = link_to_function image_tag('icons/16x16/play.png'), 'initializeShowSessionViewer()', :'data-tooltip' => t('tooltip.session_show')
+  = link_to_function image_tag('icons/16x16/fast_forward.png'), 'getANewWord()', :'data-tooltip' => t('tooltip.get_new_word')
 = render 'shared/login'

@@ -27,11 +27,6 @@ de-CH:
     session_score: "Aktuelle Pimons:"
     total_score: "Gesamtpimons:"
     restart: "<<"
-    tooltip:
-      get_new_word: ein neues Wort
-      post_day_score_to_fb: TagesScore auf FB posten
-      restart: "zurücksetzen"
-      go: GO
     solutions:
       yours: die Punkte
       searched: gesuchte Lösungen
@@ -40,3 +35,11 @@ de-CH:
       score:
         text: Ich habe heute auf Wikisign.ch total %{score} Punkte erreicht.
         title: Das Wikisigns-Spiel
+  tooltip:
+    get_new_word: ein neues Wort
+    post_day_score_to_fb: TagesScore auf FB posten
+    restart: "zurücksetzen"
+    go: GO
+    login: Anmelden
+    logout: Abmelden
+    session_show: Spiel das Geschriebene als Film ab.

@@ -1,6 +1,6 @@
 - if controller.class.eql?WordsController
   #logins
     - unless user_signed_in?
-      = link_to image_tag('icons/16x16/sign_in.png'), login_path, :id => 'user-login'
+      = link_to image_tag('icons/16x16/sign_in.png'), login_path, :id => 'user-login', :'data-tooltip' => t('tooltip.login')
     - else
-      = link_to image_tag('icons/16x16/sign_out.png'), logout_path, :id => 'user-logout'
+      = link_to image_tag('icons/16x16/sign_out.png'), logout_path, :id => 'user-logout', :'data-tooltip' => t('tooltip.logout')

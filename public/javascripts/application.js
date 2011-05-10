@@ -245,6 +245,7 @@ function initializeBehaviours() {
   if($('#show-word').length > 0){
     addColorizeTextBehaviour();
   }
+  initializeTooltips();
 }
 
 // iOS detection
