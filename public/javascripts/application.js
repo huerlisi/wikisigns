@@ -59,7 +59,7 @@ function addRealtimeWordDrawingBehaviour() {
     if(event.keyCode != 13) {
       $('#title').hide();
       $('#word').children().remove();
-      drawWordAsImage('#word', $(this).val().trim());
+      drawWordAsImage('word', $(this).val().trim());
       $('#title-inserted').html(drawColoredWord($(this).val().trim()));
 
       if($(this).val().indexOf(' ', 0) > -1) {
@@ -93,7 +93,7 @@ function updateRandomLatest() {
       last_child.fadeOut(1000);
       last_child.replaceWith($(oneWordDiv(data['word']['id'], data['word']['word'], true)).fadeIn(1000));
       var word = drawWordAsImage('word_' + data['word']['id'], data['word']['word']);
-      resizeWord(word, 50);
+      //resizeWord(word, 50);
 
     }
   });
@@ -103,7 +103,7 @@ function updateRandomLatest() {
 function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
-  drawWordAsImage($('#word'), $('#title').text().trim());
+  drawWordAsImage('word', $('#title').text().trim());
 }
 
 // Draw a new word and submit it to the data base.
@@ -122,30 +122,11 @@ function addSessionWordsBehaviour(){
   });
 }
 
-function displaySessionSmallWord(word_picture, text, id){
-  word_picture = resizeWord(word_picture, 100);
-  $('#your-words').append(oneWordDiv(id, text, false));
-  $('#your-words .one-word:last-child').prepend(word_picture);
-
-  var one_word = $('#your-words .one-word:last-child');
-  startSessionViewer();
-  one_word.click(function(){
-    $('#title').html(drawColoredWord(one_word.attr('data-word-word')));
-    $('#word svg').remove();
-    drawWordAsImage('word', one_word.attr('data-word-word'));
-  });
-  // Actions
-  one_word.append(generateShareLink(text));
-  FB.XFBML.parse();
-  one_word.append(createLinkToPNGDownload(id));
-
-  $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
-}
-
 // Returns the container for a small word.
-function oneWordDiv(id, text, random) {
+function oneWordDiv(id, text, random, prefix) {
   if(random == null) random = false;
-  return '<div class="one-word" data-random-word="' + random + '" data-word-id="' + id + '" data-word-word="' + text + '"><div id="word_' + id + '" class="word"></div><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div></div>';
+  if(prefix == null) prefix = '';
+  return '<div class="one-word" data-random-word="' + random + '" data-word-id="' + id + '" data-word-word="' + text + '"><div id="word_' + prefix + id + '" class="word"></div><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div></div>';
 }
 
 // Submits and draws a new word.
@@ -181,7 +162,20 @@ function newWord() {
       $('#title').html(drawColoredWord(text));
       $('#title').show();
       $('#title-inserted span').remove();
-      displaySessionSmallWord(drawWordAsImage('word', text).clone(), text, id);
+      drawWordAsImage('word', text);
+      $('#your-words').append(oneWordDiv(id, text, false));
+      drawWordAsImage('word_' + id, text, 100);
+      var one_word = $('#your-words .one-word:last-child');
+      startSessionViewer();
+      one_word.click(function(){
+        $('#title').html(drawColoredWord(one_word.attr('data-word-word')));
+        $('#word svg').remove();
+        drawWordAsImage('word', one_word.attr('data-word-word'));
+      });
+      one_word.append(generateShareLink(text));
+      FB.XFBML.parse();
+      one_word.append(createLinkToPNGDownload(id));
+      $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
 
       if($('.twitter-user').length>0){
         $('a.twitter-share-button').each(function(){
@@ -194,15 +188,6 @@ function newWord() {
       $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + id + '" />');
     }
   })
-}
-
-// Resize word picture.
-function resizeWord(word_picture, size){
-  word_picture[0].setAttribute('viewBox', '1 1 430 430');
-  word_picture[0].setAttribute('width', size);
-  word_picture[0].setAttribute('height', size);
-
-  return word_picture;
 }
 
 // Sets focus to the input field.

@@ -331,9 +331,8 @@ function checkWords() {
         $('h1#title-inserted span').remove();
         $('#word svg').remove();
         drawEmptyCarpet();
-        $('#random-words-container').append(oneWordDiv(word_id, guessed, false));
-        var word = drawWordAsImage('word_' + word_id, guessed);
-        resizeWord(word, 50);
+        $('#random-words-container').append(oneWordDiv(word_id, guessed, false, 'guessed_'));
+        drawWordAsImage('word_guessed_' + word_id, guessed, 100);
         $('#random-words-container').animate({scrollTop: $('#random-words-container')[0].scrollHeight});
         resetGame(data[1]['word']['word'], data[1]['word']['id']);
         updateScores(game['score']);
