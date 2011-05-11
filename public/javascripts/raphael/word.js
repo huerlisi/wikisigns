@@ -272,22 +272,26 @@ var colors = Array(
 
 // Draws a word as an image.
 function drawWordAsImage(element, input_word, size) {
+  var big_size = 424;
+  if(size == null) size = big_size;
+  var scale = size / big_size;
   var circle_dimension = 95;
   var margin = 8;
   var space = 7;
-  var canvas_width = 424;
-  var canvas_height = 424;
+  var canvas_width = size;
+  var canvas_height = size;
   var word = input_word.toLowerCase();
   var paper_space = 7;
   var paper = Raphael(element, canvas_width, canvas_height);
+  var corner_radius = 10 * scale;
 
   // Drop shadow for carpet
-  var paper_shadow = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, 10);
+  var paper_shadow = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, corner_radius);
   paper_shadow.attr({stroke: "none", fill: "#555", translation: "2,2"});
   paper_shadow.blur(2);
 
   // The carpet itself
-  var paper_content = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, 10);
+  var paper_content = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, corner_radius);
   paper_content.attr({stroke: "none", fill: "#efefef"});
 
   // Paint all 4x4 blocks
@@ -300,23 +304,27 @@ function drawWordAsImage(element, input_word, size) {
       var point_color = pointColor(block_color);
       var point_width = pointWidth(block_color);
       var shadow;
+      var block;
 
+      if(scale != 1){
+        point_width = 1;
+      }
       // Inner Circle
       point_x = margin + circle_dimension/2 + space_x;
       point_y = margin + circle_dimension/2 + space_y;
-      var point = paper.circle(point_x, point_y, 5);
-      point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width})
+      var point = paper.circle(point_x * scale, point_y * scale, 5);
+      point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width});
       point.toBack();
+      point.scale(scale, scale);
 
       if (block_color != 'none') {
         // Block
-        var block = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
+        block = paper.rect((margin + space_x) * scale, (margin + space_y) * scale, circle_dimension * scale, circle_dimension * scale, corner_radius);
         block.attr({fill: block_color, stroke: 'none'});
-
         block.toBack();
 
         // Drop shadow
-        shadow = paper.rect(margin + space_x, margin + space_y, circle_dimension, circle_dimension, 10);
+        shadow = paper.rect((margin + space_x) * scale, (margin + space_y) * scale, circle_dimension * scale, circle_dimension * scale, corner_radius);
         shadow.attr({stroke: "none", fill: "gray", translation: "2,2"});
         shadow.blur(2);
         shadow.toBack();
@@ -347,12 +355,13 @@ function drawWordAsImage(element, input_word, size) {
 
   // Paint P
   if(hasALetterP(word)){
-    var letter_p = paper.circle(canvas_width/2.03, canvas_height/2.03, 5);
-    letter_p.attr({fill: 'none', stroke: 'grey', 'stroke-width': 7})
+    var letter_p = paper.circle(canvas_width/2.03, canvas_height/2.03, 5 * scale);
+    letter_p.attr({fill: 'none', stroke: 'grey', 'stroke-width': 7});
   }
 
   paper_content.toBack();
   paper_shadow.toBack();
+  paper.setSize(size, size);
 
   return $(element).find('svg');
 }
