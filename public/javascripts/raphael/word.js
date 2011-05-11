@@ -1,6 +1,3 @@
-var canvas_width = 424;
-var canvas_height = 424;
-
 var letters = new Array(4);
 
 letters[0] = new Array(4);
@@ -274,10 +271,12 @@ var colors = Array(
 
 
 // Draws a word as an image.
-function drawWordAsImage(element, input_word) {
+function drawWordAsImage(element, input_word, size) {
   var circle_dimension = 95;
   var margin = 8;
   var space = 7;
+  var canvas_width = 424;
+  var canvas_height = 424;
   var word = input_word.toLowerCase();
   var paper_space = 7;
   var paper = Raphael(element, canvas_width, canvas_height);
