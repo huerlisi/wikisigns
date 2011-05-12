@@ -115,6 +115,7 @@ function reinitializeGuessingGame() {
   drawEmptyCarpet();
   initializeWordClickBehaviour();
   restartHelp();
+  showPlayAndHidePauseButton();
 }
 
 // Gets a new random word.

@@ -13,9 +13,7 @@ function startSessionViewer() {
 function initializeShowSessionViewer() {
   clearSessionViewerIntervals();
   session_viewer = setInterval('showSessionViewer()', 1000);
-  $('#start-session-show').hide(0, function(){
-    $('#pause-session-show').show();
-  })
+  showPauseAndHidePlayButton();
 }
 
 // Starts the session viewer.
@@ -23,18 +21,14 @@ function initializeShowSessionViewer() {
 function playSessionViewer() {
   clearSessionViewerIntervals();
   session_viewer = setInterval('showSessionViewer()', 1000);
-  $('#start-session-show').hide(0, function(){
-    $('#pause-session-show').show();
-  })
+  showPauseAndHidePlayButton();
 }
 
 // Pauses the session viewer.
 // Trigger is in app/views/shared/game_menu
 function pauseSessionViewer() {
   clearSessionViewerIntervals();
- $('#pause-session-show').hide(0, function(){
-  $('#start-session-show').show();
- });
+  showPlayAndHidePauseButton();
 }
 
 // Show a picture as session viewer
@@ -53,6 +47,20 @@ function clearSessionViewerIntervals() {
   clearInterval(session_viewer_start);
   clearInterval(session_viewer);
   clearTimeout(session_viewer_timeout);
+}
+
+// Shows the play button and hides the pause button.
+function showPlayAndHidePauseButton() {
+ $('#pause-session-show').hide(0, function(){
+  $('#start-session-show').show();
+ });
+}
+
+// Shows the pause button and hides the play button.
+function showPauseAndHidePlayButton() {
+  $('#start-session-show').hide(0, function(){
+    $('#pause-session-show').show();
+  })
 }
 
 function shareSessionLink() {
