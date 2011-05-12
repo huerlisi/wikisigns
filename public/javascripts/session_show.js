@@ -37,7 +37,7 @@ function showSessionViewer() {
   if($('#your-words .one-word').length < picture_to_show){
     picture_to_show = 1;
   }
-  $('#your-words .one-word:nth-child(' + picture_to_show + ')').trigger('click');
+  showAsBigWord($('#your-words .one-word:nth-child(' + picture_to_show + ')'));
   picture_to_show++;
   session_viewer_timeout = setTimeout('showSessionViewer()', 2000);
 }
