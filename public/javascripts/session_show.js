@@ -6,7 +6,7 @@ var session_viewer_timeout;
 // Start the session viewers show.
 function startSessionViewer() {
   clearSessionViewerIntervals();
-  session_viewer_start = setInterval('initializeShowSessionViewer()', 30000)
+  session_viewer_start = setInterval('initializeShowSessionViewer()', 60000)
 }
 
 // Continue with the session viewer show.
