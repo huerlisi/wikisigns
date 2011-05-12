@@ -353,6 +353,7 @@ function checkWords() {
           $('h1#title-inserted span').remove();
           resetGame(data['word']['word'], data['word']['id']);
           $('#title').show();
+          send = false;
         }
       });
     }
