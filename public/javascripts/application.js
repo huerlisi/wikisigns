@@ -76,29 +76,6 @@ function addColorizeTextBehaviour() {
   text_field.html(drawColoredWord(text_field.text().trim()));
 }
 
-// Shows a new random entry at the top of the page.
-function updateRandomLatest() {
-  var container = $('#random-words-container');
-  var last_child = container.children('.one-word').eq(Math.floor(Math.random()*11));
-
-  $.ajax({
-    type: 'GET',
-    url: '/words/random?time=' + timeStamp(),
-    dataType: 'json',
-    beforeSend : function(xhr){
-      xhr.setRequestHeader("Accept", "application/json");
-    },
-    success: function(data){
-
-      last_child.fadeOut(1000);
-      last_child.replaceWith($(oneWordDiv(data['word']['id'], data['word']['word'], true)).fadeIn(1000));
-      var word = drawWordAsImage('word_' + data['word']['id'], data['word']['word']);
-      //resizeWord(word, 50);
-
-    }
-  });
-}
-
 // Hides the table variant and shows the canvas alternative.
 function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
@@ -186,20 +163,6 @@ function newWord() {
       $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + id + '" />');
     }
   })
-}
-
-function showAsBigWord(element, click_on_element) {
-  if(click_on_element == null) click_on_element = false;
-  text_input.val('');
-  $('#title-inserted span').remove();
-  $('#title').show();
-  $('#title').html(drawColoredWord(element.attr('data-word-word')));
-  $('#word svg').remove();
-  drawWordAsImage('word', element.attr('data-word-word'));
-  if(click_on_element) {
-    clearSessionViewerIntervals();
-    showPlayAndHidePauseButton();
-  }
 }
 
 // Sets focus to the input field.
