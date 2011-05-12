@@ -14,6 +14,25 @@ function initializeShowSessionViewer() {
   session_viewer = setInterval('showSessionViewer()', 1000);
 }
 
+// Starts the session viewer.
+// Trigger is in app/views/shared/game_menu
+function playSessionViewer() {
+  clearSessionViewerIntervals();
+  session_viewer = setInterval('showSessionViewer()', 1000);
+  $('#start-session-show').hide(0, function(){
+    $('#pause-session-show').show();
+  })
+}
+
+// Pauses the session viewer.
+// Trigger is in app/views/shared/game_menu
+function pauseSessionViewer() {
+  clearSessionViewerIntervals();
+ $('#pause-session-show').hide(0, function(){
+  $('#start-session-show').show();
+ });
+}
+
 // Show a picture as session viewer
 function showSessionViewer() {
   if($('#your-words .one-word').length < picture_to_show){
@@ -27,4 +46,8 @@ function showSessionViewer() {
 function clearSessionViewerIntervals() {
   clearInterval(session_viewer_start);
   clearInterval(session_viewer);
+}
+
+function shareSessionLink() {
+
 }
