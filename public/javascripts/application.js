@@ -80,7 +80,7 @@ function addColorizeTextBehaviour() {
 function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
-  drawWordAsImage('word', $('#title').text().trim());
+  drawWordAsImage('word', '');
 }
 
 // Draw a new word and submit it to the data base.
