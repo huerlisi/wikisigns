@@ -26,3 +26,6 @@ test:
 
 production:
   <<: *production
+
+staging:
+  <<: *production
