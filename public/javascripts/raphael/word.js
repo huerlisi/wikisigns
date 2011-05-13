@@ -280,6 +280,10 @@ function drawWordAsImage(element, input_word, size) {
   var space = 7;
   var canvas_width = size;
   var canvas_height = size;
+  if(scale < 1){
+    canvas_height += 4;
+    canvas_width += 4;
+  }
   var word = input_word.toLowerCase();
   var paper_space = 7;
   var paper = Raphael(element, canvas_width, canvas_height);
@@ -305,26 +309,32 @@ function drawWordAsImage(element, input_word, size) {
       var point_width = pointWidth(block_color);
       var shadow;
       var block;
+      var offset_y = 0;
+      var offset_x = 0;
 
       if(scale != 1){
         point_width = 1;
       }
+      if(scale < 1){
+        offset_y = 1.5;
+        offset_x = 1.5;
+      }
       // Inner Circle
       point_x = margin + circle_dimension/2 + space_x;
       point_y = margin + circle_dimension/2 + space_y;
-      var point = paper.circle(point_x * scale, point_y * scale, 5);
+      var point = paper.circle(offset_x + (point_x * scale), offset_y + (point_y * scale), 5);
       point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width});
       point.toBack();
       point.scale(scale, scale);
 
       if (block_color != 'none') {
         // Block
-        block = paper.rect((margin + space_x) * scale, (margin + space_y) * scale, circle_dimension * scale, circle_dimension * scale, corner_radius);
+        block = paper.rect(offset_x + ((margin + space_x) * scale), offset_y + ((margin + space_y) * scale), circle_dimension * scale, circle_dimension * scale, corner_radius);
         block.attr({fill: block_color, stroke: 'none'});
         block.toBack();
 
         // Drop shadow
-        shadow = paper.rect((margin + space_x) * scale, (margin + space_y) * scale, circle_dimension * scale, circle_dimension * scale, corner_radius);
+        shadow = paper.rect((margin + space_x) * scale, offset_y + ((margin + space_y) * scale), circle_dimension * scale, circle_dimension * scale, corner_radius);
         shadow.attr({stroke: "none", fill: "gray", translation: "2,2"});
         shadow.blur(2);
         shadow.toBack();
