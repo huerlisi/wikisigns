@@ -3,7 +3,7 @@ var help_initial_interval;
 var help_initial_interval_time = 15000;
 var help_interval;
 var help_interval_time = 5000;
-var alphabet_interval_time = 500;
+var alphabet_interval_time = 314*3.14;
 var small_picture_help_interval;
 var small_picture_help_interval_time = 15000;
 
