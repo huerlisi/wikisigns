@@ -48,7 +48,6 @@ function showSessionViewer() {
 
   showAsBigWord($('#your-words .one-word:nth-child(' + picture_to_show + ')'));
   picture_to_show++;
-  session_viewer_timeout = setTimeout('showSessionViewer()', timeout);
 }
 
 // Clears all intervals that are used for the session viewer.
@@ -56,6 +55,9 @@ function clearSessionViewerIntervals() {
   clearInterval(session_viewer_start);
   clearInterval(session_viewer);
   clearTimeout(session_viewer_timeout);
+  session_viewer = null;
+  session_viewer_start = null;
+  session_viewer_timeout = null;
 }
 
 // Shows the play button and hides the pause button.
