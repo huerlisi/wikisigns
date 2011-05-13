@@ -43,7 +43,7 @@ function showSessionViewer() {
   }
 
   if(length == picture_to_show) {
-    timeout = timeout * 5 * 3; // 30 seconds timeout after the last word.
+    timeout = timeout * 3.14; // 30 seconds timeout after the last word.
   }
 
   showAsBigWord($('#your-words .one-word:nth-child(' + picture_to_show + ')'));
