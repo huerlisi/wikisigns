@@ -73,7 +73,7 @@ function initializeWordClickBehaviour() {
 
         $(this).fadeOut(125, function(){
           $('#title-inserted').append($(this).clone().hide(0, function(){
-            $(this).fadeIn('slow', function(){
+            $(this).fadeIn(125, function(){
 
               $('h1#title-inserted').removeAttr('style');
               $(this).attr(DATA_WORD_COUNTER, word_counter);
