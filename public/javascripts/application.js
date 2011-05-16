@@ -142,7 +142,7 @@ function newWord() {
       });
       $('#word-menu').hide();
       $('#word-menu *').remove();
-      $('#word-menu').append(generateShareLink(text)).append(createLinkToPNGDownload(id)).fadeIn(250);
+      $('#word-menu').append(generateShareLink(text)).append(createLinkToPNGDownload(text)).fadeIn(250);
       FB.XFBML.parse();
       $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
 
@@ -165,8 +165,8 @@ function addFocusTextFieldBehaviour() {
 }
 
 // Creates a div with a link to the PNG of the word id.
-function createLinkToPNGDownload(id) {
-  return '<div class="png-download-link"><a href="/words/' + id +'/svg.png?download=true">Als Bild speichern</a></div>'
+function createLinkToPNGDownload(word) {
+  return '<div class="png-download-link"><a href="/word/' + word +'.png?download=true">Als Bild speichern</a></div>'
 }
 
 // Make random words clickable

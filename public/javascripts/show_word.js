@@ -24,7 +24,7 @@ function showAsBigWord(element, click_on_element) {
 
   $('#word-menu').hide();
   $('#word-menu *').remove();
-  $('#word-menu').append(generateShareLink(original_word)).append(createLinkToPNGDownload(element.attr('data-word-id'))).fadeIn(250);
+  $('#word-menu').append(generateShareLink(original_word)).append(createLinkToPNGDownload(element.attr('data-word-word'))).fadeIn(250);
   FB.XFBML.parse();
 }
 

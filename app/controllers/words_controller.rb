@@ -33,6 +33,21 @@ class WordsController < ApplicationController
   def show_by_slug
     @word = Word.find_by_word(params[:slug])
     @word ||= Word.new(:word => params[:slug])
+
+    show! do |format|
+      format.jpg do
+        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
+                                                   :format => 'jpg', :quality => 60).to_img,
+                                                   :type => image_content_type("jpeg", params[:download]),
+                              :disposition => disposition(params[:download]) )
+      end
+      format.png do
+        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
+                                                   :format => 'png', :quality => 60).to_img,
+                                                   :type => image_content_type("png", params[:download]),
+                              :disposition => disposition(params[:download]) )
+      end
+    end
   end
   
   # GET /words
