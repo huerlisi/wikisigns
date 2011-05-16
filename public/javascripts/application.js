@@ -40,7 +40,7 @@ function showSmallPictureAsBigWord(element) {
   word = $(element).attr('data-word-word');
   text_input.attr('data-word-id', $(element).attr('data-word-id'));
   $('#word svg').remove();
-  drawWordAsImage($('#word'), word);
+  drawWordAsImage('word', word);
   $('#title-inserted').html(drawColoredWord(text_input.val()));
   $('#title span').hide(125, function(){
     $(this).remove();
