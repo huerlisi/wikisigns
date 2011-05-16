@@ -190,6 +190,10 @@ function initializeBehaviours() {
     // Game merge
     if(!$('#facebook').length > 0){
       initializeGame();
+      var speed = 314*3.14*3.14;
+      setTimeout(function() {
+        showNewRandomWord(speed)
+      }, speed);
     }
   }
 
