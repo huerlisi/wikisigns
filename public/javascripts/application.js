@@ -12,24 +12,18 @@ function timeStamp() {
 function generateShareLink(slug) {
   var link = "";
 
-  if($('.facebook-user').length>0){
     link = '<fb:like layout="button_count" href="http://' + window.location.hostname + '/word/' + slug + '"></fb:like>';
-  }
 
-  if($('.twitter-user').length>0){
+
+  link += '<br/>';
+
     var url = 'http://' + window.location.hostname + '/word/' + slug;
 
-    link = '<div class="social-media-links"><a class="twitter-share-button" href="http://twitter.com/share" data-url="' + url + '">Tweet</a></div>';
+    link += '<div class="social-media-links"><a class="twitter-share-button" href="http://twitter.com/share" data-url="' + url + '">Tweet</a></div>';
     link += '<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>';
-  }
 
   return link;
 }
-
-function addReshareBehaviour() {
-  $('#slug-word-share').html(generateShareLink(text_input.val().trim()));
-}
-
 
 // Shows a small word picture in the big main word.
 function showSmallPictureAsBigWord(element) {
@@ -191,7 +185,7 @@ function initializeBehaviours() {
     showCanvasAndHideTableBehaviour();
     addRealtimeWordDrawingBehaviour();
     addInitialResizeBehaviour();
-    addReshareBehaviour();
+    $('#slug-word-share').html(generateShareLink(text_input.val().trim()));
     // Game merge
     if(!$('#facebook').length > 0){
       initializeGame();
