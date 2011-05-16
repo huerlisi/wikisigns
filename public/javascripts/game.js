@@ -296,9 +296,9 @@ function moveLetterFromBottomToTop(letter){
 // Checks if the guessed word has the same length and shows the result of the guessing.
 function checkWords() {
   // Checks if all letters has been selected.
-  if(guessed_word.length == original_word.length && !send) {
+  if($('#title-inserted span').length == original_word.length && !send) {
     send = true;
-    var guessed = guessed_word;
+    var guessed = $('#title-inserted').text();
     var original = original_word;
     var div_class = '';
 
