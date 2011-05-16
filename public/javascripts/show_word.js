@@ -46,6 +46,8 @@ function drawWord() {
       });
     });
   }else{
+    $('#word svg').remove();
+    drawWordAsImage('word', '');
     clearInterval(show_word_interval);
     session_viewer_timeout = setTimeout('showSessionViewer()', letter_speed);
   }
