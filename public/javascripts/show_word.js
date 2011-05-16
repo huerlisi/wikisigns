@@ -21,6 +21,11 @@ function showAsBigWord(element, click_on_element) {
   }else{
     setTimeout('startShowWord()', letter_speed);
   }
+
+  $('#word-menu').hide();
+  $('#word-menu *').remove();
+  $('#word-menu').append(generateShareLink(original_word)).append(createLinkToPNGDownload(element.attr('data-word-id'))).fadeIn(250);
+  FB.XFBML.parse();
 }
 
 function startShowWord() {

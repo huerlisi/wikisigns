@@ -140,9 +140,10 @@ function newWord() {
       one_word.click(function(){
         showAsBigWord(one_word, true);
       });
-      one_word.append(generateShareLink(text));
+      $('#word-menu').hide();
+      $('#word-menu *').remove();
+      $('#word-menu').append(generateShareLink(text)).append(createLinkToPNGDownload(id)).fadeIn(250);
       FB.XFBML.parse();
-      one_word.append(createLinkToPNGDownload(id));
       $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
 
       if($('.twitter-user').length>0){
