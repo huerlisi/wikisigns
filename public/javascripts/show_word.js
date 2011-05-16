@@ -68,7 +68,6 @@ function showNewRandomWord(speed) {
      xhr.setRequestHeader("Accept", "application/json");
     },
     success: function(data){
-      console.log(data['word']['word']);
       $('#random-words-container').append(oneWordDiv(data['word']['id'], data['word']['word'], false, 'random_'));
       drawWordAsImage('word_random_' + data['word']['id'], data['word']['word'], 100);
       setTimeout(function(){
