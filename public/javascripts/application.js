@@ -46,9 +46,8 @@ function showSmallPictureAsBigWord(element) {
     $(this).remove();
   });
   $('#title span').hide().remove();
-  original_word = word;
   clearInterval(small_picture_help_interval);
-  resetGame(original_word, text_input.attr('data-word-id'), small_picture_help_interval_time);
+  resetGame(word, text_input.attr('data-word-id'), small_picture_help_interval_time);
 }
 
 //
