@@ -2,6 +2,7 @@ var letter_speed = 314 * 3.14;
 var show_word_interval;
 var show_word_counter;
 var shown_word;
+var draw_word_interval;
 
 function showAsBigWord(element, click_on_element) {
   if(click_on_element == null) click_on_element = false;
@@ -32,7 +33,7 @@ function startShowWord() {
   $('#word svg').remove();
   drawWordAsImage('word', '');
   show_word_counter = 1;
-  setTimeout('drawWord()', letter_speed);
+  draw_word_interval = setInterval('drawWord()', letter_speed);
   //session_viewer_timeout = setTimeout('showSessionViewer()', timeout);
 }
 
@@ -47,13 +48,13 @@ function drawWord() {
         $('#word svg').remove();
         drawWordAsImage('word', shown_word);
         show_word_counter++;
-        setTimeout('drawWord()', letter_speed);
       });
     });
   }else{
     $('#word svg').remove();
     drawWordAsImage('word', '');
     clearInterval(show_word_interval);
+    clearInterval(draw_word_interval);
     session_viewer_timeout = setTimeout('showSessionViewer()', letter_speed);
   }
 }
@@ -70,9 +71,11 @@ function showNewRandomWord(speed) {
     success: function(data){
       $('#random-words-container').append(oneWordDiv(data['word']['id'], data['word']['word'], false, 'random_'));
       drawWordAsImage('word_random_' + data['word']['id'], data['word']['word'], 100);
-      setTimeout(function(){
-        showNewRandomWord(speed);
-      }, speed);
+      $('#random-words-container').animate({scrollTop: $('#random-words-container')[0].scrollHeight}, function(){
+        setTimeout(function(){
+          showNewRandomWord(speed);
+        }, speed);
+      });
     }
   });
 }
