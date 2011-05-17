@@ -366,7 +366,7 @@ function drawWordAsImage(element, input_word, size) {
   // Paint P
   if(hasALetterP(word)){
     var letter_p = paper.circle(canvas_width/2.03, canvas_height/2.03, 5 * scale);
-    letter_p.attr({fill: 'none', stroke: 'grey', 'stroke-width': 7});
+    letter_p.attr({fill: 'none', stroke: 'grey', 'stroke-width': 7 * scale});
   }
 
   paper_content.toBack();
