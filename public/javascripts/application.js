@@ -25,26 +25,7 @@ function generateShareLink(slug) {
   return link;
 }
 
-// Shows a small word picture in the big main word.
-function showSmallPictureAsBigWord(element) {
-  var word = '';
-
-  random_word = $(element).attr('data-random-word');
-  abortHelp();
-  word = $(element).attr('data-word-word');
-  text_input.attr('data-word-id', $(element).attr('data-word-id'));
-  $('#word svg').remove();
-  drawWordAsImage('word', word);
-  $('#title-inserted').html(drawColoredWord(text_input.val()));
-  $('#title span').hide(125, function(){
-    $(this).remove();
-  });
-  $('#title span').hide().remove();
-  clearInterval(small_picture_help_interval);
-  resetGame(word, text_input.attr('data-word-id'), small_picture_help_interval_time);
-}
-
-//
+// Redraws after every key type the word.
 function addRealtimeWordDrawingBehaviour() {
   text_input.keyup(function(event){
     abortHelp();
@@ -172,7 +153,7 @@ function createLinkToPNGDownload(word) {
 // Make random words clickable
 function addInitialResizeBehaviour() {
   $('#random-words-container .one-word').live('click', function(){
-    showSmallPictureAsBigWord(this);
+    showAsBigWord($(this), true);
     $(this).fadeOut(125).remove();
   });
 }
