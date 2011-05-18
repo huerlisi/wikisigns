@@ -15,4 +15,8 @@ class User < Omnisocial::User
 
     score
   end
+
+  def graph
+    Koala::Facebook::GraphAPI.new(self.access_token)
+  end
 end
