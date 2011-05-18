@@ -122,8 +122,11 @@ class WordsController < ApplicationController
   def publish
     if current_user && user_signed_in? && current_user.from_facebook?
       @word = Word.find(params[:id])
-      picture = IMGKit.new(svg_word_url(@word), :'crop-w' => 440, :format => 'png', :quality => 60).to_img
-      current_user.publish_word_on_fb(picture)
+      file_path = "#{Rails.root}/tmp/#{@word.id}_#{@word.word}.png"
+      IMGKit.new(svg_word_url(@word), :'crop-w' => 440, :format => 'png', :quality => 60).to_file(file_path)
+      current_user.publish_on_fb(file_path, @word.word)
+
+      redirect_to :root
     end
   end
 end

@@ -20,7 +20,7 @@ class User < Omnisocial::User
     Koala::Facebook::GraphAPI.new(self.access_token)
   end
 
-  def publish_word_on_fb(picture)
-    self.graph.put_picture(picture, 'image/png')
+  def publish_on_fb(img_path, word)
+    self.graph.put_picture(img_path, 'image/png', {:message => "#{word} on http://wikisigns.ch/word/#{word}"})
   end
 end
