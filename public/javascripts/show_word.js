@@ -34,7 +34,6 @@ function startShowWord() {
   drawWordAsImage('word', '');
   show_word_counter = 1;
   draw_word_interval = setInterval('drawWord()', letter_speed);
-  //session_viewer_timeout = setTimeout('showSessionViewer()', timeout);
 }
 
 function drawWord() {
