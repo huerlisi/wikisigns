@@ -16,6 +16,7 @@ WikiSigns::Application.routes.draw do
     end
     member do
       get 'svg'
+      get 'publish'
     end
 
     resources :games, :only => [:create, :show]

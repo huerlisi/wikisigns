@@ -19,4 +19,8 @@ class User < Omnisocial::User
   def graph
     Koala::Facebook::GraphAPI.new(self.access_token)
   end
+
+  def publish_word_on_fb(picture)
+    self.graph.put_picture(picture, 'image/png')
+  end
 end
