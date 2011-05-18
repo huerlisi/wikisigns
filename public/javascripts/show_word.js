@@ -6,7 +6,7 @@ var draw_word_interval;
 
 function showAsBigWord(element, click_on_element) {
   if(click_on_element == null) click_on_element = false;
-  text_input.val('');
+  $('#word_word').val('');
   $('#title-inserted span').remove();
   $('#title').show();
   original_word = element.attr('data-word-word');

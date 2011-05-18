@@ -170,7 +170,7 @@ function abortHelp() {
 
 function startFirstSmallPictureHelp() {
   clearInterval(small_picture_help_interval);
-  resetGame(original_word, text_input.attr('data-word-id'), small_picture_help_interval_time);
+  resetGame(original_word, $('#word_word').attr('data-word-id'), small_picture_help_interval_time);
 }
 
 // Shows the next letter as help.

@@ -1,5 +1,3 @@
-var text_input = $('#word_word');
-
 // Returns a timestamp string, used for ajax requests.
 function timeStamp() {
   var time = new Date().getTime();
@@ -27,7 +25,7 @@ function generateShareLink(slug) {
 
 // Redraws after every key type the word.
 function addRealtimeWordDrawingBehaviour() {
-  text_input.keyup(function(event){
+  $('#word_word').keyup(function(event){
     abortHelp();
     clearSessionViewerIntervals();
     if(event.keyCode != 13) {
@@ -84,9 +82,9 @@ function oneWordDiv(id, text, random, prefix) {
 function newWord() {
   var next_word_id = $('#next_word_id') ? $('#next_word_id').val() : null;
   var text;
-  var word = text_input.val();
+  var word = $('#word_word').val();
 
-  text_input.val('');
+  $('#word_word').val('');
   $('#title-inserted').html(drawColoredWord(word.trim()));
   text = $('#title-inserted').text().trim();
   addFocusTextFieldBehaviour();
@@ -142,7 +140,7 @@ function newWord() {
 
 // Sets focus to the input field.
 function addFocusTextFieldBehaviour() {
-  text_input.focus().select();
+  $('#word_word').focus().select();
 }
 
 // Creates a div with a link to the PNG of the word id.
@@ -167,7 +165,7 @@ function initializeBehaviours() {
     showCanvasAndHideTableBehaviour();
     addRealtimeWordDrawingBehaviour();
     addInitialResizeBehaviour();
-    $('#slug-word-share').html(generateShareLink(text_input.val().trim()));
+    $('#slug-word-share').html(generateShareLink($('#word_word').val().trim()));
     // Game merge
     if(!$('#facebook').length > 0){
       initializeGame();
