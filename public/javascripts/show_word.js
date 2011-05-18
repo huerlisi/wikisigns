@@ -4,14 +4,14 @@ var show_word_counter;
 var shown_word;
 var draw_word_interval;
 
-function showAsBigWord(element, click_on_element) {
+function showAsBigWord(element, click_on_element, start_game) {
   if(click_on_element == null) click_on_element = false;
   $('#word_word').val('');
   $('#title-inserted span').remove();
   $('#title').show();
   original_word = element.attr('data-word-word');
   shown_word = '';
-  $('#title').html(drawColoredWord(element.attr('data-word-word')));
+  if(start_game ==  null) $('#title').html(drawColoredWord(element.attr('data-word-word')));
   $('#word svg').remove();
   drawWordAsImage('word', element.attr('data-word-word'));
   clearSessionViewerIntervals();
@@ -23,10 +23,16 @@ function showAsBigWord(element, click_on_element) {
     setTimeout('startShowWord()', letter_speed);
   }
 
-  $('#word-menu').hide();
-  $('#word-menu *').remove();
-  $('#word-menu').append(generateShareLink(original_word)).append(createLinkToPNGDownload(element.attr('data-word-word'))).fadeIn(250);
-  FB.XFBML.parse();
+  $('#word-menu').hide(0, function(){
+    $('#word-menu *').remove();
+    $('#word-menu').append(generateShareLink(element.attr('data-word-word'))).append(createLinkToPNGDownload(element.attr('data-word-word'))).fadeIn(250, function(){
+      FB.XFBML.parse();
+      if(start_game != null){
+        clearInterval(small_picture_help_interval);
+        resetGame(element.attr('data-word-word'), element.attr('data-word-id'), small_picture_help_interval_time);
+      }
+    });
+  });
 }
 
 function startShowWord() {

@@ -151,7 +151,7 @@ function createLinkToPNGDownload(word) {
 // Make random words clickable
 function addInitialResizeBehaviour() {
   $('#random-words-container .one-word').live('click', function(){
-    showAsBigWord($(this), true);
+    showAsBigWord($(this), true, true);
     $(this).fadeOut(125).remove();
   });
 }
