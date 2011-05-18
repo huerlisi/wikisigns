@@ -161,7 +161,7 @@ function initializeBehaviours() {
   addFocusTextFieldBehaviour();
   addSessionWordsBehaviour();
 
-  if($('#words').length > 0 || $('#word.svg').length > 0 || $('#facebook').length > 0 ){
+  if($('#words').length > 0 || $('#facebook').length > 0 ){
     showCanvasAndHideTableBehaviour();
     addRealtimeWordDrawingBehaviour();
     addInitialResizeBehaviour();
@@ -174,6 +174,10 @@ function initializeBehaviours() {
         showNewRandomWord(speed)
       }, speed);
     }
+  }
+
+  if($('#word.svg').length > 0) {
+    drawWordAsImage('word', $('#title').text());
   }
 
   // initialize only on /words/:id page.
