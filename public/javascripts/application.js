@@ -9,16 +9,14 @@ function timeStamp() {
 // Adds the tweet or facebook-like button for resharing.
 function generateShareLink(slug) {
   var link = "";
+  var url = 'http://' + window.location.hostname + '/word/' + slug;
 
-    link = '<fb:like layout="button_count" href="http://' + window.location.hostname + '/word/' + slug + '"></fb:like>';
-
-
+  link = '<fb:like layout="button_count" href="http://' + window.location.hostname + '/word/' + slug + '"></fb:like>';
   link += '<br/>';
-
-    var url = 'http://' + window.location.hostname + '/word/' + slug;
-
-    link += '<div class="social-media-links"><a class="twitter-share-button" href="http://twitter.com/share" data-url="' + url + '">Tweet</a></div>';
-    link += '<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>';
+  link += '<fb:send href="http://' + window.location.hostname + '/word/' + slug + '"></fb:send>';
+  link += '<br/>';
+  link += '<div class="social-media-links"><a class="twitter-share-button" href="http://twitter.com/share" data-url="' + url + '">Tweet</a></div>';
+  link += '<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>';
 
   return link;
 }
@@ -121,8 +119,9 @@ function newWord() {
       });
       $('#word-menu').hide();
       $('#word-menu *').remove();
-      $('#word-menu').append(generateShareLink(text)).append(createLinkToPNGDownload(text)).fadeIn(250);
-      FB.XFBML.parse();
+      $('#word-menu').append(generateShareLink(text)).append(createLinkToPNGDownload(text)).fadeIn(250, function(){
+        FB.XFBML.parse();
+      });
       $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
 
       if($('.twitter-user').length>0){
@@ -146,6 +145,10 @@ function addFocusTextFieldBehaviour() {
 // Creates a div with a link to the PNG of the word id.
 function createLinkToPNGDownload(word) {
   return '<div class="png-download-link"><a href="/word/' + word +'.png?download=true">Als Bild speichern</a></div>'
+}
+
+function createPublishToFacebookLink(id) {
+  return '<div class="png-download-link"><a href="/words/' + id +'/publish">Auf Facebook veröffentlichen</a></div>';
 }
 
 // Make random words clickable

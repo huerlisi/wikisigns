@@ -25,7 +25,7 @@ function showAsBigWord(element, click_on_element, start_game) {
 
   $('#word-menu').hide(0, function(){
     $('#word-menu *').remove();
-    $('#word-menu').append(generateShareLink(element.attr('data-word-word'))).append(createLinkToPNGDownload(element.attr('data-word-word'))).fadeIn(250, function(){
+    $('#word-menu').append(generateShareLink(element.attr('data-word-word'))).append(createLinkToPNGDownload(element.attr('data-word-word'))).append(createPublishToFacebookLink(element.attr('data-word-id'))).fadeIn(250, function(){
       FB.XFBML.parse();
       if(start_game != null){
         clearInterval(small_picture_help_interval);
