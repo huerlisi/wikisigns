@@ -13,7 +13,7 @@ function showAsBigWord(element, click_on_element, start_game) {
   shown_word = '';
   if(start_game ==  null) $('#title').html(drawColoredWord(element.attr('data-word-word')));
   $('#word svg').remove();
-  drawWordAsImage('word', element.attr('data-word-word'));
+  drawWordAsImage('word', '');
   clearSessionViewerIntervals();
 
   if(click_on_element) {
