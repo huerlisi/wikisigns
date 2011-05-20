@@ -36,8 +36,6 @@ function showAsBigWord(element, click_on_element, start_game) {
 }
 
 function startShowWord() {
-  $('#word svg').remove();
-  drawWordAsImage('word', '');
   show_word_counter = 1;
   draw_word_interval = setInterval('drawWord()', letter_speed);
 }
@@ -56,11 +54,11 @@ function drawWord() {
       });
     });
   }else{
-    $('#word svg').remove();
-    drawWordAsImage('word', '');
-    clearInterval(show_word_interval);
-    clearInterval(draw_word_interval);
-    session_viewer_timeout = setTimeout('showSessionViewer()', letter_speed);
+    setTimeout(function(){
+      clearInterval(show_word_interval);
+      clearInterval(draw_word_interval);
+      session_viewer_timeout = setTimeout('showSessionViewer()', letter_speed);
+    }, letter_speed*2);
   }
 }
 
