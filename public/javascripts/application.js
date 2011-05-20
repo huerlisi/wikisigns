@@ -119,7 +119,7 @@ function newWord() {
       });
       $('#word-menu').hide();
       $('#word-menu *').remove();
-      $('#word-menu').append(generateShareLink(text)).append(createLinkToPNGDownload(text)).fadeIn(250, function(){
+      $('#word-menu').append(generateShareLink(text)).append(createLinkToPNGDownload(text)).append(createPublishToFacebookLink(id)).fadeIn(250, function(){
         FB.XFBML.parse();
       });
       $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
@@ -148,7 +148,7 @@ function createLinkToPNGDownload(word) {
 }
 
 function createPublishToFacebookLink(id) {
-  return '<div class="png-download-link"><a href="/words/' + id +'/publish">Auf Facebook veröffentlichen</a></div>';
+  return '<div class="png-download-link"><a class="publish-word-to-facebook" href="/words/' + id +'/publish" data-word-id="' + id + '">Auf Facebook veröffentlichen</a></div>';
 }
 
 // Make random words clickable
@@ -157,6 +157,18 @@ function addInitialResizeBehaviour() {
     showAsBigWord($(this), true, true);
     $(this).fadeOut(125).remove();
   });
+}
+
+// Adds the behaviour for publishing words to facebook on links with css class publish-word-to-facebook
+function addPublishWordToFacebookBehaviour() {
+  $('a.publish-word-to-facebook').live('click', function(e){
+    e.preventDefault();
+
+    $.ajax({
+      type: 'GET',
+      url: $(this).attr('href')
+    });
+  })
 }
 
 // Initialize behaviours
@@ -188,6 +200,7 @@ function initializeBehaviours() {
     addColorizeTextBehaviour();
   }
   initializeTooltips();
+  addPublishWordToFacebookBehaviour();
 }
 
 // iOS detection
