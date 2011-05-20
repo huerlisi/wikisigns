@@ -51,9 +51,9 @@ function drawWord() {
       });
     });
   }else{
+    clearInterval(show_word_interval);
+    clearInterval(draw_word_interval);
     setTimeout(function(){
-      clearInterval(show_word_interval);
-      clearInterval(draw_word_interval);
       session_viewer_timeout = setTimeout('showSessionViewer()', letter_speed);
     }, letter_speed*2);
   }
