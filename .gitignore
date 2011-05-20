@@ -30,3 +30,4 @@ public/stylesheets
 config/application.yml
 config/newrelic.yml
 config/database.yml
+tmp/*.png
