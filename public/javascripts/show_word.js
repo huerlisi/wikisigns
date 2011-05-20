@@ -1,6 +1,5 @@
 var letter_speed = 314 * 3.14;
 var show_word_interval;
-var show_word_counter;
 var shown_word;
 var draw_word_interval;
 
@@ -36,7 +35,6 @@ function showAsBigWord(element, click_on_element, start_game) {
 }
 
 function startShowWord() {
-  show_word_counter = 1;
   draw_word_interval = setInterval('drawWord()', letter_speed);
 }
 
@@ -50,7 +48,6 @@ function drawWord() {
       word.show(125, function(){
         $('#word svg').remove();
         drawWordAsImage('word', shown_word);
-        show_word_counter++;
       });
     });
   }else{
