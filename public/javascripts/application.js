@@ -26,6 +26,7 @@ function addRealtimeWordDrawingBehaviour() {
   $('#word_word').keyup(function(event){
     abortHelp();
     clearSessionViewerIntervals();
+    showPlayAndHidePauseButton();
     if(event.keyCode != 13) {
       $('#title').hide();
       $('#word').children().remove();
