@@ -483,7 +483,7 @@ function amountOfLetterP(word) {
 }
 
 function pointAmount(word, letter) {
-  var amount = 0;
+  var amount = 1;
   if(letter == null) return amount;
 
   if(letter.constructor == (new Array).constructor){
@@ -492,6 +492,7 @@ function pointAmount(word, letter) {
         if(word[y] == letter[i]) amount++;
       }
     }
+    amount--;
   }else{
     amount++;
   }
