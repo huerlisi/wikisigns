@@ -37,7 +37,7 @@ function addRealtimeWordDrawingBehaviour() {
       $('#title-inserted').html(drawColoredWord($(this).val().trim()));
 
       // New chararcter is space
-      if($(this).val().indexOf(' ', 0) > -1) {
+      if(event.keyCode == 32) {
         newWord();
       }
     }
