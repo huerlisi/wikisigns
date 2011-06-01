@@ -78,12 +78,6 @@ function addSessionWordsBehaviour(){
     e.preventDefault();
     newWord();
   });
-
-  $('form.edit_word').submit(function(e){
-    e.preventDefault();
-    newWord();
-    $('#slug-word-share').remove();
-  });
 }
 
 // Returns the container for a small word.
