@@ -25,21 +25,29 @@ function generateShareLink(slug) {
 function addRealtimeWordDrawingBehaviour() {
   $('#word_word').keyup(function(event){
     
+    // We're typing, stop all gaming stuff
     abortHelp();
     clearSessionViewerIntervals();
     showPlayAndHidePauseButton();
 
-    // If key is <return>
-    if(event.keyCode != 13) {
+    // Handle keys
+    if(event.keyCode == 32) {
+      // character is space
+      $('#title').hide();
+      $('#word').children().remove();
+      drawWordAsImage('word', '');
+      $('#title-inserted').html(drawColoredWord(''));
+    }
+    else if(event.keyCode == 13) {
+      // character is <return>
+      newWord();
+    }
+    else {
+      // normal key
       $('#title').hide();
       $('#word').children().remove();
       drawWordAsImage('word', $(this).val().trim());
       $('#title-inserted').html(drawColoredWord($(this).val().trim()));
-
-      // New chararcter is space
-      if(event.keyCode == 32) {
-        newWord();
-      }
     }
   });
 }
