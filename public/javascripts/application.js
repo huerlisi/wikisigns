@@ -208,6 +208,8 @@ function initializeBehaviours() {
   initializeTooltips();
   addPublishWordToFacebookBehaviour();
   shareSessionLinkBehaviour();
+
+  addAutogrowBehaviour();
 }
 
 // iOS detection
