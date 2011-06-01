@@ -66,6 +66,9 @@ gem 'settingslogic'
 # Generate images
 gem 'imgkit'
 
+# Generates qr codes
+gem 'rqrcode'
+
 # Monitoring
 # ==========
 group :production do

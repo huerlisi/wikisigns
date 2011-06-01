@@ -160,6 +160,7 @@ GEM
     rake (0.8.7)
     rcov (0.9.9)
     responders (0.6.2)
+    rqrcode (0.3.4)
     rspec (2.5.0)
       rspec-core (~> 2.5.0)
       rspec-expectations (~> 2.5.0)
@@ -220,6 +221,7 @@ DEPENDENCIES
   rails (~> 3.0.0)
   rails3-generators
   rcov
+  rqrcode
   rspec (~> 2.5)
   rspec-rails (~> 2.5)
   ruby_parser

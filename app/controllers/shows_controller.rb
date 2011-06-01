@@ -5,6 +5,8 @@ class ShowsController < ApplicationController
     @show.add_words(params[:words])
     @show.save
 
+    @qr = RQRCode::QRCode.new(polymorphic_url(@show))
+
     new!
   end
 
