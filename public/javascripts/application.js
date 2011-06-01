@@ -72,8 +72,6 @@ function showCanvasAndHideTableBehaviour() {
 
 // Draw a new word and submit it to the data base.
 function addSessionWordsBehaviour(){
-  $('#center-container').css('display', 'block');
-
   $('#new_word').submit(function(e){
     e.preventDefault();
     newWord();
