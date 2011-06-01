@@ -310,6 +310,7 @@ function drawWordAsImage(element, input_word, size) {
       var block_color = blockColor(word, letters[y][x], coord2color(y, x));
       var point_color = pointColor(block_color);
       var point_width = pointWidth(block_color);
+      var point_amount = pointAmount(word, letters[y][x]);
       var shadow;
       var block;
       var offset_y = 0;
@@ -325,10 +326,20 @@ function drawWordAsImage(element, input_word, size) {
       // Inner Circle
       point_x = margin + circle_dimension/2 + space_x;
       point_y = margin + circle_dimension/2 + space_y;
-      var point = paper.circle(offset_x + (point_x * scale), offset_y + (point_y * scale), 5);
-      point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width});
-      point.toBack();
-      point.scale(scale, scale);
+
+      if(scale == 1){
+        //console.log('x: '+ x + ' y: ' + y +' amount: ' +point_amount);
+        for(var i = 0; i < point_amount; i++){
+          var point = paper.circle(offset_x + (point_x * scale), offset_y + (point_y * scale), 5 + (i * 3));
+          point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width});
+          point.toBack();
+        }
+      }else{
+        var small_point = paper.circle(offset_x + (point_x * scale), offset_y + (point_y * scale), 5);
+        small_point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width});
+        small_point.toBack();
+        small_point.scale(scale, scale);
+      }
 
       if (block_color != 'none') {
         // Block
@@ -367,7 +378,7 @@ function drawWordAsImage(element, input_word, size) {
   }*/
 
   // Paint P
-  if(hasALetterP(word)){
+  if(amountOfLetterP(word)){
     var letter_p = paper.circle(canvas_width/2.03, canvas_height/2.03, 5 * scale);
     letter_p.attr({fill: 'none', stroke: 'grey', 'stroke-width': 7 * scale});
   }
@@ -464,12 +475,30 @@ function getColorForLetter(letter) {
 }
 
 // Checks if word has a P.
-function hasALetterP(word) {
+function amountOfLetterP(word) {
   if(word.toLowerCase().indexOf('p') != -1) {
     return true
   }else{
     return false;
   }
+}
+
+function pointAmount(word, letter) {
+  var amount = 1;
+  if(letter == null) return amount;
+
+  if(letter.constructor == (new Array).constructor){
+    for(var i = 0; i < letter.length; i++){
+      for(var y = 0; y < word.length; y++){
+        if(word[y] == letter[i]) amount++;
+      }
+    }
+    amount--;
+  }else{
+    amount++;
+  }
+
+  return amount;
 }
 
 function blockColor(word, letter, color) {
