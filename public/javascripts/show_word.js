@@ -11,7 +11,6 @@ function showAsBigWord(element, click_on_element, start_game) {
   original_word = element.attr('data-word-word');
   shown_word = '';
   if(start_game ==  null) $('#title').html(drawColoredWord(element.attr('data-word-word')));
-  $('#word svg').remove();
   drawWordAsImage('word', '');
   clearSessionViewerIntervals();
 
@@ -46,7 +45,6 @@ function drawWord() {
 
       $('#title-inserted').append(word);
       word.show(125, function(){
-        $('#word svg').remove();
         drawWordAsImage('word', shown_word);
       });
     });

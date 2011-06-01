@@ -25,21 +25,29 @@ function generateShareLink(slug) {
 function addRealtimeWordDrawingBehaviour() {
   $('#word_word').keyup(function(event){
     
+    // We're typing, stop all gaming stuff
     abortHelp();
     clearSessionViewerIntervals();
     showPlayAndHidePauseButton();
 
-    // If key is <return>
-    if(event.keyCode != 13) {
+    // Handle keys
+    if(event.keyCode == 32) {
+      // character is space
+      var text = '';
       $('#title').hide();
-      $('#word').children().remove();
-      drawWordAsImage('word', $(this).val().trim());
-      $('#title-inserted').html(drawColoredWord($(this).val().trim()));
-
-      // New chararcter is space
-      if($(this).val().indexOf(' ', 0) > -1) {
-        newWord();
-      }
+      drawWordAsImage('word', text);
+      $('#title-inserted').html(drawColoredWord(text));
+    }
+    else if(event.keyCode == 13) {
+      // character is <return>
+      newWord();
+    }
+    else {
+      // normal key
+      var text = $(this).val().trim();
+      $('#title').hide();
+      drawWordAsImage('word', text);
+      $('#title-inserted').html(drawColoredWord(text));
     }
   });
 }
@@ -107,16 +115,21 @@ function newWord() {
       }else{
         game = data[1]['new_word_game'];
       }
-
-      $('#word').children().remove();
       updateScores(game['score']);
+
+      //
       $('#title span').remove();
       $('#title').html(drawColoredWord(text));
       $('#title').show();
       $('#title-inserted span').remove();
+
+      // Add main sign
       drawWordAsImage('word', text);
+
+      // Add small sign to history
       $('#your-words').append(oneWordDiv(id, text, false));
       drawWordAsImage('word_' + id, text, 100);
+
       var one_word = $('#your-words .one-word:last-child');
       startSessionViewer();
       one_word.click(function(){

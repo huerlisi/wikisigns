@@ -272,6 +272,9 @@ var colors = Array(
 
 // Draws a word as an image.
 function drawWordAsImage(element, input_word, size) {
+  // Drop leftovers
+  $("#" + element).empty();
+
   var big_size = 424;
   if(size == null) size = big_size;
   var scale = size / big_size;
@@ -382,8 +385,6 @@ function drawWordAsImage(element, input_word, size) {
   paper_content.toBack();
   paper_shadow.toBack();
   paper.setSize(size, size);
-
-  return $(element).find('svg');
 }
 
 // Returns the coordinates in the right order for a word.
