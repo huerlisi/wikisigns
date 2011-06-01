@@ -76,6 +76,15 @@ function showPauseAndHidePlayButton() {
   })
 }
 
-function shareSessionLink() {
+// Opens a fancy box with a share menu of the current session show.
+// Trigger is in app/views/shared/game_menu
+function shareSessionLinkBehaviour() {
+  $('a#session-share-link').click(function(e){
+    e.preventDefault();
+    $(this).attr('href', 'http://google.ch');
 
+    $(this).fancybox({
+      'hideOnContentClick': true
+    });
+  });
 }

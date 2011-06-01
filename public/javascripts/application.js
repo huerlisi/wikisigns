@@ -203,6 +203,7 @@ function initializeBehaviours() {
   }
   initializeTooltips();
   addPublishWordToFacebookBehaviour();
+  shareSessionLinkBehaviour();
 }
 
 // iOS detection

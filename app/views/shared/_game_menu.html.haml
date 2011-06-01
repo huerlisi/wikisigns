@@ -7,4 +7,4 @@
   %br
   - if current_user && current_user.from_facebook?
     = link_to image_tag('icons/16x16/facebook.png'), daily_score_user_path(current_user), :remote => true, :method => :post, :'data-tooltip' => t('tooltip.post_day_score_to_fb')
-  = link_to_function image_tag('icons/16x16/share.png'), 'shareSessionLink()', :'data-tooltip' => t('tooltip.share'), :style => 'display:none;', :id => 'session-share-link'
+  = link_to image_tag('icons/16x16/share.png'), '#', :'data-tooltip' => t('tooltip.share'), :style => 'display:none;', :id => 'session-share-link', :class => 'iframe'
