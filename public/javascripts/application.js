@@ -21,6 +21,14 @@ function generateShareLink(slug) {
   return link;
 }
 
+// Draw a new word and submit it to the data base.
+function addSessionWordsBehaviour(){
+  $('#new_word').submit(function(e){
+    e.preventDefault();
+    newWord();
+  });
+}
+
 // Redraws after every key type the word.
 function addRealtimeWordDrawingBehaviour() {
   $('#word_word').keyup(function(event){
@@ -42,7 +50,8 @@ function addRealtimeWordDrawingBehaviour() {
     }
     else if(event.keyCode == 13) {
       // character is <return>
-      newWord();
+      // ...trigger form action
+      $(event.currentTarget).submit();
     }
     else {
       // normal key
@@ -68,14 +77,6 @@ function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
   drawWordAsImage('word', '');
-}
-
-// Draw a new word and submit it to the data base.
-function addSessionWordsBehaviour(){
-  $('#new_word').submit(function(e){
-    e.preventDefault();
-    newWord();
-  });
 }
 
 // Returns the container for a small word.
