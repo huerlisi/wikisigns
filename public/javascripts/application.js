@@ -114,9 +114,14 @@ function newWord() {
       $('#title').html(drawColoredWord(text));
       $('#title').show();
       $('#title-inserted span').remove();
+
+      // Add main sign
       drawWordAsImage('word', text);
+
+      // Add small sign to history
       $('#your-words').append(oneWordDiv(id, text, false));
       drawWordAsImage('word_' + id, text, 100);
+
       var one_word = $('#your-words .one-word:last-child');
       startSessionViewer();
       one_word.click(function(){
