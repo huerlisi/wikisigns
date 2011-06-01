@@ -134,6 +134,7 @@ function newWord() {
 
       $('#next_word_id').remove();
       $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + id + '" />');
+      $('#session-share-link').show();
     }
   })
 }
