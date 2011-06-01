@@ -328,7 +328,6 @@ function drawWordAsImage(element, input_word, size) {
       point_y = margin + circle_dimension/2 + space_y;
 
       if(scale == 1){
-        //console.log('x: '+ x + ' y: ' + y +' amount: ' +point_amount);
         for(var i = 0; i < point_amount; i++){
           var point = paper.circle(offset_x + (point_x * scale), offset_y + (point_y * scale), 5 + (i * 3));
           point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width});
@@ -484,7 +483,7 @@ function amountOfLetterP(word) {
 }
 
 function pointAmount(word, letter) {
-  var amount = 1;
+  var amount = 0;
   if(letter == null) return amount;
 
   if(letter.constructor == (new Array).constructor){
@@ -493,8 +492,11 @@ function pointAmount(word, letter) {
         if(word[y] == letter[i]) amount++;
       }
     }
-    amount--;
   }else{
+    amount++;
+  }
+
+  if(amount == 0){
     amount++;
   }
 
