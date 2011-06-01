@@ -272,6 +272,9 @@ var colors = Array(
 
 // Draws a word as an image.
 function drawWordAsImage(element, input_word, size) {
+  // Drop leftovers
+  $("#" + element).empty();
+
   var big_size = 424;
   if(size == null) size = big_size;
   var scale = size / big_size;

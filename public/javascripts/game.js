@@ -67,7 +67,6 @@ function initializeWordClickBehaviour() {
 
         guessed_word = guessed_word + letter;
         clearHelpIntervals();
-        $('#word svg').remove();
         drawWordAsImage('word', guessed_word);
         $(this).removeClass('selectable');
 
@@ -232,7 +231,6 @@ function removeCharFromPos(string, position){
 // Draws an empty carpet and hides the table version of the carpet.
 function drawEmptyCarpet() {
   $('table.carpet').remove();
-  $('#word svg').remove();
   drawWordAsImage('word', '');
 }
 
@@ -263,7 +261,6 @@ function moveLetterFromBottomToTop(letter){
         var letter = $(this).html();
 
         guessed_word = guessed_word + letter;
-        $('#word svg').remove();
         drawWordAsImage('word', guessed_word);
         $('#title-inserted').append($(this).clone().hide(0, function(){
           $(this).fadeIn('slow', function(){

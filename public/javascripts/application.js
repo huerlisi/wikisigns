@@ -33,10 +33,10 @@ function addRealtimeWordDrawingBehaviour() {
     // Handle keys
     if(event.keyCode == 32) {
       // character is space
+      var text = '';
       $('#title').hide();
-      $('#word').empty();
-      drawWordAsImage('word', '');
-      $('#title-inserted').html(drawColoredWord(''));
+      drawWordAsImage('word', text);
+      $('#title-inserted').html(drawColoredWord(text));
     }
     else if(event.keyCode == 13) {
       // character is <return>
@@ -44,10 +44,10 @@ function addRealtimeWordDrawingBehaviour() {
     }
     else {
       // normal key
+      var text = $(this).val().trim();
       $('#title').hide();
-      $('#word').empty();
-      drawWordAsImage('word', $(this).val().trim());
-      $('#title-inserted').html(drawColoredWord($(this).val().trim()));
+      drawWordAsImage('word', text);
+      $('#title-inserted').html(drawColoredWord(text));
     }
   });
 }
@@ -115,9 +115,9 @@ function newWord() {
       }else{
         game = data[1]['new_word_game'];
       }
-
-      $('#word').empty();
       updateScores(game['score']);
+
+      //
       $('#title span').remove();
       $('#title').html(drawColoredWord(text));
       $('#title').show();
