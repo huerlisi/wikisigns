@@ -375,8 +375,6 @@ function drawWordAsImage(element, input_word, size) {
   paper_content.toBack();
   paper_shadow.toBack();
   paper.setSize(size, size);
-
-  return $(element).find('svg');
 }
 
 // Returns the coordinates in the right order for a word.
