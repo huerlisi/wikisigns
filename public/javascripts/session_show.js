@@ -79,15 +79,17 @@ function showPauseAndHidePlayButton() {
 // Opens a fancy box with a share menu of the current session show.
 // Trigger is in app/views/shared/game_menu
 function shareSessionLinkBehaviour() {
+  var link = $('a#session-share-link').attr('href');
+
   $('a#session-share-link').click(function(e){
     e.preventDefault();
 
     var ids = new Array();
-    var link = $(this).attr('href');
 
     $('#your-words .one-word').each(function(){
       ids.push($(this).attr('data-word-id'));
     });
+
     link += '?';
 
     for(var i = 0; i < ids.length; i++){
