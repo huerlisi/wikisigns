@@ -81,7 +81,20 @@ function showPauseAndHidePlayButton() {
 function shareSessionLinkBehaviour() {
   $('a#session-share-link').click(function(e){
     e.preventDefault();
-    $(this).attr('href', 'http://google.ch');
+
+    var ids = new Array();
+    var link = $(this).attr('href');
+
+    $('#your-words .one-word').each(function(){
+      ids.push($(this).attr('data-word-id'));
+    });
+    link += '?';
+
+    for(var i = 0; i < ids.length; i++){
+      link += 'words[]=' + ids[i] + '&';
+    }
+
+    $(this).attr('href', link);
 
     $(this).fancybox({
       'hideOnContentClick': true

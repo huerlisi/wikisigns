@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110511082441) do
+ActiveRecord::Schema.define(:version => 20110601102956) do
 
   create_table "gamers", :force => true do |t|
     t.string   "name"
@@ -45,6 +45,19 @@ ActiveRecord::Schema.define(:version => 20110511082441) do
   add_index "login_accounts", ["type"], :name => "index_login_accounts_on_type"
   add_index "login_accounts", ["user_id"], :name => "index_login_accounts_on_user_id"
 
+  create_table "show_words", :force => true do |t|
+    t.integer  "show_id"
+    t.integer  "word_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shows", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
@@ -69,6 +82,8 @@ ActiveRecord::Schema.define(:version => 20110511082441) do
     t.datetime "updated_at"
     t.integer  "next_word"
     t.integer  "user_id"
+    t.integer  "show_id"
+    t.integer  "show_word_id"
   end
 
 end

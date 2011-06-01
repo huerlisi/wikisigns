@@ -193,6 +193,10 @@ function initializeBehaviours() {
     }
   }
 
+  if($('#shows').length > 0){
+    showCanvasAndHideTableBehaviour();
+  }
+
   if($('#word.svg').length > 0) {
     drawWordAsImage('word', $('#title').text());
   }

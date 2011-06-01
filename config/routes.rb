@@ -24,6 +24,8 @@ WikiSigns::Application.routes.draw do
 
   resources :games, :only => [:new]
 
+  resources :shows, :only => [:new, :show]
+
   resources :users, :only => [:edit, :show, :update] do
     member do
       post 'daily_score'
