@@ -34,8 +34,10 @@ function addRealtimeWordDrawingBehaviour() {
     if(event.keyCode == 32) {
       // character is space
       var text = '';
-      $('#title').hide();
+
       drawWordAsImage('word', text);
+
+      $('#title').hide();
       $('#title-inserted').html(drawColoredWord(text));
     }
     else if(event.keyCode == 13) {
@@ -45,8 +47,10 @@ function addRealtimeWordDrawingBehaviour() {
     else {
       // normal key
       var text = $(this).val().trim();
-      $('#title').hide();
+
       drawWordAsImage('word', text);
+
+      $('#title').hide();
       $('#title-inserted').html(drawColoredWord(text));
     }
   });
