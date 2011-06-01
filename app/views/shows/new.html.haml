@@ -1,2 +1,4 @@
 %h1
-  dein Show link
+  = t('shows.title')
+
+= link_to t('shows.preview'), show_path(@show), :target => '_blank'

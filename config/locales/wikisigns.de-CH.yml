@@ -45,3 +45,6 @@ de-CH:
     session_show: Spiel das Geschriebene als Film ab.
     session_pause: Die Animation anhalten.
     share: Die eingebenen Worte anderen mitteilen.
+  shows:
+    title: Teile auf verschiedene Arten deine Worte mit
+    preview: 'Vorschau'
