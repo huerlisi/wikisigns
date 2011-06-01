@@ -43,6 +43,11 @@ module WikiSigns
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+    # generic Cyt JS
+    config.action_view.javascript_expansions[:defaults] += %w(cyt)
+    # jQuery Plugins
+    config.action_view.javascript_expansions[:defaults] += %w(jquery-elastic)
+
     # Google analytics middle ware.
     if Rails.env == "production"
       config.middleware.use("Rack::GoogleAnalytics", :web_property_id => 'UA-20112140-3') # Cause in the end the code is public viewble. I added it hardcoded.

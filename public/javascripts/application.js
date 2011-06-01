@@ -24,15 +24,19 @@ function generateShareLink(slug) {
 // Redraws after every key type the word.
 function addRealtimeWordDrawingBehaviour() {
   $('#word_word').keyup(function(event){
+    
     abortHelp();
     clearSessionViewerIntervals();
     showPlayAndHidePauseButton();
+
+    // If key is <return>
     if(event.keyCode != 13) {
       $('#title').hide();
       $('#word').children().remove();
       drawWordAsImage('word', $(this).val().trim());
       $('#title-inserted').html(drawColoredWord($(this).val().trim()));
 
+      // New chararcter is space
       if($(this).val().indexOf(' ', 0) > -1) {
         newWord();
       }
@@ -208,6 +212,8 @@ function initializeBehaviours() {
   initializeTooltips();
   addPublishWordToFacebookBehaviour();
   shareSessionLinkBehaviour();
+
+  addAutogrowBehaviour();
 }
 
 // iOS detection
