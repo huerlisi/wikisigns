@@ -448,7 +448,6 @@ function drawColoredWord(word) {
 
 // Returns the color for a letter.
 function getColorForLetter(letter) {
-
   switch(letter) {
     case 'ä':
       letter = 'a';
@@ -469,7 +468,7 @@ function getColorForLetter(letter) {
     }
   }
 
-  return 'none';
+  return 'transparent';
 }
 
 // Checks if word has a P.
