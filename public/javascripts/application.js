@@ -97,7 +97,7 @@ function newWord() {
   text = $('#title-inserted').text().trim();
   addFocusTextFieldBehaviour();
 
-
+  // Submit to server
   $.ajax({
     type: 'POST',
     data: { word : { word : word, next_word : next_word_id} },
