@@ -44,28 +44,30 @@ function addRealtimeWordDrawingBehaviour() {
     showPlayAndHidePauseButton();
 
     // Handle keys
-    if(event.keyCode == 32) {
-      // character is space
-      var text = '';
-
-      drawWordAsImage('word', text);
-
-      $('#title').hide();
-      $('#title-inserted').html(drawColoredWord(text));
-    }
-    else if(event.keyCode == 13) {
+    if(event.keyCode == 13) {
       // character is <return>
       // ...trigger form action
       $(event.currentTarget).submit();
     }
     else {
-      // normal key
-      var text = $(this).val().trim();
+      if(event.keyCode == 32) {
+        // character is space
+        var text = '';
 
-      drawWordAsImage('word', text);
+        drawWordAsImage('word', text);
 
-      $('#title').hide();
-      $('#title-inserted').html(drawColoredWord(text));
+        $('#title').hide();
+        $('#title-inserted').html(drawColoredWord(text));
+      }
+      else {
+        // normal key
+        var text = $(this).val().trim();
+
+        drawWordAsImage('word', text);
+
+        $('#title').hide();
+        $('#title-inserted').html(drawColoredWord(text));
+      }
     }
   });
 }
