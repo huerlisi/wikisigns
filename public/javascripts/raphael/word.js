@@ -408,6 +408,9 @@ function drawColoredWord(word) {
     var style_class = '';
 
     switch(letter) {
+      case ' ':
+        style_class = 'space-letter';
+        break;
       case 'k':
         style_class = 'silver-letter';
         break;
