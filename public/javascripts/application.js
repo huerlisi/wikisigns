@@ -58,6 +58,10 @@ function updateTitle(text) {
   $('#title-inserted').html(drawColoredWord(text));
 }
 
+function updateWord(word) {
+  drawWordAsImage('word', word);
+}
+
 // Colorizes the text on the show word page.
 function addColorizeTextBehaviour() {
   updateTitle($('#title-inserted').text());
@@ -66,9 +70,8 @@ function addColorizeTextBehaviour() {
 // Redraws after every key type the word.
 function addRealtimeWordDrawingBehaviour() {
   $('#word_word').keyup(function(event){
-    // Handle keys
+    // If character is <return>
     if(event.keyCode == 13) {
-      // character is <return>
       // ...trigger form action
       $(event.currentTarget).submit();
     }
@@ -79,7 +82,7 @@ function addRealtimeWordDrawingBehaviour() {
 
       // only show last word as sign
       var word = text.split(' ').pop();
-      drawWordAsImage('word', word);
+      updateWord(word);
     }
   });
 }
