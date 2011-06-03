@@ -139,11 +139,10 @@ function newWord() {
       $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
 
       // Prepare word menu
-      $('#word-menu').hide();
-      $('#word-menu *').remove();
-      $('#word-menu').append(generateShareLink(text)).append(createLinkToPNGDownload(text)).append(createPublishToFacebookLink(id)).show()
-
-      $('#session-share-link').show();
+      $('#word-menu *').empty();
+      $('#word-menu').append(generateShareLink(text))
+        .append(createLinkToPNGDownload(text))
+        .append(createPublishToFacebookLink(id));
 
       $('#next_word_id').remove();
       $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + id + '" />');
