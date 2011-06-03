@@ -26,7 +26,7 @@ function createLinkToPNGDownload(word) {
 }
 
 function createPublishToFacebookLink(id) {
-  return '<div class="png-download-link"><a class="publish-word-to-facebook" data-remote="true" href="/words/' + id +'/publish">Auf Facebook veröffentlichen</a></div>';
+  return '<div class="png-download-link"><a data-remote="true" href="/words/' + id +'/publish">Auf Facebook veröffentlichen</a></div>';
 }
 
 function generateWordMenu(text, id) {
