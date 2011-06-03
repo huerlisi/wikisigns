@@ -84,6 +84,12 @@ function addRealtimeWordDrawingBehaviour() {
   });
 }
 
+// Sets focus to the input field.
+function addFocusTextFieldBehaviour() {
+  $('#word_word').focus().select();
+}
+
+
 // Hides the table variant and shows the canvas alternative.
 function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
@@ -159,11 +165,6 @@ function newWord() {
       startSessionViewer();
     }
   })
-}
-
-// Sets focus to the input field.
-function addFocusTextFieldBehaviour() {
-  $('#word_word').focus().select();
 }
 
 // Creates a div with a link to the PNG of the word id.
