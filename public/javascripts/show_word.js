@@ -65,7 +65,7 @@ function showNewRandomWord(speed) {
 
       // Add smal sign to random list
       var words = $('#random-words-container')
-      words.append(oneWordDiv(id, word, false, 'random_'));
+      words.append(oneWordDiv(id, word, 'random_'));
       drawWordAsImage('word_random_' + id, word, 100);
 
       // Scroll to make new sign visible

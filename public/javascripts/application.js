@@ -127,10 +127,9 @@ function showCanvasAndHideTableBehaviour() {
 }
 
 // Returns the container for a small word.
-function oneWordDiv(id, text, random, prefix) {
-  if(random == null) random = false;
+function oneWordDiv(id, text, prefix) {
   if(prefix == null) prefix = '';
-  return '<div class="one-word" data-random-word="' + random + '" data-word-id="' + id + '" data-word-word="' + text + '"><div id="word_' + prefix + id + '" class="word"></div><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div></div>';
+  return '<div class="one-word" data-word-id="' + id + '" data-word-word="' + text + '"><div id="word_' + prefix + id + '" class="word"></div><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div></div>';
 }
 
 // Submits and draws a new word.
@@ -170,7 +169,7 @@ function newWord() {
 
       // Add small sign to history
       var words = $('#your-words');
-      words.append(oneWordDiv(id, text, false));
+      words.append(oneWordDiv(id, text));
       drawWordAsImage('word_' + id, text, 100);
 
       // Scroll to make new sign visible
