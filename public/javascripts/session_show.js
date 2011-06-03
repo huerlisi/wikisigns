@@ -47,6 +47,9 @@ function showSessionViewer() {
   }
 
   showAsBigWord($('#your-words .one-word:nth-child(' + picture_to_show + ')'));
+  setTimeout('startShowWord()', letter_speed);
+  showPauseAndHidePlayButton();
+
   picture_to_show++;
 }
 

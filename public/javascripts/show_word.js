@@ -3,9 +3,7 @@ var show_word_interval;
 var shown_word;
 var draw_word_interval;
 
-function showAsBigWord(element, click_on_element) {
-  if(click_on_element == null) click_on_element = false;
-
+function showAsBigWord(element) {
   // Read word params from element
   var text = element.attr('data-word-word');
   var id = element.attr('data-word-id');
@@ -24,12 +22,7 @@ function showAsBigWord(element, click_on_element) {
 
   clearSessionViewerIntervals();
 
-  if(click_on_element) {
-    showPlayAndHidePauseButton();
-    startSessionViewer();
-  }else{
-    setTimeout('startShowWord()', letter_speed);
-  }
+  showPlayAndHidePauseButton();
 
   // Prepare word menu
   generateWordMenu(text, id);

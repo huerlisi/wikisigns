@@ -117,6 +117,8 @@ function setPlayMode() {
   clearSessionViewerIntervals();
   showPlayAndHidePauseButton();
   $('#title').hide();
+  
+  
 }
 
 
@@ -178,7 +180,8 @@ function newWord() {
 
       var one_word = $('#your-words .one-word:last-child');
       one_word.click(function(){
-        showAsBigWord(one_word, true);
+        showAsBigWord(one_word);
+        startSessionViewer();
       });
       $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
 
@@ -193,10 +196,12 @@ function newWord() {
   })
 }
 
-// Make random words clickable
+// Game Mode
+// =========
 function addInitialResizeBehaviour() {
   $('#random-words-container .one-word').live('click', function(){
-    showAsBigWord($(this), true);
+    showAsBigWord($(this));
+    startSessionViewer();
     
     // Start game
     resetGame($(this).attr('data-word-word'), $(this).attr('data-word-id'), small_picture_help_interval_time);
