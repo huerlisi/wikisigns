@@ -5,13 +5,23 @@ var draw_word_interval;
 
 function showAsBigWord(element, click_on_element) {
   if(click_on_element == null) click_on_element = false;
+
+  // Read word params from element
+  var text = element.attr('data-word-word');
+  var id = element.attr('data-word-id');
+
+  // Clear message input
   $('#word_word').val('');
-  $('#title-inserted span').remove();
-  $('#title').show();
-  original_word = element.attr('data-word-word');
+
+  // Globals!
+  original_word = text;
   shown_word = '';
-  $('#title').html(drawColoredWord(element.attr('data-word-word')));
+
+  // Update texts
   updateWord('');
+  $('#title').show();
+  $('#title').html(drawColoredWord(text));
+
   clearSessionViewerIntervals();
 
   if(click_on_element) {
@@ -22,8 +32,6 @@ function showAsBigWord(element, click_on_element) {
   }
 
   // Prepare word menu
-  var text = element.attr('data-word-word');
-  var id = element.attr('data-word-id');
   generateWordMenu(text, id);
 }
 
