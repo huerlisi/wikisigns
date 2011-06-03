@@ -91,7 +91,8 @@ function addRealtimeWordDrawingBehaviour() {
 function showCanvasAndHideTableBehaviour() {
   $('#left-container table.carpet').hide();
   $('#word').show();
-  drawWordAsImage('word', '');
+
+  updateWord('');
 }
 
 // Returns the container for a small word.
@@ -136,7 +137,7 @@ function newWord() {
       $('#title-inserted span').remove();
 
       // Add main sign
-      drawWordAsImage('word', text);
+      updateWord(text);
 
       // Add small sign to history
       $('#your-words').append(oneWordDiv(id, text, false));
@@ -211,7 +212,7 @@ function initializeBehaviours() {
   }
 
   if($('#word.svg').length > 0) {
-    drawWordAsImage('word', $('#title').text());
+    updateWord('word', $('#title').text());
   }
 
   // initialize only on /words/:id page.
