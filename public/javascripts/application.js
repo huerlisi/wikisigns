@@ -34,15 +34,21 @@ function addSessionWordsBehaviour(){
   });
 }
 
+// Modes
+function setWritingMode() {
+  // We're typing, stop all gaming stuff
+  abortHelp();
+  clearSessionViewerIntervals();
+  showPlayAndHidePauseButton();
+  $('#title').hide();
+}
+
+
 // Redraws after every key type the word.
 function addRealtimeWordDrawingBehaviour() {
   $('#word_word').keyup(function(event){
+    setWritingMode();
     
-    // We're typing, stop all gaming stuff
-    abortHelp();
-    clearSessionViewerIntervals();
-    showPlayAndHidePauseButton();
-
     // Handle keys
     if(event.keyCode == 13) {
       // character is <return>
@@ -62,7 +68,6 @@ function addRealtimeWordDrawingBehaviour() {
 
       drawWordAsImage('word', text);
 
-      $('#title').hide();
       $('#title-inserted').html(drawColoredWord(text));
     }
   });
