@@ -21,12 +21,13 @@ function showAsBigWord(element, click_on_element) {
     setTimeout('startShowWord()', letter_speed);
   }
 
-  $('#word-menu').hide(0, function(){
-    $('#word-menu *').remove();
-    $('#word-menu').append(generateShareLink(element.attr('data-word-word'))).append(createLinkToPNGDownload(element.attr('data-word-word'))).append(createPublishToFacebookLink(element.attr('data-word-id'))).fadeIn(250, function(){
-      FB.XFBML.parse();
-    });
-  });
+  // Prepare word menu
+  var text = element.attr('data-word-word');
+  var id = element.attr('data-word-id');
+  $('#word-menu').empty()
+    .append(generateShareLink(text))
+    .append(createLinkToPNGDownload(text))
+    .append(createPublishToFacebookLink(id));
 }
 
 function startShowWord() {
