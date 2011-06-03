@@ -11,10 +11,12 @@ function generateShareLink(slug) {
   var link = "";
   var url = 'http://' + window.location.hostname + '/word/' + slug;
 
-  link = '<fb:like layout="button_count" href="' + url + '"></fb:like>';
+  link = '<div class="social-media-links">';
+  link += '<fb:like layout="button_count" href="' + url + '"></fb:like>';
   link += '<fb:send href="' + url + '"></fb:send>';
-  link += '<div class="social-media-links"><a class="twitter-share-button" href="http://twitter.com/share" data-url="' + url + '">Tweet</a></div>';
+  link += '<a class="twitter-share-button" href="http://twitter.com/share" data-url="' + url + '">Tweet</a>';
   link += '<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>';
+  link += '</div>';
 
   return link;
 }
