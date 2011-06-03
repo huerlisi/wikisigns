@@ -126,9 +126,6 @@ function getANewWord() {
     url: '/words/random.json?time=' + timeStamp(),
     dataType: 'json',
     cache: true,
-    beforeSend : function(xhr){
-     xhr.setRequestHeader("Accept", "application/json");
-    },
     success: function(data){
       original_word = data['word']['word'];
       word_id = data['word']['id'];
@@ -315,7 +312,6 @@ function checkWords() {
         dataType: 'json',
         cache: true,
         beforeSend : function(xhr){
-          xhr.setRequestHeader("Accept", "application/json");
           $('#ajax-loader').slideDown(125);
         },
         success: function(data){
@@ -344,9 +340,6 @@ function checkWords() {
         type: 'GET',
         dataType: 'json',
         url: '/words/guess.json?time=' + timeStamp(),
-        beforeSend : function(xhr){
-          xhr.setRequestHeader("Accept", "application/json");
-        },
         success: function(data){
           $('h1#title-inserted span').remove();
           resetGame(data['word']['word'], data['word']['id']);

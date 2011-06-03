@@ -59,9 +59,6 @@ function showNewRandomWord(speed) {
     url: '/words/random.json?time=' + timeStamp(),
     dataType: 'json',
     cache: true,
-    beforeSend : function(xhr){
-     xhr.setRequestHeader("Accept", "application/json");
-    },
     success: function(data){
       $('#random-words-container').append(oneWordDiv(data['word']['id'], data['word']['word'], false, 'random_'));
       drawWordAsImage('word_random_' + data['word']['id'], data['word']['word'], 100);
