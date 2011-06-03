@@ -60,9 +60,14 @@ function showNewRandomWord(speed) {
     dataType: 'json',
     cache: false,
     success: function(data){
-      $('#random-words-container').append(oneWordDiv(data['word']['id'], data['word']['word'], false, 'random_'));
-      drawWordAsImage('word_random_' + data['word']['id'], data['word']['word'], 100);
-      $('#random-words-container').animate({scrollTop: $('#random-words-container')[0].scrollHeight}, function(){
+      var word = data['word']['word'];
+      var id = data['word']['id'];
+
+      var words = $('#random-words-container')
+      words.append(oneWordDiv(id, word, false, 'random_'));
+      drawWordAsImage('word_random_' + id, word, 100);
+
+      words.animate({scrollTop: words[0].scrollHeight}, function(){
         setTimeout(function(){
           showNewRandomWord(speed);
         }, speed);

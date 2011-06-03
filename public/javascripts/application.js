@@ -169,7 +169,8 @@ function newWord() {
       updateWord(text);
 
       // Add small sign to history
-      $('#your-words').append(oneWordDiv(id, text, false));
+      var words = $('#your-words');
+      words.append(oneWordDiv(id, text, false));
       drawWordAsImage('word_' + id, text, 100);
 
       var one_word = $('#your-words .one-word:last-child');
@@ -177,7 +178,7 @@ function newWord() {
         showAsBigWord(one_word);
         startSessionViewer();
       });
-      $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
+      words.animate({scrollTop: words[0].scrollHeight});
 
       generateWordMenu(text, id);
 
