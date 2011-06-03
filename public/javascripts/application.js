@@ -70,6 +70,7 @@ function detectWritingMode() {
     }
   );
 }
+
 // Draw a new word and submit it to the data base.
 function addSessionWordsBehaviour(){
   $('#new_word').submit(function(e){
@@ -190,6 +191,11 @@ function newWord() {
       startSessionViewer();
     }
   })
+}
+
+// Sets focus to the input field.
+function addFocusTextFieldBehaviour() {
+  $('#word_word').focus().select();
 }
 
 // Game Mode
