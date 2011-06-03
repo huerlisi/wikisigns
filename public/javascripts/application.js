@@ -46,8 +46,8 @@ function addModeSettingBehaviour() {
   );
 }
 
-// Messaging Mode
-// ==============
+// Writing Mode
+// ============
 function setWritingMode() {
   // We're typing, stop all gaming stuff
   abortHelp();
