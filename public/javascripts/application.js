@@ -52,6 +52,10 @@ function addModeSettingBehaviour() {
 }
 
 
+function updateTitle(text) {
+  $('#title-inserted').html(drawColoredWord(text));
+}
+
 // Redraws after every key type the word.
 function addRealtimeWordDrawingBehaviour() {
   $('#word_word').keyup(function(event){
@@ -64,7 +68,7 @@ function addRealtimeWordDrawingBehaviour() {
     else {
       // Show colored word
       var text = $(this).val();
-      $('#title-inserted').html(drawColoredWord(text));
+      updateTitle(text);
 
       // only show last word as sign
       var word = text.split(' ').pop();
@@ -75,9 +79,7 @@ function addRealtimeWordDrawingBehaviour() {
 
 // Colorizes the text on the show word page.
 function addColorizeTextBehaviour() {
-  var text_field = $('#title-inserted');
-
-  text_field.html(drawColoredWord(text_field.text().trim()));
+  updateTitle($('#title-inserted').text());
 }
 
 // Hides the table variant and shows the canvas alternative.
@@ -101,8 +103,8 @@ function newWord() {
   var word = $('#word_word').val();
 
   $('#word_word').val('');
-  $('#title-inserted').html(drawColoredWord(word.trim()));
-  text = $('#title-inserted').text().trim();
+  updateTitle(word.trim());
+  text = word.trim();
   addFocusTextFieldBehaviour();
 
   // Submit to server
