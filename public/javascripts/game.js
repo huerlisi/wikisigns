@@ -311,9 +311,6 @@ function checkWords() {
         url: '/words/' + word_id + '/games',
         dataType: 'json',
         cache: false,
-        beforeSend : function(xhr){
-          $('#ajax-loader').slideDown(125);
-        },
         success: function(data){
           var game;
 
@@ -323,7 +320,6 @@ function checkWords() {
             game = data[0]['new_word_game'];
           }
 
-          $('#ajax-loader').slideUp(125);
           $('h1#title-inserted span').remove();
           $('#word svg').remove();
           drawEmptyCarpet();
