@@ -123,9 +123,9 @@ function getANewWord() {
   clearSessionViewerIntervals();
   $.ajax({
     type: 'GET',
-    url: '/words/random.json?time=' + timeStamp(),
+    url: '/words/random.json',
     dataType: 'json',
-    cache: true,
+    cache: false,
     success: function(data){
       original_word = data['word']['word'];
       word_id = data['word']['id'];
@@ -310,7 +310,7 @@ function checkWords() {
         data: { guessed_word: guessed, helped_letters: help_counter },
         url: '/words/' + word_id + '/games',
         dataType: 'json',
-        cache: true,
+        cache: false,
         beforeSend : function(xhr){
           $('#ajax-loader').slideDown(125);
         },
@@ -339,7 +339,8 @@ function checkWords() {
       $.ajax({
         type: 'GET',
         dataType: 'json',
-        url: '/words/guess.json?time=' + timeStamp(),
+        url: '/words/guess.json',
+        cache: false,
         success: function(data){
           $('h1#title-inserted span').remove();
           resetGame(data['word']['word'], data['word']['id']);

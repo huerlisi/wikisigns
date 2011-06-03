@@ -56,9 +56,9 @@ function drawWord() {
 function showNewRandomWord(speed) {
   $.ajax({
     type: 'GET',
-    url: '/words/random.json?time=' + timeStamp(),
+    url: '/words/random.json',
     dataType: 'json',
-    cache: true,
+    cache: false,
     success: function(data){
       $('#random-words-container').append(oneWordDiv(data['word']['id'], data['word']['word'], false, 'random_'));
       drawWordAsImage('word_random_' + data['word']['id'], data['word']['word'], 100);

@@ -1,9 +1,3 @@
-// Returns a timestamp string, used for ajax requests.
-function timeStamp() {
-  var time = new Date().getTime();
-  return time.toString();
-}
-
 // Sharing
 // =======
 // Adds the tweet or facebook-like button for resharing.
