@@ -58,13 +58,6 @@ function updateWord(word) {
 
 // Modes
 // =====
-function addModeSettingBehaviour() {
-  $('#word_word').keyup(
-    function(event){
-      setWritingMode();
-    }
-  );
-}
 
 // Writing Mode
 // ============
@@ -76,6 +69,13 @@ function setWritingMode() {
   $('#title').hide();
 }
 
+function detectWritingMode() {
+  $('#word_word').keyup(
+    function(event){
+      setWritingMode();
+    }
+  );
+}
 // Draw a new word and submit it to the data base.
 function addSessionWordsBehaviour(){
   $('#new_word').submit(function(e){
@@ -198,7 +198,7 @@ function newWord() {
 
 // Game Mode
 // =========
-function addInitialResizeBehaviour() {
+function detectGameMode() {
   $('#random-words-container .one-word').live('click', function(){
     showAsBigWord($(this));
     startSessionViewer();
@@ -219,12 +219,14 @@ function addColorizeTextBehaviour() {
 function initializeBehaviours() {
   addFocusTextFieldBehaviour();
   addSessionWordsBehaviour();
-  addModeSettingBehaviour();
+
+  // Mode detection
+  detectWritingMode();
+  detectGameMode();
   
   if($('#words').length > 0 || $('#facebook').length > 0 ){
     showCanvasAndHideTableBehaviour();
     addRealtimeWordDrawingBehaviour();
-    addInitialResizeBehaviour();
     $('#slug-word-share').html(generateShareLink($('#word_word').val().trim()));
     // Game merge
     if(!$('#facebook').length > 0){
