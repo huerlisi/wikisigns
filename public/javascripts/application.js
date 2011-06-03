@@ -15,6 +15,7 @@ function generateShareLink(slug) {
   // Facebook
   link += '<fb:like layout="button_count" href="' + url + '"></fb:like>';
   link += '<fb:send href="' + url + '"></fb:send>';
+  link += '<script type="text/javascript">FB.XFBML.parse()</script>';
 
   // Twitter
   link += '<a class="twitter-share-button" href="http://twitter.com/share" data-url="' + url + '">Tweet</a>';
@@ -140,9 +141,8 @@ function newWord() {
       // Prepare word menu
       $('#word-menu').hide();
       $('#word-menu *').remove();
-      $('#word-menu').append(generateShareLink(text)).append(createLinkToPNGDownload(text)).append(createPublishToFacebookLink(id)).fadeIn(250, function(){
-        FB.XFBML.parse();
-      });
+      $('#word-menu').append(generateShareLink(text)).append(createLinkToPNGDownload(text)).append(createPublishToFacebookLink(id)).show()
+
       $('#session-share-link').show();
 
       $('#next_word_id').remove();
