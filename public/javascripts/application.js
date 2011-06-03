@@ -62,11 +62,6 @@ function updateWord(word) {
   drawWordAsImage('word', word);
 }
 
-// Colorizes the text on the show word page.
-function addColorizeTextBehaviour() {
-  updateTitle($('#title-inserted').text());
-}
-
 // Redraws after every key type the word.
 function addRealtimeWordDrawingBehaviour() {
   $('#word_word').keyup(function(event){
@@ -184,6 +179,11 @@ function addInitialResizeBehaviour() {
     showAsBigWord($(this), true, true);
     $(this).fadeOut(125).remove();
   });
+}
+
+// Colorizes the text on the show word page.
+function addColorizeTextBehaviour() {
+  updateTitle($('#title-inserted').text());
 }
 
 // Initialize behaviours
