@@ -164,7 +164,7 @@ function createLinkToPNGDownload(word) {
 }
 
 function createPublishToFacebookLink(id) {
-  return '<div class="png-download-link"><a class="publish-word-to-facebook" href="/words/' + id +'/publish">Auf Facebook veröffentlichen</a></div>';
+  return '<div class="png-download-link"><a class="publish-word-to-facebook" data-remote="true" href="/words/' + id +'/publish">Auf Facebook veröffentlichen</a></div>';
 }
 
 // Make random words clickable
@@ -173,18 +173,6 @@ function addInitialResizeBehaviour() {
     showAsBigWord($(this), true, true);
     $(this).fadeOut(125).remove();
   });
-}
-
-// Adds the behaviour for publishing words to facebook on links with css class publish-word-to-facebook
-function addPublishWordToFacebookBehaviour() {
-  $('a.publish-word-to-facebook').live('click', function(e){
-    e.preventDefault();
-
-    $.ajax({
-      type: 'GET',
-      url: $(this).attr('href')
-    });
-  })
 }
 
 // Initialize behaviours
@@ -220,7 +208,6 @@ function initializeBehaviours() {
     addColorizeTextBehaviour();
   }
   initializeTooltips();
-  addPublishWordToFacebookBehaviour();
   shareSessionLinkBehaviour();
 
   addAutogrowBehaviour();
