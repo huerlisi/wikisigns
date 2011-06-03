@@ -24,10 +24,7 @@ function showAsBigWord(element, click_on_element) {
   // Prepare word menu
   var text = element.attr('data-word-word');
   var id = element.attr('data-word-id');
-  $('#word-menu').empty()
-    .append(generateShareLink(text))
-    .append(createLinkToPNGDownload(text))
-    .append(createPublishToFacebookLink(id));
+  generateWordMenu(text, id);
 }
 
 function startShowWord() {

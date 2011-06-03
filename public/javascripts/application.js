@@ -35,6 +35,13 @@ function createPublishToFacebookLink(id) {
   return '<div class="png-download-link"><a class="publish-word-to-facebook" data-remote="true" href="/words/' + id +'/publish">Auf Facebook veröffentlichen</a></div>';
 }
 
+function generateWordMenu(text, id) {
+  $('#word-menu').empty()
+    .append(generateShareLink(text))
+    .append(createLinkToPNGDownload(text))
+    .append(createPublishToFacebookLink(id));
+}
+
 // Main Sign
 // =========
 function updateTitle(text) {
@@ -173,11 +180,7 @@ function newWord() {
       });
       $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
 
-      // Prepare word menu
-      $('#word-menu').empty()
-        .append(generateShareLink(text))
-        .append(createLinkToPNGDownload(text))
-        .append(createPublishToFacebookLink(id));
+      generateWordMenu(text, id);
 
       $('#next_word_id').remove();
       $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + id + '" />');
