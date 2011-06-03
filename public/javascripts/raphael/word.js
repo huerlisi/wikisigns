@@ -407,10 +407,6 @@ function drawColoredWord(word) {
     var color = getColorForLetter(letter);
     var style_class = '';
 
-    if(word[i] >= 0 && word[i] < 10){
-      color = colors[word[i]];
-    }
-
     switch(letter) {
       case 'k':
         style_class = 'silver-letter';
