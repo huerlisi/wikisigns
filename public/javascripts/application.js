@@ -50,24 +50,20 @@ function addRealtimeWordDrawingBehaviour() {
       $(event.currentTarget).submit();
     }
     else {
+      var text;
       if(event.keyCode == 32) {
         // character is space
-        var text = '';
-
-        drawWordAsImage('word', text);
-
-        $('#title').hide();
-        $('#title-inserted').html(drawColoredWord(text));
+        text = '';
       }
       else {
         // normal key
-        var text = $(this).val().trim();
-
-        drawWordAsImage('word', text);
-
-        $('#title').hide();
-        $('#title-inserted').html(drawColoredWord(text));
+        text = $(this).val().trim();
       }
+
+      drawWordAsImage('word', text);
+
+      $('#title').hide();
+      $('#title-inserted').html(drawColoredWord(text));
     }
   });
 }
