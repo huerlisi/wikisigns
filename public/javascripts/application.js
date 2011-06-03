@@ -26,24 +26,18 @@ function generateShareLink(slug) {
   return link;
 }
 
-// Draw a new word and submit it to the data base.
-function addSessionWordsBehaviour(){
-  $('#new_word').submit(function(e){
-    e.preventDefault();
-    newWord();
-  });
+// Main Sign
+// =========
+function updateTitle(text) {
+  $('#title-inserted').html(drawColoredWord(text));
+}
+
+function updateWord(word) {
+  drawWordAsImage('word', word);
 }
 
 // Modes
 // =====
-function setWritingMode() {
-  // We're typing, stop all gaming stuff
-  abortHelp();
-  clearSessionViewerIntervals();
-  showPlayAndHidePauseButton();
-  $('#title').hide();
-}
-
 function addModeSettingBehaviour() {
   $('#word_word').keyup(
     function(event){
@@ -54,12 +48,20 @@ function addModeSettingBehaviour() {
 
 // Messaging Mode
 // ==============
-function updateTitle(text) {
-  $('#title-inserted').html(drawColoredWord(text));
+function setWritingMode() {
+  // We're typing, stop all gaming stuff
+  abortHelp();
+  clearSessionViewerIntervals();
+  showPlayAndHidePauseButton();
+  $('#title').hide();
 }
 
-function updateWord(word) {
-  drawWordAsImage('word', word);
+// Draw a new word and submit it to the data base.
+function addSessionWordsBehaviour(){
+  $('#new_word').submit(function(e){
+    e.preventDefault();
+    newWord();
+  });
 }
 
 // Redraws after every key type the word.
