@@ -145,13 +145,6 @@ function newWord() {
       });
       $('#session-share-link').show();
 
-      if($('.twitter-user').length>0){
-        $('a.twitter-share-button').each(function(){
-          var tweet_button = new twttr.TweetButton( $(this).get(0) );
-          tweet_button.render();
-        });
-      }
-
       $('#next_word_id').remove();
       $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + id + '" />');
 
