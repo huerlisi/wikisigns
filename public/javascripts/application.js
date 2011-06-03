@@ -48,6 +48,10 @@ function updateTitle(text) {
   $('#title-inserted').html(drawColoredWord(text));
 }
 
+function updateRiddle(text) {
+  $('#title').html(drawColoredWord(text));
+}
+
 function updateWord(word) {
   drawWordAsImage('word', word);
 }
@@ -161,11 +165,9 @@ function newWord() {
       }
       updateScores(game['score']);
 
-      //
-      $('#title span').remove();
-      $('#title').html(drawColoredWord(text));
+      updateTitle('');
+      updateRiddle(text);
       $('#title').show();
-      $('#title-inserted span').remove();
 
       // Add main sign
       updateWord(text);
