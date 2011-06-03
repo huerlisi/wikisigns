@@ -89,6 +89,18 @@ function addFocusTextFieldBehaviour() {
   $('#word_word').focus().select();
 }
 
+// Play Mode
+// =========
+function setPlayMode() {
+  // We're playing, stop all gaming stuff
+  abortHelp();
+  clearSessionViewerIntervals();
+  showPlayAndHidePauseButton();
+  $('#title').hide();
+}
+
+
+
 
 // Hides the table variant and shows the canvas alternative.
 function showCanvasAndHideTableBehaviour() {
@@ -179,7 +191,12 @@ function createPublishToFacebookLink(id) {
 // Make random words clickable
 function addInitialResizeBehaviour() {
   $('#random-words-container .one-word').live('click', function(){
-    showAsBigWord($(this), true, true);
+    showAsBigWord($(this), true);
+    
+    // Start game
+    clearInterval(small_picture_help_interval);
+    resetGame($(this).attr('data-word-word'), $(this).attr('data-word-id'), small_picture_help_interval_time);
+
     $(this).fadeOut(125).remove();
   });
 }

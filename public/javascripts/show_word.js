@@ -3,14 +3,14 @@ var show_word_interval;
 var shown_word;
 var draw_word_interval;
 
-function showAsBigWord(element, click_on_element, start_game) {
+function showAsBigWord(element, click_on_element) {
   if(click_on_element == null) click_on_element = false;
   $('#word_word').val('');
   $('#title-inserted span').remove();
   $('#title').show();
   original_word = element.attr('data-word-word');
   shown_word = '';
-  if(start_game ==  null) $('#title').html(drawColoredWord(element.attr('data-word-word')));
+  $('#title').html(drawColoredWord(element.attr('data-word-word')));
   updateWord('');
   clearSessionViewerIntervals();
 
@@ -25,10 +25,6 @@ function showAsBigWord(element, click_on_element, start_game) {
     $('#word-menu *').remove();
     $('#word-menu').append(generateShareLink(element.attr('data-word-word'))).append(createLinkToPNGDownload(element.attr('data-word-word'))).append(createPublishToFacebookLink(element.attr('data-word-id'))).fadeIn(250, function(){
       FB.XFBML.parse();
-      if(start_game != null){
-        clearInterval(small_picture_help_interval);
-        resetGame(element.attr('data-word-word'), element.attr('data-word-id'), small_picture_help_interval_time);
-      }
     });
   });
 }
