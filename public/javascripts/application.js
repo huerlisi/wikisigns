@@ -62,19 +62,13 @@ function addRealtimeWordDrawingBehaviour() {
       $(event.currentTarget).submit();
     }
     else {
-      var text;
-      if(event.keyCode == 32) {
-        // character is space
-        text = '';
-      }
-      else {
-        // normal key
-        text = $(this).val().trim();
-      }
-
-      drawWordAsImage('word', text);
-
+      // Show colored word
+      var text = $(this).val();
       $('#title-inserted').html(drawColoredWord(text));
+
+      // only show last word as sign
+      var word = text.split(' ').pop();
+      drawWordAsImage('word', word);
     }
   });
 }
