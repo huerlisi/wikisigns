@@ -199,7 +199,6 @@ function addInitialResizeBehaviour() {
     showAsBigWord($(this), true);
     
     // Start game
-    clearInterval(small_picture_help_interval);
     resetGame($(this).attr('data-word-word'), $(this).attr('data-word-id'), small_picture_help_interval_time);
 
     $(this).fadeOut(125).remove();

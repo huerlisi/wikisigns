@@ -186,6 +186,7 @@ function nextHelp() {
 function clearHelpIntervals() {
   clearInterval(help_initial_interval);
   clearInterval(help_interval);
+  clearInterval(small_picture_help_interval);
 }
 
 // Updates scores
