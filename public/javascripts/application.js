@@ -128,16 +128,18 @@ function newWord() {
       drawWordAsImage('word_' + id, text, 100);
 
       var one_word = $('#your-words .one-word:last-child');
-      startSessionViewer();
       one_word.click(function(){
         showAsBigWord(one_word, true);
       });
+      $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
+
+      // Prepare word menu
       $('#word-menu').hide();
       $('#word-menu *').remove();
       $('#word-menu').append(generateShareLink(text)).append(createLinkToPNGDownload(text)).append(createPublishToFacebookLink(id)).fadeIn(250, function(){
         FB.XFBML.parse();
       });
-      $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
+      $('#session-share-link').show();
 
       if($('.twitter-user').length>0){
         $('a.twitter-share-button').each(function(){
@@ -148,7 +150,9 @@ function newWord() {
 
       $('#next_word_id').remove();
       $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + id + '" />');
-      $('#session-share-link').show();
+
+      // Start Session Viewer
+      startSessionViewer();
     }
   })
 }
