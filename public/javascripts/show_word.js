@@ -17,6 +17,7 @@ function showAsBigWord(element) {
 
   // Update texts
   updateWord('');
+  updateTitle('');
   $('#title').show();
   $('#title').html(drawColoredWord(text));
 
