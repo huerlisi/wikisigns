@@ -67,11 +67,12 @@ function showNewRandomWord(speed) {
       words.append(oneWordDiv(id, word, false, 'random_'));
       drawWordAsImage('word_random_' + id, word, 100);
 
-      words.animate({scrollTop: words[0].scrollHeight}, function(){
-        setTimeout(function(){
-          showNewRandomWord(speed);
-        }, speed);
-      });
+      words.animate({scrollTop: words[0].scrollHeight});
+
+      // Reset timer
+      setTimeout(function(){
+        showNewRandomWord(speed);
+      }, speed);
     }
   });
 }
