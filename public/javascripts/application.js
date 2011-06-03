@@ -26,6 +26,15 @@ function generateShareLink(slug) {
   return link;
 }
 
+// Creates a div with a link to the PNG of the word id.
+function createLinkToPNGDownload(word) {
+  return '<div class="png-download-link"><a href="/word/' + word +'.png?download=true">Als Bild speichern</a></div>'
+}
+
+function createPublishToFacebookLink(id) {
+  return '<div class="png-download-link"><a class="publish-word-to-facebook" data-remote="true" href="/words/' + id +'/publish">Auf Facebook veröffentlichen</a></div>';
+}
+
 // Main Sign
 // =========
 function updateTitle(text) {
@@ -177,15 +186,6 @@ function newWord() {
       startSessionViewer();
     }
   })
-}
-
-// Creates a div with a link to the PNG of the word id.
-function createLinkToPNGDownload(word) {
-  return '<div class="png-download-link"><a href="/word/' + word +'.png?download=true">Als Bild speichern</a></div>'
-}
-
-function createPublishToFacebookLink(id) {
-  return '<div class="png-download-link"><a class="publish-word-to-facebook" data-remote="true" href="/words/' + id +'/publish">Auf Facebook veröffentlichen</a></div>';
 }
 
 // Make random words clickable
