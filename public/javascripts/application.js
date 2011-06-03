@@ -139,8 +139,8 @@ function newWord() {
       $('#your-words').animate({scrollTop: $('#your-words')[0].scrollHeight});
 
       // Prepare word menu
-      $('#word-menu *').empty();
-      $('#word-menu').append(generateShareLink(text))
+      $('#word-menu').empty()
+        .append(generateShareLink(text))
         .append(createLinkToPNGDownload(text))
         .append(createPublishToFacebookLink(id));
 
