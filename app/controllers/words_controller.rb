@@ -125,8 +125,8 @@ class WordsController < ApplicationController
       file_path = "#{Rails.root}/tmp/#{@word.id}_#{@word.word}.png"
       IMGKit.new(svg_word_url(@word), :'crop-w' => 440, :format => 'png', :quality => 60).to_file(file_path)
       current_user.publish_on_fb(file_path, @word.word)
-
-      redirect_to :root
     end
+
+    redirect_to :root
   end
 end
