@@ -35,6 +35,7 @@ function addSessionWordsBehaviour(){
 }
 
 // Modes
+// =====
 function setWritingMode() {
   // We're typing, stop all gaming stuff
   abortHelp();
@@ -51,9 +52,15 @@ function addModeSettingBehaviour() {
   );
 }
 
-
+// Messaging Mode
+// ==============
 function updateTitle(text) {
   $('#title-inserted').html(drawColoredWord(text));
+}
+
+// Colorizes the text on the show word page.
+function addColorizeTextBehaviour() {
+  updateTitle($('#title-inserted').text());
 }
 
 // Redraws after every key type the word.
@@ -75,11 +82,6 @@ function addRealtimeWordDrawingBehaviour() {
       drawWordAsImage('word', word);
     }
   });
-}
-
-// Colorizes the text on the show word page.
-function addColorizeTextBehaviour() {
-  updateTitle($('#title-inserted').text());
 }
 
 // Hides the table variant and shows the canvas alternative.
