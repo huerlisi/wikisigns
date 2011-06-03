@@ -43,12 +43,18 @@ function setWritingMode() {
   $('#title').hide();
 }
 
+function addModeSettingBehaviour() {
+  $('#word_word').keyup(
+    function(event){
+      setWritingMode();
+    }
+  );
+}
+
 
 // Redraws after every key type the word.
 function addRealtimeWordDrawingBehaviour() {
   $('#word_word').keyup(function(event){
-    setWritingMode();
-    
     // Handle keys
     if(event.keyCode == 13) {
       // character is <return>
@@ -182,7 +188,8 @@ function addInitialResizeBehaviour() {
 function initializeBehaviours() {
   addFocusTextFieldBehaviour();
   addSessionWordsBehaviour();
-
+  addModeSettingBehaviour();
+  
   if($('#words').length > 0 || $('#facebook').length > 0 ){
     showCanvasAndHideTableBehaviour();
     addRealtimeWordDrawingBehaviour();
