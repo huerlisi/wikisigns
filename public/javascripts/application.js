@@ -164,7 +164,7 @@ function createLinkToPNGDownload(word) {
 }
 
 function createPublishToFacebookLink(id) {
-  return '<div class="png-download-link"><a class="publish-word-to-facebook" href="/words/' + id +'/publish" data-word-id="' + id + '">Auf Facebook veröffentlichen</a></div>';
+  return '<div class="png-download-link"><a class="publish-word-to-facebook" href="/words/' + id +'/publish">Auf Facebook veröffentlichen</a></div>';
 }
 
 // Make random words clickable
