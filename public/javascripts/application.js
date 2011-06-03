@@ -12,10 +12,14 @@ function generateShareLink(slug) {
   var url = 'http://' + window.location.hostname + '/word/' + slug;
 
   link = '<div class="social-media-links">';
+  // Facebook
   link += '<fb:like layout="button_count" href="' + url + '"></fb:like>';
   link += '<fb:send href="' + url + '"></fb:send>';
+
+  // Twitter
   link += '<a class="twitter-share-button" href="http://twitter.com/share" data-url="' + url + '">Tweet</a>';
   link += '<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>';
+
   link += '</div>';
 
   return link;
