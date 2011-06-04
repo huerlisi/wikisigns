@@ -127,7 +127,14 @@ function showCanvasAndHideTableBehaviour() {
 // Returns the container for a small word.
 function oneWordDiv(id, text, prefix) {
   if(prefix == null) prefix = '';
-  return '<div class="one-word" data-word-id="' + id + '" data-word-word="' + text + '"><div id="word_' + prefix + id + '" class="word"></div><div class="word-text">'+ text +'</div><div class="svg-text">' + drawColoredWord(text) + '</div></div>';
+
+  var word = $('<div class="one-word" data-word-id="' + id + '" data-word-word="' + text + '">');
+
+  word.append($('<div class="word" id="word_'+ prefix + id + '">'));
+  word.append($('<div class="word-text">').text(text));
+  word.append($('<div class="svg-text">').html(drawColoredWord(text)));
+
+  return word;
 }
 
 // Submits and draws a new word.
