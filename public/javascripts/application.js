@@ -111,8 +111,6 @@ function setPlayMode() {
   clearSessionViewerIntervals();
   showPlayAndHidePauseButton();
   $('#title').hide();
-  
-  
 }
 
 
@@ -243,9 +241,7 @@ function initializeBehaviours() {
   }
 
   // initialize only on /words/:id page.
-  if($('#show-word').length > 0){
-    addColorizeTextBehaviour();
-  }
+  addColorizeTextBehaviour();
   initializeTooltips();
   shareSessionLinkBehaviour();
 
