@@ -47,7 +47,7 @@ function updateRiddle(text) {
 }
 
 function updateWord(word) {
-  drawWordAsImage('word', word);
+  drawWordAsImage($('#word'), word);
 }
 
 // Modes
@@ -168,7 +168,7 @@ function newWord() {
       // Add small sign to history
       var words = $('#your-words');
       words.append(oneWordDiv(id, text));
-      drawWordAsImage('word_' + id, text, 100);
+      drawWordAsImage($('#word_' + id), text, 100);
 
       // Scroll to make new sign visible
       words.animate({scrollTop: words[0].scrollHeight});
