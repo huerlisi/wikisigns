@@ -126,12 +126,10 @@ function showCanvasAndHideTableBehaviour() {
 }
 
 // Returns the container for a small word.
-function oneWordDiv(id, text, prefix) {
-  if(prefix == null) prefix = '';
-
+function oneWordDiv(id, text) {
   var word = $('<div class="one-word" data-word-id="' + id + '" data-word-word="' + text + '">');
 
-  word.append($('<div class="word" id="word_'+ prefix + id + '">'));
+  word.append($('<div class="word" id="word_' + id + '">'));
   word.append($('<div class="word-text">').text(text));
   word.append($('<div class="svg-text">').html(drawColoredWord(text)));
 
