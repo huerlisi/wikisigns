@@ -26,7 +26,7 @@ function createLinkToPNGDownload(word) {
 }
 
 function createPublishToFacebookLink(id) {
-  return '<div class="png-download-link"><a class="publish-word-to-facebook" data-remote="true" href="/words/' + id +'/publish">Auf Facebook veröffentlichen</a></div>';
+  return '<div class="png-download-link"><a data-remote="true" href="/words/' + id +'/publish">Auf Facebook veröffentlichen</a></div>';
 }
 
 function generateWordMenu(text, id) {
@@ -70,7 +70,8 @@ function detectWritingMode() {
     }
   );
 }
-// Draw a new word and submit it to the data base.
+
+// Draw a new word and submit it to the database.
 function addSessionWordsBehaviour(){
   $('#new_word').submit(function(e){
     e.preventDefault();
@@ -195,6 +196,11 @@ function newWord() {
       startSessionViewer();
     }
   })
+}
+
+// Sets focus to the input field.
+function addFocusTextFieldBehaviour() {
+  $('#word_word').focus().select();
 }
 
 // Game Mode
