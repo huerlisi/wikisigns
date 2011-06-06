@@ -325,9 +325,20 @@ function checkWords() {
 
           $('#word svg').remove();
           drawEmptyCarpet();
-          $('#random-words-container').append(oneWordDiv(word_id, guessed, 'guessed_'));
-          drawWordAsImage($('#word_guessed_' + word_id), guessed, 100);
-          $('#random-words-container').animate({scrollTop: $('#random-words-container')[0].scrollHeight});
+          
+          // Map to common used var names
+          var text = guessed;
+          var id = word_id;
+          
+          // Add small sign to random list
+          var words = $('#random-words-container');
+          var one_word = oneWordDiv(id, text);
+          words.append(one_word);
+          drawWordAsImage(one_word.find('.word'), text, 100);
+
+          // Scroll to make new sign visible
+          words.animate({scrollTop: words[0].scrollHeight});
+
           updateScores(game['score']);
 
           send = false;

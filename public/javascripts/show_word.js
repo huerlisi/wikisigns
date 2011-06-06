@@ -60,13 +60,14 @@ function showNewRandomWord(speed) {
     dataType: 'json',
     cache: false,
     success: function(data){
-      var word = data['word']['word'];
+      var text = data['word']['word'];
       var id = data['word']['id'];
 
       // Add smal sign to random list
-      var words = $('#random-words-container')
-      words.append(oneWordDiv(id, word, 'random_'));
-      drawWordAsImage($('#word_random_' + id), word, 100);
+      var words = $('#random-words-container');
+      var one_word = oneWordDiv(id, text);
+      words.append(one_word);
+      drawWordAsImage(one_word.find('.word'), text, 100);
 
       // Scroll to make new sign visible
       words.animate({scrollTop: words[0].scrollHeight});
