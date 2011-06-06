@@ -71,7 +71,7 @@ function detectWritingMode() {
   );
 }
 
-// Draw a new word and submit it to the data base.
+// Draw a new word and submit it to the database.
 function addSessionWordsBehaviour(){
   $('#new_word').submit(function(e){
     e.preventDefault();
