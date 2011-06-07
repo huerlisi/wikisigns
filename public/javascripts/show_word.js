@@ -30,6 +30,7 @@ function showAsBigWord(element) {
 }
 
 function startShowWord() {
+  shown_word = '';
   draw_word_interval = setInterval('drawWord()', letter_speed);
 }
 
