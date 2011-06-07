@@ -112,11 +112,6 @@ function addRealtimeWordDrawingBehaviour() {
   });
 }
 
-// Sets focus to the input field.
-function addFocusTextFieldBehaviour() {
-  $('#word_word').focus().select();
-}
-
 // Play Mode
 // =========
 function setPlayMode() {
