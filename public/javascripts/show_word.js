@@ -15,7 +15,7 @@ function showAsBigWord(element) {
   original_word = text;
   shown_word = '';
 
-  // Update texts
+  // Main sign
   updateTitle('');
   updateRiddle(text);
   $('#title').show();
@@ -23,8 +23,8 @@ function showAsBigWord(element) {
 
   // Context
   generateWordMenu(text, id);
-  clearSessionViewerIntervals();
 
+  clearSessionViewerIntervals();
   showPlayAndHidePauseButton();
 }
 
