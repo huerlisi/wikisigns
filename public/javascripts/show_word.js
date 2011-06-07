@@ -63,7 +63,7 @@ function showNewRandomWord(speed) {
       var text = data['word']['word'];
       var id = data['word']['id'];
 
-      // Add smal sign to random list
+      // Add small sign to random list
       var words = $('#random-words-container');
       var one_word = oneWordDiv(id, text);
       words.append(one_word);
