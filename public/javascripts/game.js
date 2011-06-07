@@ -82,7 +82,7 @@ function initializeWordClickBehaviour() {
         $(this).remove();
       });
     });
-  }
+  });
 }
 
 // Reinitialize the game
