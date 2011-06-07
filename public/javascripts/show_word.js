@@ -54,7 +54,7 @@ function drawWord() {
   }
 }
 
-function showNewRandomWord(speed) {
+function showNewRandomWord() {
   $.ajax({
     type: 'GET',
     url: '/words/random.json',
@@ -72,11 +72,6 @@ function showNewRandomWord(speed) {
 
       // Scroll to make new sign visible
       words.animate({scrollTop: words[0].scrollHeight});
-
-      // Reset timer
-      setTimeout(function(){
-        showNewRandomWord(speed);
-      }, speed);
     }
   });
 }

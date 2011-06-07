@@ -236,9 +236,7 @@ function initializeBehaviours() {
       setWelcomeMode();
 
       var speed = 314*3.14*3.14;
-      setTimeout(function() {
-        showNewRandomWord(speed)
-      }, speed);
+      setInterval('showNewRandomWord()', speed);
     }
   }
 
