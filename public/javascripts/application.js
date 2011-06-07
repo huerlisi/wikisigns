@@ -114,6 +114,12 @@ function setPlayMode() {
   $('#title').hide();
 }
 
+function detectPlayMode() {
+  $('#your-words .one-word').live('click', function(){
+    showAsBigWord($(this));
+    startSessionViewer();
+  });
+}
 
 
 
@@ -180,11 +186,6 @@ function newWord() {
       // Scroll to make new sign visible
       words.animate({scrollTop: words[0].scrollHeight});
 
-      one_word.click(function(){
-        showAsBigWord(one_word);
-        startSessionViewer();
-      });
-
       generateWordMenu(text, id);
 
       $('#next_word_id').remove();
@@ -228,6 +229,7 @@ function initializeBehaviours() {
   // Mode detection
   detectWritingMode();
   detectGameMode();
+  detectPlayMode();
   
   if($('#words').length > 0 || $('#facebook').length > 0 ){
     showCanvasAndHideTableBehaviour();
