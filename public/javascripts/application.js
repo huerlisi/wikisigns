@@ -237,6 +237,8 @@ function initializeBehaviours() {
     }
   }
 
+  $('#game-menu').show();
+
   if($('#shows').length > 0){
     showCanvasAndHideTableBehaviour();
   }
