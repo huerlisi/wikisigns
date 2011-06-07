@@ -173,8 +173,9 @@ function newWord() {
     dataType: 'json',
     success: function(data){
       var id = data[0]['word']['id'];
-      var game;
 
+      // Gameing
+      var game;
       if(data[1]['game'] != null){
         game = data[1]['game'];
       }else{
@@ -182,17 +183,17 @@ function newWord() {
       }
       updateScores(game['score']);
 
+      // Main sign
       updateTitle('');
       updateRiddle(text);
       $('#title').show();
-
-      // Add main sign
       updateWord(text);
+
+      // Context
+      generateWordMenu(text, id);
 
       // Add small sign to history
       addSignToBar($('#your-words'), text, id);
-
-      generateWordMenu(text, id);
 
       // Start Session Viewer
       startSessionViewer();
