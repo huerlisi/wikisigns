@@ -144,7 +144,6 @@ function oneWordDiv(id, text) {
 
 // Submits and draws a new word.
 function newWord() {
-  var next_word_id = $('#next_word_id') ? $('#next_word_id').val() : null;
   var text;
   var word = $('#word_word').val();
 
@@ -156,7 +155,7 @@ function newWord() {
   // Submit to server
   $.ajax({
     type: 'POST',
-    data: { word : { word : word, next_word : next_word_id} },
+    data: { word : { word : word} },
     url: '/words',
     dataType: 'json',
     success: function(data){
@@ -187,9 +186,6 @@ function newWord() {
       words.animate({scrollTop: words[0].scrollHeight});
 
       generateWordMenu(text, id);
-
-      $('#next_word_id').remove();
-      $('#new_word').prepend('<input id="next_word_id" type="hidden" value="' + id + '" />');
 
       // Start Session Viewer
       startSessionViewer();
