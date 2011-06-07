@@ -26,17 +26,12 @@ function pauseSessionViewer() {
 
 // Show a picture as session viewer
 function showSessionViewer() {
-  var timeout = 2000; // 2 seconds for the timeout to the next word.
   var length = $('#your-words .one-word').length;
 
   clearSessionViewerIntervals();
 
   if(length < picture_to_show){
     picture_to_show = 1;
-  }
-
-  if(length == picture_to_show) {
-    timeout = timeout * 3.14; // 30 seconds timeout after the last word.
   }
 
   showAsBigWord($('#your-words .one-word:nth-child(' + picture_to_show + ')'));
