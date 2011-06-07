@@ -167,7 +167,7 @@ function newWord() {
   // Submit to server
   $.ajax({
     type: 'POST',
-    data: { word : { word : word} },
+    data: { word : { word : text} },
     url: '/words',
     dataType: 'json',
     success: function(data){
