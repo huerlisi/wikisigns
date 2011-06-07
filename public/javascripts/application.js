@@ -161,7 +161,6 @@ function newWord() {
   var text = word.trim();
 
   $('#word_word').val('');
-  updateTitle(text);
   addFocusTextFieldBehaviour();
 
   // Submit to server
