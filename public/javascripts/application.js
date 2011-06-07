@@ -172,16 +172,11 @@ function newWord() {
     url: '/words',
     dataType: 'json',
     success: function(data){
-      var id = data[0]['word']['id'];
+      var id    = data[0]['word']['id'];
+      var score = data[1]['new_word_game']['score'];
 
-      // Gameing
-      var game;
-      if(data[1]['game'] != null){
-        game = data[1]['game'];
-      }else{
-        game = data[1]['new_word_game'];
-      }
-      updateScores(game['score']);
+      // Gaming
+      updateScores(score);
 
       // Main sign
       updateTitle('');
