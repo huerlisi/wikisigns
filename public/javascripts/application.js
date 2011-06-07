@@ -50,6 +50,19 @@ function updateWord(word) {
   drawWordAsImage($('#word'), word);
 }
 
+// Bars
+// ====
+function addSignToBar(bar, text, id) {
+  // Create element
+  var sign = oneWordDiv(id, text);
+  // Add to bar
+  bar.append(sign);
+  // Draw sign
+  drawWordAsImage(sign.find('.word'), text, 100);
+  // Scroll to make new sign visible
+  bar.animate({scrollTop: bar[0].scrollHeight});
+}
+
 // Modes
 // =====
 
@@ -177,13 +190,7 @@ function newWord() {
       updateWord(text);
 
       // Add small sign to history
-      var words = $('#your-words');
-      var one_word = oneWordDiv(id, text);
-      words.append(one_word);
-      drawWordAsImage(one_word.find('.word'), text, 100);
-
-      // Scroll to make new sign visible
-      words.animate({scrollTop: words[0].scrollHeight});
+      addSignToBar($('#your-words'), text, id);
 
       generateWordMenu(text, id);
 

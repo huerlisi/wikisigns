@@ -307,18 +307,8 @@ function checkWords() {
         $('#word svg').remove();
         drawEmptyCarpet();
         
-        // Map to common used var names
-        var text = guessed;
-        var id = word_id;
-        
         // Add small sign to random list
-        var words = $('#random-words-container');
-        var one_word = oneWordDiv(id, text);
-        words.append(one_word);
-        drawWordAsImage(one_word.find('.word'), text, 100);
-
-        // Scroll to make new sign visible
-        words.animate({scrollTop: words[0].scrollHeight});
+        addSignToBar($('#random-words-container'), guessed, word_id);
 
         updateScores(game['score']);
 
