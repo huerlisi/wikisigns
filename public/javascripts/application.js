@@ -155,6 +155,7 @@ function newWord() {
   var word = $('#word_word').val();
   var text = word.trim();
 
+  // Clear message input
   $('#word_word').val('');
   addFocusTextFieldBehaviour();
 

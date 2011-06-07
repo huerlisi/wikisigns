@@ -16,17 +16,16 @@ function showAsBigWord(element) {
   shown_word = '';
 
   // Update texts
-  updateWord('');
   updateTitle('');
+  updateRiddle(text);
   $('#title').show();
-  $('#title').html(drawColoredWord(text));
+  updateWord('');
 
+  // Context
+  generateWordMenu(text, id);
   clearSessionViewerIntervals();
 
   showPlayAndHidePauseButton();
-
-  // Prepare word menu
-  generateWordMenu(text, id);
 }
 
 function startShowWord() {
