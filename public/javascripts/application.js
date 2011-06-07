@@ -157,12 +157,11 @@ function oneWordDiv(id, text) {
 
 // Submits and draws a new word.
 function newWord() {
-  var text;
   var word = $('#word_word').val();
+  var text = word.trim();
 
   $('#word_word').val('');
-  updateTitle(word.trim());
-  text = word.trim();
+  updateTitle(text);
   addFocusTextFieldBehaviour();
 
   // Submit to server
