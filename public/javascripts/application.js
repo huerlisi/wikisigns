@@ -233,7 +233,8 @@ function initializeBehaviours() {
     $('#slug-word-share').html(generateShareLink($('#word_word').val().trim()));
     // Game merge
     if(!$('#facebook').length > 0){
-      initializeGame();
+      setWelcomeMode();
+
       var speed = 314*3.14*3.14;
       setTimeout(function() {
         showNewRandomWord(speed)

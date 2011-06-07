@@ -3,7 +3,6 @@ var help_initial_interval;
 var help_initial_interval_time = 15000;
 var help_interval;
 var help_interval_time = 5000;
-var alphabet_interval_time = 314*3.14;
 var small_picture_help_interval;
 var small_picture_help_interval_time = 15000;
 
@@ -29,75 +28,58 @@ var daily_score = 0;
 var current_score = 0;
 var total_score = 0;
 
-var alphabet = 'abcdefghijklmnopqrstuvwxyz';
-
 // The border colors of the carpet when its right or false
 var right_border_color = 'green';
 var false_border_color = 'red';
-
-// Loads the guessing game on the root page.
-// It starts with the alphabet.
-function initializeGame() {
-  $('#game-menu').show();
-  $('h1#title-inserted span').remove();
-  resetGame(alphabet, null, alphabet_interval_time);
-  $('#title').show();
-}
 
 // Moves the first letter of the searched word to top as help.
 function initializeFirstHelp() {
   moveLetterFromBottomToTop(original_word[help_counter]);
   help_counter++;
   clearInterval(help_initial_interval);
-  if(original_word == alphabet){
-    help_interval = setInterval('nextHelp()', alphabet_interval_time);
-  }else{
-    help_interval = setInterval('nextHelp()', help_interval_time);
-  }
+  help_interval = setInterval('nextHelp()', help_interval_time);
 }
 
 function initializeWordClickBehaviour() {
-  if(original_word != alphabet) {
-    $('h1#title span').each(function() {
-      $(this).addClass('selectable');
-      $(this).unbind('click');
-      $(this).click(function(e){
-        $(this).unbind(e);
-        var letter = $(this).html();
+  $('h1#title span').each(function() {
+    $(this).addClass('selectable');
+    $(this).unbind('click');
+    $(this).click(function(e){
+      $(this).unbind(e);
+      var letter = $(this).html();
 
-        guessed_word = guessed_word + letter;
-        clearHelpIntervals();
-        updateWord(guessed_word);
-        $(this).removeClass('selectable');
+      guessed_word = guessed_word + letter;
+      clearHelpIntervals();
+      updateWord(guessed_word);
+      $(this).removeClass('selectable');
 
-        $(this).fadeOut(125, function(){
-          $('#title-inserted').append($(this).clone().hide(0, function(){
-            $(this).fadeIn(125, function(){
+      $(this).fadeOut(125, function(){
+        $('#title-inserted').append($(this).clone().hide(0, function(){
+          $(this).fadeIn(125, function(){
 
-              $('h1#title-inserted').removeAttr('style');
-              $(this).attr(DATA_WORD_COUNTER, word_counter);
-              word_counter++;
-              checkWords();
+            $('h1#title-inserted').removeAttr('style');
+            $(this).attr(DATA_WORD_COUNTER, word_counter);
+            word_counter++;
+            checkWords();
 
-              $(this).click(function(e){
-                $(this).unbind(e);
-                word_counter--;
-                guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
+            $(this).click(function(e){
+              $(this).unbind(e);
+              word_counter--;
+              guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
 
-                $(this).fadeOut(125, function(){
-                  $('h1#title').append($(this).clone().hide(0, function(){
-                    $(this).fadeIn(125, function(){
-                      recountSelectedLetters();
-                      initializeWordClickBehaviour();
-                    });
-                  }));
-                  $(this).remove();
-                });
+              $(this).fadeOut(125, function(){
+                $('h1#title').append($(this).clone().hide(0, function(){
+                  $(this).fadeIn(125, function(){
+                    recountSelectedLetters();
+                    initializeWordClickBehaviour();
+                  });
+                }));
+                $(this).remove();
               });
             });
-          }));
-          $(this).remove();
-        });
+          });
+        }));
+        $(this).remove();
       });
     });
   }
@@ -304,61 +286,44 @@ function checkWords() {
       div_class += ' false';
     }
 
-    if(original != alphabet){
-      $.ajax({
-        type: 'POST',
-        data: { guessed_word: guessed, helped_letters: help_counter },
-        url: '/words/' + word_id + '/games',
-        dataType: 'json',
-        cache: false,
-        success: function(data){
-          var game;
+    $.ajax({
+      type: 'POST',
+      data: { guessed_word: guessed, helped_letters: help_counter },
+      url: '/words/' + word_id + '/games',
+      dataType: 'json',
+      cache: false,
+      success: function(data){
+        var game;
 
-          if(data[0]['game'] != null){
-            game = data[0]['game'];
-          }else{
-            game = data[0]['new_word_game'];
-          }
-
-          $('h1#title-inserted span').remove();
-          resetGame(data[1]['word']['word'], data[1]['word']['id']);
-
-          $('#word svg').remove();
-          drawEmptyCarpet();
-          
-          // Map to common used var names
-          var text = guessed;
-          var id = word_id;
-          
-          // Add small sign to random list
-          var words = $('#random-words-container');
-          var one_word = oneWordDiv(id, text);
-          words.append(one_word);
-          drawWordAsImage(one_word.find('.word'), text, 100);
-
-          // Scroll to make new sign visible
-          words.animate({scrollTop: words[0].scrollHeight});
-
-          updateScores(game['score']);
-
-          send = false;
+        if(data[0]['game'] != null){
+          game = data[0]['game'];
+        }else{
+          game = data[0]['new_word_game'];
         }
-      });
-    }else{
-      $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: '/words/guess.json',
-        cache: false,
-        success: function(data){
-          $('h1#title-inserted span').remove();
-          resetGame(data['word']['word'], data['word']['id']);
-          $('#title').show();
 
-          send = false;
-        }
-      });
-    }
+        $('h1#title-inserted span').remove();
+        resetGame(data[1]['word']['word'], data[1]['word']['id']);
+
+        $('#word svg').remove();
+        drawEmptyCarpet();
+        
+        // Map to common used var names
+        var text = guessed;
+        var id = word_id;
+        
+        // Add small sign to random list
+        var words = $('#random-words-container');
+        var one_word = oneWordDiv(id, text);
+        words.append(one_word);
+        drawWordAsImage(one_word.find('.word'), text, 100);
+
+        // Scroll to make new sign visible
+        words.animate({scrollTop: words[0].scrollHeight});
+
+        updateScores(game['score']);
+
+        send = false;
+      }
+    });
   }
 }
-
