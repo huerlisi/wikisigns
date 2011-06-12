@@ -34,7 +34,8 @@ group :test do
   gem 'rspec-rails'
 
   # Fixtures
-  gem "factory_girl_rails"
+  gem "factory_girl_rails", "~> 1.1.beta1"
+  gem "factory_girl", "~> 2.0.0.beta2"
 
   # Matchers/Helpers
   gem 'shoulda'
