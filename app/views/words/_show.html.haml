@@ -1,8 +1,8 @@
 %h1#title-inserted
+
 = render 'words/table', :word => @word
 #word
 
-%h1#title{:style => 'display:none;'}
-  = @word.word
+%h1#title= @word.word
 
 #word-menu
