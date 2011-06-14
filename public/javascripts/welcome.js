@@ -12,3 +12,4 @@ function setWelcomeMode() {
   startShowWord();
 }
 
+$(document).ready(setWelcomeMode);

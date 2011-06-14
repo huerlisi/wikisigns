@@ -242,8 +242,6 @@ function initializeBehaviours() {
     $('#slug-word-share').html(generateShareLink($('#word_word').val().trim()));
     // Game merge
     if(!$('#facebook').length > 0){
-      setWelcomeMode();
-
       var speed = 314*3.14*3.14;
       setInterval('showNewRandomWord()', speed);
     }
