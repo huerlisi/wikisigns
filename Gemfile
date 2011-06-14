@@ -14,7 +14,6 @@ gem 'mysql2', '~> 0.2.7'
 # ===========
 group :development do
   gem 'rspec-rails'
-  gem 'rails3-generators'
 
   # Haml generators
   gem 'hpricot'
@@ -44,6 +43,7 @@ end
 # Standard helpers
 # ================
 gem 'haml'
+gem 'haml-rails'
 gem 'compass'
 gem 'fancy-buttons'
 
