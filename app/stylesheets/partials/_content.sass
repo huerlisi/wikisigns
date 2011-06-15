@@ -42,10 +42,26 @@
   text-align: left
   margin-top: 5px
 
-#your-words .svg
-  margin-right: 15px
-  margin-bottom: 15px
-  float: left
+#your-words
+  display: block
+  width: 350px
+  height: 530px
+  overflow-y: auto
+  overflow-x: hidden
+  .one-word
+    width: 110px
+    float: left
+  .word-text
+    display: none
+  .svg-text
+    overflow: hidden
+    height: 1.5em
+    text-align: left
+    padding-left: 6px
+  .svg
+    margin-right: 15px
+    margin-bottom: 15px
+    float: left
 
 #user-pics-container h1
   margin-bottom: 10px
@@ -54,6 +70,31 @@
 
 #show-word
   background-color: white
+
+#title,
+#title-inserted
+  line-height: 2.5em
+  display: block
+  font-weight: bold
+  font-size: 20px
+  min-height: 2.5em
+  text-align: left
+  width: 424px
+  height: 7.5em
+  margin-left: 37px
+
+  span
+    border: 1px solid green
+    width: 2em
+    height: 2em
+    line-height: 2em
+    display: inline-block
+    +border-radius
+    margin-right: 2px
+    text-align: center
+
+#title
+  display: none
 
 // Special letter styling
 .space-letter

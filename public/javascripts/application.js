@@ -224,24 +224,19 @@ function initializeBehaviours() {
   detectGameMode();
   detectPlayMode();
   
+  showCanvasAndHideTableBehaviour();
+
   if($('#words').length > 0 || $('#facebook').length > 0 ){
-    showCanvasAndHideTableBehaviour();
     addRealtimeWordDrawingBehaviour();
     $('#slug-word-share').html(generateShareLink($('#word_word').val().trim()));
     // Game merge
     if(!$('#facebook').length > 0){
-      setWelcomeMode();
-
       var speed = 314*3.14*3.14;
       setInterval('showNewRandomWord()', speed);
     }
   }
 
   $('#game-menu').show();
-
-  if($('#shows').length > 0){
-    showCanvasAndHideTableBehaviour();
-  }
 
   if($('#word.svg').length > 0) {
     updateWord('word', $('#title').text());

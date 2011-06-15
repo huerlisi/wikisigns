@@ -4,7 +4,8 @@
     %title
       = t('title.wikisigns')
     = csrf_meta_tag
-    = render 'shared/stylesheets'
+    = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection, print'
+    = stylesheet_link_tag 'compiled/print.css', :media => 'print'
     = render 'shared/facebook_header'
     = javascript_include_tag 'http://platform.twitter.com/widgets.js'
     %meta{:charset => "UTF-8"}
@@ -27,6 +28,6 @@
           #your-words
     = javascript_include_tag :defaults
     = render 'shared/javascripts'
+    = javascript_include_tag 'welcome'
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js#appId=#{Settings.facebook.consumer_key}&amp;xfbml=1"
-    = yield :javascript
     = hoptoad_javascript_notifier if Object.const_defined?(:HoptoadNotifier)

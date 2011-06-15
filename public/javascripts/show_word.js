@@ -40,7 +40,7 @@ function drawWord() {
       shown_word += word.text().trim();
 
       $('#title-inserted').append(word);
-      word.show(125, function(){
+      word.fadeIn(125, function(){
         updateWord(shown_word);
       });
     });
