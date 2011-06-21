@@ -1,5 +1,6 @@
-// Random Bar
-// ==========
+// Random Mode
+// ===========
+
 function showNewRandomWord() {
   $.ajax({
     type: 'GET',
