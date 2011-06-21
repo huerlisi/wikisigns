@@ -30,9 +30,9 @@ function createPublishToFacebookLink(id) {
 }
 
 function generateWordMenu(text, id) {
-  $('#word-menu').empty()
-    .append(generateShareLink(text))
+  $('#context-menu').empty()
     .append(createLinkToPNGDownload(text))
+    .append(generateShareLink(text))
     .append(createPublishToFacebookLink(id));
 }
 
