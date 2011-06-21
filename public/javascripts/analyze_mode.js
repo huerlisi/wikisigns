@@ -2,7 +2,7 @@
 // ============
 
 function setAnalyzeMode() {
-  updateWord('test');
+  showCanvasAndHideTableBehaviour();
 }
 
 $(document).ready(setAnalyzeMode);
