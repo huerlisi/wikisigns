@@ -1,3 +1,19 @@
 = render 'shared/game_menu'
 
 = render 'words/new'
+
+- content_for :context_menu do
+  #scores
+    #last-score.score
+      = t('game.last_score')
+      %span
+        0
+    - if current_user && user_signed_in?
+      #daily-score.score
+        = t('game.dayly_score')
+        %span
+          = current_user.daily_score
+      #alltime-score.score
+        = t('game.total_score')
+        %span
+          = current_user.total_score
