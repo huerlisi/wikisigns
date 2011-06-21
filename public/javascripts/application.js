@@ -125,7 +125,7 @@ function setPlayMode() {
 }
 
 function detectPlayMode() {
-  $('#your-words .one-word').live('click', function(){
+  $('.one-word').live('click', function(){
     showAsBigWord($(this));
     startSessionViewer();
   });
