@@ -37,7 +37,7 @@ body
   width: 100%
 
 #menu-container
-  +column(6)
+  +column(5)
   .button-link a
     display: block
     text-align: left
@@ -50,9 +50,19 @@ body
   +containers
 
 #main-container
-  +column(14)
+  +column(10)
+
+#main-sign
+  +containers
+
+#flow-container
+  +column(5)
   +last
 
-  border-left: 1px solid #121212
-  +box-shadow(rgba(255, 255, 255, 0.07) 1px 0 0 inset)
+#flow-menu
   +containers
+  min-height: 3em
+
+#side-bar
+  +containers
+  min-height: 40em
