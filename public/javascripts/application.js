@@ -211,24 +211,6 @@ function detectGameMode() {
   });
 }
 
-// Random Bar
-// ==========
-function showNewRandomWord() {
-  $.ajax({
-    type: 'GET',
-    url: '/words/random.json',
-    dataType: 'json',
-    cache: false,
-    success: function(data){
-      var text = data['word']['word'];
-      var id = data['word']['id'];
-
-      // Add small sign to random list
-      addSignToBar(text, id);
-    }
-  });
-}
-
 // Colorizes the text on the show word page.
 function addColorizeTextBehaviour() {
   updateTitle($('#title-inserted').text());
@@ -250,11 +232,6 @@ function initializeBehaviours() {
 
   if($('#words').length > 0 || $('#facebook').length > 0 ){
     $('#slug-word-share').html(generateShareLink($('#word_word').val().trim()));
-    // Game merge
-    if(!$('#facebook').length > 0){
-      var speed = 314*3.14*3.14;
-      setInterval('showNewRandomWord()', speed);
-    }
   }
 
   $('#game-menu').show();

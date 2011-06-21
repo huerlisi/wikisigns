@@ -9,3 +9,5 @@
 
 - content_for :mode_script do
   = javascript_include_tag 'analyze_mode'
+  :javascript
+    $(document).ready(setRandomMode);
