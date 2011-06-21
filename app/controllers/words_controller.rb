@@ -7,7 +7,7 @@ class WordsController < ApplicationController
 
   def words_layout
     case self.action_name
-      when 'show', 'new'
+      when 'show', 'new', 'random'
         'wikisigns'
       when 'svg'
         nil
