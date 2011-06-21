@@ -246,8 +246,9 @@ function initializeBehaviours() {
   
   showCanvasAndHideTableBehaviour();
 
+  addRealtimeWordDrawingBehaviour();
+
   if($('#words').length > 0 || $('#facebook').length > 0 ){
-    addRealtimeWordDrawingBehaviour();
     $('#slug-word-share').html(generateShareLink($('#word_word').val().trim()));
     // Game merge
     if(!$('#facebook').length > 0){
