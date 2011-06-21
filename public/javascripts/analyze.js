@@ -46,9 +46,6 @@ function newWord() {
   var word = $('#word_word').val();
   var text = word.trim();
 
-  // Clear message input
-  $('#word_word').val('');
-  addFocusTextFieldBehaviour();
 
   // Submit to server
   $.ajax({
@@ -59,6 +56,10 @@ function newWord() {
     success: function(data){
       var id    = data[0]['word']['id'];
       var score = data[1]['new_word_game']['score'];
+
+      // Clear message input
+      $('#word_word').val('');
+      addFocusTextFieldBehaviour();
 
       // Gaming
       updateScores(score);
