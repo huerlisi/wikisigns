@@ -1,8 +1,19 @@
 !!!
 %html{:lang => 'en', 'xmlns:og' => 'http://ogp.me/ns#', 'xmlns:fb' => 'http://www.facebook.com/2008/fbml' }
   %head
+    %meta{:charset => "UTF-8"}
+
+    <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+
+    %title= t('title.wikisigns')
+
     = csrf_meta_tag
+
     = stylesheet_link_tag 'compiled/facebook.css', :media => 'screen, projection, print'
+
+    = render 'shared/facebook_header'
+
   %body#facebook.facebook-user
     #fb-root
     #container
@@ -14,6 +25,8 @@
           %h1
             = t('your_words')
           #your-words
+
+    // Javascript
     = javascript_include_tag :defaults
     = render 'shared/javascripts'
     = render 'shared/facebook_scripts'
