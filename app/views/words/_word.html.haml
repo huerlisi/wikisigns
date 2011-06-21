@@ -1,4 +1,4 @@
-.one-word{:'data-word-id' => word.id, :'data-random-word' => "#{random ? random : false}", :'data-word-word' => word.word}
+.one-word{:'data-word-id' => word.id, :'data-word-word' => word.word}
   - if table
     = render(:partial => 'words/table', :locals => {:word => word})
   %div[word]
