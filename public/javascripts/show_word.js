@@ -52,19 +52,3 @@ function drawWord() {
     }, letter_speed*2);
   }
 }
-
-function showNewRandomWord() {
-  $.ajax({
-    type: 'GET',
-    url: '/words/random.json',
-    dataType: 'json',
-    cache: false,
-    success: function(data){
-      var text = data['word']['word'];
-      var id = data['word']['id'];
-
-      // Add small sign to random list
-      addSignToBar($('#random-words-container'), text, id);
-    }
-  });
-}

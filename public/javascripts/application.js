@@ -209,6 +209,24 @@ function detectGameMode() {
   });
 }
 
+// Random Bar
+// ==========
+function showNewRandomWord() {
+  $.ajax({
+    type: 'GET',
+    url: '/words/random.json',
+    dataType: 'json',
+    cache: false,
+    success: function(data){
+      var text = data['word']['word'];
+      var id = data['word']['id'];
+
+      // Add small sign to random list
+      addSignToBar($('#random-words-container'), text, id);
+    }
+  });
+}
+
 // Colorizes the text on the show word page.
 function addColorizeTextBehaviour() {
   updateTitle($('#title-inserted').text());
