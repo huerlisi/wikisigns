@@ -239,7 +239,7 @@ function initializeBehaviours() {
   $('#game-menu').show();
 
   if($('#word.svg').length > 0) {
-    updateWord('word', $('#title').text());
+    updateWord($('#title').text());
   }
 
   // initialize only on /words/:id page.

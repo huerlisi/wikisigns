@@ -5,6 +5,7 @@
   .button-link= link_to t('link.new_word'), words_path
   .button-link= link_to ">", word_path(@next_word)
 
+= render 'words/table', :word => @word
 #word
 
 - content_for :mode_script do
