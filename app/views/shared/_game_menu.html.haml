@@ -1,4 +1,4 @@
-#game-menu.button-link{:style => 'display:none;'}
+#game-menu.button-link
   = link_to_function image_tag('icons/16x16/fast_backward.png'), 'reinitializeGuessingGame()', :id => 'reinitialize-guessing-game', :'data-tooltip' => t('tooltip.restart')
   = link_to_function image_tag('icons/16x16/play.png'), 'playSessionViewer()', :'data-tooltip' => t('tooltip.session_show'), :id => 'start-session-show'
   = link_to_function image_tag('icons/16x16/pause.png'), 'pauseSessionViewer()', :'data-tooltip' => t('tooltip.session_pause'), :id => 'pause-session-show', :style => 'display:none;'
