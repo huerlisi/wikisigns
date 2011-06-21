@@ -1,44 +1,33 @@
 // Analyze Mode
 // ============
-function setWritingMode() {
+function setAnalyzeMode() {
   // We're typing, stop all gaming stuff
   abortHelp();
   clearSessionViewerIntervals();
   showPlayAndHidePauseButton();
   $('#title').hide();
-}
 
-// Sets focus to the input field.
-function addFocusTextFieldBehaviour() {
+  // Clear and focus to the input field
+  $('#word_word').val('');
   $('#word_word').focus().select();
 }
 
-// Draw a new word and submit it to the database.
-function addSessionWordsBehaviour(){
-  $('#new_word').submit(function(e){
-    e.preventDefault();
-    newWord();
-  });
-}
+// Redraws sign after every key stroke
+function handleKey() {
+  // If character is <return>
+  if(event.keyCode == 13) {
+    // ...trigger form action
+    $(event.currentTarget).submit();
+  }
+  else {
+    // Show colored word
+    var text = $(this).val();
+    updateTitle(text);
 
-// Redraws after every key type the word.
-function addRealtimeWordDrawingBehaviour() {
-  $('#word_word').keyup(function(event){
-    // If character is <return>
-    if(event.keyCode == 13) {
-      // ...trigger form action
-      $(event.currentTarget).submit();
-    }
-    else {
-      // Show colored word
-      var text = $(this).val();
-      updateTitle(text);
-
-      // only show last word as sign
-      var word = text.split(' ').pop();
-      updateWord(word);
-    }
-  });
+    // only show last word as sign
+    var word = text.split(' ').pop();
+    updateWord(word);
+  }
 }
 
 // Submits and draws a new word.
@@ -59,7 +48,7 @@ function newWord() {
 
       // Clear message input
       $('#word_word').val('');
-      addFocusTextFieldBehaviour();
+      $('#word_word').focus().select();
 
       // Gaming
       updateScores(score);
@@ -84,10 +73,14 @@ function newWord() {
 
 // Initialize behaviours
 function initializeBehaviours() {
-  // Behaviour setup
-  addFocusTextFieldBehaviour();
-  addSessionWordsBehaviour();
-  addRealtimeWordDrawingBehaviour();
+  // Draw a new word and submit it to the database on submit
+  $('#new_word').submit(function(e){
+    e.preventDefault();
+    newWord();
+  });
+
+  // Redraws sign after every key stroke
+  $('#word_word').keyup(handleKey);
 }
 
 // Loads functions after DOM is ready

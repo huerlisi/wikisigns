@@ -7,3 +7,7 @@
 #word
 
 %h1#title-inserted
+
+- content_for :mode_script do
+  :javascript
+    $(document).ready(setAnalyzeMode);
