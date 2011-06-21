@@ -1,2 +1,7 @@
-= render 'form'
-= render 'show'
+- content_for :main_control do
+  = render 'form'
+
+= render 'words/table', :word => @word
+#word
+
+%h1#title-inserted
