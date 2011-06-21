@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  layout 'wikisigns'
 
   respond_to :html, :json
 
@@ -8,11 +9,7 @@ class GamesController < ApplicationController
     @word = Word.guess_random
     expire_page :controller => 'games', :action => 'new'
 
-    new! do |format|
-      format.html {
-        redirect_to :root
-      }
-    end
+    new!
   end
 
   # Creates a new game.
