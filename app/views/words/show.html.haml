@@ -4,7 +4,9 @@
     %title
       = t('title.show', :word => @word.word)
     = render 'shared/facebook_header'
-    = render 'shared/stylesheets'
+
+    = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection, print'
+
   %body#show-word
     #word
       = image_tag "/words/#{@word.id}/svg.png", :alt => t('wikisigns'), :size => '440x440'
