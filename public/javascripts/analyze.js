@@ -8,14 +8,6 @@ function setWritingMode() {
   $('#title').hide();
 }
 
-function detectWritingMode() {
-  $('#word_word').keyup(
-    function(event){
-      setWritingMode();
-    }
-  );
-}
-
 // Sets focus to the input field.
 function addFocusTextFieldBehaviour() {
   $('#word_word').focus().select();
@@ -95,9 +87,6 @@ function initializeBehaviours() {
   addFocusTextFieldBehaviour();
   addSessionWordsBehaviour();
   addRealtimeWordDrawingBehaviour();
-
-  // Mode detection
-  detectWritingMode();
 }
 
 // Loads functions after DOM is ready
