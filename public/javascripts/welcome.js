@@ -10,5 +10,3 @@ function setWelcomeMode() {
   updateRiddle(alphabet);
   startShowWord();
 }
-
-$(document).ready(setWelcomeMode);

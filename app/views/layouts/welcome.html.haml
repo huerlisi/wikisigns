@@ -23,6 +23,7 @@
     = javascript_include_tag :defaults
 
     = render 'shared/javascripts'
-    = javascript_include_tag 'welcome'
+    :javascript
+      $(document).ready(setWelcomeMode)
 
     = hoptoad_javascript_notifier if Object.const_defined?(:HoptoadNotifier)

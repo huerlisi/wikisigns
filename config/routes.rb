@@ -1,6 +1,6 @@
 WikiSigns::Application.routes.draw do
 
-  get "welcome/index"
+  get "welcome/index", :as => 'welcome'
 
   devise_for :users
   
