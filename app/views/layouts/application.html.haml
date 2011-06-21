@@ -27,6 +27,5 @@
           #your-words
     = javascript_include_tag :defaults
     = render 'shared/javascripts'
-    = javascript_include_tag 'welcome'
-    = javascript_include_tag "http://connect.facebook.net/en_US/all.js#appId=#{Settings.facebook.consumer_key}&amp;xfbml=1"
+    = render 'shared/facebook_scripts'
     = hoptoad_javascript_notifier if Object.const_defined?(:HoptoadNotifier)
