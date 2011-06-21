@@ -1,5 +1,7 @@
 - content_for :main_control do
   = render 'form'
+- content_for :flow_menu do
+  .button-link= link_to_function t(:go), "$('#new_word').submit()", 'data-tooltip' => t('tooltip.go')
 
 = render 'words/table', :word => @word
 #word

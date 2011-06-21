@@ -1,4 +1,3 @@
 = form_for @word, :url => {:action => 'new'}, :html => {:method => 'get'} do |f|
   = f.text_area :word, :autocomplete => 'off', :cols => 25, :rows => 2, :class => 'autogrow'
   = f.hidden_field :next_word, :value => @word.id if 'show'.eql?action_name
-  = f.submit t(:go), :'data-tooltip' => t('tooltip.go')
