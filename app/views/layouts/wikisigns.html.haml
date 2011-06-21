@@ -30,6 +30,8 @@
     = javascript_include_tag :defaults
 
     = render 'shared/javascripts'
+    #fb-root
+    = render 'shared/facebook_scripts'
     = content_for :mode_script
 
     = hoptoad_javascript_notifier if Object.const_defined?(:HoptoadNotifier)
