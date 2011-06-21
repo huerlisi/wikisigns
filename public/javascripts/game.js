@@ -308,7 +308,7 @@ function checkWords() {
         drawEmptyCarpet();
         
         // Add small sign to random list
-        addSignToBar($('#random-words-container'), guessed, word_id);
+        addSignToBar(guessed, word_id);
 
         updateScores(game['score']);
 

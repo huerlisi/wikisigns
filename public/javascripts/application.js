@@ -52,7 +52,9 @@ function updateWord(word) {
 
 // Bars
 // ====
-function addSignToBar(bar, text, id) {
+function addSignToBar(text, id) {
+  var bar = $('#side-bar');
+
   // Create element
   var sign = oneWordDiv(id, text);
   // Add to bar
@@ -182,7 +184,7 @@ function newWord() {
       generateWordMenu(text, id);
 
       // Add small sign to history
-      addSignToBar($('#your-words'), text, id);
+      addSignToBar(text, id);
 
       // Start Session Viewer
       startSessionViewer();
@@ -222,7 +224,7 @@ function showNewRandomWord() {
       var id = data['word']['id'];
 
       // Add small sign to random list
-      addSignToBar($('#random-words-container'), text, id);
+      addSignToBar(text, id);
     }
   });
 }
