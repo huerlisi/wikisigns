@@ -1,7 +1,12 @@
 - content_for :flow_menu do
   = render 'shared/game_menu'
 
-= render 'words/show'
+%h1#title-inserted
+
+= render 'words/table', :word => @word
+#word
+
+%h1#title= @word.word
 
 - content_for :context_menu do
   #scores
