@@ -31,10 +31,9 @@ function handleKey() {
 }
 
 // Submits and draws a new word.
-function newWord() {
+function submitWord() {
   var word = $('#word_word').val();
   var text = word.trim();
-
 
   // Submit to server
   $.ajax({
@@ -76,7 +75,7 @@ function initializeBehaviours() {
   // Draw a new word and submit it to the database on submit
   $('#new_word').submit(function(e){
     e.preventDefault();
-    newWord();
+    submitWord();
   });
 
   // Redraws sign after every key stroke
