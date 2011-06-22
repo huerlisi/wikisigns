@@ -53,7 +53,6 @@ function submitWord() {
       updateScores(score);
 
       // Main sign
-      updateTitle('');
       updateRiddle(text);
       $('#title').show();
       updateWord(text);
