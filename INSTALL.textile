@@ -44,7 +44,7 @@ h2. Install wikisigns
 Install current wikisigns from git repository. We'll use this checkout as working directory from now on:
 
 <pre>
-git clone http://github.com/huerlisi/wikisigns.git
+git clone https://huerlisi@github.com/huerlisi/wikisigns.git
 cd wikisigns
 mkdir -p tmp log
 </pre>
