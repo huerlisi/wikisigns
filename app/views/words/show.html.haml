@@ -1,7 +1,6 @@
 - content_for :flow_menu do
   .button-link
     = link_to "<", word_path(@previous_word)
-    = link_to t('link.new_word'), words_path
     = link_to ">", word_path(@next_word)
 
 #title= @word.word
