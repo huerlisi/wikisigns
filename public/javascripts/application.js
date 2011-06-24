@@ -57,7 +57,6 @@ function oneWordDiv(id, text) {
   var word = $('<div class="one-word" data-word-id="' + id + '" data-word-word="' + text + '">');
 
   word.append($('<div class="word" id="word_' + id + '">'));
-  word.append($('<div class="word-text">').text(text));
   word.append($('<div class="svg-text">').html(drawColoredWord(text)));
 
   return word;
@@ -72,6 +71,7 @@ function addSignToBar(text, id) {
   bar.append(sign);
   // Draw sign
   drawWordAsImage(sign.find('.word'), text, 100);
+
   // Scroll to make new sign visible
   bar.animate({scrollTop: bar[0].scrollHeight});
 }
