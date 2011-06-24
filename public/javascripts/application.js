@@ -68,6 +68,12 @@ function buildSideBarSign(text, id) {
   return sign;
 }
 
+function replaceSideBarSign(index, text, id) {
+  var sign = $('#side-bar .one-word:nth-child(' + index + ')');
+
+  sign.html(buildSideBarSign(text, id));
+}
+
 function addSignToBar(text, id) {
   var bar = $('#side-bar');
 
