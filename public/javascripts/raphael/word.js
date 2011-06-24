@@ -292,7 +292,7 @@ function drawWordAsImage(element, input_word, size) {
   var paper = Raphael(element[0], canvas_width, canvas_height);
   var corner_radius = 10 * scale;
 
-  // Drop shadow for carpet
+/*  // Drop shadow for carpet
   var paper_shadow = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, corner_radius);
   paper_shadow.attr({stroke: "none", fill: "#555", translation: "2,2"});
   paper_shadow.blur(2);
@@ -301,7 +301,7 @@ function drawWordAsImage(element, input_word, size) {
   var paper_content = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, corner_radius);
   paper_content.attr({stroke: "none", fill: "#efefef"});
 
-  // Paint all 4x4 blocks
+*/  // Paint all 4x4 blocks
   for(var y = 0; y < 4; y++){
     for(var x = 0; x < 4; x++){
       var point_x, point_y;
@@ -346,11 +346,11 @@ function drawWordAsImage(element, input_word, size) {
         block.toBack();
 
         // Drop shadow
-        shadow = paper.rect((margin + space_x) * scale, offset_y + ((margin + space_y) * scale), circle_dimension * scale, circle_dimension * scale, corner_radius);
+/*        shadow = paper.rect((margin + space_x) * scale, offset_y + ((margin + space_y) * scale), circle_dimension * scale, circle_dimension * scale, corner_radius);
         shadow.attr({stroke: "none", fill: "gray", translation: "2,2"});
         shadow.blur(2);
         shadow.toBack();
-      }
+*/      }
     }
   }
 
@@ -381,8 +381,8 @@ function drawWordAsImage(element, input_word, size) {
     letter_p.attr({fill: 'none', stroke: 'grey', 'stroke-width': 7 * scale});
   }
 
-  paper_content.toBack();
-  paper_shadow.toBack();
+//  paper_content.toBack();
+//  paper_shadow.toBack();
   paper.setSize(size, size);
 }
 
