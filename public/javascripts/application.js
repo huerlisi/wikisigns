@@ -54,12 +54,18 @@ function updateWord(word) {
 // ====
 // Returns the container for a small word.
 function oneWordDiv(id, text) {
-  var word = $('<div class="one-word" data-word-id="' + id + '" data-word-word="' + text + '">');
+  // Prepare container
+  var sign  = $('<div class="one-word" data-word-id="' + id + '" data-word-word="' + text + '">');
+  var image = $('<div class="word" id="word_' + id + '">');
+  var word  = $('<div class="svg-text">');
+  sign.append(image, word);
 
-  word.append($('<div class="word" id="word_' + id + '">'));
-  word.append($('<div class="svg-text">').html(drawColoredWord(text)));
+  // Fill in content
+  word.html(drawColoredWord(text));
+  drawWordAsImage(image, text, 100);
 
-  return word;
+  // Draw sign
+  return sign;
 }
 
 function addSignToBar(text, id) {
@@ -67,10 +73,9 @@ function addSignToBar(text, id) {
 
   // Create element
   var sign = oneWordDiv(id, text);
+
   // Add to bar
   bar.append(sign);
-  // Draw sign
-  drawWordAsImage(sign.find('.word'), text, 100);
 
   // Scroll to make new sign visible
   bar.animate({scrollTop: bar[0].scrollHeight});
