@@ -336,7 +336,7 @@ function drawWordAsImage(element, input_word, size) {
         }
       }else{
         var small_point = paper.circle(offset_x + (point_x * scale), offset_y + (point_y * scale), 5 * scale);
-        small_point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width});
+        small_point.attr({fill: 'none', stroke: point_color, 'stroke-width': point_width *0.5});
         small_point.toBack();
       }
 
