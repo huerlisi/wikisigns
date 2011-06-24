@@ -53,7 +53,7 @@ function updateWord(word) {
 // Bars
 // ====
 // Returns the container for a small word.
-function oneWordDiv(id, text) {
+function buildSideBarSign(id, text) {
   // Prepare container
   var sign  = $('<div class="one-word" data-word-id="' + id + '" data-word-word="' + text + '">');
   var image = $('<div class="word">');
@@ -72,7 +72,7 @@ function addSignToBar(text, id) {
   var bar = $('#side-bar');
 
   // Create element
-  var sign = oneWordDiv(id, text);
+  var sign = buildSideBarSign(id, text);
 
   // Add to bar
   bar.append(sign);
