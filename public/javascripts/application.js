@@ -56,7 +56,7 @@ function updateWord(word) {
 function oneWordDiv(id, text) {
   // Prepare container
   var sign  = $('<div class="one-word" data-word-id="' + id + '" data-word-word="' + text + '">');
-  var image = $('<div class="word" id="word_' + id + '">');
+  var image = $('<div class="word">');
   var word  = $('<div class="svg-text">');
   sign.append(image, word);
 
