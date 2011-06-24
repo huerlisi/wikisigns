@@ -297,11 +297,12 @@ function drawWordAsImage(element, input_word, size) {
   paper_shadow.attr({stroke: "none", fill: "#555", translation: "2,2"});
   paper_shadow.blur(2);
 
+*/
   // The carpet itself
   var paper_content = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, corner_radius);
-  paper_content.attr({stroke: "none", fill: "#efefef"});
+  paper_content.attr({stroke: "black", 'stroke-width': 0.2});
 
-*/  // Paint all 4x4 blocks
+  // Paint all 4x4 blocks
   for(var y = 0; y < 4; y++){
     for(var x = 0; x < 4; x++){
       var point_x, point_y;
