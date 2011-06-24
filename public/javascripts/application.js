@@ -69,9 +69,11 @@ function buildSideBarSign(text, id) {
 }
 
 function replaceSideBarSign(index, text, id) {
-  var sign = $('#side-bar .one-word:nth-child(' + index + ')');
+  var sign = $('#sign-' + index + ' .one-word');
 
-  sign.html(buildSideBarSign(text, id));
+  sign.fadeOut(1500, function() {
+    sign.html(buildSideBarSign(text, id));
+  }).delay(1000).fadeIn(1500);
 }
 
 function addSignToBar(text, id) {
