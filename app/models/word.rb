@@ -22,6 +22,8 @@ class Word < ActiveRecord::Base
   scope :without_special_chars, where("words.word REGEXP '^[a-zA-Z]*$'")
   # Scope for minimal length of 3 chars.
   scope :minimal_length, where("LENGTH(words.word) > 2")
+  # Scope for guessing
+  scope :to_guess, without_space.without_special_chars.minimal_length
 
   # The latest words, by default 12 entries.
   def self.latest(amount = 12)
@@ -42,7 +44,7 @@ class Word < ActiveRecord::Base
     case level
       when 1
         uncached do
-          self.minimal_length.without_special_chars.random
+          self.to_guess.random
         end
       when 2
         uncached do
