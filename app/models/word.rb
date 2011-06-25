@@ -30,9 +30,9 @@ class Word < ActiveRecord::Base
 
   # Gets a random word.
   def self.random
-    offset = rand(self.minimal_length.without_space.count)
+    offset = rand(self.count)
 
-    self.minimal_length.without_space.first(:offset => offset)
+    self.first(:offset => offset)
   end
 
   # Returns a word for guessing of the set level.
@@ -42,7 +42,7 @@ class Word < ActiveRecord::Base
     case level
       when 1
         uncached do
-          self.without_special_chars.random
+          self.minimal_length.without_special_chars.random
         end
       when 2
         uncached do
