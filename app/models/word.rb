@@ -23,7 +23,18 @@ class Word < ActiveRecord::Base
   # Scope for minimal length of 3 chars.
   scope :minimal_length, where("LENGTH(words.word) > 2")
   # Scope for guessing
-  scope :to_guess, without_space.without_special_chars.minimal_length
+  scope :to_guess, without_space.without_special_chars.minimal_length do
+    def random(limit = 1)
+      offset = rand(count)
+      words = offset(offset)
+
+      if limit > 1
+        return words.limit(limit)
+      else
+        return words.first
+      end
+    end
+  end
 
   # The latest words, by default 12 entries.
   def self.latest(amount = 12)
@@ -49,7 +60,9 @@ class Word < ActiveRecord::Base
     case level
       when 1
         uncached do
-          self.to_guess.random
+          word = Word.to_guess.random
+          word.word.strip!
+          word
         end
       when 2
         uncached do
