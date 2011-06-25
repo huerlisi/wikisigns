@@ -27,4 +27,11 @@ class GamesController < ApplicationController
       }
     end
   end
+
+  # GET /words/random
+  def random_word
+    @word = Word.guess_random
+
+    respond_with @word
+  end
 end

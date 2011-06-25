@@ -24,8 +24,11 @@ WikiSigns::Application.routes.draw do
     resources :games, :only => [:create, :show]
   end
 
-  resources :games, :only => [:new]
-
+  resources :games, :only => [:new] do
+    collection do
+      get  'random_word'
+    end
+  end
   resources :shows, :only => [:new, :show]
 
   resources :users, :only => [:edit, :show, :update] do

@@ -105,7 +105,7 @@ function getANewWord() {
   clearSessionViewerIntervals();
   $.ajax({
     type: 'GET',
-    url: '/words/random.json',
+    url: '/games/random_word.json',
     dataType: 'json',
     cache: false,
     success: function(data){
