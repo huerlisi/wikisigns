@@ -2,7 +2,7 @@
 // ===========
 
 // Global Settings
-var random_bar_signs = 8;
+var random_bar_signs = 8;	// Number of signs in side bar
 
 function populateBar() {
   var bar = $('#side-bar');
