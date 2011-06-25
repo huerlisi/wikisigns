@@ -87,7 +87,7 @@ class WordsController < ApplicationController
 
   # GET /words/random
   def random
-    @word = Word.guess_random
+    @word = Word.random
 
     show!
   end
