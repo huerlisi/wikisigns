@@ -31,10 +31,15 @@ class Word < ActiveRecord::Base
   end
 
   # Gets a random word.
-  def self.random
+  def self.random(limit = 1)
     offset = rand(self.count)
+    words = self.offset(offset)
 
-    self.first(:offset => offset)
+    if limit > 1
+      return words.limit(limit)
+    else
+      return words.first
+    end
   end
 
   # Returns a word for guessing of the set level.
