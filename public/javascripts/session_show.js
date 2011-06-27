@@ -36,7 +36,7 @@ function showSessionViewer() {
 
   // Read word params from element
   var sign = $('#side-bar .one-word:eq(' + picture_to_show + ')');
-  showAsBigWord(sign.attr('data-word-word'), sign.attr('data-word-id'));
+  showAsBigWord(sign.data('word-word'), sign.data('word-id'));
 
   setTimeout('startShowWord()', letter_speed);
   showPauseAndHidePlayButton();
