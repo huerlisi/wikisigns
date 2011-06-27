@@ -74,13 +74,13 @@ class WordsController < ApplicationController
   # POST /words
   def create
     @game = NewWordGame.create(:user => current_user || nil,
-                               :input => params[:word][:word].strip)
+                               :input => params[:word].strip)
     create! do |format|
       format.html {
         new_word_path(:last_word => @game.word.word)
       }
       format.json {
-        render :json => [@game.word, @game]
+        render :json => @game.score
       }
     end
   end

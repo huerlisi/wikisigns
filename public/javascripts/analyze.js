@@ -39,11 +39,9 @@ function submitWord() {
   // Submit to server
   $.ajax({
     type: 'POST',
-    data: { word : { word : text} },
+    data: { word : text },
     url: '/words.json',
-    success: function(data){
-      var score = data[1]['new_word_game']['score'];
-
+    success: function(score){
       // Clear message input
       $('#word_word').val('');
       $('#word_word').focus().select();
