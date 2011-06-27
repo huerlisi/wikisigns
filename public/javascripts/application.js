@@ -42,10 +42,6 @@ function updateTitle(text) {
   $('#title').html(drawColoredWord(text));
 }
 
-function updateRiddle(text) {
-  $('#guess-title').html(drawColoredWord(text));
-}
-
 function updateWord(word) {
   drawWordAsImage($('#word'), word);
 }

@@ -207,6 +207,10 @@ function removeCharFromPos(string, position){
   return chars.join('');
 }
 
+function updateGuessTitle(text) {
+  $('#guess-title').html(drawColoredWord(text));
+}
+
 // Randomizes the input word and draws it colored.
 function randomizeWord() {
   var new_word;

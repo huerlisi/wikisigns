@@ -18,7 +18,6 @@ function showAsBigWord(element) {
 
   // Main sign
   updateTitle('');
-  updateRiddle(text);
   updateWord('');
 
   // Context

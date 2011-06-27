@@ -52,7 +52,6 @@ function submitWord() {
       updateScores(score);
 
       // Main sign
-      updateRiddle(text);
       updateWord(text);
 
       // Context
