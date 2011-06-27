@@ -214,17 +214,17 @@ function updateGuessTitle(text) {
 // Randomizes the input word and draws it colored.
 function randomizeWord() {
   var new_word;
+
   // Handle very short words
   if(original_word.length < 2) {
-    updateGuessWord(original_word).fadeIn(125);
-    return true;
+    new_word = original_word;
   }
-  
-  // Shuffle
-  new_word = $.shuffle(original_word.split('')).join('');
+  else {
+    // Shuffle
+    new_word = $.shuffle(original_word.split('')).join('');
+  }
 
-  updateGuessWord(new_word).fadeIn(125);
-  return true;
+  updateGuessTitle(new_word).fadeIn(125);
 }
 
 // Moves one letter to the solution word.
