@@ -8,7 +8,6 @@ var small_picture_help_interval_time = 15000;
 
 // Counters
 var help_counter = 0;
-var previous_help_counter = 0;
 
 // The original word
 var original_word;
@@ -123,7 +122,6 @@ function restartHelp() {
 }
 
 function abortHelp() {
-  previous_help_counter = help_counter;
   help_counter = 0;
   clearHelpIntervals();
 }
