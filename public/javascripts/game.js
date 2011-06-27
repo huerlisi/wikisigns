@@ -98,7 +98,7 @@ function setGameMode(word) {
   updateGuessTitle(shuffleWord(original_word));
 }
 
-function resetGame(word, id, interval) {
+function resetGame(word, id) {
   original_word = word;
   word_id = id;
   help_counter = 0;
