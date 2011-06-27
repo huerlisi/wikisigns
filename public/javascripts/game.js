@@ -87,7 +87,10 @@ function initializeWordClickBehaviour() {
 
 // Reinitialize the game
 // It's also used in app/views/shared/game_menu.
-function setGameMode() {
+function setGameMode(word) {
+  if (word) {
+    original_word = word;
+  }
   clearSessionViewerIntervals();
   resetGameGlobalVars();
   restartHelp();

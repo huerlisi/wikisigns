@@ -2,10 +2,14 @@
   = render 'shared/game_menu'
 
 - content_for :main_control do
-  %h1#guess-title= @word.word
+  %h1#guess-title
 
 #word
 %h1#title
+
+- content_for :mode_script do
+  :javascript
+    $(document).ready(setGameMode('#{escape_javascript(@word.word)}'));
 
 - content_for :context_menu do
   #scores
