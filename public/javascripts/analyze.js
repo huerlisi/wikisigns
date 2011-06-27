@@ -20,8 +20,7 @@ function handleKey(event) {
   } else if(event.keyCode == 32) {
     // ...trigger form action
     $(event.currentTarget).submit();
-  }
-  else {
+  } else {
     // Show colored word
     var text = $(this).val();
     updateTitle(text);
