@@ -112,9 +112,6 @@ function detectPlayMode() {
 
 // Hides the table variant and shows the canvas alternative.
 function showCanvasAndHideTableBehaviour() {
-  $('table.carpet').hide();
-  $('#word').show();
-
   updateWord('');
 }
 

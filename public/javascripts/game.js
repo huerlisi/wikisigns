@@ -210,7 +210,6 @@ function removeCharFromPos(string, position){
 
 // Draws an empty carpet and hides the table version of the carpet.
 function drawEmptyCarpet() {
-  $('table.carpet').remove();
   updateWord('');
 }
 
