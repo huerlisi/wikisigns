@@ -41,44 +41,41 @@ function initializeFirstHelp() {
 }
 
 function initializeWordClickBehaviour() {
-  $('#guess-title span').each(function() {
-    $(this).unbind('click');
-    $(this).click(function(e){
-      $(this).unbind(e);
-      var letter = $(this).html();
+  $('#guess-title span').live('click', function(e) {
+    $(this).unbind(e);
+    var letter = $(this).html();
 
-      guessed_word = guessed_word + letter;
-      clearHelpIntervals();
-      updateWord(guessed_word);
+    guessed_word = guessed_word + letter;
+    clearHelpIntervals();
+    updateWord(guessed_word);
 
-      $(this).fadeOut(125, function(){
-        $('#title').append($(this).clone().hide(0, function(){
-          $(this).fadeIn(125, function(){
+    $(this).fadeOut(125, function(){
+      $('#title').append($(this).clone().hide(0, function(){
+        $(this).fadeIn(125, function(){
 
-            $('#title').removeAttr('style');
-            $(this).attr(DATA_WORD_COUNTER, word_counter);
-            word_counter++;
-            checkWords();
+          $('#title').removeAttr('style');
+          $(this).attr(DATA_WORD_COUNTER, word_counter);
+          word_counter++;
+          checkWords();
 
-            $(this).click(function(e){
-              $(this).unbind(e);
-              word_counter--;
-              guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
+          $(this).click(function(e){
+            $(this).unbind(e);
+            word_counter--;
+            guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
 
-              $(this).fadeOut(125, function(){
-                $('#guess-title').append($(this).clone().hide(0, function(){
-                  $(this).fadeIn(125, function(){
-                    recountSelectedLetters();
-                    initializeWordClickBehaviour();
-                  });
-                }));
-                $(this).remove();
-              });
+            $(this).fadeOut(125, function(){
+              $('#guess-title').append($(this).clone().hide(0, function(){
+                $(this).fadeIn(125, function(){
+                  recountSelectedLetters();
+                  initializeWordClickBehaviour();
+                });
+              }));
+              $(this).remove();
             });
           });
-        }));
-        $(this).remove();
-      });
+        });
+      }));
+      $(this).remove();
     });
   });
 }
