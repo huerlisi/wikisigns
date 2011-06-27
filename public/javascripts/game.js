@@ -82,11 +82,15 @@ function initializeWordClickBehaviour() {
 
 // Reinitialize the game
 function resetGame(word, id) {
+  // Global variables
   original_word = word;
   word_id = id;
 
+  guessed_word = '';
+  word_counter = 0;
+  help_counter = 0;
+
   clearSessionViewerIntervals();
-  resetGameGlobalVars();
   restartHelp();
 
   // View
@@ -111,13 +115,6 @@ function getANewWord() {
       resetGame(original_word, word_id);
     }
   });
-}
-
-// Reset global vars of the game
-function resetGameGlobalVars() {
-  guessed_word = '';
-  word_counter = 0;
-  help_counter = 0;
 }
 
 // Restarts the help.
