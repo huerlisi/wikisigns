@@ -96,10 +96,18 @@ function setGameMode(word) {
   updateWord('');
 
   updateGuessTitle(shuffleWord(original_word));
+}
 
-  // Actions
-  initializeWordClickBehaviour();
-  showPlayAndHidePauseButton();
+function resetGame(word, id, interval) {
+  original_word = word;
+  word_id = id;
+  help_counter = 0;
+
+  clearSessionViewerIntervals();
+  resetGameGlobalVars();
+  restartHelp(interval);
+
+  updateGuessTitle(shuffleWord(original_word));
 }
 
 // Gets a new random word.
@@ -117,17 +125,6 @@ function getANewWord() {
       setGameMode();
     }
   });
-}
-
-function resetGame(word, id, interval) {
-  clearSessionViewerIntervals();
-  original_word = word;
-  word_id = id;
-  help_counter = 0;
-  resetGameGlobalVars();
-  updateGuessTitle(shuffleWord(word));
-  initializeWordClickBehaviour();
-  restartHelp(interval);
 }
 
 // Reset global vars of the game
