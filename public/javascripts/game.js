@@ -47,6 +47,7 @@ function initializeWordClickBehaviour() {
 
     guessed_word = guessed_word + letter;
     clearHelpIntervals();
+
     updateWord(guessed_word);
 
     $(this).fadeOut(125, function(){
@@ -67,7 +68,6 @@ function initializeWordClickBehaviour() {
               $('#guess-title').append($(this).clone().hide(0, function(){
                 $(this).fadeIn(125, function(){
                   recountSelectedLetters();
-                  initializeWordClickBehaviour();
                 });
               }));
               $(this).remove();
@@ -86,6 +86,7 @@ function setGameMode(word) {
   if (word) {
     original_word = word;
   }
+
   clearSessionViewerIntervals();
   resetGameGlobalVars();
   restartHelp();
@@ -254,7 +255,6 @@ function moveLetterFromBottomToTop(letter){
                 $('#guess-title').append($(this).clone().hide(0, function(){
                   $(this).fadeIn(125, function(){
                     recountSelectedLetters();
-                    initializeWordClickBehaviour();
                   });
                 }));
                 $(this).remove();
@@ -313,3 +313,9 @@ function checkWords() {
     });
   }
 }
+
+// Loads functions after DOM is ready
+$(document).ready(function() {
+  // Actions
+  initializeWordClickBehaviour();
+});
