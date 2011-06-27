@@ -121,7 +121,7 @@ function getANewWord() {
     success: function(data){
       original_word = data['word']['word'];
       word_id = data['word']['id'];
-      setGameMode();
+      resetGame(original_word, word_id);
     }
   });
 }

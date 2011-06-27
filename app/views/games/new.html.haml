@@ -9,7 +9,7 @@
 
 - content_for :mode_script do
   :javascript
-    $(document).ready(setGameMode('#{escape_javascript(@word.word)}'));
+    $(document).ready(resetGame('#{escape_javascript(@word.word)}', #{@word.id}));
 
 - content_for :context_menu do
   #scores
