@@ -253,7 +253,6 @@ function checkWords() {
   if(guessed_word.length == original_word.length && !send) {
     send = true;
     var guessed = $('#title').text();
-    var original = original_word;
 
     $.ajax({
       type: 'POST',
