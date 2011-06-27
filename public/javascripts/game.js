@@ -215,7 +215,7 @@ function removeCharFromPos(string, position){
 }
 
 function updateGuessTitle(text) {
-  $('#guess-title').html(drawColoredWord(text)).fadeIn(250);
+  $('#guess-title').html(drawColoredWord(text));
 }
 
 // Randomizes the input word.
