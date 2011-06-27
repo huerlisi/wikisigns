@@ -277,7 +277,7 @@ function checkWords() {
         }else{
           game = data[0]['new_word_game'];
         }
-        startGame(data[1]['word']['word'], data[1]['word']['id']);
+        startGame(game['word'], game['id']);
 
         updateTitle('');
         updateWord('');
