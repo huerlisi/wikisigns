@@ -91,9 +91,8 @@ function reinitializeGuessingGame() {
   clearSessionViewerIntervals();
   resetGameGlobalVars();
   $('#title span').remove();
-  $('#title').height('2.5em');
   randomizeWord();
-  drawEmptyCarpet();
+  updateWord('');
   initializeWordClickBehaviour();
   restartHelp();
   showPlayAndHidePauseButton();
@@ -208,11 +207,6 @@ function removeCharFromPos(string, position){
   return chars.join('');
 }
 
-// Draws an empty carpet and hides the table version of the carpet.
-function drawEmptyCarpet() {
-  updateWord('');
-}
-
 // Randomizes the input word and draws it colored.
 function randomizeWord() {
   var new_word;
@@ -304,7 +298,7 @@ function checkWords() {
         resetGame(data[1]['word']['word'], data[1]['word']['id']);
 
         $('#word svg').remove();
-        drawEmptyCarpet();
+        updateWord('');
         
         // Add small sign to random list
         addSignToBar(guessed, word_id);
