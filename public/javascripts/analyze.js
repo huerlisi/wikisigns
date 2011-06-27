@@ -23,11 +23,11 @@ function handleKey(event) {
   } else {
     // Show colored word
     var text = $(this).val();
-    updateTitle(text);
-
     // only show last word as sign
     var word = text.split(' ').pop();
+
     updateWord(word);
+    updateTitle(text);
   }
 }
 
@@ -55,6 +55,7 @@ function submitWord() {
 
       // Main sign
       updateWord(text);
+      updateTitle(text);
 
       // Context
       generateWordMenu(text, id);

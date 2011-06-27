@@ -37,8 +37,10 @@ function drawWord() {
   if(word_position < original_word.length){
     var word = original_word.slice(0, word_position + 1);
 
+    // Main sign
     updateTitle(word);
     updateWord(word);
+
     word_position++;
   }else{
     clearInterval(show_word_interval);
