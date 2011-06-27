@@ -1,1 +1,7 @@
-= render 'svg'
+#word.svg
+
+#title{:style => 'display:none'}
+  = @word.word
+
+= javascript_include_tag :defaults
+= javascript_include_tag 'raphael/raphael', 'raphael/word'
