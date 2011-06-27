@@ -39,11 +39,11 @@ function generateWordMenu(text, id) {
 // Main Sign
 // =========
 function updateTitle(text) {
-  $('#title-inserted').html(drawColoredWord(text));
+  $('#title').html(drawColoredWord(text));
 }
 
 function updateRiddle(text) {
-  $('#title').html(drawColoredWord(text));
+  $('#guess-title').html(drawColoredWord(text));
 }
 
 function updateWord(word) {
@@ -99,7 +99,6 @@ function setPlayMode() {
   abortHelp();
   clearSessionViewerIntervals();
   showPlayAndHidePauseButton();
-  $('#title').hide();
 }
 
 function detectPlayMode() {
@@ -137,7 +136,7 @@ function detectGameMode() {
 
 // Colorizes the text on the show word page.
 function addColorizeTextBehaviour() {
-  updateTitle($('#title-inserted').text());
+  updateTitle($('#title').text());
 }
 
 // Initialize behaviours

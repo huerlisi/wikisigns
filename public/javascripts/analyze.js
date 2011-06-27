@@ -5,7 +5,6 @@ function setAnalyzeMode() {
   abortHelp();
   clearSessionViewerIntervals();
   showPlayAndHidePauseButton();
-  $('#title').hide();
 
   // Clear and focus to the input field
   $('#word_word').val('');
@@ -54,7 +53,6 @@ function submitWord() {
 
       // Main sign
       updateRiddle(text);
-      $('#title').show();
       updateWord(text);
 
       // Context

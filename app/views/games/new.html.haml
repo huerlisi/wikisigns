@@ -2,12 +2,11 @@
   = render 'shared/game_menu'
 
 - content_for :main_control do
-  %h1#title= @word.word
+  %h1#guess-title= @word.word
 
 = render 'words/table', :word => @word
 #word
-%h1#title-inserted
-
+%h1#title
 
 - content_for :context_menu do
   #scores

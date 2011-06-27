@@ -2,6 +2,7 @@ var letter_speed = 314 * 3.14;
 var show_word_interval;
 var shown_word;
 var draw_word_interval;
+var word_position;
 
 function showAsBigWord(element) {
   // Read word params from element
@@ -18,7 +19,6 @@ function showAsBigWord(element) {
   // Main sign
   updateTitle('');
   updateRiddle(text);
-  $('#title').show();
   updateWord('');
 
   // Context
@@ -28,22 +28,21 @@ function showAsBigWord(element) {
   showPlayAndHidePauseButton();
 }
 
-function startShowWord() {
+function startShowWord(word) {
   shown_word = '';
+  original_word = word;
+  word_position = 0;
+
   draw_word_interval = setInterval('drawWord()', letter_speed);
 }
 
 function drawWord() {
-  if($('#title span').length>0){
-    $('#title span:first-child').fadeOut(125, function(){
-      var word = $(this);
-      shown_word += word.text().trim();
+  if(word_position < original_word.length){
+    var word = original_word.slice(0, word_position + 1);
 
-      $('#title-inserted').append(word);
-      word.fadeIn(125, function(){
-        updateWord(shown_word);
-      });
-    });
+    updateTitle(word);
+    updateWord(word);
+    word_position++;
   }else{
     clearInterval(show_word_interval);
     clearInterval(draw_word_interval);

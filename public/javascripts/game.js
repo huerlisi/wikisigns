@@ -41,7 +41,7 @@ function initializeFirstHelp() {
 }
 
 function initializeWordClickBehaviour() {
-  $('h1#title span').each(function() {
+  $('#guess-title span').each(function() {
     $(this).addClass('selectable');
     $(this).unbind('click');
     $(this).click(function(e){
@@ -54,10 +54,10 @@ function initializeWordClickBehaviour() {
       $(this).removeClass('selectable');
 
       $(this).fadeOut(125, function(){
-        $('#title-inserted').append($(this).clone().hide(0, function(){
+        $('#title').append($(this).clone().hide(0, function(){
           $(this).fadeIn(125, function(){
 
-            $('h1#title-inserted').removeAttr('style');
+            $('#title').removeAttr('style');
             $(this).attr(DATA_WORD_COUNTER, word_counter);
             word_counter++;
             checkWords();
@@ -68,7 +68,7 @@ function initializeWordClickBehaviour() {
               guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
 
               $(this).fadeOut(125, function(){
-                $('h1#title').append($(this).clone().hide(0, function(){
+                $('#guess-title').append($(this).clone().hide(0, function(){
                   $(this).fadeIn(125, function(){
                     recountSelectedLetters();
                     initializeWordClickBehaviour();
@@ -90,8 +90,8 @@ function initializeWordClickBehaviour() {
 function reinitializeGuessingGame() {
   clearSessionViewerIntervals();
   resetGameGlobalVars();
-  $('h1#title-inserted span').remove();
-  $('h1#title-inserted').height('2.5em');
+  $('#title span').remove();
+  $('#title').height('2.5em');
   randomizeWord();
   drawEmptyCarpet();
   initializeWordClickBehaviour();
@@ -194,7 +194,7 @@ function updateScores(score) {
 function recountSelectedLetters() {
   var counter = 0;
 
-  $('#title-inserted span').each(function(){
+  $('#title span').each(function(){
     $(this).attr(DATA_WORD_COUNTER, counter);
     counter++;
   });
@@ -219,14 +219,14 @@ function randomizeWord() {
   var new_word;
   // Handle very short words
   if(original_word.length < 2) {
-    $('#title').html(drawColoredWord(original_word)).fadeIn(125);
+    $('#guess-title').html(drawColoredWord(original_word)).fadeIn(125);
     return true;
   }
   
   // Shuffle
   new_word = $.shuffle(original_word.split('')).join('');
 
-  $('#title').html(drawColoredWord(new_word)).fadeIn(125);
+  $('#guess-title').html(drawColoredWord(new_word)).fadeIn(125);
   return true;
 }
 
@@ -234,7 +234,7 @@ function randomizeWord() {
 function moveLetterFromBottomToTop(letter){
   var do_once = true;
 
-  $('#title span').each(function(){
+  $('#guess-title span').each(function(){
     if($(this).html().trim() == letter && do_once){
       do_once = false;
       $(this).hide(125, function(){
@@ -242,9 +242,9 @@ function moveLetterFromBottomToTop(letter){
 
         guessed_word = guessed_word + letter;
         updateWord(guessed_word);
-        $('#title-inserted').append($(this).clone().hide(0, function(){
+        $('#title').append($(this).clone().hide(0, function(){
           $(this).fadeIn('slow', function(){
-            $('h1#title-inserted').removeAttr('style');
+            $('#title').removeAttr('style');
             $(this).attr(DATA_WORD_COUNTER, word_counter);
             word_counter++;
             checkWords();
@@ -253,7 +253,7 @@ function moveLetterFromBottomToTop(letter){
               word_counter--;
               guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
               $(this).fadeOut(125, function(){
-                $('h1#title').append($(this).clone().hide(0, function(){
+                $('#guess-title').append($(this).clone().hide(0, function(){
                   $(this).fadeIn(125, function(){
                     recountSelectedLetters();
                     initializeWordClickBehaviour();
@@ -275,7 +275,7 @@ function checkWords() {
   // Checks if all letters has been selected.
   if(guessed_word.length == original_word.length && !send) {
     send = true;
-    var guessed = $('#title-inserted').text();
+    var guessed = $('#title').text();
     var original = original_word;
     var div_class = '';
 
@@ -301,7 +301,7 @@ function checkWords() {
           game = data[0]['new_word_game'];
         }
 
-        $('h1#title-inserted span').remove();
+        $('#title span').remove();
         resetGame(data[1]['word']['word'], data[1]['word']['id']);
 
         $('#word svg').remove();
