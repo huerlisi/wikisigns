@@ -280,9 +280,6 @@ function checkWords() {
         var word = data[1]['word'];
         startGame(word['word'], word['id']);
 
-        updateTitle('');
-        updateWord('');
-        
         // Add small sign to random list
         addSideBarSign(guessed, word_id);
 
