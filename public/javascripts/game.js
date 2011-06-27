@@ -32,13 +32,6 @@ var total_score = 0;
 var right_border_color = 'green';
 var false_border_color = 'red';
 
-// Moves the first letter of the searched word to top as help.
-function initializeFirstHelp() {
-  moveLetterFromBottomToTop(original_word[help_counter]);
-  help_counter++;
-  clearInterval(help_initial_interval);
-  help_interval = setInterval('nextHelp()', help_interval_time);
-}
 
 function initializeWordClickBehaviour() {
   $('#guess-title span').live('click', function(e) {
@@ -121,6 +114,8 @@ function getANewWord() {
   });
 }
 
+// Help
+// ====
 // Restarts the help.
 function restartHelp() {
   abortHelp();
@@ -131,6 +126,14 @@ function abortHelp() {
   previous_help_counter = help_counter;
   help_counter = 0;
   clearHelpIntervals();
+}
+
+// Moves the first letter of the searched word to top as help.
+function initializeFirstHelp() {
+  moveLetterFromBottomToTop(original_word[help_counter]);
+  help_counter++;
+  clearInterval(help_initial_interval);
+  help_interval = setInterval('nextHelp()', help_interval_time);
 }
 
 // Shows the next letter as help.
@@ -150,6 +153,8 @@ function clearHelpIntervals() {
   clearInterval(small_picture_help_interval);
 }
 
+// Highscore
+// =========
 // Updates scores
 function updateScores(score) {
   if($('#last-score span').length > 0){
