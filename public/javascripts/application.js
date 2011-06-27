@@ -53,11 +53,9 @@ function buildSideBarSign(text, id) {
   // Prepare container
   var sign  = $('<div class="one-word" data-word-id="' + id + '" data-word-word="' + text + '">');
   var image = $('<div class="word">');
-  var word  = $('<div class="svg-text">');
-  sign.append(image, word);
+  sign.append(image);
 
   // Fill in content
-  word.html(drawColoredWord(text));
   drawWordAsImage(image, text, 100);
 
   // Draw sign
