@@ -58,7 +58,7 @@ function submitWord() {
       generateWordMenu(text, id);
 
       // Add small sign to history
-      addSignToBar(text, id);
+      addSideBarSign(text, id);
 
       // Start Session Viewer
       startSessionViewer();

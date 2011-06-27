@@ -72,7 +72,7 @@ function replaceSideBarSign(index, text, id) {
   }).delay(1000).fadeIn(1500);
 }
 
-function addSignToBar(text, id) {
+function addSideBarSign(text, id) {
   var bar = $('#side-bar');
 
   // Create element
