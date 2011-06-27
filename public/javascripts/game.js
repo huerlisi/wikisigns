@@ -109,10 +109,9 @@ function getANewWord() {
     dataType: 'json',
     cache: false,
     success: function(data){
-      original_word = data['word']['word'];
-      word_id = data['word']['id'];
+      word = data['word'];
 
-      resetGame(original_word, word_id);
+      resetGame(word['word'], word['id']);
     }
   });
 }
