@@ -105,7 +105,7 @@ function resetGame(word, id, interval) {
 
   clearSessionViewerIntervals();
   resetGameGlobalVars();
-  restartHelp(interval);
+  restartHelp();
 
   updateGuessTitle(shuffleWord(original_word));
 }
@@ -134,10 +134,9 @@ function resetGameGlobalVars() {
 }
 
 // Restarts the help.
-function restartHelp(time) {
-  if(time == null) time = help_initial_interval_time;
+function restartHelp() {
   abortHelp();
-  help_initial_interval = setInterval('initializeFirstHelp()', time);
+  help_initial_interval = setInterval('initializeFirstHelp()', help_initial_interval_time);
 }
 
 function abortHelp() {
