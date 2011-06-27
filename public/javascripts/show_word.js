@@ -1,6 +1,5 @@
 var letter_speed = 314 * 3.14;
 var show_word_interval;
-var shown_word;
 var draw_word_interval;
 var word_position;
 
@@ -9,10 +8,6 @@ var word_position;
 function showAsBigWord(text, id) {
   // Clear message input
   $('#word_word').val('');
-
-  // Globals!
-  original_word = text;
-  shown_word = '';
 
   // Main sign
   updateTitle(text);
@@ -26,23 +21,19 @@ function showAsBigWord(text, id) {
 }
 
 function startShowWord(word) {
-  shown_word = '';
-  original_word = word;
-  word_position = 0;
-
-  draw_word_interval = setInterval('drawWord()', letter_speed);
+  draw_word_interval = setTimeout(function(){drawWord(word, 0)}, letter_speed);
 }
 
-function drawWord() {
-  if(word_position < original_word.length){
+function drawWord(original_word, word_position) {
+  if (word_position < original_word.length) {
     var word = original_word.slice(0, word_position + 1);
 
     // Main sign
     updateTitle(word);
     updateWord(word);
 
-    word_position++;
-  }else{
+    draw_word_interval = setTimeout(function(){drawWord(original_word, word_position + 1)}, letter_speed);
+  } else {
     clearInterval(show_word_interval);
     clearInterval(draw_word_interval);
     setTimeout(function(){
