@@ -4,11 +4,9 @@ var shown_word;
 var draw_word_interval;
 var word_position;
 
-function showAsBigWord(element) {
-  // Read word params from element
-  var text = element.attr('data-word-word');
-  var id = element.attr('data-word-id');
-
+// Show Word
+// =========
+function showAsBigWord(text, id) {
   // Clear message input
   $('#word_word').val('');
 
