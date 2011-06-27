@@ -25,15 +25,15 @@ function createLinkToPNGDownload(word) {
   return '<div class="button-link"><a href="/word/' + word +'.png?download=true">Als Bild speichern</a></div>'
 }
 
-function createPublishToFacebookLink(id) {
-  return '<div class="button-link"><a data-remote="true" href="/words/' + id +'/publish">Auf Facebook veröffentlichen</a></div>';
+function createPublishToFacebookLink(word) {
+  return '<div class="button-link"><a data-remote="true" href="/words/' + word +'/publish">Auf Facebook veröffentlichen</a></div>';
 }
 
-function generateWordMenu(text, id) {
+function generateWordMenu(text) {
   $('#context-menu').empty()
     .append(createLinkToPNGDownload(text))
     .append(generateShareLink(text))
-    .append(createPublishToFacebookLink(id));
+    .append(createPublishToFacebookLink(text));
 }
 
 // Main Sign

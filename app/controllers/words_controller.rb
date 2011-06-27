@@ -123,7 +123,9 @@ class WordsController < ApplicationController
   # Publishes the picture to the users facebook photo album.
   def publish
     if current_user && user_signed_in? && current_user.from_facebook?
-      @word = Word.find(params[:id])
+      @word = Word.find_by_word(params[:slug])
+      @word ||= Word.new(:word => params[:slug])
+
       file_path = "#{Rails.root}/tmp/#{@word.id}_#{@word.word}.png"
       IMGKit.new(svg_word_url(@word), :'crop-w' => 440, :format => 'png', :quality => 60).to_file(file_path)
       current_user.publish_on_fb(file_path, @word.word)

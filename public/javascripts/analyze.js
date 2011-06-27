@@ -58,7 +58,7 @@ function submitWord() {
       updateTitle(text);
 
       // Context
-      generateWordMenu(text, id);
+      generateWordMenu(text);
 
       // Add small sign to history
       addSideBarSign(text, id);

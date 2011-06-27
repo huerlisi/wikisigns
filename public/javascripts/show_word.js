@@ -14,7 +14,7 @@ function showAsBigWord(text, id) {
   updateWord(text);
 
   // Context
-  generateWordMenu(text, id);
+  generateWordMenu(text);
 
   clearSessionViewerIntervals();
   showPlayAndHidePauseButton();
