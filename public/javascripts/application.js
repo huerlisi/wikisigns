@@ -74,7 +74,8 @@ function addSideBarSign(text, id) {
   var bar = $('#side-bar');
 
   // Create element
-  var sign = buildSideBarSign(text, id);
+  var sign = $('<div class="sign">')
+    .append(buildSideBarSign(text, id));
 
   // Add to bar
   bar.append(sign);
