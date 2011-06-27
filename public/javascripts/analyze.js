@@ -17,6 +17,9 @@ function handleKey(event) {
   if(event.keyCode == 13) {
     // ...trigger form action
     $(event.currentTarget).submit();
+  } else if(event.keyCode == 32) {
+    // ...trigger form action
+    $(event.currentTarget).submit();
   }
   else {
     // Show colored word
