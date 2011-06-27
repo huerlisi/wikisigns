@@ -3,8 +3,6 @@ var help_initial_interval;
 var help_initial_interval_time = 15000;
 var help_interval;
 var help_interval_time = 5000;
-var small_picture_help_interval;
-var small_picture_help_interval_time = 15000;
 
 // Counters
 var help_counter = 0;
@@ -148,7 +146,6 @@ function nextHelp() {
 function clearHelpIntervals() {
   clearInterval(help_initial_interval);
   clearInterval(help_interval);
-  clearInterval(small_picture_help_interval);
 }
 
 // Highscore
