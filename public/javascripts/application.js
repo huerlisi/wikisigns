@@ -104,19 +104,6 @@ function detectPlayMode() {
   });
 }
 
-// Game Mode
-// =========
-function detectGameMode() {
-  $('#random-words-container .one-word').live('click', function(){
-    showAsBigWord($(this));
-    startSessionViewer();
-    
-    // Start game
-    resetGame($(this).attr('data-word-word'), $(this).attr('data-word-id'), small_picture_help_interval_time);
-
-    $(this).fadeOut(125).remove();
-  });
-}
 
 // Colorizes the text on the show word page.
 function addColorizeTextBehaviour() {
@@ -126,7 +113,6 @@ function addColorizeTextBehaviour() {
 // Initialize behaviours
 function initializeBehaviours() {
   // Mode detection
-  detectGameMode();
   detectPlayMode();
   
   if($('#words').length > 0 || $('#facebook').length > 0 ){
