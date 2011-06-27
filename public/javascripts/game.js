@@ -293,11 +293,9 @@ function checkWords() {
         }else{
           game = data[0]['new_word_game'];
         }
-
-        $('#title span').remove();
         resetGame(data[1]['word']['word'], data[1]['word']['id']);
 
-        $('#word svg').remove();
+        updateTitle('');
         updateWord('');
         
         // Add small sign to random list
