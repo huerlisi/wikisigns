@@ -2,9 +2,9 @@
   .button-link
     = link_to ">", random_words_path
 
-#title= @word.word
 = render 'words/table', :word => @word
 #word
+#title= @word.word
 
 - content_for :mode_script do
   :javascript

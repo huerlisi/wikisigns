@@ -3,9 +3,9 @@
     = link_to "<", word_path(@previous_word)
     = link_to ">", word_path(@next_word)
 
-#title= @word.word
 = render 'words/table', :word => @word
 #word
+#title= @word.word
 
 - content_for :mode_script do
   :javascript
