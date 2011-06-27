@@ -257,9 +257,7 @@ function checkWords() {
     $.ajax({
       type: 'POST',
       data: { guessed_word: guessed, helped_letters: help_counter },
-      url: '/words/' + word_id + '/games',
-      dataType: 'json',
-      cache: false,
+      url: '/words/' + word_id + '/games.json',
       success: function(data){
         var game;
 
