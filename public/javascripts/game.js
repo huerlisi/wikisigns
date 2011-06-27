@@ -42,7 +42,6 @@ function initializeFirstHelp() {
 
 function initializeWordClickBehaviour() {
   $('#guess-title span').each(function() {
-    $(this).addClass('selectable');
     $(this).unbind('click');
     $(this).click(function(e){
       $(this).unbind(e);
@@ -51,7 +50,6 @@ function initializeWordClickBehaviour() {
       guessed_word = guessed_word + letter;
       clearHelpIntervals();
       updateWord(guessed_word);
-      $(this).removeClass('selectable');
 
       $(this).fadeOut(125, function(){
         $('#title').append($(this).clone().hide(0, function(){
