@@ -81,23 +81,6 @@ function initializeWordClickBehaviour() {
 }
 
 // Reinitialize the game
-// It's also used in app/views/shared/game_menu.
-function setGameMode(word) {
-  if (word) {
-    original_word = word;
-  }
-
-  clearSessionViewerIntervals();
-  resetGameGlobalVars();
-  restartHelp();
-
-  // View
-  updateTitle('');
-  updateWord('');
-
-  updateGuessTitle(shuffleWord(original_word));
-}
-
 function resetGame(word, id) {
   original_word = word;
   word_id = id;
@@ -106,6 +89,9 @@ function resetGame(word, id) {
   resetGameGlobalVars();
   restartHelp();
 
+  // View
+  updateTitle('');
+  updateWord('');
   updateGuessTitle(shuffleWord(original_word));
 }
 
@@ -121,6 +107,7 @@ function getANewWord() {
     success: function(data){
       original_word = data['word']['word'];
       word_id = data['word']['id'];
+
       resetGame(original_word, word_id);
     }
   });
