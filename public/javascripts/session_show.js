@@ -26,7 +26,7 @@ function pauseSessionViewer() {
 
 // Show a picture as session viewer
 function showSessionViewer() {
-  var length = $('#your-words .one-word').length;
+  var length = $('#side-bar .one-word').length;
 
   clearSessionViewerIntervals();
 
@@ -34,7 +34,10 @@ function showSessionViewer() {
     picture_to_show = 1;
   }
 
-  showAsBigWord($('#your-words .one-word:nth-child(' + picture_to_show + ')'));
+  // Read word params from element
+  var sign = $('#side-bar .one-word:eq(' + picture_to_show + ')');
+  showAsBigWord(sign.attr('data-word-word'), sign.attr('data-word-id'));
+
   setTimeout('startShowWord()', letter_speed);
   showPauseAndHidePlayButton();
 
