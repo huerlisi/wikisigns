@@ -80,12 +80,17 @@ function initializeWordClickBehaviour() {
   });
 }
 
-// Reinitialize the game
-function resetGame(word, id) {
+function startGame(word, id) {
   // Global variables
   original_word = word;
   word_id = id;
 
+  resetGame();
+}
+
+// Reinitialize the game
+function resetGame() {
+  // Global variables
   guessed_word = '';
   word_counter = 0;
   help_counter = 0;
@@ -111,7 +116,7 @@ function getANewWord() {
     success: function(data){
       word = data['word'];
 
-      resetGame(word['word'], word['id']);
+      startGame(word['word'], word['id']);
     }
   });
 }
@@ -272,7 +277,7 @@ function checkWords() {
         }else{
           game = data[0]['new_word_game'];
         }
-        resetGame(data[1]['word']['word'], data[1]['word']['id']);
+        startGame(data[1]['word']['word'], data[1]['word']['id']);
 
         updateTitle('');
         updateWord('');
