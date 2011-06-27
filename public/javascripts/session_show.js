@@ -26,19 +26,20 @@ function pauseSessionViewer() {
 
 // Show a picture as session viewer
 function showSessionViewer() {
-  var length = $('#side-bar .one-word').length;
-
   clearSessionViewerIntervals();
 
+  var length = $('#side-bar .one-word').length;
   if(length < picture_to_show){
     picture_to_show = 1;
   }
 
   // Read word params from element
   var sign = $('#side-bar .one-word:eq(' + picture_to_show + ')');
-  showAsBigWord(sign.data('word-word'));
+  var word = sign.data('word-word')
 
-  setTimeout('startShowWord()', letter_speed);
+  showAsBigWord(word);
+  startShowWord(word);
+
   showPauseAndHidePlayButton();
 
   picture_to_show++;
