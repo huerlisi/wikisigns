@@ -87,22 +87,20 @@ function initializeWordClickBehaviour() {
 
 // Reinitialize the game
 // It's also used in app/views/shared/game_menu.
-function reinitializeGuessingGame() {
+function setGameMode() {
   clearSessionViewerIntervals();
   resetGameGlobalVars();
+  restartHelp();
 
+  // View
   updateTitle('');
   updateWord('');
 
   updateGuessTitle(shuffleWord(original_word));
 
+  // Actions
   initializeWordClickBehaviour();
-  restartHelp();
   showPlayAndHidePauseButton();
-}
-
-function setGameMode() {
-
 }
 
 // Gets a new random word.
@@ -117,7 +115,7 @@ function getANewWord() {
     success: function(data){
       original_word = data['word']['word'];
       word_id = data['word']['id'];
-      reinitializeGuessingGame();
+      setGameMode();
     }
   });
 }
