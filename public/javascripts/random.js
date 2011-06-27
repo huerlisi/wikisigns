@@ -33,7 +33,7 @@ function showNewRandomWord() {
   });
 }
 
-function setRandomMode(word, id) {
+function setRandomMode(word) {
   var speed = 314*3.14*3.14;
   populateBar();
   setInterval('showNewRandomWord()', speed);
