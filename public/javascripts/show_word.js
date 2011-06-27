@@ -5,7 +5,7 @@ var word_position;
 
 // Show Word
 // =========
-function showAsBigWord(text, id) {
+function showAsBigWord(text) {
   // Clear message input
   $('#word_word').val('');
 

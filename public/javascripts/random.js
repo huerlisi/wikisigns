@@ -38,6 +38,6 @@ function setRandomMode(word, id) {
   populateBar();
   setInterval('showNewRandomWord()', speed);
 
-  showAsBigWord(word, id);
+  showAsBigWord(word);
   startShowWord(word);
 }

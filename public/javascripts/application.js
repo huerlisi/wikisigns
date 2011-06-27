@@ -98,8 +98,10 @@ function setPlayMode() {
 
 function detectPlayMode() {
   $('.one-word').live('click', function(){
-    showAsBigWord($(this).data('word-word'), $(this).data('word-id'));
-    startSessionViewer();
+    var word = $(this).data('word-word');
+
+    showAsBigWord(word);
+    startShowWord(word);
   });
 }
 
