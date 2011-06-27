@@ -13,7 +13,7 @@ function setAnalyzeMode() {
 }
 
 // Redraws sign after every key stroke
-function handleKey() {
+function handleKey(event) {
   // If character is <return>
   if(event.keyCode == 13) {
     // ...trigger form action
