@@ -1,5 +1,4 @@
 var letter_speed = 314 * 3.14;
-var show_word_interval;
 var draw_word_interval;
 
 // Show Word
@@ -23,6 +22,7 @@ function startShowWord(word) {
   draw_word_interval = setTimeout(function(){drawWord(word, 0)}, letter_speed);
 }
 
+// Incremential show a word
 function drawWord(word, position) {
   if (position < word.length) {
     var part = word.slice(0, position + 1);
@@ -33,10 +33,5 @@ function drawWord(word, position) {
 
     // Call self again, incrementing position
     draw_word_interval = setTimeout(function(){drawWord(word, position + 1)}, letter_speed);
-  } else {
-    clearInterval(show_word_interval);
-    setTimeout(function(){
-      session_viewer_timeout = setTimeout('showSessionViewer()', letter_speed);
-    }, letter_speed*2);
   }
 }
