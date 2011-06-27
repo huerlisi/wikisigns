@@ -40,8 +40,7 @@ function submitWord() {
   $.ajax({
     type: 'POST',
     data: { word : { word : text} },
-    url: '/words',
-    dataType: 'json',
+    url: '/words.json',
     success: function(data){
       var score = data[1]['new_word_game']['score'];
 
