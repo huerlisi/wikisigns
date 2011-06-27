@@ -216,14 +216,14 @@ function randomizeWord() {
   var new_word;
   // Handle very short words
   if(original_word.length < 2) {
-    $('#guess-title').html(drawColoredWord(original_word)).fadeIn(125);
+    updateGuessWord(original_word).fadeIn(125);
     return true;
   }
   
   // Shuffle
   new_word = $.shuffle(original_word.split('')).join('');
 
-  $('#guess-title').html(drawColoredWord(new_word)).fadeIn(125);
+  updateGuessWord(new_word).fadeIn(125);
   return true;
 }
 
