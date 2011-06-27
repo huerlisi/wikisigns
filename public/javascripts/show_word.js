@@ -15,8 +15,8 @@ function showAsBigWord(text, id) {
   shown_word = '';
 
   // Main sign
-  updateTitle('');
-  updateWord('');
+  updateTitle(text);
+  updateWord(text);
 
   // Context
   generateWordMenu(text, id);
