@@ -101,7 +101,6 @@ function setGameMode(word) {
 function resetGame(word, id) {
   original_word = word;
   word_id = id;
-  help_counter = 0;
 
   clearSessionViewerIntervals();
   resetGameGlobalVars();
@@ -131,6 +130,7 @@ function getANewWord() {
 function resetGameGlobalVars() {
   guessed_word = '';
   word_counter = 0;
+  help_counter = 0;
 }
 
 // Restarts the help.
