@@ -90,12 +90,19 @@ function initializeWordClickBehaviour() {
 function reinitializeGuessingGame() {
   clearSessionViewerIntervals();
   resetGameGlobalVars();
-  $('#title span').remove();
-  randomizeWord();
+
+  updateTitle('');
   updateWord('');
+
+  updateGuessTitle(shuffleWord(original_word));
+
   initializeWordClickBehaviour();
   restartHelp();
   showPlayAndHidePauseButton();
+}
+
+function setGameMode() {
+
 }
 
 // Gets a new random word.
@@ -121,7 +128,7 @@ function resetGame(word, id, interval) {
   word_id = id;
   help_counter = 0;
   resetGameGlobalVars();
-  randomizeWord();
+  updateGuessTitle(shuffleWord(word));
   initializeWordClickBehaviour();
   restartHelp(interval);
 }
@@ -208,23 +215,21 @@ function removeCharFromPos(string, position){
 }
 
 function updateGuessTitle(text) {
-  $('#guess-title').html(drawColoredWord(text));
+  $('#guess-title').html(drawColoredWord(text)).fadeIn(250);
 }
 
-// Randomizes the input word and draws it colored.
-function randomizeWord() {
+// Randomizes the input word.
+function shuffleWord(word) {
   var new_word;
 
   // Handle very short words
-  if(original_word.length < 2) {
-    new_word = original_word;
-  }
-  else {
+  if(word.length < 2) {
+    new_word = word;
+  } else {
     // Shuffle
-    new_word = $.shuffle(original_word.split('')).join('');
+    new_word = $.shuffle(word.split('')).join('');
   }
-
-  updateGuessTitle(new_word).fadeIn(125);
+  return new_word;
 }
 
 // Moves one letter to the solution word.
