@@ -108,15 +108,6 @@ function detectPlayMode() {
   });
 }
 
-
-
-// Hides the table variant and shows the canvas alternative.
-function showCanvasAndHideTableBehaviour() {
-  updateWord('');
-}
-
-
-
 // Game Mode
 // =========
 function detectGameMode() {
@@ -142,8 +133,6 @@ function initializeBehaviours() {
   detectGameMode();
   detectPlayMode();
   
-  showCanvasAndHideTableBehaviour();
-
   if($('#words').length > 0 || $('#facebook').length > 0 ){
     $('#slug-word-share').html(generateShareLink($('#word_word').val().trim()));
   }
