@@ -43,7 +43,6 @@ function submitWord() {
     url: '/words',
     dataType: 'json',
     success: function(data){
-      var id    = data[0]['word']['id'];
       var score = data[1]['new_word_game']['score'];
 
       // Clear message input
@@ -61,7 +60,7 @@ function submitWord() {
       generateWordMenu(text);
 
       // Add small sign to history
-      addSideBarSign(text, id);
+      addSideBarSign(text);
 
       // Start Session Viewer
       startSessionViewer();

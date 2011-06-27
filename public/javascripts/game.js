@@ -270,7 +270,7 @@ function checkWords() {
         startGame(word['word'], word['id']);
 
         // Add small sign to random list
-        addSideBarSign(guessed, word_id);
+        addSideBarSign(guessed);
 
         updateScores(game['score']);
 

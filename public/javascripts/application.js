@@ -49,9 +49,9 @@ function updateWord(word) {
 // Bars
 // ====
 // Returns the container for a small word.
-function buildSideBarSign(text, id) {
+function buildSideBarSign(text) {
   // Prepare container
-  var sign  = $('<div class="one-word" data-word-id="' + id + '" data-word-word="' + text + '">');
+  var sign  = $('<div class="one-word" data-word-word="' + text + '">');
   var image = $('<div class="word">');
   sign.append(image);
 
@@ -62,20 +62,20 @@ function buildSideBarSign(text, id) {
   return sign;
 }
 
-function replaceSideBarSign(index, text, id) {
+function replaceSideBarSign(index, text) {
   var sign = $('#sign-' + index + ' .one-word');
 
   sign.fadeOut(1500, function() {
-    sign.html(buildSideBarSign(text, id));
+    sign.html(buildSideBarSign(text));
   }).delay(1000).fadeIn(1500);
 }
 
-function addSideBarSign(text, id) {
+function addSideBarSign(text) {
   var bar = $('#side-bar');
 
   // Create element
   var sign = $('<div class="sign">')
-    .append(buildSideBarSign(text, id));
+    .append(buildSideBarSign(text));
 
   // Add to bar
   bar.append(sign);

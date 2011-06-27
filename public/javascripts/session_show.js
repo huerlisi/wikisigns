@@ -81,6 +81,7 @@ function shareSessionLinkBehaviour() {
     var ids = new Array();
 
     $('#your-words .one-word').each(function(){
+      // TODO:Broken because we don't set data-word-id anymore...
       ids.push($(this).attr('data-word-id'));
     });
 

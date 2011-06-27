@@ -9,7 +9,7 @@ function populateBar() {
 
   for (i = 1; i <= random_bar_signs ; i++)
   {
-    var sign = buildSideBarSign('test', i);
+    var sign = buildSideBarSign('test');
     var sign_holder = $('<div class="sign" id="sign-' + i + '">');
 
     bar.append(sign_holder.append(sign));
@@ -24,11 +24,10 @@ function showNewRandomWord() {
     cache: false,
     success: function(data){
       var text = data['word']['word'];
-      var id = data['word']['id'];
 
       // Add small sign to random list
       var index = Math.floor(Math.random() * random_bar_signs);
-      replaceSideBarSign(index, text, id);
+      replaceSideBarSign(index, text);
     }
   });
 }
