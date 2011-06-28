@@ -12,8 +12,8 @@ function startSessionViewer() {
 // Trigger is in app/views/shared/game_menu
 function playSessionViewer() {
   clearSessionViewerIntervals();
-  showSessionViewer(0);
   showPauseAndHidePlayButton();
+  showSessionViewer(0);
 }
 
 // Pauses the session viewer.
@@ -25,9 +25,6 @@ function pauseSessionViewer() {
 
 // Show a picture as session viewer
 function showSessionViewer(index) {
-  clearSessionViewerIntervals();
-  showPauseAndHidePlayButton();
-
   var length = $('#side-bar .one-word').length;
   if(length < index){
     index = 0;
