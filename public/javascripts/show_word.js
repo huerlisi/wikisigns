@@ -18,12 +18,14 @@ function showAsBigWord(text) {
   showPlayAndHidePauseButton();
 }
 
-function startShowWord(word) {
-  draw_word_interval = setTimeout(function(){drawWord(word, 0)}, letter_speed);
+function startShowWord(word, after_finish) {
+  draw_word_interval = setTimeout(function(){
+    drawWord(word, 0, after_finish)
+  }, letter_speed);
 }
 
 // Incremential show a word
-function drawWord(word, position) {
+function drawWord(word, position, after_finish) {
   if (position < word.length) {
     var part = word.slice(0, position + 1);
 
@@ -32,6 +34,10 @@ function drawWord(word, position) {
     updateWord(part);
 
     // Call self again, incrementing position
-    draw_word_interval = setTimeout(function(){drawWord(word, position + 1)}, letter_speed);
+    draw_word_interval = setTimeout(function(){drawWord(word, position + 1, after_finish)}, letter_speed);
+  } else {
+    if (typeof(after_finish) != "undefined") {
+      after_finish();
+    }
   }
 }
