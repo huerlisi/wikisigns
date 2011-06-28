@@ -13,7 +13,7 @@ function startSessionViewer() {
 // Trigger is in app/views/shared/game_menu
 function playSessionViewer() {
   clearSessionViewerIntervals();
-  session_viewer = setInterval('showSessionViewer()', 1000);
+  showSessionViewer(0);
   showPauseAndHidePlayButton();
 }
 
@@ -25,24 +25,23 @@ function pauseSessionViewer() {
 }
 
 // Show a picture as session viewer
-function showSessionViewer() {
+function showSessionViewer(index) {
   clearSessionViewerIntervals();
+  showPauseAndHidePlayButton();
 
   var length = $('#side-bar .one-word').length;
-  if(length < picture_to_show){
-    picture_to_show = 1;
+  if(length < index){
+    index = 0;
   }
 
   // Read word params from element
-  var sign = $('#side-bar .one-word:eq(' + picture_to_show + ')');
+  var sign = $('#side-bar .one-word:eq(' + index + ')');
   var word = sign.data('word-word')
 
   showAsBigWord(word);
-  startShowWord(word);
-
-  showPauseAndHidePlayButton();
-
-  picture_to_show++;
+  startShowWord(word, function() {
+    showSessionViewer(index + 1);
+  });
 }
 
 // Clears all intervals that are used for the session viewer.
