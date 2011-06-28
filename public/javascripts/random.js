@@ -33,8 +33,9 @@ function showNewRandomWord() {
 }
 
 function setRandomMode(word) {
-  var speed = 314*3.14*3.14;
   populateBar();
+
+  var speed = 314*3.14*3.14;
   setInterval('showNewRandomWord()', speed);
 
   showAsBigWord(word);
