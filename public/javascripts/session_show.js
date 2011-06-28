@@ -1,6 +1,5 @@
 var session_viewer;
 var session_viewer_start;
-var picture_to_show = 1;
 var session_viewer_timeout;
 
 // Start the session viewers show.
