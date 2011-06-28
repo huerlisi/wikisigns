@@ -1,6 +1,8 @@
 - content_for :main_control do
   = render 'form'
+
 - content_for :flow_menu do
+  = render 'shared/game_menu'
   .button-link= link_to_function t(:go), "$('#new_word').submit()", 'data-tooltip' => t('tooltip.go')
 
 #word
