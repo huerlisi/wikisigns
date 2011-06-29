@@ -34,6 +34,12 @@ class WordsController < ApplicationController
     @word = Word.find_by_word(params[:slug])
     @word ||= Word.new(:word => params[:slug])
 
+    @previous_word = Word.where("id < ?", @word.id).order(:id).last
+    @previous_word ||= Word.last
+
+    @next_word = Word.where("id > ?", @word.id).order(:id).first
+    @next_word ||= Word.first
+
     show! do |format|
       format.jpg do
         send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
@@ -47,6 +53,7 @@ class WordsController < ApplicationController
                                                    :type => image_content_type("png", params[:download]),
                               :disposition => disposition(params[:download]) )
       end
+      format.html { render 'show' }
     end
   end
   
