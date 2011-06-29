@@ -45,9 +45,15 @@ body
 
 #menu-container
   +column(5)
-  .button-link a
-    display: block
-    text-align: left
+  .button-link
+    float: left
+    a
+      +link-box
+      float: left
+      width: 160px
+      margin-bottom: 3px
+      padding-left: 40px
+      text-align: left
 
 #main-menu
   min-height: 20em
