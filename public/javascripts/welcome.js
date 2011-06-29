@@ -6,5 +6,11 @@
 function setWelcomeMode() {
   var alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
-  startShowWord(alphabet);
+  startShowWord(alphabet, function(){
+    $('#left-container').hide(125, function(){
+      window.location = '/words/new';
+    });
+  });
 }
+
+$(document).ready(initializeBehaviours);
