@@ -1,7 +1,7 @@
 #game-menu.button-link
-  = link_to_function image_tag('icons/16x16/fast_backward.png'), 'resetGame()', :id => 'reinitialize-guessing-game', :'data-tooltip' => t('tooltip.restart')
-  = link_to_function image_tag('icons/16x16/play.png'), 'playSessionViewer()', :'data-tooltip' => t('tooltip.session_show'), :id => 'start-session-show'
-  = link_to_function image_tag('icons/16x16/pause.png'), 'pauseSessionViewer()', :'data-tooltip' => t('tooltip.session_pause'), :id => 'pause-session-show', :style => 'display:none;'
-  = link_to_function image_tag('icons/16x16/fast_forward.png'), 'getANewWord()', :'data-tooltip' => t('tooltip.get_new_word')
+  = link_to_function image_tag('icons/16x16/black/fast_backward.png'), 'resetGame()', :id => 'reinitialize-guessing-game', :'data-tooltip' => t('tooltip.restart')
+  = link_to_function image_tag('icons/16x16/black/play.png'), 'playSessionViewer()', :'data-tooltip' => t('tooltip.session_show'), :id => 'start-session-show'
+  = link_to_function image_tag('icons/16x16/black/pause.png'), 'pauseSessionViewer()', :'data-tooltip' => t('tooltip.session_pause'), :id => 'pause-session-show', :style => 'display:none;'
+  = link_to_function image_tag('icons/16x16/black/fast_forward.png'), 'getANewWord()', :'data-tooltip' => t('tooltip.get_new_word')
   - if current_user && current_user.from_facebook?
-    = link_to image_tag('icons/16x16/facebook.png'), daily_score_user_path(current_user), :remote => true, :method => :post, :'data-tooltip' => t('tooltip.post_day_score_to_fb')
+    = link_to image_tag('icons/16x16/black/facebook.png'), daily_score_user_path(current_user), :remote => true, :method => :post, :'data-tooltip' => t('tooltip.post_day_score_to_fb')
