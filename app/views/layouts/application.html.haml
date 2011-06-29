@@ -24,7 +24,7 @@
         = render 'shared/score'
         - if controller.class.eql?Omnisocial::AuthController
           #back-link
-            = link_to t('back'), root_path
+            = link_to t('back'), url_for(:back)
         #random-words-container
       #left-container
         = yield
