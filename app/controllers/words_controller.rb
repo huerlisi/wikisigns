@@ -9,8 +9,6 @@ class WordsController < ApplicationController
     case self.action_name
       when 'show', 'new', 'random', 'svg', 'show_by_slug'
         'wikisigns'
-      when 'new_word'
-        'facebook'
       else
         'application'
     end
@@ -71,11 +69,6 @@ class WordsController < ApplicationController
     new!
   end
 
-  # Creates a new word.
-  def new_word
-    new
-  end
-  
   # POST /words
   def create
     @game = NewWordGame.create(:user => current_user || nil,
