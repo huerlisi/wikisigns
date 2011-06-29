@@ -90,14 +90,6 @@ class WordsController < ApplicationController
     show!
   end
 
-  def guess
-    headers['Last-Modified'] = Time.now.httpdate
-    @word = Word.guess_random
-    expire_page :controller => 'games', :action => 'new'
-
-    show!
-  end
-
   # Is here for rendering a svg to a JPG or PNG file.
   # GET /words/:id/svg
   # format: png or jpg
