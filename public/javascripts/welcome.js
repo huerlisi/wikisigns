@@ -7,9 +7,7 @@ function setFullScreen() {
 
 // Callbacks
 function finished_welcome() {
-  $('#left-container').hide(125, function(){
-    window.location = '/words/new';
-  });
+  $('#container').removeClass('fullscreen');
 }
 
 function draw_welcome_title(text, callback) {
