@@ -18,23 +18,28 @@ function showAsBigWord(text) {
   showPlayAndHidePauseButton();
 }
 
-function startShowWord(word, after_finish) {
+function startShowWord(word, after_finish, draw_title) {
   draw_word_interval = setTimeout(function(){
-    drawWord(word, 0, after_finish)
+    drawWord(word, 0, after_finish, draw_title)
   }, letter_speed);
 }
 
 // Incremential show a word
-function drawWord(word, position, after_finish) {
+function drawWord(word, position, after_finish, draw_title) {
   if (position < word.length) {
     var part = word.slice(0, position + 1);
 
     // Main sign
-    updateTitle(part);
     updateWord(part);
-
-    // Call self again, incrementing position
-    draw_word_interval = setTimeout(function(){drawWord(word, position + 1, after_finish)}, letter_speed);
+    if(typeof(draw_title) == "undefined") {
+      updateTitle(part);
+      // Call self again, incrementing position
+      draw_word_interval = setTimeout(function(){drawWord(word, position + 1, after_finish, draw_title)}, letter_speed);
+    }else{
+      draw_title(part, function(){
+        draw_word_interval = setTimeout(function(){drawWord(word, position + 1, after_finish, draw_title)}, letter_speed);
+      });
+    }
   } else {
     if (typeof(after_finish) != "undefined") {
       after_finish();
