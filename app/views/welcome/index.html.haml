@@ -1,2 +1,6 @@
 #word
 %h1#title
+
+- content_for :mode_script do
+  :javascript
+    $(document).ready(setWelcomeMode)

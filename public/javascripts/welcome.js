@@ -1,6 +1,10 @@
 // Welcome Mode
 // ============
 
+function setFullScreen() {
+  $('#container').addClass('fullscreen');
+}
+
 // Callbacks
 function finished_welcome() {
   $('#left-container').hide(125, function(){
@@ -35,6 +39,7 @@ function draw_welcome_title(text, callback) {
 function setWelcomeMode() {
   var alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
+  setFullScreen();
   startShowWord(alphabet, finished_welcome, draw_welcome_title);
 }
 
