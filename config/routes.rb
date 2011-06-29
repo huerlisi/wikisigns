@@ -5,7 +5,7 @@ WikiSigns::Application.routes.draw do
   devise_for :users
   
   # Root
-  root :to => "words#index"
+  root :to => 'welcome#index'
 
   match 'word/:slug', :to => 'words#show_by_slug'
 
