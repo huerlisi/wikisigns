@@ -2,9 +2,6 @@ class WordsController < ApplicationController
 
   respond_to :html, :json
 
-  # Layout
-  layout 'wikisigns'
-
   # Cache the actions svg and show.
   caches_action :svg, :show
 

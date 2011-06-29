@@ -1,6 +1,4 @@
 class GamesController < ApplicationController
-  layout 'wikisigns'
-
   respond_to :html, :json
 
   # Word game for guessing words.
