@@ -95,6 +95,9 @@ class WordsController < ApplicationController
                                                    :type => image_content_type("png", params[:download]),
                               :disposition => disposition(params[:download]) )
       end
+      format.html do
+        render :layout => false
+      end
     end
   end
 
