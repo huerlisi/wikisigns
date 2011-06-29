@@ -45,11 +45,7 @@ function submitWord() {
       updateScores(score);
 
       // Main sign
-      updateWord(text);
-      updateTitle(text);
-
-      // Context
-      generateWordMenu(text);
+      showAsBigWord(text);
 
       // Add small sign to history
       addSideBarSign(text);
