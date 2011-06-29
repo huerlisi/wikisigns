@@ -47,13 +47,16 @@ body
   +column(5)
   .button-link
     float: left
-    a
-      +link-box
-      float: left
-      width: 160px
-      margin-bottom: 3px
-      padding-left: 40px
-      text-align: left
+  .button-link a,
+  .social-media-links,
+  #last-score
+    +link-box
+    width: 160px
+    margin-bottom: 3px
+    padding-left: 40px
+    text-align: left
+  .social-media-links
+    padding-top: 10px
 
 #main-menu
   min-height: 20em
