@@ -1,11 +1,6 @@
 // Analyze Mode
 // ============
 function setAnalyzeMode() {
-  // We're typing, stop all gaming stuff
-  abortHelp();
-  clearSessionViewerIntervals();
-  showPlayAndHidePauseButton();
-
   // Clear and focus to the input field
   $('#word_word').val('');
   $('#word_word').focus().select();
