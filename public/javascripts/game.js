@@ -30,46 +30,6 @@ var right_border_color = 'green';
 var false_border_color = 'red';
 
 
-function initializeWordClickBehaviour() {
-  $('#guess-title span').live('click', function(e) {
-    $(this).unbind(e);
-    var letter = $(this).html();
-
-    guessed_word = guessed_word + letter;
-    clearHelpIntervals();
-
-    updateWord(guessed_word);
-
-    $(this).fadeOut(125, function(){
-      $('#title').append($(this).clone().hide(0, function(){
-        $(this).fadeIn(125, function(){
-
-          $('#title').removeAttr('style');
-          $(this).attr(DATA_WORD_COUNTER, word_counter);
-          word_counter++;
-          checkWords();
-
-          $(this).click(function(e){
-            $(this).unbind(e);
-            word_counter--;
-            guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
-
-            $(this).fadeOut(125, function(){
-              $('#guess-title').append($(this).clone().hide(0, function(){
-                $(this).fadeIn(125, function(){
-                  recountSelectedLetters();
-                });
-              }));
-              $(this).remove();
-            });
-          });
-        });
-      }));
-      $(this).remove();
-    });
-  });
-}
-
 function startGame(word, id) {
   // Global variables
   original_word = word;
@@ -208,6 +168,46 @@ function shuffleWord(word) {
   return new_word;
 }
 
+function initializeWordClickBehaviour() {
+  $('#guess-title span').live('click', function(e) {
+    $(this).unbind(e);
+    var letter = $(this).html();
+
+    guessed_word = guessed_word + letter;
+    clearHelpIntervals();
+
+    updateWord(guessed_word);
+
+    $(this).fadeOut(125, function(){
+      $('#title').append($(this).clone().hide(0, function(){
+        $(this).fadeIn(125, function(){
+
+          $('#title').removeAttr('style');
+          $(this).attr(DATA_WORD_COUNTER, word_counter);
+          word_counter++;
+          checkWords();
+
+          $(this).click(function(e){
+            $(this).unbind(e);
+            word_counter--;
+            guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
+
+            $(this).fadeOut(125, function(){
+              $('#guess-title').append($(this).clone().hide(0, function(){
+                $(this).fadeIn(125, function(){
+                  recountSelectedLetters();
+                });
+              }));
+              $(this).remove();
+            });
+          });
+        });
+      }));
+      $(this).remove();
+    });
+  });
+}
+
 // Moves one letter to the solution word.
 function moveLetterFromBottomToTop(letter){
   var do_once = true;
@@ -267,6 +267,7 @@ function checkWords() {
           game = data[0]['new_word_game'];
         }
         var word = data[1]['word'];
+
         startGame(word['word'], word['id']);
 
         // Add small sign to random list
