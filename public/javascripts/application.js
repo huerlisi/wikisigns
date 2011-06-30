@@ -44,7 +44,7 @@ function startFullScreen() {
 }
 
 function stopFullScreen() {
-  $('#container > div >div:not(#main-sign)').animate({opacity: 1}, 3000);
+  $('#container > div >div:not(#main-sign)').animate({opacity: 1}, 1000);
   $('#container').removeClass('fullscreen');
 }
 

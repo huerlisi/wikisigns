@@ -1,12 +1,6 @@
 // Welcome Mode
 // ============
 
-// Callbacks
-function finished_welcome() {
-  // Wait 2s before ending fullscreen
-  setTimeout(stopFullScreen, 2000);
-}
-
 function draw_welcome_title(text, callback) {
   var colored_text = $(drawColoredWord(text));
   var last_letter = colored_text.filter('span:last');
@@ -37,8 +31,22 @@ function setWelcomeMode() {
   // Show welcome mode in fullscreen
   startFullScreen();
 
+  // End welcome mode 'immediatly' on any click
+  $('#container').click(stopWelcomeMode);
+
   // Show alphabeet, slowly fading in characters, stopping fullscreen mode afterwards
   startShowWord(alphabet, finished_welcome, draw_welcome_title);
+}
+
+function finished_welcome() {
+  // Wait 2s before ending fullscreen
+  setTimeout(stopWelcomeMode, 2000);
+}
+
+// Stop word animation and fullscreen
+function stopWelcomeMode() {
+  stopShowWord();
+  stopFullScreen();
 }
 
 $(document).ready(initializeBehaviours);
