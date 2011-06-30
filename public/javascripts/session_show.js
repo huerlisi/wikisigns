@@ -34,7 +34,6 @@ function showSessionViewer(index) {
   var sign = $('#side-bar .one-word:eq(' + index + ')');
   var word = sign.data('word-word')
 
-  showAsBigWord(word);
   startShowWord(word, function() {
     showSessionViewer(index + 1);
   });
