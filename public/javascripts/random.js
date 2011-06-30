@@ -14,7 +14,7 @@ function populateBar() {
   }
 }
 
-function showNewRandomWord() {
+function showRandomSideBarSign() {
   $.ajax({
     type: 'GET',
     url: '/words/random.json',
@@ -30,11 +30,21 @@ function showNewRandomWord() {
   });
 }
 
+// Mode setup and teardown
+var sidebar_timer;
+
+function stopRandomMode() {
+  clearInterval(sidebar_timer);
+}
+
 function setRandomMode(word) {
   populateBar();
 
-  var speed = 314*3.14*3.14;
-  setInterval('showNewRandomWord()', speed);
+  // Show a new random sign in the sidebar every 6s
+  sidebar_timer = setInterval(showRandomSideBarSign, 6000);
+
+  // Show first sidebar sign right now
+  showRandomSideBarSign();
 
   showAsBigWord(word);
   startShowWord(word);
