@@ -3,7 +3,8 @@
 
 // Callbacks
 function finished_welcome() {
-  stopFullScreen();
+  // Wait 6s before ending fullscreen
+  setTimeout(stopFullScreen, 6000);
 }
 
 function draw_welcome_title(text, callback) {
@@ -33,7 +34,10 @@ function draw_welcome_title(text, callback) {
 function setWelcomeMode() {
   var alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
+  // Show welcome mode in fullscreen
   startFullScreen();
+
+  // Show alphabeet, slowly fading in characters, stopping fullscreen mode afterwards
   startShowWord(alphabet, finished_welcome, draw_welcome_title);
 }
 
