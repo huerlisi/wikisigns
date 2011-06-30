@@ -45,11 +45,11 @@ function clearSessionViewerIntervals() {
   clearInterval(session_viewer_start);
   clearInterval(session_viewer);
   clearTimeout(session_viewer_timeout);
-  clearTimeout(draw_word_interval);
+  clearTimeout(draw_word_timeout);
   session_viewer = null;
   session_viewer_start = null;
   session_viewer_timeout = null;
-  draw_word_interval = null;
+  draw_word_timeout = null;
 }
 
 // Shows the play button and hides the pause button.
