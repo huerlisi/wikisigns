@@ -39,7 +39,7 @@ function showRandomSign() {
     success: function(data){
       var text = data['word']['word'];
 
-      showAsBigWord(text);
+      updateMainTitle(text);
       startShowWord(text, showRandomSign);
     }
   });

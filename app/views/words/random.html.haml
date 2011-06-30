@@ -1,9 +1,12 @@
+- content_for :main_control do
+  %h1#main-title
+
 - content_for :flow_menu do
   .button-link
     = link_to ">", random_words_path
 
 #word
-%h1#title= @word.word
+%h1#title
 
 - content_for :mode_script do
   :javascript

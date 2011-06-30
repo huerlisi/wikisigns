@@ -1,4 +1,4 @@
-var letter_speed = 314 * 3.14;
+var letter_speed = 1000;
 var draw_word_timeout;
 
 // Show Word
