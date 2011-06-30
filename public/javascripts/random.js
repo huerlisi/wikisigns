@@ -30,6 +30,21 @@ function showRandomSideBarSign() {
   });
 }
 
+function showRandomSign() {
+  $.ajax({
+    type: 'GET',
+    url: '/words/random.json',
+    dataType: 'json',
+    cache: false,
+    success: function(data){
+      var text = data['word']['word'];
+
+      showAsBigWord(text);
+      startShowWord(text, showRandomSign);
+    }
+  });
+};
+
 // Mode setup and teardown
 var sidebar_timer;
 
@@ -46,6 +61,6 @@ function setRandomMode(word) {
   // Show first sidebar sign right now
   showRandomSideBarSign();
 
-  showAsBigWord(word);
-  startShowWord(word);
+  // Show a new random sign in the main container
+  showRandomSign();
 }
