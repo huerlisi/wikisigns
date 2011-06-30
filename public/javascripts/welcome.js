@@ -1,7 +1,7 @@
 // Welcome Mode
 // ============
 
-function draw_welcome_title(text, callback) {
+function draw_welcome_title(text) {
   var colored_text = $(drawColoredWord(text));
   var last_letter = colored_text.filter('span:last');
 
@@ -11,16 +11,7 @@ function draw_welcome_title(text, callback) {
   last_letter.css('z-index', '1');
   $('#title').html(colored_text);
 
-  last_letter.animate({
-                        top: '0px',
-                        left: '0px'
-                      },
-                      250,
-                      function(){
-                        if(typeof(callback) != "undefined"){
-                          callback();
-                        }
-                      });
+  last_letter.animate({top: '0px', left: '0px'}, 250);
 }
 
 // Loads the guessing game on the root page.

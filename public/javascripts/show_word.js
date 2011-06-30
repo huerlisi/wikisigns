@@ -37,13 +37,13 @@ function drawWord(word, position, after_finish, draw_title) {
     updateWord(part);
     if(typeof(draw_title) == "undefined") {
       updateTitle(part);
-      // Call self again, incrementing position
-      draw_word_timeout = setTimeout(function(){drawWord(word, position + 1, after_finish, draw_title)}, letter_speed);
-    }else{
-      draw_title(part, function(){
-        draw_word_timeout = setTimeout(function(){drawWord(word, position + 1, after_finish, draw_title)}, letter_speed);
-      });
+    } else {
+      draw_title(part);
     }
+
+    // Call self again, incrementing position
+    draw_word_timeout = setTimeout(function(){drawWord(word, position + 1, after_finish, draw_title)}, letter_speed);
+
   } else {
     if (typeof(after_finish) != "undefined") {
       after_finish();
