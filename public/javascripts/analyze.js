@@ -31,15 +31,18 @@ function submitWord() {
   var word = $('#word_word').val();
   var text = word.trim();
 
+  // Clear message input
+  // This should be done not in the AJAX callback to not
+  // loose key types too often.
+  $('#word_word').val('');
+  $('#word_word').focus().select();
+
   // Submit to server
   $.ajax({
     type: 'POST',
     data: { word : text },
     url: '/words.json',
     success: function(score){
-      // Clear message input
-      $('#word_word').val('');
-      $('#word_word').focus().select();
 
       // Gaming
       updateScores(score);
