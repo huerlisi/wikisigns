@@ -52,10 +52,20 @@ function stopFullScreen() {
 // Main Sign
 // =========
 function updateTitle(text) {
+  // Guard as we bail on null etc.
+  if (!text) {
+    return;
+  };
+
   $('#title').html(drawColoredWord(text));
 }
 
 function updateWord(text) {
+  // Guard as we bail on null etc.
+  if (!text) {
+    return;
+  };
+
   drawWordAsImage($('#word'), text);
 }
 
