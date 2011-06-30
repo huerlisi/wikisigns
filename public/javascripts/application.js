@@ -39,10 +39,12 @@ function generateWordMenu(text) {
 // Containers
 // ==========
 function startFullScreen() {
+  $('#container > div >div:not(#main-sign)').animate({opacity: 0.1}, 3000);
   $('#container').addClass('fullscreen');
 }
 
 function stopFullScreen() {
+  $('#container > div >div:not(#main-sign)').animate({opacity: 1}, 3000);
   $('#container').removeClass('fullscreen');
 }
 
