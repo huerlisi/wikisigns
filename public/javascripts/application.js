@@ -76,6 +76,11 @@ function buildSideBarSign(text) {
 }
 
 function replaceSideBarSign(index, text) {
+  // Guard as we bail on null etc.
+  if (!text) {
+    return;
+  };
+
   var sign = $('#sign-' + index);
 
   sign.animate({opacity: 0}, 1500, function() {
