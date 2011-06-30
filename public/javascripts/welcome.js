@@ -1,13 +1,17 @@
 // Welcome Mode
 // ============
 
-function setFullScreen() {
+function startFullScreen() {
   $('#container').addClass('fullscreen');
+}
+
+function stopFullScreen() {
+  $('#container').removeClass('fullscreen');
 }
 
 // Callbacks
 function finished_welcome() {
-  $('#container').removeClass('fullscreen');
+  stopFullScreen();
 }
 
 function draw_welcome_title(text, callback) {
@@ -37,7 +41,7 @@ function draw_welcome_title(text, callback) {
 function setWelcomeMode() {
   var alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
-  setFullScreen();
+  startFullScreen();
   startShowWord(alphabet, finished_welcome, draw_welcome_title);
 }
 
