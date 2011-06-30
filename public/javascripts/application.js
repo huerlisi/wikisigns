@@ -55,8 +55,8 @@ function updateTitle(text) {
   $('#title').html(drawColoredWord(text));
 }
 
-function updateWord(word) {
-  drawWordAsImage($('#word'), word);
+function updateWord(text) {
+  drawWordAsImage($('#word'), text);
 }
 
 // Bars
