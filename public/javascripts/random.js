@@ -9,10 +9,8 @@ function populateBar() {
 
   for (i = 1; i <= random_bar_signs ; i++)
   {
-    var sign = buildSideBarSign('test');
     var sign_holder = $('<div class="sign" id="sign-' + i + '">');
-
-    bar.append(sign_holder.append(sign));
+    bar.append(sign_holder);
   }
 }
 

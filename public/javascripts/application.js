@@ -76,11 +76,11 @@ function buildSideBarSign(text) {
 }
 
 function replaceSideBarSign(index, text) {
-  var sign = $('#sign-' + index + ' .one-word');
+  var sign = $('#sign-' + index);
 
-  sign.fadeOut(1500, function() {
+  sign.animate({opacity: 0}, 1500, function() {
     sign.html(buildSideBarSign(text));
-  }).delay(1000).fadeIn(1500);
+  }).delay(1000).animate({opacity: 1}, 1500);
 }
 
 function addSideBarSign(text) {
