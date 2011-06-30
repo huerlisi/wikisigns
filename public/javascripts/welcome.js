@@ -1,14 +1,6 @@
 // Welcome Mode
 // ============
 
-function startFullScreen() {
-  $('#container').addClass('fullscreen');
-}
-
-function stopFullScreen() {
-  $('#container').removeClass('fullscreen');
-}
-
 // Callbacks
 function finished_welcome() {
   stopFullScreen();

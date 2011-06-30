@@ -36,6 +36,17 @@ function generateWordMenu(text) {
     .append(createPublishToFacebookLink(text));
 }
 
+// Containers
+// ==========
+function startFullScreen() {
+  $('#container').addClass('fullscreen');
+}
+
+function stopFullScreen() {
+  $('#container').removeClass('fullscreen');
+}
+
+
 // Main Sign
 // =========
 function updateTitle(text) {
