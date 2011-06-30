@@ -3,8 +3,8 @@
 
 // Callbacks
 function finished_welcome() {
-  // Wait 6s before ending fullscreen
-  setTimeout(stopFullScreen, 6000);
+  // Wait 2s before ending fullscreen
+  setTimeout(stopFullScreen, 2000);
 }
 
 function draw_welcome_title(text, callback) {
