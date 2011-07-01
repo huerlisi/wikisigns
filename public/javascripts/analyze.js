@@ -52,6 +52,10 @@ function submitWord() {
   $('#word_word').val('');
   $('#word_word').focus().select();
 
+  // Empty main
+  updateTitle('');
+  updateWord('');
+
   // Submit to server
   $.ajax({
     type: 'POST',
@@ -63,7 +67,7 @@ function submitWord() {
       updateScores(score);
 
       // Main sign
-      showAsBigWord(text);
+      showAsBigWord('');
 
       // Add small sign to history
       addSideBarSign(text);
