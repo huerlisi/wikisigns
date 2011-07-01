@@ -52,35 +52,19 @@ function stopFullScreen() {
 // Main Sign
 // =========
 function updateMainTitle(text) {
-  // Guard as we bail on null etc.
-  if (!text) {
-    return;
-  };
-
   // Hide
   var title = $('#main-title');
   title.animate({opacity: 0}, 1000, function() {
     title.html(drawColoredWord(text));
-
     title.animate({opacity: 1}, 2000);
   });
 }
 
 function updateTitle(text) {
-  // Guard as we bail on null etc.
-  if (!text) {
-    return;
-  };
-
   $('#title').html(drawColoredWord(text));
 }
 
 function updateWord(text) {
-  // Guard as we bail on null etc.
-  if (!text) {
-    return;
-  };
-
   drawWordAsImage($('#word'), text);
 }
 

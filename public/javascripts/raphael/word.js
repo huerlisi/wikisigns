@@ -272,6 +272,9 @@ var colors = Array(
 
 // Draws a word as an image.
 function drawWordAsImage(element, input_word, size) {
+  // Guard
+  if(input_word == null) input_word = '';
+
   // Drop leftovers
   element.empty();
 
@@ -400,6 +403,9 @@ function getCoordinatesFromWord(word) {
 
 // Creates a colored word.
 function drawColoredWord(word) {
+  // Guard
+  if(word == null) word = '';
+
   var output = '';
 
   for(var i = 0; i < word.length; i++){
