@@ -25,22 +25,7 @@ function handleKeyUp(event) {
     var word = text.split(' ').pop();
 
     updateWord(word);
-    appendToTitle(String.fromCharCode(event.keyCode));
-  }
-}
-
-// Update title on backspace
-function handleKeyUp(event) {
-  // If character is <backspace>
-  if(event.keyCode == 8) {
-    // Show colored word
-    var text = $(this).val();
-    // only show last word as sign
-    var word = text.split(' ').pop();
-
-    updateWord(word);
-
-    deleteFromTitle(word.length + 1);
+    updateTitle(word);
   }
 }
 
@@ -90,7 +75,6 @@ function initializeBehaviours() {
   });
 
   // Redraws sign after every key stroke
-  $('#word_word').keypress(handleKeyPress);
   $('#word_word').keyup(handleKeyUp);
 }
 
