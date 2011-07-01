@@ -143,7 +143,6 @@ function detectPlayMode() {
   $('.one-word').live('click', function(){
     var word = $(this).data('word-word');
 
-    showAsBigWord(word);
     startShowWord(word);
   });
 }
