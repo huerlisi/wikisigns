@@ -19,6 +19,9 @@ function showAsBigWord(text) {
 }
 
 function startShowWord(word, after_finish, draw_title) {
+  updateWord('');
+  updateTitle('');
+
   draw_word_timeout = setTimeout(function(){
     drawWord(word, 0, after_finish, draw_title)
   }, letter_speed);
