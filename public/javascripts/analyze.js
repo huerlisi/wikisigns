@@ -7,7 +7,8 @@ function setAnalyzeMode() {
 }
 
 // Redraws sign after every key stroke
-function handleKeyPress(event) {
+function handleKeyUp(event) {
+  // Stop show word when typing.
   stopShowWord();
 
   // If character is <return>
