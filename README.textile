@@ -34,6 +34,9 @@ h3. Icons
 * Power off Icon white
 ** "Homepage":http://www.iconblock.com/
 ** "License":http://www.iconfinder.com/browse/iconset/Snow/#readme
+* King Icon white
+** "Homepage":http://www.iconblock.com/
+** "License":http://www.iconfinder.com/browse/iconset/Snow/#readme
 
 h2. License
 
