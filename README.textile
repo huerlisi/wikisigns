@@ -19,10 +19,21 @@ h3. Icons
 * Social Media Icon
 ** "Homepage":http://www.yootheme.com/
 ** "License":http://www.iconfinder.com/browse/iconset/yooicons_set01_socialbookmarks/#readme
-
 * Facebook Icon white
 ** "Homepage":http://www.yootheme.com/
 ** "License":http://www.iconfinder.com/browse/iconset/yooicons_set01_socialbookmarks/#readme
+* Eye Icon white
+** "Homepage":http://www.iconblock.com/
+** "License":http://www.iconfinder.com/browse/iconset/Snow/#readme
+* TV Icon white
+** "Homepage":http://www.iconblock.com/
+** "License":http://www.iconfinder.com/browse/iconset/Snow/#readme
+* Key Icon white
+** "Homepage":http://www.iconblock.com/
+** "License":http://www.iconfinder.com/browse/iconset/Snow/#readme
+* Power off Icon white
+** "Homepage":http://www.iconblock.com/
+** "License":http://www.iconfinder.com/browse/iconset/Snow/#readme
 
 h2. License
 
