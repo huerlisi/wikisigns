@@ -23,8 +23,33 @@ $default-box-shadow-inset: true
   .login-info
     margin-bottom: 10px
 
-#back-link a,
-.button-link a
+// Box links
+#menu-container
+  .button-link
+    float: left
+  .social-media-links
+    +link-box('social_media.png', 9px)
+    padding-top: 10px
+#welcome-link
+  +link-box
+#new-game-link
+  +link-box('play.png')
+#words-link
+  +link-box('eye.png')
+#new-word-link
+  +link-box('communication.png')
+#random-words-link
+  +link-box('tv.png')
+#user-login
+  +link-box('sign_in.png')
+#user-logout
+  +link-box('sign_out.png')
+#fb-publish-photo-on-wall
+  +link-box('facebook.png')
+#photo-download-link
+  +link-box('download.png', 6px)
+
+#back-link a
   +link-box
 
 #logins
@@ -50,12 +75,11 @@ $default-box-shadow-inset: true
   text-align: left
 
 .score
-  margin-left: 5px
-  margin-right: 5px
-  font-weight: bold
-  margin-bottom: 5px
+  +link-box('king.png')
   span
     float: right
+  &:hover
+    text-decoration: none
 
 #last-score
   color: #09ee6a

@@ -22,11 +22,11 @@ function generateShareLink(slug) {
 
 // Creates a div with a link to the PNG of the word id.
 function createLinkToPNGDownload(word) {
-  return '<div class="button-link"><a href="/word/' + word +'.png?download=true">Als Bild speichern</a></div>'
+  return '<a id="photo-download-link" href="/word/' + word +'.png?download=true">Als Bild speichern</a>'
 }
 
 function createPublishToFacebookLink(word) {
-  return '<div class="button-link"><a data-remote="true" href="/words/' + word +'/publish">Auf Facebook veröffentlichen</a></div>';
+  return '<a id="fb-publish-photo-on-wall" data-remote="true" href="/words/' + word +'/publish">Auf Facebook veröffentlichen</a>';
 }
 
 function generateWordMenu(text) {
