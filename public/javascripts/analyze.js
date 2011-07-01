@@ -8,6 +8,8 @@ function setAnalyzeMode() {
 
 // Redraws sign after every key stroke
 function handleKeyPress(event) {
+  stopShowWord();
+
   // If character is <return>
   if(event.keyCode == 13) {
     // ...trigger form action
