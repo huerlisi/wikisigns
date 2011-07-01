@@ -51,9 +51,11 @@ function stopFullScreen() {
 
 // Main Sign
 // =========
+
+// Update Main Title by smooth fade out/in
 function updateMainTitle(text) {
-  // Hide
   var title = $('#main-title');
+
   title.animate({opacity: 0}, 1000, function() {
     title.html(drawColoredWord(text));
     title.animate({opacity: 1}, 2000);
@@ -62,6 +64,23 @@ function updateMainTitle(text) {
 
 function updateTitle(text) {
   $('#title').html(drawColoredWord(text));
+}
+
+function appendToTitle(text) {
+  var title = $('#title');
+  
+  var letter = $(drawColoredWord(text));
+  letter.css('opacity', 0);
+  $('#title').append(letter);
+
+  letter.animate({opacity: 1}, 1000);
+}
+
+function deleteFromTitle(index) {
+  var title = $('#title');
+  
+  var letter = title.find(":nth-child(" + index + ")");
+  letter.animate({opacity: 0}, 500, function() { letter.remove(); });
 }
 
 function updateWord(text) {
