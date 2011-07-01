@@ -39,5 +39,3 @@ function stopWelcomeMode() {
   stopShowWord();
   stopFullScreen();
 }
-
-$(document).ready(initializeBehaviours);
