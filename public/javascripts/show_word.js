@@ -40,7 +40,7 @@ function drawWord(word, position, after_finish, draw_title) {
     // Main sign
     updateWord(part);
     if(typeof(draw_title) == "undefined") {
-      appendToTitle(new_letter);
+      updateWord(part);
     } else {
       draw_title(part);
     }

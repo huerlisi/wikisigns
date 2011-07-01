@@ -63,7 +63,16 @@ function updateMainTitle(text) {
 }
 
 function updateTitle(text) {
-  $('#title').html(drawColoredWord(text));
+  var title = $('#title');
+  var current_text = title.text();
+
+  if (text.match("^" + current_text) == current_text) {
+    // Only append if text starts with current_text
+    var new_text = text.replace(new RegExp("^" + current_text), "");
+    appendToTitle(new_text);
+  } else {
+    $('#title').html(drawColoredWord(text));
+  }
 }
 
 // Append to title by fading in
