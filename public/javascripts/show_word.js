@@ -32,11 +32,12 @@ function stopShowWord() {
 function drawWord(word, position, after_finish, draw_title) {
   if (position < word.length) {
     var part = word.slice(0, position + 1);
+    var new_letter = word.slice(position, position + 1);
 
     // Main sign
     updateWord(part);
     if(typeof(draw_title) == "undefined") {
-      updateTitle(part);
+      appendToTitle(new_letter);
     } else {
       draw_title(part);
     }
