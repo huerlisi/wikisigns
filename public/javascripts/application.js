@@ -66,6 +66,7 @@ function updateTitle(text) {
   $('#title').html(drawColoredWord(text));
 }
 
+// Append to title by fading in
 function appendToTitle(text) {
   var title = $('#title');
   
@@ -76,6 +77,7 @@ function appendToTitle(text) {
   letter.animate({opacity: 1}, 1000);
 }
 
+// Delete from title by fading out
 function deleteFromTitle(index) {
   var title = $('#title');
   
