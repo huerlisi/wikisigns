@@ -1,7 +1,6 @@
 // Timers
-var help_initial_interval;
 var help_initial_interval_time = 15000;
-var help_interval;
+var help_timer;
 var help_interval_time = 5000;
 
 // Counters
@@ -76,7 +75,7 @@ function getANewWord() {
 // Restarts the help.
 function restartHelp() {
   abortHelp();
-  help_initial_interval = setInterval('initializeFirstHelp()', help_initial_interval_time);
+  help_timer = setTimeout(initializeFirstHelp, help_initial_interval_time);
 }
 
 function abortHelp() {
@@ -88,8 +87,7 @@ function abortHelp() {
 function initializeFirstHelp() {
   moveLetterFromBottomToTop(original_word[help_counter]);
   help_counter++;
-  clearInterval(help_initial_interval);
-  help_interval = setInterval('nextHelp()', help_interval_time);
+  help_timer = setTimeout(nextHelp, help_interval_time);
 }
 
 // Shows the next letter as help.
@@ -97,15 +95,13 @@ function nextHelp() {
   if(help_counter < original_word.length){
     moveLetterFromBottomToTop(original_word[help_counter]);
     help_counter++;
-  }else{
-    clearInterval(help_interval);
+    help_timer = setTimeout(nextHelp, help_interval_time);
   }
 }
 
 // Clears all intervals of the help.
 function clearHelpIntervals() {
-  clearInterval(help_initial_interval);
-  clearInterval(help_interval);
+  clearInterval(help_timer);
 }
 
 // Highscore
