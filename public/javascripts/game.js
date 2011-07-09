@@ -75,19 +75,12 @@ function getANewWord() {
 // Restarts the help.
 function restartHelp() {
   abortHelp();
-  help_timer = setTimeout(initializeFirstHelp, help_initial_interval_time);
+  help_timer = setTimeout(nextHelp, help_initial_interval_time);
 }
 
 function abortHelp() {
   help_counter = 0;
   clearHelpIntervals();
-}
-
-// Moves the first letter of the searched word to top as help.
-function initializeFirstHelp() {
-  moveLetterFromBottomToTop(original_word[help_counter]);
-  help_counter++;
-  help_timer = setTimeout(nextHelp, help_interval_time);
 }
 
 // Shows the next letter as help.
