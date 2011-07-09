@@ -40,16 +40,21 @@ function showRandomSign() {
       var text = data['word']['word'];
 
       updateMainTitle(text);
-      startShowWord(text, showRandomSign);
+      startShowWord(text, function() {
+        // Wait 3s before next word
+        next_random_sign_timer = setTimeout(showRandomSign, 3000);
+      });
     }
   });
 };
 
 // Mode setup and teardown
 var sidebar_timer;
+var next_random_sign_timer;
 
 function stopRandomMode() {
   clearInterval(sidebar_timer);
+  clearTimeout(next_random_sign_timer);
 }
 
 function setRandomMode(word) {
