@@ -182,7 +182,6 @@ function initializeWordClickBehaviour() {
       $('#title').append($(this).clone().hide(0, function(){
         $(this).fadeIn(125, function(){
 
-          $('#title').removeAttr('style');
           $(this).attr(DATA_WORD_COUNTER, word_counter);
           word_counter++;
           checkWords();
