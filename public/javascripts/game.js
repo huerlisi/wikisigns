@@ -81,10 +81,22 @@ function restartHelp() {
 // Shows the next letter as help.
 function nextHelp() {
   if(help_counter < original_word.length){
-    moveLetterFromBottomToTop(original_word[help_counter]);
+    giveHelp(original_word[help_counter]);
     help_counter++;
     help_timer = setTimeout(nextHelp, help_interval_time);
   }
+}
+
+// Moves one letter to the solution word.
+function giveHelp(letter){
+  var do_once = true;
+
+  $('#guess-title span').each(function(){
+    if($(this).html().trim() == letter && do_once){
+      do_once = false;
+      $(this).click();
+    }
+  });
 }
 
 
@@ -185,18 +197,6 @@ function initializeWordClickBehaviour() {
       }));
       $(this).remove();
     });
-  });
-}
-
-// Moves one letter to the solution word.
-function moveLetterFromBottomToTop(letter){
-  var do_once = true;
-
-  $('#guess-title span').each(function(){
-    if($(this).html().trim() == letter && do_once){
-      do_once = false;
-      $(this).click();
-    }
   });
 }
 
