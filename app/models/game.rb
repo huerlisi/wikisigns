@@ -37,7 +37,11 @@ class Game < ActiveRecord::Base
 
     guessed = word.word.length - helped_letters
 
-    (guessed.to_f / word.word.length)**(Math::PI+Math::PI)
+    if guessed > 0
+      return (guessed.to_f / word.word.length)**(Math::PI+Math::PI)
+    else
+      return 0
+    end
   end
 
   # Length factor

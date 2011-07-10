@@ -80,7 +80,7 @@ function restartHelp() {
 
 // Shows the next letter as help.
 function nextHelp() {
-  if(help_counter < original_word.length){
+  if(guessed_word < original_word.length){
     giveHelp(original_word[help_counter]);
     help_counter++;
     help_timer = setTimeout(nextHelp, help_interval_time);
