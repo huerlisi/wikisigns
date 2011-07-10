@@ -74,9 +74,7 @@ function getANewWord() {
 // ====
 // Restarts the help.
 function restartHelp() {
-  help_counter = 0;
-  clearHelpIntervals();
-
+  clearInterval(help_timer);
   help_timer = setTimeout(nextHelp, help_initial_interval_time);
 }
 
@@ -89,10 +87,6 @@ function nextHelp() {
   }
 }
 
-// Clears all intervals of the help.
-function clearHelpIntervals() {
-  clearInterval(help_timer);
-}
 
 // Highscore
 // =========
@@ -160,7 +154,8 @@ function initializeWordClickBehaviour() {
     var letter = $(this).html();
 
     guessed_word = guessed_word + letter;
-    clearHelpIntervals();
+
+    restartHelp();
 
     updateWord(guessed_word);
 
