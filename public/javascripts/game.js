@@ -1,11 +1,3 @@
-// Timers
-var help_initial_interval_time = 15000;
-var help_timer;
-var help_interval_time = 5000;
-
-// Counters
-var help_counter = 0;
-
 // The original word
 var original_word;
 // The actual guessed word
@@ -72,6 +64,14 @@ function getANewWord() {
 
 // Help
 // ====
+// Timers
+var help_initial_interval_time = 15000;
+var help_interval_time = 5000;
+var help_timer;
+
+// Counters
+var help_counter = 0;
+
 // Restarts the help.
 function restartHelp() {
   clearInterval(help_timer);
