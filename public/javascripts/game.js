@@ -74,13 +74,10 @@ function getANewWord() {
 // ====
 // Restarts the help.
 function restartHelp() {
-  abortHelp();
-  help_timer = setTimeout(nextHelp, help_initial_interval_time);
-}
-
-function abortHelp() {
   help_counter = 0;
   clearHelpIntervals();
+
+  help_timer = setTimeout(nextHelp, help_initial_interval_time);
 }
 
 // Shows the next letter as help.
