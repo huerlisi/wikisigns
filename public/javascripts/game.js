@@ -160,9 +160,28 @@ function shuffleWord(word) {
   return new_word;
 }
 
+function handleUndo() {
+  $('#title span').live('click', function(e) {
+    $(this).unbind(e);
+    word_counter--;
+    guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
+
+    $(this).fadeOut(125, function(){
+      $('#guess-title').append($(this).clone().hide(0, function(){
+        $(this).fadeIn(125, function(){
+          recountSelectedLetters();
+        });
+      }));
+      $(this).remove();
+    });
+  });
+}
+
 function initializeWordClickBehaviour() {
   $('#guess-title span').live('click', function(e) {
+    // Disable double/multi-clicking
     $(this).unbind(e);
+
     var letter = $(this).html();
 
     guessed_word = guessed_word + letter;
@@ -178,21 +197,6 @@ function initializeWordClickBehaviour() {
           $(this).attr(DATA_WORD_COUNTER, word_counter);
           word_counter++;
           checkWords();
-
-          $(this).click(function(e){
-            $(this).unbind(e);
-            word_counter--;
-            guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
-
-            $(this).fadeOut(125, function(){
-              $('#guess-title').append($(this).clone().hide(0, function(){
-                $(this).fadeIn(125, function(){
-                  recountSelectedLetters();
-                });
-              }));
-              $(this).remove();
-            });
-          });
         });
       }));
       $(this).remove();
@@ -238,4 +242,5 @@ function checkWords() {
 $(document).ready(function() {
   // Actions
   initializeWordClickBehaviour();
+  handleUndo();
 });
