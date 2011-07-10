@@ -195,34 +195,7 @@ function moveLetterFromBottomToTop(letter){
   $('#guess-title span').each(function(){
     if($(this).html().trim() == letter && do_once){
       do_once = false;
-      $(this).hide(125, function(){
-        var letter = $(this).html();
-
-        guessed_word = guessed_word + letter;
-        updateWord(guessed_word);
-        $('#title').append($(this).clone().hide(0, function(){
-          $(this).fadeIn('slow', function(){
-            $('#title').removeAttr('style');
-            $(this).attr(DATA_WORD_COUNTER, word_counter);
-            word_counter++;
-            checkWords();
-            $(this).click(function(e){
-              $(this).unbind(e);
-              word_counter--;
-              guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
-              $(this).fadeOut(125, function(){
-                $('#guess-title').append($(this).clone().hide(0, function(){
-                  $(this).fadeIn(125, function(){
-                    recountSelectedLetters();
-                  });
-                }));
-                $(this).remove();
-              });
-            });
-          });
-        }));
-        $(this).remove();
-      })
+      $(this).click();
     }
   });
 }
