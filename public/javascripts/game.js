@@ -80,23 +80,30 @@ function restartHelp() {
 
 // Shows the next letter as help.
 function nextHelp() {
-  if(guessed_word < original_word.length){
-    giveHelp(original_word[help_counter]);
+  if(guessed_word.length < original_word.length){
+    giveHelp();
     help_counter++;
     help_timer = setTimeout(nextHelp, help_interval_time);
   }
 }
 
 // Moves one letter to the solution word.
-function giveHelp(letter){
-  var do_once = true;
+function giveHelp(){
+  // Fix a letter in guessed word if needed
+  var i = 0;
+  while (i < guessed_word.length) {
+    // Test if character is correct
+    if (guessed_word[i] != original_word[i]) {
+      $('#title span:nth(' + i + ')').click();
+      // We're done with this hint
+      return;
+    };
+    i++;
+  };
 
-  $('#guess-title span').each(function(){
-    if($(this).html().trim() == letter && do_once){
-      do_once = false;
-      $(this).click();
-    }
-  });
+  // Next letter
+  var letter = original_word[guessed_word.length];
+  $("#guess-title span:contains('" + letter + "'):first").click();
 }
 
 
