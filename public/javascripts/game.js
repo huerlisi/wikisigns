@@ -1,10 +1,5 @@
 // The original word
 var original_word;
-// The actual guessed word
-var guessed_word;
-// The counter how many words are set.
-// It's used for removing the right letter from the guessed word.
-var word_counter;
 
 var word_id;
 
@@ -32,7 +27,6 @@ function startGame(word, id) {
 // Reinitialize the game
 function resetGame() {
   // Global variables
-  guessed_word = '';
   word_counter = 0;
   help_counter = 0;
 
@@ -65,7 +59,7 @@ function getANewWord() {
 // Help
 // ====
 // Timers
-var help_initial_interval_time = 15000;
+var help_initial_interval_time = 5000;
 var help_interval_time = 5000;
 var help_timer;
 
@@ -80,7 +74,9 @@ function restartHelp() {
 
 // Shows the next letter as help.
 function nextHelp() {
-  if(guessed_word.length < original_word.length){
+  var g = guessed_word();
+  var l = g.length;
+  if(guessed_word().length < original_word.length){
     giveHelp();
     help_counter++;
     help_timer = setTimeout(nextHelp, help_interval_time);
@@ -91,9 +87,9 @@ function nextHelp() {
 function giveHelp(){
   // Fix a letter in guessed word if needed
   var i = 0;
-  while (i < guessed_word.length) {
+  while (i < guessed_word().length) {
     // Test if character is correct
-    if (guessed_word[i] != original_word[i]) {
+    if (guessed_word()[i] != original_word[i]) {
       $('#title span:nth(' + i + ')').click();
       // We're done with this hint
       return;
@@ -102,8 +98,8 @@ function giveHelp(){
   };
 
   // Next letter
-  var letter = original_word[guessed_word.length];
-  $("#guess-title span:contains('" + letter + "'):first").click();
+  var letter = original_word[guessed_word().length];
+  $("#guess-title span:not(.guessed):contains('" + letter + "'):first").click();
 }
 
 
@@ -131,16 +127,6 @@ function updateScores(score) {
   }
 }
 
-// Rearranges the counters for the selected letters.
-function recountSelectedLetters() {
-  var counter = 0;
-
-  $('#title span').each(function(){
-    $(this).attr(DATA_WORD_COUNTER, counter);
-    counter++;
-  });
-}
-
 // Removes a char from a string at a specified position.
 function removeCharFromPos(string, position){
   var chars = string.split('');
@@ -151,6 +137,10 @@ function removeCharFromPos(string, position){
 
 function updateGuessTitle(text) {
   $('#guess-title').html(drawColoredWord(text));
+}
+
+function guessed_word() {
+  return $('#title').text();
 }
 
 // Randomizes the input word.
@@ -169,52 +159,45 @@ function shuffleWord(word) {
 
 function handleUndo() {
   $('#title span').live('click', function(e) {
+    // Disable double/multi-clicking
     $(this).unbind(e);
-    word_counter--;
-    guessed_word = removeCharFromPos(guessed_word, $(this).attr(DATA_WORD_COUNTER));
 
-    $(this).fadeOut(125, function(){
-      $('#guess-title').append($(this).clone().hide(0, function(){
-        $(this).fadeIn(125, function(){
-          recountSelectedLetters();
-        });
-      }));
-      $(this).remove();
-    });
+    // Prevent another hint from being given too fast
+    restartHelp();
+
+    var letter = $(this).html();
+    $(this).animate({opacity: 0}, 1000, function() {$(this).remove()});
+
+    var guess_letter = $("#guess-title span.guessed:contains('" + letter + "'):first");
+    guess_letter.removeClass('guessed');
+    guess_letter.animate({opacity: 1}, 1000);
   });
 }
 
 function initializeWordClickBehaviour() {
-  $('#guess-title span').live('click', function(e) {
+  $('#guess-title span:not(.guessed)').live('click', function(e) {
     // Disable double/multi-clicking
     $(this).unbind(e);
 
-    var letter = $(this).html();
-
-    guessed_word = guessed_word + letter;
-
+    // Prevent another hint from being given too fast
     restartHelp();
 
-    updateWord(guessed_word);
+    var letter = $(this).html();
 
-    $(this).fadeOut(125, function(){
-      $('#title').append($(this).clone().hide(0, function(){
-        $(this).fadeIn(125, function(){
+    updateWord(guessed_word());
 
-          $(this).attr(DATA_WORD_COUNTER, word_counter);
-          word_counter++;
-          checkWords();
-        });
-      }));
-      $(this).remove();
-    });
+    $(this).animate({opacity: 0.1}, 1000);
+    $(this).addClass('guessed');
+    appendToTitle(letter);
+      
+    checkWords();
   });
 }
 
 // Checks if the guessed word has the same length and shows the result of the guessing.
 function checkWords() {
   // Checks if all letters has been selected.
-  if(guessed_word.length == original_word.length && !send) {
+  if(guessed_word().length == original_word.length && !send) {
     send = true;
     var guessed = $('#title').text();
 
@@ -238,6 +221,9 @@ function checkWords() {
         addSideBarSign(guessed);
 
         updateScores(game['score']);
+
+        updateWord('');
+        updateTitle('');
 
         send = false;
       }
