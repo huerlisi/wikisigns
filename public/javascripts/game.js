@@ -124,14 +124,6 @@ function updateScores(score) {
   }
 }
 
-// Removes a char from a string at a specified position.
-function removeCharFromPos(string, position){
-  var chars = string.split('');
-
-  chars.splice(position, position + 1);
-  return chars.join('');
-}
-
 function updateGuessTitle(text) {
   $('#guess-title').html(drawColoredWord(text));
 }
