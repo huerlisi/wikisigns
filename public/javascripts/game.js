@@ -57,7 +57,7 @@ function getANewWord() {
 // Help
 // ====
 // Timers
-var help_initial_interval_time = 5000;
+var help_initial_interval_time = 15000;
 var help_interval_time = 5000;
 var help_timer;
 
