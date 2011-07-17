@@ -3,8 +3,6 @@ var original_word;
 
 var word_id;
 
-var DATA_WORD_COUNTER = 'data-word-counter';
-
 var send = false;
 
 var daily_score = 0;
