@@ -163,7 +163,7 @@ function handleUndo() {
   });
 }
 
-function initializeWordClickBehaviour() {
+function handleGuess() {
   $('#guess-title span:not(.guessed)').live('click', function(e) {
     // Disable double/multi-clicking
     $(this).unbind(e);
@@ -223,6 +223,6 @@ function checkWords() {
 // Loads functions after DOM is ready
 $(document).ready(function() {
   // Actions
-  initializeWordClickBehaviour();
+  handleGuess();
   handleUndo();
 });
