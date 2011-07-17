@@ -1,3 +1,5 @@
+// Game Mode
+// =========
 // The original word
 var original_word;
 
@@ -5,9 +7,6 @@ var word_id;
 
 var send = false;
 
-var daily_score = 0;
-var current_score = 0;
-var total_score = 0;
 
 function startGame(word, id) {
   // Global variables
@@ -98,6 +97,11 @@ function giveHelp(){
 
 // Highscore
 // =========
+// Globals
+var daily_score = 0;
+var current_score = 0;
+var total_score = 0;
+
 // Updates scores
 function updateScores(score) {
   if($('#last-score span').length > 0){
