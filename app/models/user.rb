@@ -2,6 +2,11 @@ class User < Omnisocial::User
   has_many :games
   has_many :words
 
+  # String
+  def to_s
+    login_account.name
+  end
+
   # Scores
   # ======
   def daily_score
