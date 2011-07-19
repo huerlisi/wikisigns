@@ -3,17 +3,11 @@ class User < Omnisocial::User
   has_many :words
 
   def daily_score
-    score = 0
-    games.today.each { |g| score = score + g.score }
-
-    score
+    games.today.sum(:score)
   end
 
   def total_score
-    score = 0
-    games.all.each { |g| score = score + g.score }
-
-    score
+    games.sum(:score)
   end
 
   def graph
