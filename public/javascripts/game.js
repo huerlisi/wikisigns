@@ -234,4 +234,7 @@ function startGameMode(word, id) {
 function stopGameMode() {
   // Handlers
   teardownGameModeHandlers();
+
+  // Fade out guess title
+  $('#guess-title').animate({opacity: 0}, 1000).remove();
 }
