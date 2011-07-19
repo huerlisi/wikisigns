@@ -147,40 +147,30 @@ function shuffleWord(word) {
 }
 
 function handleUndo() {
-  $('#title span').live('click', function(e) {
-    // Disable double/multi-clicking
-    $(this).unbind(e);
+  // Prevent another hint from being given too fast
+  restartHelp();
 
-    // Prevent another hint from being given too fast
-    restartHelp();
+  var letter = $(this).html();
+  $(this).animate({opacity: 0}, 1000, function() {$(this).remove()});
 
-    var letter = $(this).html();
-    $(this).animate({opacity: 0}, 1000, function() {$(this).remove()});
-
-    var guess_letter = $("#guess-title span.guessed:contains('" + letter + "'):first");
-    guess_letter.removeClass('guessed');
-    guess_letter.animate({opacity: 1}, 1000);
-  });
+  var guess_letter = $("#guess-title span.guessed:contains('" + letter + "'):first");
+  guess_letter.removeClass('guessed');
+  guess_letter.animate({opacity: 1}, 1000);
 }
 
 function handleGuess() {
-  $('#guess-title span:not(.guessed)').live('click', function(e) {
-    // Disable double/multi-clicking
-    $(this).unbind(e);
+  // Prevent another hint from being given too fast
+  restartHelp();
 
-    // Prevent another hint from being given too fast
-    restartHelp();
+  var letter = $(this).html();
 
-    var letter = $(this).html();
+  updateWord(guessed_word());
 
-    updateWord(guessed_word());
+  $(this).animate({opacity: 0.1}, 1000);
+  $(this).addClass('guessed');
+  appendToTitle(letter);
 
-    $(this).animate({opacity: 0.1}, 1000);
-    $(this).addClass('guessed');
-    appendToTitle(letter);
-      
-    checkWords();
-  });
+  checkWords();
 }
 
 // Checks if the guessed word has the same length and shows the result of the guessing.
@@ -220,9 +210,11 @@ function checkWords() {
   }
 }
 
+// Setup handlers
+function setupGameModeHandlers() {
+  $('#guess-title span:not(.guessed)').live('click', handleGuess);
+  $('#title span').live('click', handleUndo);
+}
+
 // Loads functions after DOM is ready
-$(document).ready(function() {
-  // Actions
-  handleGuess();
-  handleUndo();
-});
+$(document).ready(setupGameModeHandlers);

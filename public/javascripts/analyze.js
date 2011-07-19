@@ -66,8 +66,8 @@ function submitWord() {
   })
 }
 
-// Initialize behaviours
-function initializeBehaviours() {
+// Setup handlers
+function setupAnalyzeModeHandlers() {
   // Draw a new word and submit it to the database on submit
   $('#new_word').submit(function(e){
     e.preventDefault();
@@ -79,4 +79,4 @@ function initializeBehaviours() {
 }
 
 // Loads functions after DOM is ready
-$(document).ready(initializeBehaviours);
+$(document).ready(setupAnalyzeModeHandlers);
