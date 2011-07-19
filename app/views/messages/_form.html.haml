@@ -1,0 +1,3 @@
+= form_for @message, :url => {:action => 'new'}, :html => {:method => 'get'} do |f|
+  = f.text_area :text, :autocomplete => 'off'
+  = f.select :to_user_id, User.all

@@ -1,0 +1,12 @@
+- content_for :main_control do
+  = render 'form'
+
+- content_for :flow_menu do
+  .button-link= link_to_function t(:go), "$('#new_word').submit()", 'data-tooltip' => t('tooltip.go')
+
+#word
+%h1#title
+
+- content_for :mode_script do
+  :javascript
+    $(document).ready(setAnalyzeMode);

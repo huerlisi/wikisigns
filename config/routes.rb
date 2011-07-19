@@ -33,5 +33,7 @@ WikiSigns::Application.routes.draw do
     member do
       post 'daily_score'
     end
+
+    resources :messages
   end
 end
