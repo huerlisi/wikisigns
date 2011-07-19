@@ -2,6 +2,8 @@ class User < Omnisocial::User
   has_many :games
   has_many :words
 
+  # Scores
+  # ======
   def daily_score
     games.today.sum(:score)
   end
@@ -10,6 +12,8 @@ class User < Omnisocial::User
     games.sum(:score)
   end
 
+  # Facebook
+  # ========
   def graph
     Koala::Facebook::GraphAPI.new(self.access_token)
   end
