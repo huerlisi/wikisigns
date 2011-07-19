@@ -216,5 +216,21 @@ function setupGameModeHandlers() {
   $('#title span').live('click', handleUndo);
 }
 
-// Loads functions after DOM is ready
-$(document).ready(setupGameModeHandlers);
+// Teardown handlers
+function teardownGameModeHandlers() {
+  $('#guess-title span:not(.guessed)').die('click', handleGuess);
+  $('#title span').die('click', handleUndo);
+}
+
+function startGameMode(word, id) {
+  // Handlers
+  setupGameModeHandlers();
+
+  // Start gaming
+  startGame(word, id);
+}
+
+function stopGameMode() {
+  // Handlers
+  teardownGameModeHandlers();
+}
