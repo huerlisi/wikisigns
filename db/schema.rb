@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110601102956) do
+ActiveRecord::Schema.define(:version => 20110719201012) do
 
   create_table "gamers", :force => true do |t|
     t.string   "name"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(:version => 20110601102956) do
 
   add_index "login_accounts", ["type"], :name => "index_login_accounts_on_type"
   add_index "login_accounts", ["user_id"], :name => "index_login_accounts_on_user_id"
+
+  create_table "messages", :force => true do |t|
+    t.text     "text"
+    t.string   "from_user_id"
+    t.string   "to_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "show_words", :force => true do |t|
     t.integer  "show_id"

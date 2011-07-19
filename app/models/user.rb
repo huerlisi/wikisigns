@@ -7,6 +7,11 @@ class User < Omnisocial::User
     login_account.name
   end
 
+  # Messages
+  # ========
+  has_many :incomming_messages, :class_name => 'Message', :foreign_key => 'to_user_id'
+  has_many :outgoing_messages, :class_name => 'Message', :foreign_key => 'from_user_id'
+
   # Scores
   # ======
   def daily_score
