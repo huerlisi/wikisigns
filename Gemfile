@@ -13,8 +13,6 @@ gem 'mysql2', '~> 0.2.7'
 # Development
 # ===========
 group :development do
-  gem 'rspec-rails'
-
   # Haml generators
   gem 'hpricot'
   gem 'ruby_parser'
@@ -28,16 +26,35 @@ end
 # Test
 # ====
 group :test do
+  # Matchers/Helpers
+  gem 'shoulda'
+
+  # Mocking
+  # gem 'mocha'
+
+  # Browser
+  gem 'capybara'
+
+  # Autotest
+  gem 'autotest'
+  gem 'autotest-rails'
+end
+
+group :test, :development do
   # Framework
   gem "rspec"
   gem 'rspec-rails'
 
   # Fixtures
-  gem "factory_girl_rails", "~> 1.1.beta1"
-  gem "factory_girl", "~> 2.0.0.beta2"
+  gem "factory_girl_rails", "~> 1.1.rc1"
+  gem "factory_girl", "~> 2.0.0.rc1"
 
-  # Matchers/Helpers
-  gem 'shoulda'
+  # Integration
+  # gem 'cucumber-rails'
+  # gem 'cucumber'
+
+  # Generators
+  gem 'rails3-generators'
 end
 
 # Standard helpers
