@@ -225,6 +225,7 @@ function teardownGameModeHandlers() {
 function startGameMode(word, id) {
   // Handlers
   setupGameModeHandlers();
+  stopCurrentMode = stopGameMode;
 
   // Start gaming
   startGame(word, id);

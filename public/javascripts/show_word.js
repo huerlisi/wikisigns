@@ -19,6 +19,8 @@ function showAsBigWord(text) {
 }
 
 function startShowWord(word, after_finish, draw_title) {
+  stopCurrentMode();
+
   updateWord('');
   updateTitle('');
 

@@ -138,6 +138,7 @@ function addSideBarSign(text) {
 
 // Modes
 // =====
+var stopCurrentMode = function() {};
 
 // Play Mode
 // =========
