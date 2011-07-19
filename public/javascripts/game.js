@@ -210,6 +210,8 @@ function checkWords() {
   }
 }
 
+// Setup/Teardown
+// ==============
 // Setup handlers
 function setupGameModeHandlers() {
   $('#guess-title span:not(.guessed)').live('click', handleGuess);
