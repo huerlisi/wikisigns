@@ -182,12 +182,12 @@ function initializeWordClickBehaviour() {
 
     var letter = $(this).html();
 
-    updateWord(guessed_word());
-
     $(this).animate({opacity: 0.1}, 1000);
     $(this).addClass('guessed');
     appendToTitle(letter);
       
+    updateWord(guessed_word());
+
     checkWords();
   });
 }
