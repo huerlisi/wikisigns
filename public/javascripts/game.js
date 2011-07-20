@@ -1,17 +1,11 @@
+// Game Mode
+// =========
 // The original word
 var original_word;
 
 var word_id;
 
 var send = false;
-
-var daily_score = 0;
-var current_score = 0;
-var total_score = 0;
-
-// The border colors of the carpet when its right or false
-var right_border_color = 'green';
-var false_border_color = 'red';
 
 
 function startGame(word, id) {
@@ -103,6 +97,11 @@ function giveHelp(){
 
 // Highscore
 // =========
+// Globals
+var daily_score = 0;
+var current_score = 0;
+var total_score = 0;
+
 // Updates scores
 function updateScores(score) {
   if($('#last-score span').length > 0){
@@ -123,14 +122,6 @@ function updateScores(score) {
     total_score = parseInt($('#alltime-score span').html().trim());
     $('#alltime-score span').html(total_score + score);
   }
-}
-
-// Removes a char from a string at a specified position.
-function removeCharFromPos(string, position){
-  var chars = string.split('');
-
-  chars.splice(position, position + 1);
-  return chars.join('');
 }
 
 function updateGuessTitle(text) {
@@ -156,40 +147,30 @@ function shuffleWord(word) {
 }
 
 function handleUndo() {
-  $('#title span').live('click', function(e) {
-    // Disable double/multi-clicking
-    $(this).unbind(e);
+  // Prevent another hint from being given too fast
+  restartHelp();
 
-    // Prevent another hint from being given too fast
-    restartHelp();
+  var letter = $(this).html();
+  $(this).animate({opacity: 0}, 1000, function() {$(this).remove()});
 
-    var letter = $(this).html();
-    $(this).animate({opacity: 0}, 1000, function() {$(this).remove()});
-
-    var guess_letter = $("#guess-title span.guessed:contains('" + letter + "'):first");
-    guess_letter.removeClass('guessed');
-    guess_letter.animate({opacity: 1}, 1000);
-  });
+  var guess_letter = $("#guess-title span.guessed:contains('" + letter + "'):first");
+  guess_letter.removeClass('guessed');
+  guess_letter.animate({opacity: 1}, 1000);
 }
 
-function initializeWordClickBehaviour() {
-  $('#guess-title span:not(.guessed)').live('click', function(e) {
-    // Disable double/multi-clicking
-    $(this).unbind(e);
+function handleGuess() {
+  // Prevent another hint from being given too fast
+  restartHelp();
 
-    // Prevent another hint from being given too fast
-    restartHelp();
+  var letter = $(this).html();
 
-    var letter = $(this).html();
+  $(this).animate({opacity: 0.1}, 1000);
+  $(this).addClass('guessed');
+  appendToTitle(letter);
 
-    $(this).animate({opacity: 0.1}, 1000);
-    $(this).addClass('guessed');
-    appendToTitle(letter);
-      
-    updateWord(guessed_word());
+  updateWord(guessed_word());
 
-    checkWords();
-  });
+  checkWords();
 }
 
 // Checks if the guessed word has the same length and shows the result of the guessing.
@@ -229,9 +210,31 @@ function checkWords() {
   }
 }
 
-// Loads functions after DOM is ready
-$(document).ready(function() {
-  // Actions
-  initializeWordClickBehaviour();
-  handleUndo();
-});
+// Setup handlers
+function setupGameModeHandlers() {
+  $('#guess-title span:not(.guessed)').live('click', handleGuess);
+  $('#title span').live('click', handleUndo);
+}
+
+// Teardown handlers
+function teardownGameModeHandlers() {
+  $('#guess-title span:not(.guessed)').die('click', handleGuess);
+  $('#title span').die('click', handleUndo);
+}
+
+function startGameMode(word, id) {
+  // Handlers
+  setupGameModeHandlers();
+  stopCurrentMode = stopGameMode;
+
+  // Start gaming
+  startGame(word, id);
+}
+
+function stopGameMode() {
+  // Handlers
+  teardownGameModeHandlers();
+
+  // Fade out guess title
+  $('#guess-title').animate({opacity: 0}, 1000).remove();
+}

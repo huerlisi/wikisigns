@@ -9,13 +9,6 @@ class Word < ActiveRecord::Base
   has_many :new_word_games, :autosave => true
   belongs_to :show_word
 
-  CHARS = [
-   [['z'		], ['t', '@'		], ['j'				], ['f'		]],
-   [['c'		], ['h'			], ['i', 'y'			], [		]],
-   [[			], ['d', 'm'		], ['k', 's', 'v', 'l', 'r'	], ['b', 'n'	]],
-   [['e', 'w', 'x'	], ['a', 'à', '@'	], ['o', 'g', 'q'		], ['u'		]]
-  ]
-
   # Scope for words without space in it.
   scope :without_space, where("words.word NOT LIKE '% %'")
   # Scope for words with only ASCII chars without numbers.

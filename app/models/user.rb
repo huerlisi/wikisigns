@@ -2,20 +2,23 @@ class User < Omnisocial::User
   has_many :games
   has_many :words
 
-  def daily_score
-    score = 0
-    games.today.each { |g| score = score + g.score }
+  # String
+  def to_s
+    login_account.name
+  end
 
-    score
+  # Scores
+  # ======
+  def daily_score
+    games.today.sum(:score)
   end
 
   def total_score
-    score = 0
-    games.all.each { |g| score = score + g.score }
-
-    score
+    games.sum(:score)
   end
 
+  # Facebook
+  # ========
   def graph
     Koala::Facebook::GraphAPI.new(self.access_token)
   end
