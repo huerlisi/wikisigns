@@ -3,7 +3,7 @@ WikiSigns::Application.routes.draw do
   get "welcome/index", :as => 'welcome'
 
   devise_for :users
-  
+
   # Root
   root :to => 'welcome#index'
 
@@ -14,6 +14,7 @@ WikiSigns::Application.routes.draw do
     collection do
       get  'random'
     end
+
     member do
       get 'svg'
       get 'publish'
