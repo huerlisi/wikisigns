@@ -12,7 +12,7 @@ end
 
 ComfortableMexicanSofa.configure do |config|
   # Title of the admin area
-  #   config.cms_title = 'ComfortableMexicanSofa MicroCMS'
+  config.cms_title = 'WikiSigns MicroCMS'
   
   # Module responsible for authentication. You can replace it with your own.
   # It simply needs to have #authenticate method. See http_auth.rb for reference.
@@ -21,7 +21,7 @@ ComfortableMexicanSofa.configure do |config|
   # Default url to access admin area is http://yourhost/cms-admin/ 
   # You can change 'cms-admin' to 'admin', for example. To disable admin area
   # entirely set this to '' or nil
-  #   config.admin_route_prefix = 'cms-admin'
+  config.admin_route_prefix = 'cms'
   
   # When arriving at /cms-admin you may chose to redirect to arbirtary path,
   # for example '/cms-admin/users'
@@ -57,7 +57,7 @@ ComfortableMexicanSofa.configure do |config|
   
   # Admin interface will respect the locale of the site being managed. However you can
   # force it to English by setting this to `:en`
-  #   config.admin_locale = nil
+  config.admin_locale = :de
 
   config.authentication = 'CmsDeviseAuth'
 end
