@@ -100,4 +100,4 @@ group :production do
 end
 
 # CMS
-gem 'comfortable_mexican_sofa'
+gem 'comfortable_mexican_sofa', :git => 'git://github.com/raskhadafi/comfortable-mexican-sofa.git'
