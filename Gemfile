@@ -98,3 +98,6 @@ group :production do
   # Hoptoad for error catching
   gem 'hoptoad_notifier'
 end
+
+# CMS
+gem 'comfortable_mexican_sofa'

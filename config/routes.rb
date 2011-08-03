@@ -3,6 +3,11 @@ WikiSigns::Application.routes.draw do
   get "welcome/index", :as => 'welcome'
 
   devise_for :users
+  # Routes from omnisocial cause of the cms routes.
+  match 'login'                  => 'omnisocial/auth#new',      :as => :login
+  match 'auth/:service/callback' => 'omnisocial/auth#callback'
+  match 'auth/failure'           => 'omnisocial/auth#failure'
+  match 'logout'                 => 'omnisocial/auth#destroy',  :as => :logout
 
   # Root
   root :to => 'welcome#index'
