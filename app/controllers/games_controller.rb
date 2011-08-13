@@ -7,7 +7,11 @@ class GamesController < ApplicationController
     @word = Word.guess_random
     expire_page :controller => 'games', :action => 'new'
 
-    new!
+    if @word
+      new!
+    else
+      redirect_to new_word_path
+    end
   end
 
   # Creates a new game.

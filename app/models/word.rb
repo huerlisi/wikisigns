@@ -18,6 +18,9 @@ class Word < ActiveRecord::Base
   # Scope for guessing
   scope :to_guess, without_space.without_special_chars.minimal_length do
     def random(limit = 1)
+      # Guard as rand(0) returns small numbers
+      return nil if count == 0
+
       offset = rand(count)
       words = offset(offset)
 
@@ -36,7 +39,12 @@ class Word < ActiveRecord::Base
 
   # Gets a random word.
   def self.random(limit = 1)
-    offset = rand(self.count)
+    count = self.count
+
+    # Guard as rand(0) returns small numbers
+    return nil if count == 0
+
+    offset = rand(count)
     words = self.offset(offset)
 
     if limit > 1
@@ -54,7 +62,7 @@ class Word < ActiveRecord::Base
       when 1
         uncached do
           word = Word.to_guess.random
-          word.word.strip!
+          word.word.strip! unless word.nil?
           word
         end
       when 2
