@@ -19,8 +19,7 @@ group :development do
   gem 'rcov'
 
   # Deployment
-  gem 'capistrano'
-  gem 'capistrano-ext'
+  gem 'capones_recipes', :git => 'git://github.com/raskhadafi/capones_recipes.git'
 end
 
 # Test
