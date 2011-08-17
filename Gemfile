@@ -38,6 +38,7 @@ group :test do
   # Autotest
   gem 'autotest'
   gem 'autotest-rails'
+  gem 'ZenTest', '< 4.6.0' # Keep it working with gems < 1.8
 end
 
 group :test, :development do
