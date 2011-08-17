@@ -1,3 +1,5 @@
+require 'cookbook/wikisigns'
+
 #Application
 set :application, "wikisigns"
 set :repository,  "git@github.com:huerlisi/wikisigns.git"
@@ -20,15 +22,4 @@ set :git_enable_submodules, 1
 set :copy_exclude, [".git", "spec"]
 
 
-# Passenger
-require 'cap_recipes/tasks/passenger'
-
-# Bundle install
-require "bundler/capistrano"
-after "bundle:install", "deploy:migrate"
-
-# Clean up the releases after deploy.
-after "deploy", "deploy:cleanup"
-
-require './config/boot'
 require 'hoptoad_notifier/capistrano'
