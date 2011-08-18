@@ -78,6 +78,15 @@ class WordsController < ApplicationController
     show!
   end
 
+  # GET /words/inspiration
+  def inspiration
+    @words = Word.random
+
+    index!
+  end
+
+  layout 'inspiration', :for => :inspiration
+
   # Is here for rendering a svg to a JPG or PNG file.
   # GET /words/:id/svg
   # format: png or jpg
