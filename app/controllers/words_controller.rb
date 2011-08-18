@@ -80,7 +80,11 @@ class WordsController < ApplicationController
 
   # GET /words/inspiration
   def inspiration
-    @words = Word.random
+    @words = (1..12).inject([]) do |out, count|
+      out << Word.to_guess.random
+
+      out
+    end
 
     index! do |format|
       format.html do
