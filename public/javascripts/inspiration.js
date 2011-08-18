@@ -1,8 +1,12 @@
 $(document).ready(function(){
   $('#inspiration-content .word').each(function(){
-    var text = $(this).children('label').text();
-    var sign = $(this).children('.sign');
-
-    drawWordAsImage(sign, text, 100);
+    drawInspirationWord($(this));
   });
 });
+
+function drawInspirationWord(word_div) {
+  var text = word_div.children('label').text();
+  var sign = word_div.children('.sign');
+
+  drawWordAsImage(sign, text, 100);
+}
