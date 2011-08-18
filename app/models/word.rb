@@ -24,11 +24,7 @@ class Word < ActiveRecord::Base
       offset = rand(count)
       words = offset(offset)
 
-      if limit > 1
-        return words.limit(limit)
-      else
-        return words.first
-      end
+      limit > 1 ? words.limit(limit) : words.first
     end
   end
 
@@ -47,11 +43,7 @@ class Word < ActiveRecord::Base
     offset = rand(count)
     words = self.offset(offset)
 
-    if limit > 1
-      return words.limit(limit)
-    else
-      return words.first
-    end
+    limit > 1 ? words.limit(limit) : words.first
   end
 
   # Returns a word for guessing of the set level.
