@@ -2,7 +2,9 @@
   = javascript_include_tag 'inspiration'
 
 #inspiration-content
+  - index = 0
   - @words.each do |word|
-    %div[word]
+    %div.word{:id => 'word_' + index.to_s}
       .sign
       %label= word.word
+    - index += 1
