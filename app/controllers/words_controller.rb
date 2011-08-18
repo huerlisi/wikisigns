@@ -1,7 +1,5 @@
 class WordsController < ApplicationController
 
-  layout :resolve_layout
-
   respond_to :html, :json
 
   # Cache the actions svg and show.
@@ -84,7 +82,11 @@ class WordsController < ApplicationController
   def inspiration
     @words = Word.random
 
-    index!
+    index! do |format|
+      format.html do
+        render :layout => 'inspiration'
+      end
+    end
   end
 
   # Is here for rendering a svg to a JPG or PNG file.
@@ -122,11 +124,5 @@ class WordsController < ApplicationController
     end
 
     redirect_to :root
-  end
-
-  private
-
-  def resolve_layout
-    action_name == 'inspiration' ? action_name.to_s : 'application'
   end
 end
