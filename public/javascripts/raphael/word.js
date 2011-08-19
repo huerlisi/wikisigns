@@ -499,21 +499,6 @@ function pointWidth(color) {
   return 2;
 }
 
-function letter2coord(letter) {
-  var coor = new Array(2);
-
-  for(var x = 0; x < letters.length; x++){
-    for(var y = 0; y < letters[x].length; y++) {
-      if(letters[x][y].indexOf(letter.toLowerCase()) > -1){
-        coor[0] = y;
-        coor[1] = x;
-      }
-    }
-  }
-
-  return coor;
-}
-
 function coord2index(x, y) {
   return 4 * y + (3 - x);
 }
