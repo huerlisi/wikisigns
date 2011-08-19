@@ -1,6 +1,9 @@
 - content_for :mode_script do
   = javascript_include_tag 'inspiration'
 
+#inspiration-links
+  = link_to '[X]', :back
+
 #inspiration-content
   - index = 0
   - @words.each do |word|
