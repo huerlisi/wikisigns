@@ -129,4 +129,12 @@ class WordsController < ApplicationController
 
     redirect_to :root
   end
+
+  def communication
+    new! do |format|
+      format.html do
+        render 'new'
+      end
+    end
+  end
 end
