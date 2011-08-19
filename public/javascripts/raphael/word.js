@@ -355,6 +355,10 @@ function drawWordAsImage(element, input_word, size) {
 }
 
 // Creates a colored word.
+// Used in:
+//  - application.js (line 60, 82, 74)
+//  - game.js (line 128)
+//  - welcome.js (line 5)
 function drawColoredWord(word) {
   // Guard
   if(word == null) word = '';
