@@ -295,12 +295,6 @@ function drawWordAsImage(element, input_word, size) {
   var paper = Raphael(element[0], canvas_width, canvas_height);
   var corner_radius = 10 * scale;
 
-/*  // Drop shadow for carpet
-  var paper_shadow = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, corner_radius);
-  paper_shadow.attr({stroke: "none", fill: "#555", translation: "2,2"});
-  paper_shadow.blur(2);
-
-*/
   // The carpet itself
   var paper_content = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, corner_radius);
   paper_content.attr({stroke: "black", 'stroke-width': 0.2});
@@ -315,7 +309,6 @@ function drawWordAsImage(element, input_word, size) {
       var point_color = pointColor(block_color);
       var point_width = pointWidth(block_color);
       var point_amount = pointAmount(word, letters[y][x]);
-      var shadow;
       var block;
       var offset_y = 0;
       var offset_x = 0;
@@ -348,36 +341,9 @@ function drawWordAsImage(element, input_word, size) {
         block = paper.rect(offset_x + ((margin + space_x) * scale), offset_y + ((margin + space_y) * scale), circle_dimension * scale, circle_dimension * scale, corner_radius);
         block.attr({fill: block_color, stroke: 'none'});
         block.toBack();
-
-        // Drop shadow
-/*        shadow = paper.rect((margin + space_x) * scale, offset_y + ((margin + space_y) * scale), circle_dimension * scale, circle_dimension * scale, corner_radius);
-        shadow.attr({stroke: "none", fill: "gray", translation: "2,2"});
-        shadow.blur(2);
-        shadow.toBack();
-*/      }
+      }
     }
   }
-
-  // paint the word lines.
-  var coordinates = getCoordinatesFromWord(word);
-  var path_x, path_y;
-
-  /*for(var i = 0;i < coordinates.length; i++){
-    // Inner Circle
-    point_x = margin + circle_dimension/2 + space_x;
-    point_y = margin + circle_dimension/2 + space_y;
-
-    if(path_x != undefined && path_y != undefined){
-      var path = paper.path("M"+path_x+" "+path_y+"L"+point_x+" "+point_y);
-
-      path.attr({stroke: point_color, 'stroke-width': 10, 'stroke-linecap': 'round', opacity: 0.75});
-      path.toFront();
-    }
-
-    // Save coords for path
-    path_x = point_x;
-    path_y = point_y;
-  }*/
 
   // Paint P
   if(amountOfLetterP(word)){
@@ -385,20 +351,7 @@ function drawWordAsImage(element, input_word, size) {
     letter_p.attr({fill: 'none', stroke: 'grey', 'stroke-width': 7 * scale});
   }
 
-//  paper_content.toBack();
-//  paper_shadow.toBack();
   paper.setSize(size, size);
-}
-
-// Returns the coordinates in the right order for a word.
-function getCoordinatesFromWord(word) {
-  var coordinates = new Array(word.length);
-
-  for(var i = 0; i < coordinates.length; i++) {
-    coordinates[i] = letter2coord(word[i]);
-  }
-
-  return coordinates;
 }
 
 // Creates a colored word.
