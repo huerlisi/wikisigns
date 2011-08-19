@@ -40,5 +40,5 @@ function drawInspirationWord(word_div, text) {
   if (text == null) text = word_div.children('label').text();
   var sign = word_div.children('.sign');
 
-  drawWordAsImage(sign, text, 100);
+  drawWordAsImage(sign, text, 70);
 }
