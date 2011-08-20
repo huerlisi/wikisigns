@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'eventmachine'
+
 # This class represents an inserted word.
 class Word < ActiveRecord::Base
 
@@ -62,5 +64,14 @@ class Word < ActiveRecord::Base
           self.random
         end
     end
+  end
+
+  after_create :notify_web_clients
+  def notify_web_clients
+    client = Faye::Client.new('http://localhost:3000/faye')
+
+    EM.run {
+      client.publish('/word/new', 'word' => self.word)
+    }
   end
 end
