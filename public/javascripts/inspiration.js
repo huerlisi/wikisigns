@@ -6,7 +6,17 @@ $(document).ready(function(){
   });
 
   startInspiration();
+  startNewWordNotification();
 });
+
+function startNewWordNotification() {
+  var client = new Faye.Client('http://localhost:3000/faye', { timeout: 120 });
+  var subscription = client.subscribe('/word/new', function(message) {
+    if(message['word'] != null){
+      console.log(message['word']);
+    }
+  });
+}
 
 function startInspiration() {
   inspiration_interval = setInterval('nextInspirationWord()', 1000);
