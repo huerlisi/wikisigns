@@ -1,4 +1,5 @@
 var inspiration_interval;
+var theQueue = $({});
 
 $(document).ready(function(){
   $('#inspiration-content .word').each(function(){
@@ -13,21 +14,38 @@ function startNewWordNotification() {
   var client = new Faye.Client('http://localhost:3000/faye', { timeout: 120 });
   var subscription = client.subscribe('/word/new', function(message) {
     if(message['word'] != null){
-      startFullScreen();
-      drawWordAsImage($('#word-notification .sign'), message['word']);
-      $('#word-notification .word').html(drawColoredWord(message['word']));
-      $('#word-notification').fadeIn(3000, function(){
-        setTimeout(function(){
-          $('#word-notification').fadeOut(1000);
-          stopFullScreen();
-        }, 1000);
-      });
-      $('#container').click(stopFullScreen);
-      $('#container').click(function(){
-        $('#word-notification').hide();
+      theQueue.queue(function(next) {
+        var content = $('#word-notification .word, #word-notification .sign');
+
+        content.hide();
+        startFullScreen();
+        drawWordAsImage($('#word-notification .sign'), message['word']);
+        $('#word-notification .word').html(drawColoredWord(message['word']));
+        content.show();
+
+        $('#word-notification').fadeIn(3000, function(){
+          setTimeout(function(){
+            content.hide();
+            $('#word-notification').fadeOut(1000);
+            stopSignPopUp(next);
+          }, 1000);
+        });
+
+        $('#container').click(function(){
+          stopSignPopUp(next);
+        });
+
+        $('#container').click(function(){
+          $('#word-notification').hide();
+        });
       });
     }
   });
+}
+
+function stopSignPopUp(next) {
+  stopFullScreen();
+  next();
 }
 
 function startInspiration() {
