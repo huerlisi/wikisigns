@@ -13,7 +13,15 @@ function startNewWordNotification() {
   var client = new Faye.Client('http://localhost:3000/faye', { timeout: 120 });
   var subscription = client.subscribe('/word/new', function(message) {
     if(message['word'] != null){
+      startFullScreen();
       console.log(message['word']);
+      drawWordAsImage($('#word-notification .sign'), message['word']);
+      $('#word-notification .word').html(drawColoredWord(message['word']));
+      $('#word-notification').show();
+      $('#container').click(stopFullScreen);
+      $('#container').click(function(){
+        $('#word-notification').hide();
+      });
     }
   });
 }
