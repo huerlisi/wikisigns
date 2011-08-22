@@ -16,7 +16,12 @@ function startNewWordNotification() {
       startFullScreen();
       drawWordAsImage($('#word-notification .sign'), message['word']);
       $('#word-notification .word').html(drawColoredWord(message['word']));
-      $('#word-notification').show();
+      $('#word-notification').fadeIn(3000, function(){
+        setTimeout(function(){
+          $('#word-notification').fadeOut(1000);
+          stopFullScreen();
+        }, 1000);
+      });
       $('#container').click(stopFullScreen);
       $('#container').click(function(){
         $('#word-notification').hide();
