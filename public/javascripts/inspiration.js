@@ -15,20 +15,15 @@ function startNewWordNotification() {
   var subscription = client.subscribe('/word/new', function(message) {
     if(message['word'] != null){
       theQueue.queue(function(next) {
-        var content = $('#word-notification .word, #word-notification .sign');
 
-        content.hide();
         startFullScreen();
         drawWordAsImage($('#word-notification .sign'), message['word']);
         $('#word-notification .word').html(drawColoredWord(message['word']));
-        content.show();
 
         $('#word-notification').fadeIn(3000, function(){
           setTimeout(function(){
-            content.hide();
-            $('#word-notification').fadeOut(1000);
             stopSignPopUp(next);
-          }, 1000);
+          }, 3000);
         });
 
         $('#container').click(function(){
@@ -36,7 +31,7 @@ function startNewWordNotification() {
         });
 
         $('#container').click(function(){
-          $('#word-notification').hide();
+          stopSignPopUp(next);
         });
       });
     }
@@ -44,6 +39,7 @@ function startNewWordNotification() {
 }
 
 function stopSignPopUp(next) {
+  $('#word-notification').hide();
   stopFullScreen();
   next();
 }
