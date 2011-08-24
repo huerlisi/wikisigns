@@ -152,15 +152,12 @@ function setPlayMode() {
 function detectPlayMode() {
   $('.one-word').live('click', function(){
     var word = $(this).data('word-word');
-    var after = function() {};
 
-    if($(this).parent().hasClass('random-bar')){
-      after = startRandomSignTimer;
-    }
-
-    startShowWord(word, after);
+    startShowWord(word, afterShowSmallSign);
   });
 }
+
+var afterShowSmallSign = function() {};
 
 
 // Colorizes the text on the show word page.

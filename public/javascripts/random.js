@@ -49,6 +49,8 @@ var startRandomSignTimer = function() {
   next_random_sign_timer = setTimeout(showRandomSign, 3000);
 };
 
+afterShowSmallSign = startRandomSignTimer;
+
 // Mode setup and teardown
 var sidebar_timer;
 var next_random_sign_timer;
