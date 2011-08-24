@@ -73,9 +73,24 @@ class WordsController < ApplicationController
 
   # GET /words/random
   def random
-    @word = Word.random
+    @word = Word.to_guess.random
 
     show!
+  end
+
+  # GET /words/inspiration
+  def inspiration
+    @words = (1..100).inject([]) do |out, count|
+      out << Word.to_guess.random
+
+      out
+    end
+
+    index! do |format|
+      format.html do
+        render :layout => 'inspiration'
+      end
+    end
   end
 
   # Is here for rendering a svg to a JPG or PNG file.
@@ -113,5 +128,13 @@ class WordsController < ApplicationController
     end
 
     redirect_to :root
+  end
+
+  def communication
+    new! do |format|
+      format.html do
+        render 'new'
+      end
+    end
   end
 end

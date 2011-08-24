@@ -39,7 +39,6 @@ function showRandomSign() {
     success: function(data){
       var text = data['word']['word'];
 
-      updateMainTitle(text);
       startShowWord(text, function() {
         // Wait 3s before next word
         next_random_sign_timer = setTimeout(showRandomSign, 3000);

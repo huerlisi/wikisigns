@@ -269,6 +269,41 @@ var colors = Array(
  '#FFF82A' // 9
 );
 
+// big cube shown in the big signs.
+var cube = new Array(11);
+cube[0] = new Array(2);
+cube[0][0] = 0;
+cube[0][1] = 1;
+cube[1] = new Array(2);
+cube[1][0] = 2;
+cube[1][1] = 1;
+cube[2] = new Array(2);
+cube[2][0] = 2;
+cube[2][1] = 3;
+cube[3] = new Array(2);
+cube[3][0] = 0;
+cube[3][1] = 3;
+cube[4] = new Array(2);
+cube[4][0] = 0;
+cube[4][1] = 1;
+cube[5] = new Array(2);
+cube[5][0] = 1;
+cube[5][1] = 0;
+cube[6] = new Array(2);
+cube[6][0] = 3;
+cube[6][1] = 0;
+cube[7] = new Array(2);
+cube[7][0] = 3;
+cube[7][1] = 2;
+cube[8] = new Array(2);
+cube[8][0] = 2;
+cube[8][1] = 3;
+cube[9] = new Array(2);
+cube[9][0] = 2;
+cube[9][1] = 1;
+cube[10] = new Array(2);
+cube[10][0] = 3;
+cube[10][1] = 0;
 
 // Draws a word as an image.
 function drawWordAsImage(element, input_word, size) {
@@ -295,12 +330,6 @@ function drawWordAsImage(element, input_word, size) {
   var paper = Raphael(element[0], canvas_width, canvas_height);
   var corner_radius = 10 * scale;
 
-/*  // Drop shadow for carpet
-  var paper_shadow = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, corner_radius);
-  paper_shadow.attr({stroke: "none", fill: "#555", translation: "2,2"});
-  paper_shadow.blur(2);
-
-*/
   // The carpet itself
   var paper_content = paper.rect(2, 2, canvas_width - paper_space, canvas_width - paper_space, corner_radius);
   paper_content.attr({stroke: "black", 'stroke-width': 0.2});
@@ -315,7 +344,6 @@ function drawWordAsImage(element, input_word, size) {
       var point_color = pointColor(block_color);
       var point_width = pointWidth(block_color);
       var point_amount = pointAmount(word, letters[y][x]);
-      var shadow;
       var block;
       var offset_y = 0;
       var offset_x = 0;
@@ -348,36 +376,9 @@ function drawWordAsImage(element, input_word, size) {
         block = paper.rect(offset_x + ((margin + space_x) * scale), offset_y + ((margin + space_y) * scale), circle_dimension * scale, circle_dimension * scale, corner_radius);
         block.attr({fill: block_color, stroke: 'none'});
         block.toBack();
-
-        // Drop shadow
-/*        shadow = paper.rect((margin + space_x) * scale, offset_y + ((margin + space_y) * scale), circle_dimension * scale, circle_dimension * scale, corner_radius);
-        shadow.attr({stroke: "none", fill: "gray", translation: "2,2"});
-        shadow.blur(2);
-        shadow.toBack();
-*/      }
+      }
     }
   }
-
-  // paint the word lines.
-  var coordinates = getCoordinatesFromWord(word);
-  var path_x, path_y;
-
-  /*for(var i = 0;i < coordinates.length; i++){
-    // Inner Circle
-    point_x = margin + circle_dimension/2 + space_x;
-    point_y = margin + circle_dimension/2 + space_y;
-
-    if(path_x != undefined && path_y != undefined){
-      var path = paper.path("M"+path_x+" "+path_y+"L"+point_x+" "+point_y);
-
-      path.attr({stroke: point_color, 'stroke-width': 10, 'stroke-linecap': 'round', opacity: 0.75});
-      path.toFront();
-    }
-
-    // Save coords for path
-    path_x = point_x;
-    path_y = point_y;
-  }*/
 
   // Paint P
   if(amountOfLetterP(word)){
@@ -385,23 +386,29 @@ function drawWordAsImage(element, input_word, size) {
     letter_p.attr({fill: 'none', stroke: 'grey', 'stroke-width': 7 * scale});
   }
 
-//  paper_content.toBack();
-//  paper_shadow.toBack();
+  // Paint the cube
+  if(scale == 1){
+    for(var z = 0; z < cube.length; z++){
+      if(cube[z + 1] != null){
+        var from_x = margin + circle_dimension/2 + cube[z][0] * circle_dimension + space * cube[z][0];
+        var from_y = margin + circle_dimension/2 + cube[z][1] * circle_dimension + space * cube[z][1];
+        var to_x = margin + circle_dimension/2 + cube[z + 1][0] * circle_dimension + space * cube[z + 1][0];
+        var to_y = margin + circle_dimension/2 + cube[z + 1][1] * circle_dimension + space * cube[z + 1][1];
+        var line = paper.path("M" + from_x + " " + from_y + "L" + to_x + " " + to_y);
+
+        line.attr({opacity: 0.5});
+      }
+    }
+  }
+
   paper.setSize(size, size);
 }
 
-// Returns the coordinates in the right order for a word.
-function getCoordinatesFromWord(word) {
-  var coordinates = new Array(word.length);
-
-  for(var i = 0; i < coordinates.length; i++) {
-    coordinates[i] = letter2coord(word[i]);
-  }
-
-  return coordinates;
-}
-
 // Creates a colored word.
+// Used in:
+//  - application.js (line 60, 82, 74)
+//  - game.js (line 128)
+//  - welcome.js (line 5)
 function drawColoredWord(word) {
   // Guard
   if(word == null) word = '';
@@ -540,21 +547,6 @@ function pointWidth(color) {
     return 1;
   }
   return 2;
-}
-
-function letter2coord(letter) {
-  var coor = new Array(2);
-
-  for(var x = 0; x < letters.length; x++){
-    for(var y = 0; y < letters[x].length; y++) {
-      if(letters[x][y].indexOf(letter.toLowerCase()) > -1){
-        coor[0] = y;
-        coor[1] = x;
-      }
-    }
-  }
-
-  return coor;
 }
 
 function coord2index(x, y) {

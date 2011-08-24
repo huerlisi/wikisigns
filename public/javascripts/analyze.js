@@ -2,6 +2,11 @@
 // ============
 function setAnalyzeMode() {
   // Clear and focus to the input field
+  setFocusToInput();
+  setupAnalyzeModeHandlers();
+}
+
+function setFocusToInput() {
   $('#word_word').val('');
   $('#word_word').focus().select();
 }
@@ -78,5 +83,3 @@ function setupAnalyzeModeHandlers() {
   $('#word_word').keyup(handleKeyUp);
 }
 
-// Loads functions after DOM is ready
-$(document).ready(setupAnalyzeModeHandlers);

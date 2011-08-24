@@ -9,5 +9,9 @@
 %h1#title
 
 - content_for :mode_script do
-  :javascript
-    $(document).ready(setAnalyzeMode);
+  - if action_name == 'communication'
+    :javascript
+      $(document).ready(setCommunicationMode);
+  - else
+    :javascript
+      $(document).ready(setAnalyzeMode);

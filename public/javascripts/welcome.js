@@ -38,4 +38,11 @@ function finished_welcome() {
 function stopWelcomeMode() {
   stopShowWord();
   stopFullScreen();
+  redirectToRandom();
+}
+
+
+// Redirects to /words/random
+function redirectToRandom() {
+  window.location = '/words/random';
 }

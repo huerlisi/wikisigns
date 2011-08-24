@@ -19,7 +19,7 @@ group :development do
   gem 'rcov'
 
   # Deployment
-  gem 'capones_recipes', :git => 'git://github.com/raskhadafi/capones_recipes.git'
+  gem 'capones_recipes'
 end
 
 # Test
@@ -98,3 +98,5 @@ group :production do
   # Hoptoad for error catching
   gem 'hoptoad_notifier'
 end
+
+gem 'faye'

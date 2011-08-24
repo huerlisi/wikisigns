@@ -1,0 +1,12 @@
+!!!
+%html{:lang => 'en', 'xmlns:og' => 'http://ogp.me/ns#', 'xmlns:fb' => 'http://www.facebook.com/2008/fbml'}
+  %head
+    = render 'shared/head'
+  %body#inspiration
+    <!-- Main Content -->
+    #container
+      = yield
+    #word-notification
+      .sign
+      .word
+    = render 'shared/body_end'
