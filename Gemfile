@@ -99,4 +99,6 @@ group :production do
   gem 'hoptoad_notifier'
 end
 
+# Push events
 gem 'faye'
+gem 'thin', '1.2.4'
