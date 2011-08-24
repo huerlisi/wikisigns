@@ -35,7 +35,7 @@ function stopShowWord() {
 
 // Incremential show a word
 function drawWord(word, position, after_finish, draw_title) {
-  if (position < word.length) {
+  if (word && position < word.length) {
     var part = word.slice(0, position + 1);
     var new_letter = word.slice(position, position + 1);
 
