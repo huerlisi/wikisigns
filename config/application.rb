@@ -54,6 +54,6 @@ module WikiSigns
       config.middleware.use("Rack::GoogleAnalytics", :web_property_id => 'UA-20112140-3') # Cause in the end the code is public viewble. I added it hardcoded.
     end
 
-    config.middleware.use("Faye::RackAdapter", :mount      => '/faye', :timeout    => 25)
+    config.middleware.use("Faye::RackAdapter", :mount => '/faye', :timeout => 25)
   end
 end
