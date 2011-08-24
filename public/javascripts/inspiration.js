@@ -28,8 +28,10 @@ function queueMessage(word) {
       }, 3000);
     });
 
+    // Close popup and clear queue if anything is clicked
     $('#container, #word-notification').click(function(){
       stopSignPopUp(next);
+      theQueue.clearQueue();
     });
   });
 }
