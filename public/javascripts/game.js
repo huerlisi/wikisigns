@@ -2,9 +2,7 @@
 // =========
 // The original word
 var original_word;
-
 var word_id;
-
 var send = false;
 
 
@@ -67,7 +65,7 @@ function restartHelp() {
 // Shows the next letter as help.
 function nextHelp() {
   var g = guessed_word();
-  var l = g.length;
+
   if(guessed_word().length < original_word.length){
     giveHelp();
     help_counter++;
@@ -85,9 +83,9 @@ function giveHelp(){
       $('#title span:nth(' + i + ')').click();
       // We're done with this hint
       return;
-    };
+    }
     i++;
-  };
+  }
 
   // Next letter
   var letter = original_word[guessed_word().length];
