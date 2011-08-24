@@ -153,9 +153,11 @@ function detectPlayMode() {
   $('.one-word').live('click', function(){
     var word = $(this).data('word-word');
 
-    startShowWord(word);
+    startShowWord(word, afterShowSmallSign);
   });
 }
+
+var afterShowSmallSign = function() {};
 
 
 // Colorizes the text on the show word page.
