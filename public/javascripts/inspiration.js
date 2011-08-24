@@ -1,3 +1,7 @@
+// Inspiration Mode
+// ================
+
+// Global Settings
 var inspiration_interval;
 var theQueue = $({});
 var latest_notification;
@@ -10,6 +14,7 @@ $(document).ready(function(){
   startInspiration();
 });
 
+// Message popup
 function queueMessages(messages) {
   $(messages).each(function() {
     queueMessage(this['word']);
@@ -40,6 +45,7 @@ function stopSignPopUp(next) {
   next();
 }
 
+// Inspiration
 function startInspiration() {
   inspiration_interval = setInterval('nextInspirationWord()', 1000);
 }
