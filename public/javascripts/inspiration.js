@@ -1,5 +1,6 @@
 var inspiration_interval;
 var theQueue = $({});
+var latest_notification;
 
 $(document).ready(function(){
   $('#inspiration-content .word').each(function(){
@@ -7,34 +8,29 @@ $(document).ready(function(){
   });
 
   startInspiration();
-  startNewWordNotification();
 });
 
-function startNewWordNotification() {
-  var client = new Faye.Client('http://localhost:3000/faye', { timeout: 120 });
-  var subscription = client.subscribe('/word/new', function(message) {
-    if(message['word'] != null){
-      theQueue.queue(function(next) {
+function queueMessages(messages) {
+  $(messages).each(function() {
+    queueMessage(this['word']);
+  });
+}
 
-        startFullScreen();
-        drawWordAsImage($('#word-notification .sign'), message['word']);
-        $('#word-notification .word').html(drawColoredWord(message['word']));
+function queueMessage(word) {
+  theQueue.queue(function(next) {
+    startFullScreen();
+    drawWordAsImage($('#word-notification .sign'), word['word']);
+    $('#word-notification .word').html(drawColoredWord(word['word']));
 
-        $('#word-notification').fadeIn(3000, function(){
-          setTimeout(function(){
-            stopSignPopUp(next);
-          }, 3000);
-        });
+    $('#word-notification').fadeIn(3000, function(){
+      setTimeout(function(){
+        stopSignPopUp(next);
+      }, 3000);
+    });
 
-        $('#container').click(function(){
-          stopSignPopUp(next);
-        });
-
-        $('#container').click(function(){
-          stopSignPopUp(next);
-        });
-      });
-    }
+    $('#container, #word-notification').click(function(){
+      stopSignPopUp(next);
+    });
   });
 }
 
@@ -57,13 +53,17 @@ function nextInspirationWord() {
 
   $.ajax({
     type: 'GET',
-    url: '/words/random.json',
+    url: '/words/random_messages.json',
+    data: {timestamp: latest_notification},
     dataType: 'json',
     cache: false,
     success: function(data){
-      var text = data['word']['word'];
+      var text = data['word']['word']['word'];
+      var messages = data['messages'];
+      latest_notification = data['timestamp'];
 
       drawInspirationWord(element, text);
+      queueMessages(messages);
       startInspiration();
     },
     fail: function(){

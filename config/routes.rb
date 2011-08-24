@@ -13,6 +13,7 @@ WikiSigns::Application.routes.draw do
   resources :words, :except => [:destroy, :edit, :update] do
     collection do
       get  'random'
+      get  'random_messages'
       get  'inspiration'
       get  'communication'
     end

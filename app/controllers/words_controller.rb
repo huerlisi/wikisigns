@@ -74,17 +74,34 @@ class WordsController < ApplicationController
   # GET /words/random
   def random
     @word = Word.to_guess.random
+    @messages = Word.latest(1)
 
     show!
   end
 
+  # GET /words/random_messages
+  def random_messages
+    @word = Word.to_guess.random
+
+    if params[:timestamp] and (params[:timestamp] != 'null')
+      timestamp = Time.at(params[:timestamp].to_i)
+      @messages = Word.where("created_at > ?", timestamp)
+    else
+      @messages = nil
+    end
+
+    new_timestamp = Word.last.created_at.to_i
+
+    show! do |format|
+      format.json {
+        render :json => {:word => @word, :messages => @messages, :timestamp => new_timestamp}
+      }
+    end
+  end
+
   # GET /words/inspiration
   def inspiration
-    @words = (1..100).inject([]) do |out, count|
-      out << Word.to_guess.random
-
-      out
-    end
+    @words = Word.to_guess.random(100)
 
     index! do |format|
       format.html do
