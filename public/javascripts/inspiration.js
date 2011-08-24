@@ -11,7 +11,7 @@ $(document).ready(function(){
 });
 
 function startNewWordNotification() {
-  var client = new Faye.Client(window.location.origin + '/faye', { timeout: 120 });
+  var client = new Faye.Client('http://localhost:3000/faye', { timeout: 120 });
   var subscription = client.subscribe('/word/new', function(message) {
     if(message['word'] != null){
       theQueue.queue(function(next) {

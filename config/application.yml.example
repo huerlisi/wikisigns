@@ -20,16 +20,12 @@ localhost: &localhost
 
 development:
   <<: *localhost
-  faye: "http://localhost:3000"
 
 test:
   <<: *defaults
-  faye: "http://localhost:3000"
 
 production:
   <<: *production
-  faye: "http://localhost:3000"
 
 staging:
   <<: *production
-  faye: "http://localhost:3000"
