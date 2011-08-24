@@ -1,7 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-require 'faye'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -53,7 +52,5 @@ module WikiSigns
     if Rails.env == "production"
       config.middleware.use("Rack::GoogleAnalytics", :web_property_id => 'UA-20112140-3') # Cause in the end the code is public viewble. I added it hardcoded.
     end
-
-    config.middleware.use("Faye::RackAdapter", :mount => '/faye', :timeout => 25)
   end
 end
