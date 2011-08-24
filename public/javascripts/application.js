@@ -152,8 +152,13 @@ function setPlayMode() {
 function detectPlayMode() {
   $('.one-word').live('click', function(){
     var word = $(this).data('word-word');
+    var after = function() {};
 
-    startShowWord(word);
+    if($(this).parent().hasClass('random-bar')){
+      after = startRandomSignTimer;
+    }
+
+    startShowWord(word, after);
   });
 }
 

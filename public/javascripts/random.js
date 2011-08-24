@@ -9,7 +9,7 @@ function populateBar() {
 
   for (i = 1; i <= random_bar_signs ; i++)
   {
-    var sign_holder = $('<div class="sign" id="sign-' + i + '">');
+    var sign_holder = $('<div class="sign random-bar" id="sign-' + i + '">');
     bar.append(sign_holder);
   }
 }
@@ -39,12 +39,14 @@ function showRandomSign() {
     success: function(data){
       var text = data['word']['word'];
 
-      startShowWord(text, function() {
-        // Wait 3s before next word
-        next_random_sign_timer = setTimeout(showRandomSign, 3000);
-      });
+      startShowWord(text, startRandomSignTimer);
     }
   });
+}
+
+// Wait 3s before next word
+var startRandomSignTimer = function() {
+  next_random_sign_timer = setTimeout(showRandomSign, 3000);
 };
 
 // Mode setup and teardown
@@ -68,3 +70,7 @@ function setRandomMode(word) {
   // Show a new random sign in the main container
   showRandomSign();
 }
+
+stopCurrentMode = function() {
+  clearSessionViewerIntervals();
+};
