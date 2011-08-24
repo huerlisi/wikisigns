@@ -59,7 +59,9 @@ class WordsController < ApplicationController
 
   # POST /words
   def create
+    @word = Word.new(:word => params[:word].strip)
     @game = NewWordGame.create(:user => current_user || nil,
+                               :word => @word,
                                :input => params[:word].strip)
     create! do |format|
       format.html {

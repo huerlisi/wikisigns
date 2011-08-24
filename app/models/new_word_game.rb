@@ -10,9 +10,6 @@ class NewWordGame < Game
     else
       self.won = false
     end
-
-    self.word = Word.create(:word => self.input, :user => self.user)
-    self.word.save
   end
 
   private
