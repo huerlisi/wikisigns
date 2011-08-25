@@ -168,13 +168,6 @@ var stopCurrentMode = function() {};
 
 // Play Mode
 // =========
-function setPlayMode() {
-  // We're playing, stop all gaming stuff
-  abortHelp();
-  clearSessionViewerIntervals();
-  showPlayAndHidePauseButton();
-}
-
 function detectPlayMode() {
   $('.one-word').live('click', function(){
     var word = $(this).data('word-word');
