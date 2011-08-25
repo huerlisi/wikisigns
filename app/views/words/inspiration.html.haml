@@ -2,10 +2,9 @@
   = javascript_include_tag 'inspiration'
 
 - content_for :full_screen do
-  #inspiration-links
-    = link_to '[X]', :back
-
   #inspiration-content
+    #inspiration-links
+      = link_to '[X]', :back
     - @words.each_with_index do |word, index|
       .sign{:id => "sign-#{index}"}
         .one-word{:data => {'word-word' => word.word}}

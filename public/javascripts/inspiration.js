@@ -28,12 +28,47 @@ function queueMessage(word) {
   });
 
   message_queue.promise().done(stopMessages);
+
+  // Show Webkit Desktop Notification
+  showDesktopNotification(word);
 }
 
 function stopMessages() {
   message_queue.clearQueue();
   $('#word-notification').fadeOut(1000);
   stopFullScreen();
+}
+
+// Webkit Desktop Notification
+function showDesktopNotification(word_item) {
+  if(window.webkitNotifications && window.webkitNotifications.checkPermission() == 0) {
+    var word = word_item['word']
+    var text = 'Wiksigns.ch sagt: ' + word;
+    var popup = window.webkitNotifications.createNotification('/word/' + word + '.png', 'Wikisigns.ch', text);
+
+    popup.show();
+    setTimeout(function(){
+      popup.cancel();
+    }, 30000);
+  }
+}
+
+function setDesktopNotificationPermission() {
+  $('#desktop-notification-permission').live('click', function(){
+    window.webkitNotifications.requestPermission();
+  });
+}
+
+function createDesktopNotificationLink() {
+  $('#inspiration-links').append('<br/><a id="desktop-notification-permission" data-tooltip-position="topRight" data-tooltip="Aktivieren Sie Desktop Benachrichtigungen. So erhalten Sie eine Benachrichtigung wenn ein neues Sign erstellt wird." href="#">Benachrichtigung</a>');
+  initializeTooltips();
+}
+
+function enableDesktopNotification() {
+  if(window.webkitNotifications){
+    setDesktopNotificationPermission();
+    createDesktopNotificationLink();
+  }
 }
 
 // Inspiration
@@ -95,4 +130,7 @@ function setInspirationMode() {
 
   // Replace a random sign every second
   inspiration_interval = setInterval(nextInspirationWord, 1000);
+
+  // Webkit desktop notification
+  enableDesktopNotification();
 }

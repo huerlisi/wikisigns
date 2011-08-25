@@ -27,6 +27,7 @@ function resetGame() {
   updateTitle('');
   updateWord('');
   updateGuessTitle(shuffleWord(original_word));
+  showPlayAndHidePauseButton();
 }
 
 // Gets a new random word.
@@ -123,7 +124,7 @@ function updateScores(score) {
 }
 
 function updateGuessTitle(text) {
-  $('#guess-title').html(drawColoredWord(text));
+  $('#guess-title').html(drawColoredWord(text)).animate({opacity: 1}, 1000);
 }
 
 function guessed_word() {
@@ -234,7 +235,7 @@ function stopGameMode() {
   teardownGameModeHandlers();
 
   // Fade out guess title
-  $('#guess-title').animate({opacity: 0}, 1000).remove();
+  $('#guess-title').animate({opacity: 0}, 1000).empty();
 }
 
 afterShowSmallSign = getANewWord;
