@@ -51,11 +51,29 @@ function stopMessages() {
 
 // Webkit Desktop Notification
 function showDesktopNotification(word_item) {
-  if (window.webkitNotifications.checkPermission() == 0) {
+  if($.browser.webkit && window.webkitNotifications.checkPermission() == 0) {
     var word = word_item['word']
-    var text = word + ' wurde gerade veröffentlicht.';
+    var text = 'Wiksigns.ch sagt: ' + word;
 
     window.webkitNotifications.createNotification('/word/' + word + '.png', 'Wikisigns.ch', text).show();
+  }
+}
+
+function setDesktopNotificationPermission() {
+  $('#desktop-notification-permission').live('click', function(){
+    window.webkitNotifications.requestPermission();
+  });
+}
+
+function createDesktopNotificationLink() {
+  $('#inspiration-links').append('<br/><a id="desktop-notification-permission" data-tooltip-position="topRight" data-tooltip="Aktivieren Sie Desktop Benachrichtigungen. So erhalten Sie eine Benachrichtigung wenn ein neues Sign erstellt wird." href="#">Benachrichtigung</a>');
+  initializeTooltips();
+}
+
+function enableDesktopNotification() {
+  if($.browser.webkit){
+    setDesktopNotificationPermission();
+    createDesktopNotificationLink();
   }
 }
 
@@ -103,4 +121,7 @@ function setInspirationMode() {
 
   // Replace a random sign every second
   inspiration_interval = setInterval(nextInspirationWord, 1000);
+
+  // Webkit desktop notification
+  enableDesktopNotification();
 }
