@@ -70,6 +70,7 @@ function startFullScreen(elements, finished) {
   if (elements) {
     full_screen_elements = elements;
     elements.css('z-index', 200);
+    elements.css('background-color', '#2F2F2F');
 
     full_screen_elements.click(stopFullScreen);
   }
@@ -82,6 +83,7 @@ function stopFullScreen() {
 
   if (full_screen_elements) {
     full_screen_elements.css('z-index', 'auto');
+    full_screen_elements.css('background-color', '');
     $('#full-screen').removeClass('enabled');
   }
 
