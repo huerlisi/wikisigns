@@ -72,6 +72,4 @@ function setRandomMode(word) {
   showRandomSign();
 }
 
-stopCurrentMode = function() {
-  clearSessionViewerIntervals();
-};
+stopCurrentMode = clearSessionViewerIntervals;
