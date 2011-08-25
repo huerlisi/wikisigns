@@ -103,7 +103,7 @@ class WordsController < ApplicationController
 
   # GET /words/inspiration
   def inspiration
-    @words = Word.to_guess.random(100)
+    @words = Word.to_guess.random(99)
 
     index! do |format|
       format.html do
