@@ -3,15 +3,11 @@
 
 // Global Settings
 var inspiration_interval;
-var theQueue = $({});
+var message_queue = $({});
 var latest_notification;
 
 $(document).ready(function(){
-  $('#inspiration-content .word').each(function(){
-    drawInspirationWord($(this));
-  });
-
-  startInspiration();
+  setInspirationMode();
 });
 
 // Message popup
@@ -22,7 +18,7 @@ function queueMessages(messages) {
 }
 
 function queueMessage(word) {
-  theQueue.queue(function(next) {
+  message_queue.queue(function(next) {
     startFullScreen();
     drawWordAsImage($('#word-notification .sign'), word['word']);
     $('#word-notification .word').html(drawColoredWord(word['word']));
@@ -46,13 +42,7 @@ function stopSignPopUp(next) {
 }
 
 // Inspiration
-function startInspiration() {
-  inspiration_interval = setInterval('nextInspirationWord()', 1000);
-}
-
 function nextInspirationWord() {
-  clearInterval(inspiration_interval);
-
   var amount = $('#inspiration-content .word').length;
   var random_number = Math.floor(Math.random() * amount) + 1;
   var element = $('#inspiration-content .word:nth-child(' + random_number + ')');
@@ -70,10 +60,6 @@ function nextInspirationWord() {
 
       drawInspirationWord(element, text);
       queueMessages(messages);
-      startInspiration();
-    },
-    fail: function(){
-      startInspiration();
     }
   });
 }
@@ -83,4 +69,20 @@ function drawInspirationWord(word_div, text) {
   var sign = word_div.children('.sign');
 
   drawWordAsImage(sign, text, 70);
+}
+
+// Mode setup and teardown
+function stopInspirationMode() {
+  clearInterval(inspiration_interval);
+}
+stopCurrentMode = stopInspirationMode;
+
+function setInspirationMode() {
+  // Populate view with small signs
+  $('#inspiration-content .word').each(function(){
+    drawInspirationWord($(this));
+  });
+
+  // Replace a random sign every second
+  inspiration_interval = setInterval(nextInspirationWord, 1000);
 }
