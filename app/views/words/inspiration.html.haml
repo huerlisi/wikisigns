@@ -1,10 +1,9 @@
 - content_for :mode_script do
   = javascript_include_tag 'inspiration'
 
-#inspiration-links
-  = link_to '[X]', :back
-
 #inspiration-content
+  #inspiration-links
+    = link_to '[X]', :back
   - index = 0
   - @words.each_with_index do |word, index|
     .sign{:id => "sign-#{index}"}
