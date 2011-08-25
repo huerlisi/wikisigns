@@ -7,8 +7,7 @@ var random_bar_signs = 8;	// Number of signs in side bar
 function populateBar() {
   var bar = $('#side-bar');
 
-  for (i = 1; i <= random_bar_signs ; i++)
-  {
+  for (var i = 1; i <= random_bar_signs; i++) {
     var sign_holder = $('<div class="sign random-bar" id="sign-' + i + '">');
     bar.append(sign_holder);
   }
@@ -24,8 +23,8 @@ function showRandomSideBarSign() {
       var text = data['word']['word'];
 
       // Add small sign to random list
-      var index = Math.floor(Math.random() * random_bar_signs);
-      replaceSideBarSign(index, text);
+      var random_index = Math.floor(Math.random() * random_bar_signs);
+      replaceSmallSign(random_index, text, 100);
     }
   });
 }

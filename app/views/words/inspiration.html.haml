@@ -6,8 +6,7 @@
 
 #inspiration-content
   - index = 0
-  - @words.each do |word|
-    %div.word{:id => 'word_' + index.to_s}
-      .sign
-      %label= word.word
-    - index += 1
+  - @words.each_with_index do |word, index|
+    .sign{:id => "sign-#{index}"}
+      .one-word{:data => {'word-word' => word.word}}
+        .word
