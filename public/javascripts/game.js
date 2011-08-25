@@ -40,9 +40,7 @@ function getANewWord() {
     dataType: 'json',
     cache: false,
     success: function(data){
-      word = data['word'];
-
-      startGame(word['word'], word['id']);
+      startGame(data.word.word, data.word.id);
     }
   });
 }
