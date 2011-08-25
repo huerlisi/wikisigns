@@ -26,7 +26,7 @@ function handleKeyUp(event) {
 // Submits and draws a new word.
 function submitWord() {
   var word = $('#word_word').val();
-  var text = word.trim();
+  var text = $.trim(word);
 
   // Clear message input
   // This should be done not in the AJAX callback to not
