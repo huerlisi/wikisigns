@@ -17,37 +17,40 @@ function queueMessages(messages) {
   });
 }
 
-function queueMessage(word) {
-  message_queue.queue(function(next) {
-    startFullScreen();
-    drawWordAsImage($('#word-notification .sign'), word['word']);
-    $('#word-notification .word').html(drawColoredWord(word['word']));
+function showMessage(word) {
+  startFullScreen();
+  drawWordAsImage($('#word-notification .sign'), word['word']);
+  $('#word-notification .word').html(drawColoredWord(word['word']));
 
-    $('#word-notification').fadeIn(3000, function(){
-      setTimeout(function(){
-        stopSignPopUp(next);
-      }, 3000);
-    });
-
-    // Close popup and clear queue if anything is clicked
-    $('#container, #word-notification').click(function(){
-      stopSignPopUp(next);
-      theQueue.clearQueue();
-    });
+  $('#word-notification').fadeIn(1000).delay(3000).fadeOut(1000, function() {
+    message_queue.dequeue();
   });
 }
 
-function stopSignPopUp(next) {
-  $('#word-notification').hide();
+function queueMessage(word) {
+  message_queue.queue(function() {
+    showMessage(word);
+  });
+
+  // Close popup and clear queue if anything is clicked
+  $('#container, #word-notification').click(function(){
+    stopMessages();
+  });
+
+  message_queue.promise().done(stopMessages);
+}
+
+function stopMessages() {
+  message_queue.clearQueue();
+  $('#word-notification').fadeOut(1000);
   stopFullScreen();
-  next();
 }
 
 // Inspiration
 function nextInspirationWord() {
   var amount = $('#inspiration-content .word').length;
-  var random_number = Math.floor(Math.random() * amount) + 1;
-  var element = $('#inspiration-content .word:nth-child(' + random_number + ')');
+  var random_index = Math.floor(Math.random() * amount) + 1;
+  var element = $('#inspiration-content .word:nth-child(' + random_index + ')');
 
   $.ajax({
     type: 'GET',
@@ -60,15 +63,15 @@ function nextInspirationWord() {
       var messages = data['messages'];
       latest_notification = data['timestamp'];
 
-      drawInspirationWord(element, text);
+      replaceSmallSign(random_index, text, 70);
       queueMessages(messages);
     }
   });
 }
 
-function drawInspirationWord(word_div, text) {
-  if (text == null) text = word_div.children('label').text();
-  var sign = word_div.children('.sign');
+function drawInspirationWord(word_div) {
+  var text = word_div.find('.one-word').data('word-word');
+  var sign = word_div.find('.word');
 
   drawWordAsImage(sign, text, 70);
 }
@@ -81,7 +84,7 @@ stopCurrentMode = stopInspirationMode;
 
 function setInspirationMode() {
   // Populate view with small signs
-  $('#inspiration-content .word').each(function(){
+  $('#inspiration-content .sign').each(function(){
     drawInspirationWord($(this));
   });
 

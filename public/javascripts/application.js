@@ -57,13 +57,21 @@ function publishMenuBehaviour() {
 // Containers
 // ==========
 function startFullScreen() {
-  $('#container > div >div:not(#main-sign)').animate({opacity: 0.1}, 3000);
+  if ($('#container').hasClass('fullscreen')) {
+    return;
+  }
+
   $('#container').addClass('fullscreen');
+  $('#container > div >div:not(#main-sign)').animate({opacity: 0.1}, 3000);
 }
 
 function stopFullScreen() {
-  $('#container > div >div:not(#main-sign)').animate({opacity: 1}, 1000);
+  if (!$('#container').hasClass('fullscreen')) {
+    return;
+  }
+
   $('#container').removeClass('fullscreen');
+  $('#container > div >div:not(#main-sign)').animate({opacity: 1}, 1000);
 }
 
 
@@ -119,24 +127,24 @@ function updateWord(text) {
 // Bars
 // ====
 // Returns the container for a small word.
-function buildSideBarSign(text) {
+function buildSmallSign(text, dimension) {
   // Prepare container
   var sign  = $('<div class="one-word" data-word-word="' + text + '">');
   var image = $('<div class="word">');
   sign.append(image);
 
   // Fill in content
-  drawWordAsImage(image, text, 100);
+  drawWordAsImage(image, text, dimension);
 
   // Draw sign
   return sign;
 }
 
-function replaceSideBarSign(index, text) {
+function replaceSmallSign(index, text, dimension) {
   var sign = $('#sign-' + index);
 
   sign.animate({opacity: 0}, 1500, function() {
-    sign.html(buildSideBarSign(text));
+    sign.html(buildSmallSign(text, dimension));
   }).delay(1000).animate({opacity: 1}, 1500);
 }
 
@@ -145,7 +153,7 @@ function addSideBarSign(text) {
 
   // Create element
   var sign = $('<div class="sign">')
-    .append(buildSideBarSign(text));
+    .append(buildSmallSign(text));
 
   // Add to bar
   bar.append(sign);
