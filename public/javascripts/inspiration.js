@@ -17,30 +17,33 @@ function queueMessages(messages) {
   });
 }
 
-function queueMessage(word) {
-  message_queue.queue(function(next) {
-    startFullScreen();
-    drawWordAsImage($('#word-notification .sign'), word['word']);
-    $('#word-notification .word').html(drawColoredWord(word['word']));
+function showMessage(word) {
+  startFullScreen();
+  drawWordAsImage($('#word-notification .sign'), word['word']);
+  $('#word-notification .word').html(drawColoredWord(word['word']));
 
-    $('#word-notification').fadeIn(3000, function(){
-      setTimeout(function(){
-        stopSignPopUp(next);
-      }, 3000);
-    });
-
-    // Close popup and clear queue if anything is clicked
-    $('#container, #word-notification').click(function(){
-      stopSignPopUp(next);
-      theQueue.clearQueue();
-    });
+  $('#word-notification').fadeIn(1000).delay(3000).fadeOut(1000, function() {
+    message_queue.dequeue();
   });
 }
 
-function stopSignPopUp(next) {
-  $('#word-notification').hide();
+function queueMessage(word) {
+  message_queue.queue(function() {
+    showMessage(word);
+  });
+
+  // Close popup and clear queue if anything is clicked
+  $('#container, #word-notification').click(function(){
+    stopMessages();
+  });
+
+  message_queue.promise().done(stopMessages);
+}
+
+function stopMessages() {
+  message_queue.clearQueue();
+  $('#word-notification').fadeOut(1000);
   stopFullScreen();
-  next();
 }
 
 // Inspiration

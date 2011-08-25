@@ -57,13 +57,21 @@ function publishMenuBehaviour() {
 // Containers
 // ==========
 function startFullScreen() {
-  $('#container > div >div:not(#main-sign)').animate({opacity: 0.1}, 3000);
+  if ($('#container').hasClass('fullscreen')) {
+    return;
+  }
+
   $('#container').addClass('fullscreen');
+  $('#container > div >div:not(#main-sign)').animate({opacity: 0.1}, 3000);
 }
 
 function stopFullScreen() {
-  $('#container > div >div:not(#main-sign)').animate({opacity: 1}, 1000);
+  if (!$('#container').hasClass('fullscreen')) {
+    return;
+  }
+
   $('#container').removeClass('fullscreen');
+  $('#container > div >div:not(#main-sign)').animate({opacity: 1}, 1000);
 }
 
 
