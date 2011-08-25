@@ -153,7 +153,7 @@ function addSideBarSign(text) {
 
   // Create element
   var sign = $('<div class="sign">')
-    .append(buildSmallSign(text));
+    .append(buildSmallSign(text, 100));
 
   // Add to bar
   bar.append(sign);
