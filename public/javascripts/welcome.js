@@ -20,10 +20,8 @@ function setWelcomeMode() {
   var alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
   // Show welcome mode in fullscreen
-  startFullScreen();
-
-  // End welcome mode 'immediatly' on any click
-  $('#container').click(stopWelcomeMode);
+  startFullScreen($('#main-sign'), stopWelcomeMode);
+  $('#main-sign').css('z-index', 200);
 
   // Show alphabeet, slowly fading in characters, stopping fullscreen mode afterwards
   startShowWord(alphabet, finished_welcome, draw_welcome_title);

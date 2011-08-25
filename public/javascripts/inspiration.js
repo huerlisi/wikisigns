@@ -18,16 +18,12 @@ function queueMessages(messages) {
 }
 
 function showMessage(word) {
-  startFullScreen();
-  drawWordAsImage($('#word-notification .sign'), word['word']);
-  $('#word-notification .word').html(drawColoredWord(word['word']));
-
-  $('#word-notification').fadeIn(1000).delay(3000).fadeOut(1000, function() {
-    message_queue.dequeue();
-  });
+  startFullScreen($('#main-sign'));
+  startShowWord(word['word'], function() { message_queue.dequeue() });
 }
 
 function queueMessage(word) {
+  afterShowSmallSign = stopFullScreen;
   message_queue.queue(function() {
     showMessage(word);
   });
@@ -79,10 +75,13 @@ function drawInspirationWord(word_div) {
 // Mode setup and teardown
 function stopInspirationMode() {
   clearInterval(inspiration_interval);
+  $('#full-screen-container').removeClass('enabled');
 }
-stopCurrentMode = stopInspirationMode;
+//stopCurrentMode = stopInspirationMode;
 
 function setInspirationMode() {
+  $('#full-screen-container').addClass('enabled');
+
   // Populate view with small signs
   $('#inspiration-content .sign').each(function(){
     drawInspirationWord($(this));

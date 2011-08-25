@@ -105,11 +105,7 @@ class WordsController < ApplicationController
   def inspiration
     @words = Word.to_guess.random(100)
 
-    index! do |format|
-      format.html do
-        render :layout => 'inspiration'
-      end
-    end
+    index!
   end
 
   # Is here for rendering a svg to a JPG or PNG file.
