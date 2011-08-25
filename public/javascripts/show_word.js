@@ -30,7 +30,7 @@ function startShowWord(word, after_finish, draw_title) {
 }
 
 function stopShowWord() {
-  clearInterval(draw_word_timeout);
+  clearTimeout(draw_word_timeout);
 }
 
 // Incremential show a word
