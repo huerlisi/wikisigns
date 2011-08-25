@@ -1,16 +1,5 @@
 // Analyze Mode
 // ============
-function setAnalyzeMode() {
-  // Clear and focus to the input field
-  setFocusToInput();
-  setupAnalyzeModeHandlers();
-}
-
-function setFocusToInput() {
-  $('#word_word').val('');
-  $('#word_word').focus().select();
-}
-
 // Redraws sign after every key stroke
 function handleKeyUp(event) {
   // Stop show word when typing.
@@ -74,6 +63,8 @@ function submitWord() {
   })
 }
 
+// Mode setup and teardown
+
 // Setup handlers
 function setupAnalyzeModeHandlers() {
   // Draw a new word and submit it to the database on submit
@@ -86,3 +77,13 @@ function setupAnalyzeModeHandlers() {
   $('#word_word').keyup(handleKeyUp);
 }
 
+function setFocusToInput() {
+  $('#word_word').val('');
+  $('#word_word').focus().select();
+}
+
+function setAnalyzeMode() {
+  // Clear and focus to the input field
+  setFocusToInput();
+  setupAnalyzeModeHandlers();
+}
