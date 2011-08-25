@@ -38,12 +38,25 @@ function queueMessage(word) {
   });
 
   message_queue.promise().done(stopMessages);
+
+  // Show Webkit Desktop Notification
+  showDesktopNotification(word);
 }
 
 function stopMessages() {
   message_queue.clearQueue();
   $('#word-notification').fadeOut(1000);
   stopFullScreen();
+}
+
+// Webkit Desktop Notification
+function showDesktopNotification(word_item) {
+  if (window.webkitNotifications.checkPermission() == 0) {
+    var word = word_item['word']
+    var text = word + ' wurde gerade veröffentlicht.';
+
+    window.webkitNotifications.createNotification('/word/' + word + '.png', 'Wikisigns.ch', text).show();
+  }
 }
 
 // Inspiration
