@@ -62,6 +62,9 @@ function submitWord() {
       // Main sign
       showAsBigWord('');
 
+      // Download & social media menu of the inserted sign
+      generateWordMenu(text);
+
       // Add small sign to history
       addSideBarSign(text);
 
