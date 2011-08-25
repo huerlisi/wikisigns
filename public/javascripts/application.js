@@ -56,22 +56,36 @@ function publishMenuBehaviour() {
 
 // Containers
 // ==========
-function startFullScreen() {
-  if ($('#container').hasClass('fullscreen')) {
+var full_screen_elements;
+var on_full_screen_finished;
+function startFullScreen(elements, finished) {
+  if ($('#full-screen').hasClass('enabled')) {
     return;
   }
 
-  $('#container').addClass('fullscreen');
-  $('#container > div >div:not(#main-sign)').animate({opacity: 0.1}, 3000);
+  $('#full-screen').addClass('enabled');
+  $('#full-screen').click(stopFullScreen);
+
+  on_full_screen_finished = finished;
+  if (elements) {
+    full_screen_elements = elements;
+    elements.css('z-index', 200);
+
+    full_screen_elements.click(stopFullScreen);
+  }
 }
 
 function stopFullScreen() {
-  if (!$('#container').hasClass('fullscreen')) {
+  if (!$('#full-screen').hasClass('enabled')) {
     return;
   }
 
-  $('#container').removeClass('fullscreen');
-  $('#container > div >div:not(#main-sign)').animate({opacity: 1}, 1000);
+  if (full_screen_elements) {
+    full_screen_elements.css('z-index', 'auto');
+    $('#full-screen').removeClass('enabled');
+  }
+
+  if (on_full_screen_finished) on_full_screen_finished();
 }
 
 
