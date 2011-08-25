@@ -183,7 +183,7 @@ var stopCurrentMode = function() {};
 // Play Mode
 // =========
 function detectPlayMode() {
-  $('.one-word').live('click', function(){
+  $('#side-bar .one-word').live('click', function(){
     var word = $(this).data('word-word');
 
     startShowWord(word, afterShowSmallSign);

@@ -23,14 +23,8 @@ function showMessage(word) {
 }
 
 function queueMessage(word) {
-  afterShowSmallSign = stopFullScreen;
   message_queue.queue(function() {
     showMessage(word);
-  });
-
-  // Close popup and clear queue if anything is clicked
-  $('#container, #word-notification').click(function(){
-    stopMessages();
   });
 
   message_queue.promise().done(stopMessages);
@@ -85,6 +79,18 @@ function setInspirationMode() {
   // Populate view with small signs
   $('#inspiration-content .sign').each(function(){
     drawInspirationWord($(this));
+  });
+
+  // Close popup and clear queue if anything is clicked
+  $('#container, #word-notification').click(function(){
+    stopMessages();
+  });
+
+  $('#inspiration-content .one-word').live('click', function(){
+    var word = $(this).data('word-word');
+
+    startFullScreen($('#main-sign'));
+    startShowWord(word, stopFullScreen);
   });
 
   // Replace a random sign every second
