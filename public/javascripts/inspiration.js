@@ -51,11 +51,15 @@ function stopMessages() {
 
 // Webkit Desktop Notification
 function showDesktopNotification(word_item) {
-  if($.browser.webkit && window.webkitNotifications.checkPermission() == 0) {
+  if(window.webkitNotifications && window.webkitNotifications.checkPermission() == 0) {
     var word = word_item['word']
     var text = 'Wiksigns.ch sagt: ' + word;
+    var popup = window.webkitNotifications.createNotification('/word/' + word + '.png', 'Wikisigns.ch', text);
 
-    window.webkitNotifications.createNotification('/word/' + word + '.png', 'Wikisigns.ch', text).show();
+    popup.show();
+    setTimeout(function(){
+      popup.cancel();
+    }, 30000);
   }
 }
 
@@ -71,7 +75,7 @@ function createDesktopNotificationLink() {
 }
 
 function enableDesktopNotification() {
-  if($.browser.webkit){
+  if(window.webkitNotifications){
     setDesktopNotificationPermission();
     createDesktopNotificationLink();
   }
