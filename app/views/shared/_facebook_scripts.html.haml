@@ -1,8 +1,10 @@
 = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
 :javascript
-  FB.init({
-    appId  : "#{Settings.facebook.consumer_key}",
-    status : true, // check login status
-    cookie : true, // enable cookies to allow the server to access the session
-    xfbml  : true  // parse XFBML
-  });
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId  : "#{Settings.facebook.consumer_key}",
+      status : true, // check login status
+      cookie : true, // enable cookies to allow the server to access the session
+      xfbml  : true  // parse XFBML
+    });
+  };
