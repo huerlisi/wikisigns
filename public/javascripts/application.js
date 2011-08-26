@@ -58,6 +58,7 @@ function publishMenuBehaviour() {
 // ==========
 var full_screen_elements;
 var on_full_screen_finished;
+
 function startFullScreen(elements, finished) {
   if ($('#full-screen').hasClass('enabled')) {
     return;
@@ -71,8 +72,7 @@ function startFullScreen(elements, finished) {
     full_screen_elements = elements;
     elements.css('z-index', 200);
     elements.css('background-color', '#2F2F2F');
-
-    full_screen_elements.click(stopFullScreen);
+    elements.css('position', 'relative');
   }
 }
 
@@ -84,6 +84,7 @@ function stopFullScreen() {
   if (full_screen_elements) {
     full_screen_elements.css('z-index', 'auto');
     full_screen_elements.css('background-color', '');
+    full_screen_elements.css('position', '');
     $('#full-screen').removeClass('enabled');
   }
 
