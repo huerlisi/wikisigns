@@ -34,6 +34,7 @@ function resetGame() {
 // It's used in app/views/shared/game_menu
 function getANewWord() {
   clearSessionViewerIntervals();
+
   $.ajax({
     type: 'GET',
     url: '/games/random_word.json',
@@ -229,9 +230,6 @@ function startGameMode(word, id) {
 }
 
 function stopGameMode() {
-  // Handlers
-  teardownGameModeHandlers();
-
   // Fade out guess title
   $('#guess-title').animate({opacity: 0}, 1000).empty();
 }
