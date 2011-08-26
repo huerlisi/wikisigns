@@ -2,9 +2,8 @@
 // Triggered on: :action => 'show_by_slug'
 //               :controller => 'word'
 function setShowBySlugMode() {
-  var text = $('#title').text();
+  var text_container = $('#title');
+  var text = text_container.text();
 
-  //updateWord(text);
-  //$('#title').html(drawColoredWord(text));
-  startShowWord(text);
+  text_container.show(startShowWord(text));
 }
