@@ -58,7 +58,7 @@ var help_counter = 0;
 
 // Restarts the help.
 function restartHelp() {
-  clearInterval(help_timer);
+  stopHelp();
   help_timer = setTimeout(nextHelp, help_initial_interval_time);
 }
 
@@ -69,6 +69,11 @@ function nextHelp() {
     help_counter++;
     help_timer = setTimeout(nextHelp, help_interval_time);
   }
+}
+
+function stopHelp() {
+  clearTimeout(help_timer);
+  help_timer = null;
 }
 
 // Moves one letter to the solution word.
