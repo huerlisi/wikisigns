@@ -21,7 +21,7 @@ function resetGame() {
   help_counter = 0;
 
   clearSessionViewerIntervals();
-  restartHelp();
+  startHelp();
 
   // View
   updateTitle('');
@@ -56,10 +56,15 @@ var help_timeout;
 // Counters
 var help_counter = 0;
 
-// Restarts the help.
-function restartHelp() {
+// Starts the help.
+function startHelp() {
   stopHelp();
   help_timeout = setTimeout(nextHelp, help_initial_interval_time);
+}
+
+// Restarts the help.
+function restartHelp() {
+  help_timeout = setTimeout(nextHelp, help_interval_time);
 }
 
 // Shows the next letter as help.
@@ -68,10 +73,6 @@ function nextHelp() {
     giveHelp();
     help_counter++;
   }
-}
-
-function startHelp() {
-  help_timeout = setTimeout(nextHelp, help_interval_time);
 }
 
 function stopHelp() {
@@ -88,7 +89,7 @@ function giveHelp(){
   while (i < g.length) {
     // Test if character is correct
     if (g[i] != original_word[i]) {
-      doGuess($('#title span:nth(' + i + ')'), startHelp);
+      doGuess($('#title span:nth(' + i + ')'), restartHelp);
       // We're done with this hint
       return;
     }
@@ -97,7 +98,7 @@ function giveHelp(){
 
   // Next letter
   var letter = original_word[g.length];
-  doGuess($("#guess-title span:not(.guessed):contains('" + letter + "'):first"), startHelp);
+  doGuess($("#guess-title span:not(.guessed):contains('" + letter + "'):first"), restartHelp);
 }
 
 
@@ -154,7 +155,7 @@ function shuffleWord(word) {
 
 function handleUndo() {
   // Prevent another hint from being given too fast
-  restartHelp();
+  startHelp();
 
   var letter = $(this).html();
   $(this).animate({opacity: 0}, 1000, function() {$(this).remove()});
@@ -167,7 +168,7 @@ function handleUndo() {
 function handleGuess() {
   // Prevent another hint from being given too fast
   stopHelp();
-  doGuess(this, restartHelp);
+  doGuess(this, startHelp);
 }
 
 function doGuess(element, callback) {
