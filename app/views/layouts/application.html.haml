@@ -19,6 +19,7 @@
       #main-container
         #main-control= content_for :main_control
         #main-sign= yield
+        #fullscreen-switcher= link_to_function 'Fullscreen', 'startFullScreen($("#main-control, #main-sign"))'
       #flow-container
         #flow-menu= content_for :flow_menu
         #side-bar= content_for :side_bar
