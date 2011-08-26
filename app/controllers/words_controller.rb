@@ -7,40 +7,15 @@ class WordsController < ApplicationController
 
   def show
     @word = Word.find(params[:id])
-    @previous_word = Word.where("id < ?", @word.id).order(:id).last
-    @previous_word ||= Word.last
-    
-    @next_word = Word.where("id > ?", @word.id).order(:id).first
-    @next_word ||= Word.first
-    
-    show!
+
+    show_word!
   end
 
   def show_by_slug
     @word = Word.find_by_word(params[:slug])
     @word ||= Word.new(:word => params[:slug])
 
-    @previous_word = Word.where("id < ?", @word.id).order(:id).last
-    @previous_word ||= Word.last
-
-    @next_word = Word.where("id > ?", @word.id).order(:id).first
-    @next_word ||= Word.first
-
-    show! do |format|
-      format.jpg do
-        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
-                                                   :format => 'jpg', :quality => 60).to_img,
-                                                   :type => image_content_type("jpeg", params[:download]),
-                              :disposition => disposition(params[:download]) )
-      end
-      format.png do
-        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
-                                                   :format => 'png', :quality => 60).to_img,
-                                                   :type => image_content_type("png", params[:download]),
-                              :disposition => disposition(params[:download]) )
-      end
-      format.html { render 'show' }
-    end
+    show_word!
   end
   
   # GET /words
@@ -150,6 +125,32 @@ class WordsController < ApplicationController
       format.html do
         render 'new'
       end
+    end
+  end
+
+  private
+
+  def show_word!
+    @previous_word = Word.where("id < ?", @word.id).order(:id).last
+    @previous_word ||= Word.last
+
+    @next_word = Word.where("id > ?", @word.id).order(:id).first
+    @next_word ||= Word.first
+
+    show! do |format|
+      format.jpg do
+        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
+                                                   :format => 'jpg', :quality => 60).to_img,
+                                                   :type => image_content_type("jpeg", params[:download]),
+                              :disposition => disposition(params[:download]) )
+      end
+      format.png do
+        send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
+                                                   :format => 'png', :quality => 60).to_img,
+                                                   :type => image_content_type("png", params[:download]),
+                              :disposition => disposition(params[:download]) )
+      end
+      format.html { render 'show' }
     end
   end
 end
