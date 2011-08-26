@@ -51,7 +51,7 @@ function getANewWord() {
 // Timers
 var help_initial_interval_time = 15000;
 var help_interval_time = 5000;
-var help_timer;
+var help_timeout;
 
 // Counters
 var help_counter = 0;
@@ -59,7 +59,7 @@ var help_counter = 0;
 // Restarts the help.
 function restartHelp() {
   stopHelp();
-  help_timer = setTimeout(nextHelp, help_initial_interval_time);
+  help_timeout = setTimeout(nextHelp, help_initial_interval_time);
 }
 
 // Shows the next letter as help.
@@ -67,13 +67,16 @@ function nextHelp() {
   if(guessed_word().length < original_word.length){
     giveHelp();
     help_counter++;
-    help_timer = setTimeout(nextHelp, help_interval_time);
   }
 }
 
+function startHelp() {
+  help_timeout = setTimeout(nextHelp, help_interval_time);
+}
+
 function stopHelp() {
-  clearTimeout(help_timer);
-  help_timer = null;
+  clearTimeout(help_timeout);
+  help_timeout = null;
 }
 
 // Moves one letter to the solution word.
@@ -85,7 +88,7 @@ function giveHelp(){
   while (i < g.length) {
     // Test if character is correct
     if (g[i] != original_word[i]) {
-      $('#title span:nth(' + i + ')').click();
+      doGuess($('#title span:nth(' + i + ')'), startHelp);
       // We're done with this hint
       return;
     }
@@ -94,7 +97,7 @@ function giveHelp(){
 
   // Next letter
   var letter = original_word[g.length];
-  $("#guess-title span:not(.guessed):contains('" + letter + "'):first").click();
+  doGuess($("#guess-title span:not(.guessed):contains('" + letter + "'):first"), startHelp);
 }
 
 
@@ -163,17 +166,22 @@ function handleUndo() {
 
 function handleGuess() {
   // Prevent another hint from being given too fast
-  restartHelp();
+  stopHelp();
+  doGuess(this, restartHelp);
+}
 
-  var letter = $(this).html();
+function doGuess(element, callback) {
+  var letter = $(element).html();
 
-  $(this).animate({opacity: 0.1}, 1000);
-  $(this).addClass('guessed');
+  $(element).animate({opacity: 0.1}, 1000);
+  $(element).addClass('guessed');
   appendToTitle(letter);
-
   updateWord(guessed_word());
-
   checkWords();
+
+  if(callback){
+    callback();
+  }
 }
 
 // Checks if the guessed word has the same length and shows the result of the guessing.
