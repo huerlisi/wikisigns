@@ -48,3 +48,5 @@ de-CH:
   shows:
     title: Teile auf verschiedene Arten deine Worte mit
     preview: 'Vorschau'
+  fullscreen:
+    switch_on: "Fullscreen-Modus einschalten"
