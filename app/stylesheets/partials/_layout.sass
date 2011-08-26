@@ -1,6 +1,8 @@
 // WikiSigns Layout
 // ================
 
+$container-margin: 12px
+
 // Forms
 textarea, input
   color: #6E6E6E
@@ -16,7 +18,7 @@ textarea, input
   border: 1px solid
   +border-radius(4px)
   padding: 8px
-  margin: 12px
+  margin: $container-margin
 
 // Structural Elements
 body
@@ -89,6 +91,13 @@ body
   z-index: 50
   opacity: 1
   background-color: #2F2F2F
+
+#fullscreen-switcher
+  text-align: right
+  a
+    +hover-link
+    color: white
+    padding-right: $container-margin
 
 // WikiSigns Logo
 // ==============
