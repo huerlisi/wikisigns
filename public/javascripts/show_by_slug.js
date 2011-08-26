@@ -4,6 +4,7 @@
 function setShowBySlugMode() {
   var text = $('#title').text();
 
-  updateWord(text);
-  $('#title').html(drawColoredWord(text));
+  //updateWord(text);
+  //$('#title').html(drawColoredWord(text));
+  startShowWord(text);
 }
