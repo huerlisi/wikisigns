@@ -33,7 +33,7 @@ body
   margin: 3em
 
 #menu-container
-  +column(5)
+  +column(4)
 
 #main-menu
   min-height: 20em
@@ -89,3 +89,17 @@ body
   z-index: 50
   opacity: 1
   background-color: #2F2F2F
+
+// WikiSigns Logo
+// ==============
+#wikisigns-logo
+  +rotate(-90deg)
+  +column(1)
+  +last
+  writing-mode: tb-lr
+  font-size: 50px
+  position: relative
+  top: 225px
+  a
+    +hover-link
+    color: white
