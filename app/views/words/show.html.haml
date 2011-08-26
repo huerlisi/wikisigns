@@ -3,8 +3,10 @@
     = link_to "<", word_path(@previous_word)
     = link_to ">", word_path(@next_word)
 
+- content_for :main_control do
+  %h1#title= @word.word
+
 #word
-%h1#title= @word.word
 
 - content_for :mode_script do
   - if action_name.eql?('show_by_slug')
