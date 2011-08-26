@@ -31,3 +31,7 @@ config/application.yml
 config/newrelic.yml
 config/database.yml
 tmp/*.png
+
+# Hoptoad
+# =======
+log/newrelic_agent_store.*
