@@ -202,6 +202,9 @@ function addColorizeTextBehaviour() {
 
 // Initialize behaviours
 function initializeBehaviours() {
+  // Initialize Cufon for logo font
+  Cufon.replace('#wikisigns-logo h1');
+
   // Mode detection
   detectPlayMode();
   
