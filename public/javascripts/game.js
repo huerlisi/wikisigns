@@ -63,8 +63,6 @@ function restartHelp() {
 
 // Shows the next letter as help.
 function nextHelp() {
-  var g = guessed_word();
-
   if(guessed_word().length < original_word.length){
     giveHelp();
     help_counter++;
