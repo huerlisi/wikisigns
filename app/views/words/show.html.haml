@@ -1,8 +1,3 @@
-- content_for :flow_menu do
-  .button-link
-    = link_to "<", word_path(@previous_word)
-    = link_to ">", word_path(@next_word)
-
 - content_for :main_control do
   %h1#title= @word.word
 
