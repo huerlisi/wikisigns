@@ -74,9 +74,11 @@ function nextHelp() {
 function giveHelp(){
   // Fix a letter in guessed word if needed
   var i = 0;
-  while (i < guessed_word().length) {
+  var g = guessed_word();
+
+  while (i < g.length) {
     // Test if character is correct
-    if (guessed_word()[i] != original_word[i]) {
+    if (g[i] != original_word[i]) {
       $('#title span:nth(' + i + ')').click();
       // We're done with this hint
       return;
@@ -85,7 +87,7 @@ function giveHelp(){
   }
 
   // Next letter
-  var letter = original_word[guessed_word().length];
+  var letter = original_word[g.length];
   $("#guess-title span:not(.guessed):contains('" + letter + "'):first").click();
 }
 
