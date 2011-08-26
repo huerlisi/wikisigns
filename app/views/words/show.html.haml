@@ -7,5 +7,9 @@
 %h1#title= @word.word
 
 - content_for :mode_script do
-  :javascript
-    $(document).ready(setAnalyzeMode);
+  - if action_name.eql?('show_by_slug')
+    :javascript
+      $(document).ready(setShowBySlugMode);
+  - else
+    :javascript
+      $(document).ready(setAnalyzeMode);
