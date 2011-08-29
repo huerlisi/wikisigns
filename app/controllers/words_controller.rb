@@ -108,6 +108,7 @@ class WordsController < ApplicationController
   end
 
   # Publishes the picture to the users facebook photo album.
+  # GET /words/:word_word/publish
   def publish
     if current_user && user_signed_in? && current_user.from_facebook?
       @word = Word.find_by_word(params[:slug])
