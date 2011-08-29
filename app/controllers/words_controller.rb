@@ -112,6 +112,7 @@ class WordsController < ApplicationController
   def publish
     if current_user && user_signed_in? && current_user.from_facebook?
       @word = Word.find_by_word(params[:slug])
+      @word ||= Word.find(params[:id]) if params[:id]
       @word ||= Word.new(:word => params[:slug])
       
       publish!(@word) if @word
