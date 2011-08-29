@@ -309,6 +309,7 @@ cube[10][1] = 0;
 function drawWordAsImage(element, input_word, size) {
   // Guard
   if(input_word == null) input_word = '';
+	if(element.length <= 0) return false;
 
   // Drop leftovers
   element.empty();
