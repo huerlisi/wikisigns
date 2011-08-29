@@ -11,6 +11,7 @@ class WordsController < ApplicationController
     show_word!
   end
 
+  # GET /word/:word_word
   def show_by_slug
     @word = Word.find_by_word(params[:slug])
     @word ||= Word.new(:word => params[:slug])
