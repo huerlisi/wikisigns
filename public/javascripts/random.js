@@ -39,7 +39,10 @@ function showRandomSign() {
       var text = data['word']['word'];
 
       startShowWord(text, startRandomSignTimer);
-    }
+    },
+		error: function() {
+			setTimeout(showRandomSign, 1000)
+		}
   });
 }
 
