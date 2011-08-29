@@ -30,13 +30,7 @@ function createPublishToFacebookLink(word) {
 }
 
 function generateWordMenu(text) {
-  if(text != ''){
-    $('#context-menu').empty()
-      .append(createWordMenu(text))
-      /*.append(createLinkToPNGDownload(text))
-      .append(generateShareLink(text))
-      .append(createPublishToFacebookLink(text));*/
-  }
+  if(text != '') $('#context-menu').empty().append(createWordMenu(text));
 }
 
 function createWordMenu(text) {
