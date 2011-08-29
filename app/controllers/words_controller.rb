@@ -88,6 +88,8 @@ class WordsController < ApplicationController
   # GET /words/:id/svg
   # format: png or jpg
   def svg
+    @word ||= Word.find_by_word(params[:id])
+    
     show! do |format|
       format.jpg do
         send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
@@ -151,7 +153,7 @@ class WordsController < ApplicationController
 
   def publish!(word)
     file_path = "#{Rails.root}/tmp/#{word.id}_#{word.word}.png"
-    IMGKit.new(svg_word_url(word), :'crop-w' => 440, :format => 'png', :quality => 60).to_file(file_path)
+    IMGKit.new(svg_word_url(word.word), :'crop-w' => 440, :format => 'png', :quality => 60).to_file(file_path)
     current_user.publish_on_fb(file_path, word.word)    
   end
 end
