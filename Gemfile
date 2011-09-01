@@ -77,7 +77,7 @@ gem 'i18n_rails_helpers'
 gem 'jquery-rails'
 
 # Facebook and Twitter authentication
-gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => 'v1.2.oauth'
+gem 'devise'
 gem 'omnisocial'
 gem 'koala', '~> 1.0.0'
 gem 'settingslogic'
