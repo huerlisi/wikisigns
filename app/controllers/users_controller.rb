@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def daily_score
     @user = User.find(params[:id])
 
-    @user.graph.put_wall_post(I18n.t('game.message.score.text', :score => @user.daily_score),
+    @user.graph(session[:omniauth]["credentials"]["token"]).put_wall_post(I18n.t('game.message.score.text', :score => @user.daily_score),
                                                           { "name" => "WikiSigns.ch - The Game",
                                                             "link" => new_game_url,
                                                             "caption" => "{*actor*} spielte auf WikiSigns.ch das Wortratespiel.",
@@ -14,5 +14,7 @@ class UsersController < ApplicationController
 
     render :json => @user
   end
+  
+  def login; end
   
 end

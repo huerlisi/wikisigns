@@ -108,7 +108,7 @@ class WordsController < ApplicationController
   end
 
   # Publishes the picture to the users facebook photo album.
-  # GET /words/:word_word/publish
+  # GET /word/:word_word/publish
   def publish
     if current_user && user_signed_in? && current_user.from_facebook?
       @word = Word.find_by_word(params[:slug])
@@ -117,8 +117,6 @@ class WordsController < ApplicationController
       
       publish!(@word) if @word
     end
-
-    redirect_to :root
   end
 
   def communication
@@ -151,7 +149,7 @@ class WordsController < ApplicationController
 
   def publish!(word)
     file_path = "#{Rails.root}/tmp/#{word.id}_#{word.word}.png"
-    IMGKit.new(svg_word_url(word.word), :'crop-w' => 440, :format => 'png', :quality => 60).to_file(file_path)
-    current_user.publish_on_fb(file_path, word.word)    
+    IMGKit.new(svg_word_url(word.id), :'crop-w' => 440, :format => 'png', :quality => 60).to_file(file_path)
+    current_user.publish_on_fb(file_path, word.word)
   end
 end

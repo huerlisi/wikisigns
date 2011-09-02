@@ -1,4 +1,11 @@
 - unless user_signed_in?
-  = link_to t('tooltip.login'), login_path, :id => 'user-login', :'data-tooltip' => t('tooltip.login')
+  =# link_to t('tooltip.login'), login_path, :id => 'user-login', :'data-tooltip' => t('tooltip.login')
 - else
-  = link_to t('tooltip.logout'), logout_path, :id => 'user-logout', :'data-tooltip' => t('tooltip.logout')
+  =# link_to t('tooltip.logout'), logout_path, :id => 'user-logout', :'data-tooltip' => t('tooltip.logout')
+
+- unless user_signed_in?  
+  = link_to t('tooltip.login'), login_users_path, :id => 'user-login', :'data-tooltip' => t('tooltip.login')
+- else
+  = link_to t('tooltip.logout'), destroy_user_session_path, :id => 'user-logout', :'data-tooltip' => t('tooltip.logout')
+  - unless current_user.has_facebook?
+    = link_to 'Facebook-Connect', user_omniauth_authorize_path(:facebook), :id => 'facebook-login', :'data-tooltip' => t('tooltip.login')
