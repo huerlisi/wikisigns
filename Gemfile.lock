@@ -96,6 +96,7 @@ GEM
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
     fssm (0.2.7)
+    gritter (0.6.2)
     haml (3.1.2)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
@@ -275,6 +276,7 @@ DEPENDENCIES
   factory_girl_rails (~> 1.1.rc1)
   fancy-buttons
   formtastic
+  gritter
   haml
   haml-rails
   has_scope

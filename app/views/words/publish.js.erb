@@ -1,0 +1,5 @@
+<% if @word %>
+  <%= add_gritter("#{@word.word} wurde auf Facebook veröffentlicht.",:image => "#{svg_word_url(@word, :format => :png)}", :title => "WikiSigns Mitteilung", :time => 3000) %>
+<% else %>
+  window.location = "<%= user_omniauth_authorize_path(:facebook) %>";
+<% end %>
