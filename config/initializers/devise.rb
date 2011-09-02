@@ -156,7 +156,8 @@ Devise.setup do |config|
   #   :authorize_path    => '/login/oauth/authorize',
   #   :access_token_path => '/login/oauth/access_token',
   #   :scope             => %w(user public_repo)
-#  config.omniauth :facebook, "APP_ID", "APP_SECRET"
+  config.omniauth :facebook, Settings.facebook.consumer_key, Settings.facebook.consumer_secret,
+                  {:scope => 'email, publish_stream, status_update'}
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
