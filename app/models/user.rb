@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
                   :access_token => token['credentials']['token'])
     end
   end
+  
+  def self.find_for_twitter(token, signe_in_resource = nil)
+    
+  end
 
   # Scores
   # ======
