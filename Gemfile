@@ -78,7 +78,7 @@ gem 'jquery-rails'
 
 # Facebook and Twitter authentication
 gem 'devise'
-gem 'omnisocial'
+gem 'omniauth', '~> 0.2.6'
 gem 'koala', '~> 1.0.0'
 gem 'settingslogic'
 
