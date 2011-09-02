@@ -2,12 +2,13 @@ WikiSigns::Application.routes.draw do
 
   get "welcome/index", :as => 'welcome'
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   # Root
   root :to => 'welcome#index'
 
   match 'word/:slug', :to => 'words#show_by_slug'
+  match 'word/:slug/publish', :to => 'words#publish'
 
   # Words
   resources :words, :except => [:destroy, :edit, :update] do
@@ -20,7 +21,6 @@ WikiSigns::Application.routes.draw do
 
     member do
       get 'svg'
-      get 'publish'
     end
 
     resources :games, :only => [:create, :show]
