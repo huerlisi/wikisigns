@@ -85,11 +85,9 @@ class WordsController < ApplicationController
   end
 
   # Is here for rendering a svg to a JPG or PNG file.
-  # GET /words/:id/svg
+  # GET /word/:id/svg
   # format: png or jpg
-  def svg
-    @word ||= Word.find_by_word(params[:id])
-    
+  def svg   
     show! do |format|
       format.jpg do
         send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
