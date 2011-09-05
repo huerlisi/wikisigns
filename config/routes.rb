@@ -37,5 +37,9 @@ WikiSigns::Application.routes.draw do
     member do
       post 'daily_score'
     end
+    
+    collection do
+      get 'login'
+    end
   end
 end
