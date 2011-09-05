@@ -47,5 +47,5 @@ de-CH:
     links:
       register: Registrieren
       forgot_password: Passwort vergessen?
-      sign_up: Anmelden
+      sign_in: Anmelden
       sign_in_with: "Mit %{provider} anmelden"

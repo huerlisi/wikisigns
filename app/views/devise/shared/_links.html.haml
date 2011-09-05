@@ -1,9 +1,9 @@
 .users-devise-links
   - if controller_name != 'sessions'
-    = link_to t('devise.links.register'), new_session_path(resource_name)
+    = link_to t('devise.links.sign_in'), new_session_path(resource_name)
     %br/
   - if devise_mapping.registerable? && controller_name != 'registrations'
-    = link_to t('devise.links.sign_up'), new_registration_path(resource_name)
+    = link_to t('devise.links.register'), new_registration_path(resource_name)
     %br/
   - if devise_mapping.recoverable? && controller_name != 'passwords'
     = link_to t('devise.links.forgot_password'), new_password_path(resource_name)
@@ -13,8 +13,9 @@
     %br/
   - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
     = link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name)
-    %br/
-  - if devise_mapping.omniauthable?
+
+- if devise_mapping.omniauthable?
+  .users-devise-providers
     - resource_class.omniauth_providers.each do |provider|
       = link_to t('devise.links.sign_in_with', :provider => provider.to_s.titleize), omniauth_authorize_path(resource_name, provider), :id => "sign-in-with-#{provider.to_s}"
       %br/
