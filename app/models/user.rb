@@ -4,33 +4,11 @@ class User < ActiveRecord::Base
   
   has_many :games
   has_many :words
+  has_many :user_tokens
 
   # String
   def to_s
-    login_account.name
-  end
-
-  def self.find_for_facebook_oauth(token, signed_in_resource=nil)
-    data = token['extra']['user_hash']
-    email = signed_in_resource.email if signed_in_resource
-    email ||= data["email"]
-
-    if user = User.find_by_email(email)
-      user.access_token = token['credentials']['token']
-      user.login_type = 'facebook'
-      user.save
-
-      user
-    else # Create a user with a stub password.
-      User.create(:email => data["email"], 
-                  :password => Devise.friendly_token[0,20], 
-                  :login_type => 'facebook',
-                  :access_token => token['credentials']['token'])
-    end
-  end
-  
-  def self.find_for_twitter(token, signe_in_resource = nil)
-    
+    email
   end
 
   # Scores
@@ -47,7 +25,7 @@ class User < ActiveRecord::Base
   # ========
   def graph
     begin
-      Koala::Facebook::GraphAPI.new(access_token)
+      Koala::Facebook::GraphAPI.new(user_tokens.where('provider = ?', 'facebook'))
     rescue Koala::Facebook::APIError
       logger.info('--------------------------------------------------------')
       logger.info('Facebook Session Expired. graph function')
@@ -65,8 +43,31 @@ class User < ActiveRecord::Base
     end
   end
   
-  def from_facebook?
-    login_type.eql?'facebook'
+  # ----------------------------------
+  # Following code is from: https://github.com/holden/devise-omniauth-example/blob/master/app/models/user.rb
+  # ----------------------------------
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session[:omniauth]
+        user.user_tokens.build(:provider => data['provider'], :uid => data['uid'])
+      end
+    end
   end
-  alias has_facebook? from_facebook?
+  
+  def apply_omniauth(omniauth)
+    #add some info about the user
+    #self.name = omniauth['user_info']['name'] if name.blank?
+    #self.nickname = omniauth['user_info']['nickname'] if nickname.blank?
+    
+    unless omniauth['credentials'].blank?
+      user_tokens.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+      #user_tokens.build(:provider => omniauth['provider'], 
+      #                  :uid => omniauth['uid'],
+      #                  :token => omniauth['credentials']['token'], 
+      #                  :secret => omniauth['credentials']['secret'])
+    else
+      user_tokens.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+    end
+    #self.confirm!# unless user.email.blank?
+  end
 end

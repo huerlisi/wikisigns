@@ -3,6 +3,8 @@
   %head
     = render 'shared/head'
   %body
+    - if flash[:notice]
+      = js add_gritter(flash[:notice], :image => :notice, :title => "Pay attention!", :sticky => true)
     #full-screen
     #full-screen-container= content_for :full_screen
     

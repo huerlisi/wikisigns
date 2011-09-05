@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110901131218) do
+ActiveRecord::Schema.define(:version => 20110905115123) do
 
   create_table "assets", :force => true do |t|
     t.string   "file"
@@ -206,6 +206,14 @@ ActiveRecord::Schema.define(:version => 20110901131218) do
     t.string "name"
   end
 
+  create_table "user_tokens", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "",    :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
@@ -221,8 +229,6 @@ ActiveRecord::Schema.define(:version => 20110901131218) do
     t.string   "remember_token"
     t.datetime "last_facebook_post"
     t.boolean  "cms_admin",                           :default => false
-    t.string   "login_type"
-    t.string   "access_token"
   end
 
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
