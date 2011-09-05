@@ -1,4 +1,4 @@
-en:
+de-CH:
   errors:
     messages:
       not_found: "not found"
@@ -44,3 +44,8 @@ en:
         subject: 'Reset password instructions'
       unlock_instructions:
         subject: 'Unlock Instructions'
+    links:
+      register: Registrieren
+      forgot_password: Passwort vergessen?
+      sign_up: Anmelden
+      sign_in_with: "Mit %{provider} anmelden"
