@@ -50,3 +50,11 @@ de-CH:
     preview: 'Vorschau'
   fullscreen:
     switch_on: "Fullscreen-Modus einschalten"
+  navigation:
+    left:
+      intro: Intro
+      play: Spielen
+      analyse: Analysieren
+      communicate: Kommunizieren
+      inspire: Inspirieren
+      all: All

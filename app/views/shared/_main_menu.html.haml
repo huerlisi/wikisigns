@@ -1,11 +1,11 @@
 .button-link
-  = link_to 'intro', welcome_path, :id => 'welcome-link'
-  = link_to 'spielen', new_game_path, :id => 'new-game-link'
-  = link_to 'analysieren', words_path, :id => 'words-link'
-  = link_to 'kommmunizieren', communication_words_path, :id => 'new-word-link'
-  = link_to 'inspirieren', random_words_path, :id => 'random-words-link'
-  = link_to 'all', inspiration_words_path, :id => 'random-words-link'
+  = link_to t('navigation.left.intro'), welcome_path, :id => 'welcome-link'
+  = link_to t('navigation.left.play'), new_game_path, :id => 'new-game-link'
+  = link_to t('navigation.left.analyse'), words_path, :id => 'words-link'
+  = link_to t('navigation.left.communicate'), communication_words_path, :id => 'new-word-link'
+  = link_to t('navigation.left.inspire'), random_words_path, :id => 'random-words-link'
+  = link_to t('navigation.left.all'), inspiration_words_path, :id => 'random-words-link'
   - unless user_signed_in?
-    = link_to 'Login', user_session_path, :id => 'user-login'
+    = link_to t('login'), user_session_path, :id => 'user-login'
   - else
-    = link_to 'Logout', destroy_user_session_path, :id => 'user-logout'
+    = link_to t('logout'), destroy_user_session_path, :id => 'user-logout'
