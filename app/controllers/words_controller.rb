@@ -35,10 +35,10 @@ class WordsController < ApplicationController
 
   # POST /words
   def create
-    @word = Word.new(:word => params[:word].strip)
+    @word = Word.create(:word => params[:word].strip)
     @game = NewWordGame.create(:user => current_user || nil,
                                :word => @word,
-                               :input => params[:word].strip)
+                               :input => @word.word)
     create! do |format|
       format.html {
         new_word_path(:last_word => @game.word.word)
