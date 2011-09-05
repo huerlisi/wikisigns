@@ -219,6 +219,17 @@ function initializeBehaviours() {
   addColorizeTextBehaviour();
   initializeTooltips();
   shareSessionLinkBehaviour();
+  drawPageTitle();
+}
+
+function drawPageTitle() {
+  var title = $('#page-title');
+  
+  if(title.length > 0){
+    var text = title.text();
+    
+    title.html(drawColoredWord(text));
+  }
 }
 
 // iOS detection
