@@ -65,6 +65,7 @@ gem 'compass'
 gem 'fancy-buttons'
 
 gem 'simple-navigation'
+gem 'simple_form'
 
 gem 'lyb_sidebar'
 
