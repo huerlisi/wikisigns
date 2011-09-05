@@ -5,4 +5,7 @@
   = link_to 'kommmunizieren', communication_words_path, :id => 'new-word-link'
   = link_to 'inspirieren', random_words_path, :id => 'random-words-link'
   = link_to 'all', inspiration_words_path, :id => 'random-words-link'
-  = link_to 'Login', new_user_session_path, :id => 'user-login'
+  - unless user_signed_in?
+    = link_to 'Login', user_session_path, :id => 'user-login'
+  - else
+    = link_to 'Logout', destroy_user_session_path, :id => 'user-logout'
