@@ -5,6 +5,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def method_missing(provider)
     if !User.omniauth_providers.index(provider).nil?
       omniauth = env["omniauth.auth"]
+      
+      logger.info('--------------------------------------------')
+      logger.info(omniauth.inspect)
+      logger.info('--------------------------------------------')
     
       if current_user
         current_user.user_tokens.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
