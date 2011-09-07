@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def from_facebook?
+    user_tokens.where('provider = ?', 'facebook').empty?
+  end
+  
   # ----------------------------------
   # Following code is from: https://github.com/holden/devise-omniauth-example/blob/master/app/models/user.rb
   # ----------------------------------
