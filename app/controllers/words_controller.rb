@@ -79,7 +79,7 @@ class WordsController < ApplicationController
 
   # GET /words/inspiration
   def inspiration
-    @words = Word.to_guess.random(99)
+    @words = Word.to_guess.random(108)
 
     index!
   end
