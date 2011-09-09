@@ -133,4 +133,6 @@ function setInspirationMode() {
 
   // Webkit desktop notification
   enableDesktopNotification();
+  
+  $('#wikisigns-logo').css('z-index', '3000');
 }
