@@ -275,35 +275,37 @@ cube[0] = new Array(2);
 cube[0][0] = 0;
 cube[0][1] = 1;
 cube[1] = new Array(2);
-cube[1][0] = 2;
-cube[1][1] = 1;
+cube[1][0] = 1;
+cube[1][1] = 0;
 cube[2] = new Array(2);
-cube[2][0] = 2;
-cube[2][1] = 3;
+cube[2][0] = 3;
+cube[2][1] = 0;
 cube[3] = new Array(2);
-cube[3][0] = 0;
-cube[3][1] = 3;
+cube[3][0] = 3;
+cube[3][1] = 2;
 cube[4] = new Array(2);
-cube[4][0] = 0;
-cube[4][1] = 1;
+cube[4][0] = 2;
+cube[4][1] = 3;
 cube[5] = new Array(2);
-cube[5][0] = 1;
-cube[5][1] = 0;
+cube[5][0] = 2;
+cube[5][1] = 1;
 cube[6] = new Array(2);
-cube[6][0] = 3;
-cube[6][1] = 0;
+cube[6][0] = 0;
+cube[6][1] = 1;
 cube[7] = new Array(2);
-cube[7][0] = 3;
-cube[7][1] = 2;
+cube[7][0] = 0;
+cube[7][1] = 3;
 cube[8] = new Array(2);
 cube[8][0] = 2;
 cube[8][1] = 3;
-cube[9] = new Array(2);
-cube[9][0] = 2;
-cube[9][1] = 1;
-cube[10] = new Array(2);
-cube[10][0] = 3;
-cube[10][1] = 0;
+
+var cube_end = new Array(2);
+cube_end[0] = new Array(2);
+cube_end[0][0] = 2;
+cube_end[0][1] = 1;
+cube_end[1] = new Array(2);
+cube_end[1][0] = 3;
+cube_end[1][1] = 0;
 
 var shadow_cube0 = new Array();
 shadow_cube0[0] = new Array()
@@ -410,15 +412,13 @@ function drawWordAsImage(element, input_word, size) {
   if(scale == 1){
     for(var z = 0; z < cube.length; z++){
       if(cube[z + 1] != null){
-        /**var from_x = margin + circle_dimension/2 + cube[z][0] * circle_dimension + space * cube[z][0];
-        var from_y = margin + circle_dimension/2 + cube[z][1] * circle_dimension + space * cube[z][1];
-        var to_x = margin + circle_dimension/2 + cube[z + 1][0] * circle_dimension + space * cube[z + 1][0];
-        var to_y = margin + circle_dimension/2 + cube[z + 1][1] * circle_dimension + space * cube[z + 1][1];
-        var line = paper.path("M" + from_x + " " + from_y + "L" + to_x + " " + to_y);
-
-        line.attr({opacity: 0.5});**/
         line = drawCubeLine(paper, margin, circle_dimension, space, cube[z][0], cube[z][1], cube[z + 1][0], cube[z + 1][1]);
         line.attr({opacity: 0.5});
+      }
+    }
+    for(var z = 0; z < cube_end.length; z++){
+      if(cube_end[z + 1] != null) {
+        drawCubeLine(paper, margin, circle_dimension, space, cube_end[z][0], cube_end[z][1], cube_end[z + 1][0], cube_end[z + 1][1]);
       }
     }
     for(var z = 0; z < shadow_cube0.length; z++) {
