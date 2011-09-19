@@ -5,7 +5,6 @@ source 'http://rubygems.org'
 # Rails
 # =====
 gem 'rails', '~> 3.0.0'
-gem 'json', '1.6.1'
 
 # Database
 gem 'sqlite3'
@@ -71,7 +70,7 @@ gem 'simple_form'
 gem 'lyb_sidebar'
 
 gem 'formtastic'
-#gem 'will_paginate', :git => 'git://github.com/huerlisi/will_paginate.git', :branch => 'rails3'
+gem 'will_paginate', :git => 'git://github.com/huerlisi/will_paginate.git', :branch => 'rails3'
 gem 'inherited_resources'
 gem 'has_scope'
 gem 'i18n_rails_helpers'
