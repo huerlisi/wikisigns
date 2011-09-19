@@ -5,6 +5,7 @@ source 'http://rubygems.org'
 # Rails
 # =====
 gem 'rails', '~> 3.0.0'
+gem 'json', '1.6.1'
 
 # Database
 gem 'sqlite3'

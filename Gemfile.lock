@@ -280,6 +280,7 @@ DEPENDENCIES
   imgkit
   inherited_resources
   jquery-rails
+  json (= 1.6.1)
   koala (~> 1.0.0)
   lyb_sidebar
   mysql2 (~> 0.2.7)
