@@ -70,7 +70,7 @@ gem 'simple_form'
 gem 'lyb_sidebar'
 
 gem 'formtastic'
-gem 'will_paginate', :git => 'git://github.com/huerlisi/will_paginate.git', :branch => 'rails3'
+#gem 'will_paginate', :git => 'git://github.com/huerlisi/will_paginate.git', :branch => 'rails3'
 gem 'inherited_resources'
 gem 'has_scope'
 gem 'i18n_rails_helpers'
