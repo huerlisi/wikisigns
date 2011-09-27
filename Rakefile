@@ -3,6 +3,5 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
-require 'hoptoad_notifier/tasks'
 
 WikiSigns::Application.load_tasks
