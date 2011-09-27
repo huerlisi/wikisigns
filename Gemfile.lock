@@ -30,6 +30,9 @@ GEM
       activesupport (= 3.0.10)
     activesupport (3.0.10)
     addressable (2.2.4)
+    airbrake (3.0.4)
+      activesupport
+      builder
     arel (2.0.10)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
@@ -38,7 +41,7 @@ GEM
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
     cap-recipes (0.3.36)
-    capistrano (2.8.0)
+    capistrano (2.9.0)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
@@ -46,8 +49,8 @@ GEM
       net-ssh-gateway (>= 1.1.0)
     capistrano-ext (1.2.1)
       capistrano (>= 1.0.0)
-    capistrano_colors (0.5.4)
-    capones_recipes (0.13.1)
+    capistrano_colors (0.5.5)
+    capones_recipes (0.14.3)
       cap-recipes
       capistrano
       capistrano-ext
@@ -98,9 +101,6 @@ GEM
       railties (~> 3.0)
     has_scope (0.5.1)
     highline (1.6.2)
-    hoptoad_notifier (2.4.11)
-      activesupport
-      builder
     hpricot (0.8.4)
     i18n (0.5.0)
     i18n_rails_helpers (0.14.2)
@@ -260,6 +260,7 @@ PLATFORMS
 
 DEPENDENCIES
   ZenTest (< 4.6.0)
+  airbrake
   autotest
   autotest-rails
   capones_recipes
@@ -274,7 +275,6 @@ DEPENDENCIES
   haml
   haml-rails
   has_scope
-  hoptoad_notifier
   hpricot
   i18n_rails_helpers
   imgkit
