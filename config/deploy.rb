@@ -1,4 +1,5 @@
 require 'cookbook/wikisigns'
+require 'recipes/airbrake'
 
 #Application
 set :application, "wikisigns"
@@ -22,4 +23,5 @@ set :git_enable_submodules, 1
 set :copy_exclude, [".git", "spec"]
 
 
-require 'hoptoad_notifier/capistrano'
+require './config/boot'
+require 'airbrake/capistrano'
