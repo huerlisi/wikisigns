@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'lib/rack/chrome_frame'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -48,6 +49,7 @@ module WikiSigns
     # jQuery Plugins
     config.action_view.javascript_expansions[:defaults] += %w(jquery-elastic)
 
+    config.middleware.use("Rack::ChromeFrame", :minimum => 9.0)
     # Google analytics middle ware.
     if Rails.env == "production"
       config.middleware.use("Rack::GoogleAnalytics", :web_property_id => 'UA-20112140-3') # Cause in the end the code is public viewble. I added it hardcoded.
