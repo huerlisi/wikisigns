@@ -9,6 +9,8 @@ class Word < ActiveRecord::Base
   has_many :new_word_games, :autosave => true
   belongs_to :show_word
 
+  validates :word, :presence => true, :format => /\S+/
+
   # Scope for words without space in it.
   scope :without_space, where("words.word NOT LIKE '% %'")
   # Scope for words with only ASCII chars without numbers.
