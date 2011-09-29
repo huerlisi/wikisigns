@@ -141,6 +141,9 @@ function guessed_word() {
 
 // Randomizes the input word.
 function shuffleWord(word) {
+  // Checks if a word is existing.
+  if(word == "" || word == null) return getANewWord();
+
   var new_word;
 
   // Handle very short words
