@@ -78,13 +78,19 @@ gem 'i18n_rails_helpers'
 
 gem 'jquery-rails'
 
-# Facebook and Twitter authentication
+gem 'settingslogic'
+
+# Access Control
 gem 'devise'
 gem 'omniauth'
-gem 'omniauth-facebook'
+
+# Twitter
 gem 'omniauth-twitter'
+
+# Facebook
+gem 'omniauth-facebook'
 gem 'koala'
-gem 'settingslogic'
+
 
 # Generate images
 gem 'imgkit'
@@ -95,10 +101,13 @@ gem 'rqrcode'
 # Monitoring
 # ==========
 group :production do
-  # Google Analytics
-  gem 'rack-google_analytics', :require => "rack/google_analytics"
-  # Monitoring with new relic
+  # Traffic
+  gem 'rack-google_analytics'
+
+  # Performance
   gem 'newrelic_rpm'
+
+  # Exceptions
+  gem 'airbrake'
 end
 
-gem 'airbrake'
