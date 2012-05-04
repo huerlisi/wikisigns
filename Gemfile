@@ -80,8 +80,10 @@ gem 'jquery-rails'
 
 # Facebook and Twitter authentication
 gem 'devise'
-gem 'omniauth', '~> 0.2.6'
-gem 'koala', '~> 1.0.0'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'koala'
 gem 'settingslogic'
 
 # Generate images
