@@ -84,9 +84,6 @@ gem 'omniauth', '~> 0.2.6'
 gem 'koala', '~> 1.0.0'
 gem 'settingslogic'
 
-# jQuery Notifications
-gem 'gritter'
-
 # Generate images
 gem 'imgkit'
 
