@@ -33,6 +33,11 @@ class WordsController < ApplicationController
     new!
   end
 
+  # Creates a new word.
+  def new_word
+    new
+  end
+
   # POST /words
   def create
     @word = Word.create(:word => params[:word].strip)
