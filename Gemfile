@@ -111,3 +111,4 @@ group :production do
   gem 'airbrake'
 end
 
+gem "thin"
