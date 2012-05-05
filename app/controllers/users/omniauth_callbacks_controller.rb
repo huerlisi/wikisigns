@@ -20,7 +20,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
    
         if authentication
           flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => omniauth['provider']
-          sign_in_and_redirect(:user, authentication.user)
+          if params[:state] == "canvas"
+            sign_in(:user, authentication.user)
+            redirect_to new_word_path
+          else
+            sign_in_and_redirect(:user, authentication.user)
+          end
           #sign_in_and_redirect(authentication.user, :event => :authentication)
         else
           
@@ -36,7 +41,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
           if user.save(:validate => false)
             flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => omniauth['provider'] 
-            sign_in_and_redirect(:user, user)
+            if params[:state] == "canvas"
+              sign_in(:user, user)
+              redirect_to new_word_path
+            else
+              sign_in_and_redirect(:user, user)
+            end
           else
             session[:omniauth] = omniauth.except('extra')
             redirect_to new_user_registration_url

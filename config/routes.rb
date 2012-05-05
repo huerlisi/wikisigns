@@ -39,4 +39,7 @@ WikiSigns::Application.routes.draw do
       post 'daily_score'
     end
   end
+
+  # Facebook
+  post '/facebook/canvas' => 'facebook#canvas'
 end
