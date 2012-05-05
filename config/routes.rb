@@ -42,4 +42,5 @@ WikiSigns::Application.routes.draw do
 
   # Facebook
   post '/facebook/canvas' => 'facebook#canvas'
+  filter :facebook_canvas
 end

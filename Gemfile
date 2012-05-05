@@ -79,6 +79,7 @@ gem 'i18n_rails_helpers'
 gem 'jquery-rails'
 
 gem 'settingslogic'
+gem 'routing-filter'
 
 # Access Control
 gem 'devise'

@@ -186,6 +186,8 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     responders (0.6.5)
+    routing-filter (0.3.0)
+      actionpack
     rqrcode (0.4.2)
     rspec (2.10.0)
       rspec-core (~> 2.10.0)
@@ -273,6 +275,7 @@ DEPENDENCIES
   rails (~> 3.0.0)
   rails3-generators
   rcov
+  routing-filter
   rqrcode
   rspec
   rspec-rails
