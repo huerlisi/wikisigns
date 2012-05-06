@@ -28,31 +28,29 @@ $default-box-shadow-inset: true
   .button-link
     float: left
   .social-media-links
-    +link-box('social_media.png', 9px)
+    +link-box-icon('social_media.png', 9px)
     padding-top: 10px
-#welcome-link,
-#context-menu a
+
+.button-link a
   +link-box
+
 #new-game-link
-  +link-box('play.png')
+  +link-box-icon('play.png')
 #words-link
-  +link-box('eye.png')
+  +link-box-icon('eye.png')
 #new-word-link
-  +link-box('communication.png')
+  +link-box-icon('communication.png')
 #random-words-link
-  +link-box('tv.png')
+  +link-box-icon('tv.png')
 #user-login,
 #facebook-login
-  +link-box('sign_in.png')
+  +link-box-icon('sign_in.png')
 #user-logout
-  +link-box('sign_out.png')
+  +link-box-icon('sign_out.png')
 #fb-publish-photo-on-wall
-  +link-box('facebook.png')
+  +link-box-icon('facebook.png')
 #photo-download-link
-  +link-box('download.png', 6px)
-
-#back-link a
-  +link-box
+  +link-box-icon('download.png', 6px)
 
 #logins
   float: left
@@ -77,7 +75,7 @@ $default-box-shadow-inset: true
   text-align: left
 
 .score
-  +link-box('king.png')
+  +link-box-icon('king.png')
   span
     float: right
   &:hover

@@ -1,4 +1,4 @@
-=link-box($image: 'info.png', $image_position_y: 9px, $image_position_x: 12px)
+=link-box
   +box-shadow(rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset)
   +background-clip
   +border-radius
@@ -11,12 +11,14 @@
   min-height: 30px
   float: left
   text-transform: capitalize
-  background-image: url("/images/icons/16x16/white/#{$image}")
-  background-repeat: no-repeat
-  background-position: #{$image_position_x} #{$image_position_y}
   width: 115px
   margin-bottom: 5px
   padding-left: 40px
   text-align: left
   &:hover
     text-decoration: underline
+
+=link-box-icon($image: 'info.png', $image_position_y: 9px, $image_position_x: 12px)
+  background-image: url("/images/icons/16x16/white/#{$image}")
+  background-repeat: no-repeat
+  background-position: #{$image_position_x} #{$image_position_y}
