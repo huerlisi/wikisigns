@@ -22,7 +22,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => omniauth['provider']
           if params[:state] == "canvas"
             sign_in(:user, authentication.user)
-            redirect_to new_word_path
+            redirect_to communication_words_path(:fb_canvas => true)
           else
             sign_in_and_redirect(:user, authentication.user)
           end
@@ -43,7 +43,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => omniauth['provider'] 
             if params[:state] == "canvas"
               sign_in(:user, user)
-              redirect_to new_word_path
+              redirect_to communication_words_path(:fb_canvas => true)
             else
               sign_in_and_redirect(:user, user)
             end
