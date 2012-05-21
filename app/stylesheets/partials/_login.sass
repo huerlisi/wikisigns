@@ -1,6 +1,24 @@
 #page-title
   text-align: center
   
+.social-login
+  a
+    +link-box
+    width: 200px
+    margin-left: auto
+    margin-right: auto
+
+  .fb_logo img
+    float: left
+    height: 29px
+    margin-left: -36px
+
+  .twitter_logo img
+    float: left
+    height: 29px
+    margin-left: -36px
+
+
 .simple_form
   text-align: left
   margin: 10px
@@ -12,6 +30,8 @@
     margin-top: 5px
   .input
     margin-bottom: 5px
+  input
+    +link-box
   #user_remember_me_false,
   span label
     display: none
