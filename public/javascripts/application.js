@@ -34,18 +34,10 @@ function generateWordMenu(text) {
 }
 
 function createWordMenu(text) {
-  return '<a href="#" class="publish-menu" data-text="' + text +'">Veröffentlichen</a>';
-}
-
-function publishMenuBehaviour() {
-  $('.publish-menu').live('click', function(){
-    var text = $(this).attr('data-text');
-
     $('#context-menu').empty()
       .append(createLinkToPNGDownload(text))
       .append(generateShareLink(text))
       .append(createPublishToFacebookLink(text));
-  });
 }
 
 // Containers
@@ -212,8 +204,6 @@ function initializeBehaviours() {
   if($('#word.svg').length > 0) {
     updateWord($('#title').text());
   }
-
-  publishMenuBehaviour();
 
   // initialize only on /words/:id page.
   addColorizeTextBehaviour();
