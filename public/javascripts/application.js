@@ -22,7 +22,7 @@ function generateShareLink(slug) {
 
 // Creates a div with a link to the PNG of the word id.
 function createLinkToPNGDownload(word) {
-  return '<a id="photo-download-link" href="/word/' + word +'.png?download=true">Als Bild speichern</a>'
+  return '<a id="photo-download-link" href="/word/' + word +'.png?download=true">Bild speichern</a>'
 }
 
 function createPublishToFacebookLink(word) {
