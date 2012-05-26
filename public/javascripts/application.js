@@ -37,7 +37,7 @@ function createWordMenu(text) {
     $('#context-menu').empty()
       .addClass('button-link')
       .append(createLinkToPNGDownload(text))
-      .append(createPublishToFacebookLink(text))
+//      .append(createPublishToFacebookLink(text))
       .append(generateShareLink(text));
 }
 
