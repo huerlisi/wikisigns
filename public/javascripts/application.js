@@ -35,9 +35,10 @@ function generateWordMenu(text) {
 
 function createWordMenu(text) {
     $('#context-menu').empty()
+      .addClass('button-link')
       .append(createLinkToPNGDownload(text))
-      .append(generateShareLink(text))
-      .append(createPublishToFacebookLink(text));
+      .append(createPublishToFacebookLink(text))
+      .append(generateShareLink(text));
 }
 
 // Containers
