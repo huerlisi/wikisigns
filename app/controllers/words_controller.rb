@@ -18,7 +18,7 @@ class WordsController < ApplicationController
 
     show_word!
   end
-  
+
   # GET /words
   def index
     redirect_to new_word_path
@@ -92,7 +92,7 @@ class WordsController < ApplicationController
   # Is here for rendering a svg to a JPG or PNG file.
   # GET /word/:id/svg
   # format: png or jpg
-  def svg   
+  def svg
     show! do |format|
       format.jpg do
         send_data( IMGKit.new(svg_word_url(@word), :'crop-w' => 440,
@@ -119,7 +119,7 @@ class WordsController < ApplicationController
       @word = Word.find_by_word(params[:slug])
       @word ||= Word.find(params[:id]) if params[:id]
       @word ||= Word.new(:word => params[:slug])
-      
+
       publish!(@word) if @word
     end
   end
