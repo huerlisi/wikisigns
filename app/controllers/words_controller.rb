@@ -54,7 +54,12 @@ class WordsController < ApplicationController
     @word = Word.to_guess.random
     @messages = Word.latest(1)
 
-    show!
+    if @word
+      show!
+    else
+      # We didn't have a single matching word in the database
+      redirect_to new_word_path
+    end
   end
 
   # GET /words/random_messages
