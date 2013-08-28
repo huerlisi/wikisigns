@@ -3,7 +3,7 @@ WikiSigns::Application.routes.draw do
   get "welcome/index", :as => 'welcome'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  
+
   # Root
   root :to => 'welcome#index'
 
@@ -25,6 +25,8 @@ WikiSigns::Application.routes.draw do
 
     resources :games, :only => [:create, :show]
   end
+
+  get 'threed', :to => 'threed#index'
 
   resources :games, :only => [:new] do
     collection do
