@@ -1,8 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-require 'rack/chrome_frame'
 require 'sqlite3_extensions'
+require 'lib/rack/chrome_frame'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
