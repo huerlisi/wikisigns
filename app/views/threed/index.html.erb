@@ -1,0 +1,86 @@
+<%= content_for :mode_script do %>
+  <script type="text/javascript" src="/javascripts/glMatrix-0.9.5.min.js"></script>
+  <script type="text/javascript" src="/javascripts/webgl-utils.js"></script>
+  <script type="text/javascript" src="/javascripts/threed.js"></script>
+
+  <script id="shader-fs" type="x-shader/x-fragment">
+    precision mediump float;
+
+    varying vec2 vTextureCoord;
+    varying vec3 vLightWeighting;
+
+    uniform float uAlpha;
+
+    uniform sampler2D uSampler;
+
+    void main(void) {
+      vec4 textureColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
+      gl_FragColor = vec4(textureColor.rgb * vLightWeighting, textureColor.a * uAlpha);
+    }
+  </script>
+
+  <script id="shader-vs" type="x-shader/x-vertex">
+    attribute vec3 aVertexPosition;
+    attribute vec3 aVertexNormal;
+    attribute vec2 aTextureCoord;
+
+    uniform mat4 uMVMatrix;
+    uniform mat4 uPMatrix;
+    uniform mat3 uNMatrix;
+
+    uniform vec3 uAmbientColor;
+
+    uniform vec3 uLightingDirection;
+    uniform vec3 uDirectionalColor;
+
+    uniform bool uUseLighting;
+
+    varying vec2 vTextureCoord;
+    varying vec3 vLightWeighting;
+
+    void main(void) {
+      gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+      vTextureCoord = aTextureCoord;
+
+      if (!uUseLighting) {
+        vLightWeighting = vec3(1.0, 1.0, 1.0);
+        } else {
+        vec3 transformedNormal = uNMatrix * aVertexNormal;
+        float directionalLightWeighting = max(dot(transformedNormal, uLightingDirection), 0.0);
+        vLightWeighting = uAmbientColor + uDirectionalColor * directionalLightWeighting;
+      }
+    }
+  </script>
+<%- end %>
+
+<canvas id="lesson08-canvas" style="border: none;" width="500" height="500"></canvas>
+
+<br />
+
+<%= content_for :main_control do %>
+  <form id='myForm'">
+    <textarea id="string" value="symbol" onkeyup="webGLStart(); return false"></textarea>
+  </form>
+<%- end %>
+
+<%= content_for :context_menu do %>
+<table style="border: 0; padding: 10px;">
+  <tr>
+    <td><button onclick="ySpeed -= 5" >Turn left</button></td>
+    <td><button onclick="ySpeed += 5" >Turn right</button></td>
+  </tr>
+  <tr>
+    <td><button onclick="xSpeed += 5" >Turn down</button></td>
+    <td><button onclick="xSpeed -= 5" >Turn up</button></td>
+  </tr>
+  <tr>
+    <td><button onclick="z += 0.369" >Zoom in</button></td>
+    <td><button onclick="z -= 0.369" >Zoom out</button></td>
+  </tr>
+  <tr>
+    <td><button onclick="xSpeed=0; ySpeed=0" >Stop</button></td>
+    <td><button onclick="x=0; y=0; z=-5; xSpeed=3; ySpeed=-3" >Normal View</button></td>
+  </tr>
+</table>
+<input type="hidden" id="alpha" value="1" />
+<%- end %>
