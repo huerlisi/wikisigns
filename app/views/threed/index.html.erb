@@ -58,28 +58,31 @@
 <br />
 
 <%= content_for :main_control do %>
-  <form id='myForm'">
-    <textarea id="string" value="symbol" onkeyup="webGLStart(); return false"></textarea>
+  <form id='myForm'>
+    <textarea id="string" value="symbol" rows="20" onkeyup="webGLStart(); return false"></textarea>
   </form>
 <%- end %>
 
 <%= content_for :context_menu do %>
-<table style="border: 0; padding: 10px;">
+<table class="threed" style="border: 0; padding: 10px;">
   <tr>
-    <td><button onclick="ySpeed -= 5" >Turn left</button></td>
-    <td><button onclick="ySpeed += 5" >Turn right</button></td>
+    <td></td>
+    <td><button onclick="xSpeed -= 5" >&#8593;</button></td>
+    <td></td>
   </tr>
   <tr>
-    <td><button onclick="xSpeed += 5" >Turn down</button></td>
-    <td><button onclick="xSpeed -= 5" >Turn up</button></td>
+    <td><button onclick="ySpeed -= 5" >&#8592;</button></td>
+    <td><button onclick="xSpeed=0; ySpeed=0" >&#9632;</button></td>
+    <td><button onclick="ySpeed += 5" >&#8594;</button></td>
   </tr>
   <tr>
-    <td><button onclick="z += 0.369" >Zoom in</button></td>
-    <td><button onclick="z -= 0.369" >Zoom out</button></td>
-  </tr>
+    <td></td>
+    <td><button onclick="xSpeed += 5" >&#8595;</button></td>
+    <td></td>
   <tr>
-    <td><button onclick="xSpeed=0; ySpeed=0" >Stop</button></td>
-    <td><button onclick="x=0; y=0; z=-5; xSpeed=3; ySpeed=-3" >Normal View</button></td>
+    <td><button onclick="z += 0.369" >+</button></td>
+    <td><button onclick="x=0; y=0; z=-5; xSpeed=3; ySpeed=-3" >&#8634;</button></td>
+    <td><button onclick="z -= 0.369" >-</button></td>
   </tr>
 </table>
 <input type="hidden" id="alpha" value="1" />

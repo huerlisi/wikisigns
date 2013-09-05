@@ -115,7 +115,7 @@ function updateTitle(text) {
 // Append to title by fading in
 function appendToTitle(text) {
   var title = $('#title');
-  
+
   var letter = $(drawColoredWord(text));
   letter.css('opacity', 0);
   $('#title').append(letter);
@@ -126,7 +126,7 @@ function appendToTitle(text) {
 // Delete from title by fading out
 function deleteFromTitle(index) {
   var title = $('#title');
-  
+
   var letter = title.find(":nth-child(" + index + ")");
   letter.animate({opacity: 0}, 500, function() { letter.remove(); });
 }
@@ -200,9 +200,21 @@ function initializeBehaviours() {
   // Initialize Cufon for logo font
   Cufon.replace('#wikisigns-logo h1');
 
+  // Show 3D link if WebGL is okay
+  var gl;
+  try {
+    canvas = document.getElementById("webgl-test");
+    gl = canvas.getContext("experimental-webgl");
+  } catch (e) {
+  }
+  if (gl) {
+    $('#threed-link').show();
+  }
+
+
   // Mode detection
   detectPlayMode();
-  
+
   if($('#words').length > 0 || $('#facebook').length > 0 ){
     $('#slug-word-share').html(generateShareLink($('#word_word').val().trim()));
   }
@@ -224,10 +236,10 @@ function initializeBehaviours() {
 
 function drawPageTitle() {
   var title = $('#page-title');
-  
+
   if(title.length > 0){
     var text = title.text();
-    
+
     title.html(drawColoredWord(text));
   }
 }
