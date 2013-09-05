@@ -201,7 +201,7 @@ function initializeBehaviours() {
   } catch (e) {
   }
   if (gl) {
-    $('#threed-link').show();
+    $('#threed-link').css('display', 'block');
   }
 
 
