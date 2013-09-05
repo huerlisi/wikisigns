@@ -1,42 +1,46 @@
 #page-title
   text-align: center
   
+.social-login
+  margin-bottom: 50px
+
+  a
+    +link-box
+    width: 200px
+    margin-left: auto
+    margin-right: auto
+
+  .fb_logo img
+    float: left
+    height: 29px
+    margin-left: -36px
+
+  .twitter_logo img
+    float: left
+    height: 29px
+    margin-left: -36px
+
+
 .simple_form
   text-align: left
   margin: 10px
   label
-    width: 150px
+    width: 50px
     display: block
     float: left
+    margin-top: 8px
   .button
     margin-top: 5px
   .input
     margin-bottom: 5px
-  #user_remember_me_false,
+  input
+    margin-left: 115px
+    +drop-box
   span label
     display: none
-  #user_submit
-    margin-left: 153px
-  
-.users-devise-links,
-.users-devise-providers
-  display: block
-  float: left
-  width: 45%
-  text-align: left
-  margin:
-    left: 10px
-    top: 20px
-    right: 10px
-  a
-    +link-box('sign_in.png')
-    width: 80%
-    
-.users-devise-providers
-  float: right
   
 #sign-in-with-twitter
-  +link-box('twitter.png')
+  +link-box-icon('twitter.png')
 
 #sign-in-with-facebook
-  +link-box('facebook.png')
+  +link-box-icon('facebook.png')

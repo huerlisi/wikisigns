@@ -22,7 +22,7 @@ function generateShareLink(slug) {
 
 // Creates a div with a link to the PNG of the word id.
 function createLinkToPNGDownload(word) {
-  return '<a id="photo-download-link" href="/word/' + word +'.png?download=true">Als Bild speichern</a>'
+  return '<a id="photo-download-link" href="/word/' + word +'.png?download=true">Bild speichern</a>'
 }
 
 function createPublishToFacebookLink(word) {
@@ -34,18 +34,11 @@ function generateWordMenu(text) {
 }
 
 function createWordMenu(text) {
-  return '<a href="#" class="publish-menu" data-text="' + text +'">Veröffentlichen</a>';
-}
-
-function publishMenuBehaviour() {
-  $('.publish-menu').live('click', function(){
-    var text = $(this).attr('data-text');
-
     $('#context-menu').empty()
+      .addClass('button-link')
       .append(createLinkToPNGDownload(text))
-      .append(generateShareLink(text))
-      .append(createPublishToFacebookLink(text));
-  });
+//      .append(createPublishToFacebookLink(text))
+      .append(generateShareLink(text));
 }
 
 // Containers
@@ -224,8 +217,6 @@ function initializeBehaviours() {
   if($('#word.svg').length > 0) {
     updateWord($('#title').text());
   }
-
-  publishMenuBehaviour();
 
   // initialize only on /words/:id page.
   addColorizeTextBehaviour();

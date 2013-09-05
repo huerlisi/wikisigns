@@ -30,12 +30,17 @@ body
   background-color: #2F2F2F
   height: 100%
 
+a
+  color: #bdbdbd
+
+
 #container
   +container
   margin: 3em
 
 #menu-container
   +column(4)
+  position: relative
 
 #main-menu
   min-height: 22em
@@ -83,3 +88,11 @@ body
   a
     +hover-link
     color: white
+
+#logos
+  position: absolute
+  left:     -44px
+  bottom:   9px
+
+  img
+    height: 35px

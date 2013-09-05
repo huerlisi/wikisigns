@@ -1,11 +1,18 @@
 = content_for :main_control do
   #page-title= t('login')
   
+.social-login
+  = link_to omniauth_authorize_path(resource_name, :facebook) do
+    .fb_logo= image_tag 'fb_logo.png'
+    = t('devise.links.sign_in_with', :provider => "Facebook")
+  = link_to omniauth_authorize_path(resource_name, :twitter) do
+    .twitter_logo= image_tag 'twitter_logo.png'
+    = t('devise.links.sign_in_with', :provider => "Twitter")
+
+
 = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
   = f.input :email
   = f.input :password
-  - if devise_mapping.rememberable?
-    = f.input :remember_me, :as => :radio
   = f.button :submit
   
 = render :partial => "devise/shared/links"

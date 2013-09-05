@@ -17,6 +17,7 @@ WikiSigns::Application.routes.draw do
       get  'random_messages'
       get  'inspiration'
       get  'communication'
+      post 'new_word'
     end
 
     member do
@@ -40,4 +41,8 @@ WikiSigns::Application.routes.draw do
       post 'daily_score'
     end
   end
+
+  # Facebook
+  post '/facebook/canvas' => 'facebook#canvas'
+  filter :facebook_canvas
 end

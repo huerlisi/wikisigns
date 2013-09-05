@@ -4,8 +4,12 @@
 %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
 
 %title= t('title.wikisigns')
+= render 'shared/facebook_header'
 
 = csrf_meta_tag
 
 = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection, print'
+- if params[:fb_canvas]
+  = stylesheet_link_tag 'compiled/facebook.css', :media => 'screen, projection, print'
+
 = javascript_include_tag 'cufon/cufon-yui', 'cufon/Ashby_700.font'
