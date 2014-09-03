@@ -22,7 +22,7 @@ development:
   <<: *localhost
 
 test:
-  <<: *defaults
+  <<: *localhost
 
 production:
   <<: *production
