@@ -13,8 +13,14 @@ require 'capones_recipes/tasks/airbrake'
 set :default_stage, "staging"
 
 # Deployment
-set :server, :passenger
 set :user, "deployer"                               # The server's user for deploys
+
+# Shared directories
+set :shared_children, shared_children + ['tmp/sockets']
+
+# Sync directories
+set :sync_directories, ['uploads']
+set :sync_backups, 3
 
 # Configuration
 set :scm, :git
