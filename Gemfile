@@ -8,7 +8,6 @@ gem 'rails', '~> 3.0.0'
 gem 'rack', '1.2.1'
 
 # Database
-gem 'sqlite3'
 gem 'mysql2', '~> 0.2.7'
 
 # Development
@@ -111,4 +110,4 @@ group :production do
   gem 'airbrake'
 end
 
-gem "thin"
+gem "unicorn"
