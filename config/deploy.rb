@@ -8,6 +8,7 @@ require 'capones_recipes/tasks/database/setup'
 require 'capones_recipes/tasks/sync'
 require 'capones_recipes/tasks/new_relic'
 require 'capones_recipes/tasks/airbrake'
+require 'capones_recipes/tasks/bluepill'
 
 # Staging
 set :default_stage, "staging"
