@@ -1,4 +1,4 @@
-#Application
+# Application
 set :application, "wikisigns"
 set :repository,  "git@github.com:huerlisi/wikisigns.git"
 
