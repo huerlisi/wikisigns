@@ -4,12 +4,12 @@ source 'http://rubygems.org'
 
 # Rails
 # =====
-gem 'rails', '~> 3.0.0'
-gem 'rack', '1.2.1'
+gem 'rails', '~> 3.0'
+gem 'rack'
 
 # Database
 gem 'sqlite3'
-gem 'mysql2', '~> 0.2.7'
+gem 'mysql2'
 
 # Development
 # ===========
@@ -46,8 +46,8 @@ group :test, :development do
   gem 'rspec-rails'
 
   # Fixtures
-  gem "factory_girl_rails", "~> 1.1.rc1"
-  gem "factory_girl", "~> 2.0.0.rc1"
+  gem "factory_girl_rails"
+  gem "factory_girl"
 
   # Integration
   # gem 'cucumber-rails'
@@ -60,7 +60,7 @@ end
 # Standard helpers
 # ================
 gem 'haml'
-gem 'haml-rails'
+gem 'sass-rails'
 gem 'compass-rails'
 gem 'fancy-buttons'
 
@@ -71,7 +71,7 @@ gem 'lyb_sidebar'
 
 gem 'formtastic'
 #gem 'will_paginate', :git => 'git://github.com/huerlisi/will_paginate.git', :branch => 'rails3'
-gem 'inherited_resources', '1.2.2'
+gem 'inherited_resources'
 gem 'has_scope'
 gem 'i18n_rails_helpers'
 
