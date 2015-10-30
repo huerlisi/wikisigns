@@ -153,7 +153,7 @@ Devise.setup do |config|
   #   :access_token_path => '/login/oauth/access_token',
   #   :scope             => %w(user public_repo)
   config.omniauth :twitter, Settings.twitter.consumer_key, Settings.twitter.consumer_secret
-  
+
   config.omniauth :facebook, Settings.facebook.consumer_key, Settings.facebook.consumer_secret,
                   {:scope => 'email, publish_stream, status_update'}
 
@@ -165,10 +165,10 @@ Devise.setup do |config|
   #   manager.failure_app = AnotherApp
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
-  
+
   # ----------------------------------
   # Following code is from: https://github.com/holden/devise-omniauth-example/blob/master/config/initializers/devise.rb
-  # ----------------------------------  
+  # ----------------------------------
   class Hash
     def recursive_find_by_key(key)
       # Create a stack of hashes to search through for the needle which

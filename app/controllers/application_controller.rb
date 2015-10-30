@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   layout 'application'
 
   inherit_resources
-  
+
   private
 
   def user_facebook?
