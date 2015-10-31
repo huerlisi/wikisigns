@@ -174,27 +174,27 @@ function handleKeyUp(event) {
 function handleKeys() {
   if (currentlyPressedKeys[33]) {
     // Page Up
-    z -= 0.05;
+    z -= 0.01;
   }
   if (currentlyPressedKeys[34]) {
     // Page Down
-    z += 0.05;
+    z += 0.01;
   }
   if (currentlyPressedKeys[37]) {
     // Left cursor key
-    ySpeed -= 5;
+    ySpeed -= 0.5;
   }
   if (currentlyPressedKeys[39]) {
     // Right cursor key§
-    ySpeed += 5;
+    ySpeed += 0.5;
   }
   if (currentlyPressedKeys[38]) {
     // Up cursor key
-    xSpeed -= 5;
+    xSpeed -= 0.5;
   }
   if (currentlyPressedKeys[40]) {
     // Down cursor key
-    xSpeed += 5;
+    xSpeed += 0.5;
   }
 }
 
@@ -207,7 +207,8 @@ function initBuffers() {
   cubeVertexPositionBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
 
-  var abstand = 0.0588235294117647;
+//  var abstand = 0.0588235294117647;
+var abstand = 0.000333666999;
 
   //var abstand = 0.618;
 
@@ -538,62 +539,62 @@ function initBuffers() {
 
   all_vertices[16] = [
     // orange vorne unten links
-    -abstand*0.0618,   -abstand*0.0618,  abstand*0.0618,
-    -abstand*0.0618,    abstand*0.0618,  abstand*0.0618,
-    abstand*0.0618,   -abstand*0.0618,  abstand*0.0618,
+    -abstand*500,   -abstand*500,  abstand*500,
+    -abstand*500,    abstand*500,  abstand*500,
+    abstand*500,   -abstand*500,  abstand*500,
 
     // gelb unten
-    -abstand*0.0618,   -abstand*0.0618,  abstand*0.0618,
-    abstand*0.0618,   -abstand*0.0618,  abstand*0.0618,
-    abstand*0.0618,   -abstand*0.0618, -abstand*0.0618,
+    -abstand*500,   -abstand*500,  abstand*500,
+    abstand*500,   -abstand*500,  abstand*500,
+    abstand*500,   -abstand*500, -abstand*500,
 
     // grün rechts
-    abstand*0.0618,  -abstand*0.0618,   abstand*0.0618,
-    abstand*0.0618,  -abstand*0.0618,  -abstand*0.0618,
-    abstand*0.0618,   abstand*0.0618,  -abstand*0.0618,
+    abstand*500,  -abstand*500,   abstand*500,
+    abstand*500,  -abstand*500,  -abstand*500,
+    abstand*500,   abstand*500,  -abstand*500,
 
     // hellblau hinten
-    abstand*0.0618,   abstand*0.0618,  -abstand*0.0618,
-    abstand*0.0618,  -abstand*0.0618,  -abstand*0.0618,
-    -abstand*0.0618,   abstand*0.0618,  -abstand*0.0618,
+    abstand*500,   abstand*500,  -abstand*500,
+    abstand*500,  -abstand*500,  -abstand*500,
+    -abstand*500,   abstand*500,  -abstand*500,
 
     // violett oben
-    -abstand*0.0618,   abstand*0.0618,  -abstand*0.0618,
-    -abstand*0.0618,   abstand*0.0618,   abstand*0.0618,
-    abstand*0.0618,   abstand*0.0618,  -abstand*0.0618,
+    -abstand*500,   abstand*500,  -abstand*500,
+    -abstand*500,   abstand*500,   abstand*500,
+    abstand*500,   abstand*500,  -abstand*500,
 
     // magenta links
-    -abstand*0.0618,   abstand*0.0618,   abstand*0.0618,
-    -abstand*0.0618,   abstand*0.0618,  -abstand*0.0618,
-    -abstand*0.0618,  -abstand*0.0618,   abstand*0.0618,
+    -abstand*500,   abstand*500,   abstand*500,
+    -abstand*500,   abstand*500,  -abstand*500,
+    -abstand*500,  -abstand*500,   abstand*500,
 
 
     // eckteil schwarz
-    abstand*0.0618,   abstand*0.0618,   abstand*0.0618,
-    -abstand*0.0618,   abstand*0.0618,   abstand*0.0618,
-    abstand*0.0618,  -abstand*0.0618,   abstand*0.0618,
+    abstand*500,   abstand*500,   abstand*500,
+    -abstand*500,   abstand*500,   abstand*500,
+    abstand*500,  -abstand*500,   abstand*500,
 
-    abstand*0.0618,   abstand*0.0618,   abstand*0.0618,
-    -abstand*0.0618,   abstand*0.0618,   abstand*0.0618,
-    abstand*0.0618,   abstand*0.0618,  -abstand*0.0618,
+    abstand*500,   abstand*500,   abstand*500,
+    -abstand*500,   abstand*500,   abstand*500,
+    abstand*500,   abstand*500,  -abstand*500,
 
-    abstand*0.0618,   abstand*0.0618,   abstand*0.0618,
-    abstand*0.0618,  -abstand*0.0618,   abstand*0.0618,
-    abstand*0.0618,   abstand*0.0618,  -abstand*0.0618,
+    abstand*500,   abstand*500,   abstand*500,
+    abstand*500,  -abstand*500,   abstand*500,
+    abstand*500,   abstand*500,  -abstand*500,
 
 
     // eckteil weiss
-    -abstand*0.0618,  -abstand*0.0618,   -abstand*0.0618,
-    -abstand*0.0618,  -abstand*0.0618,    abstand*0.0618,
-    -abstand*0.0618,   abstand*0.0618,   -abstand*0.0618,
+    -abstand*500,  -abstand*500,   -abstand*500,
+    -abstand*500,  -abstand*500,    abstand*500,
+    -abstand*500,   abstand*500,   -abstand*500,
 
-    -abstand*0.0618,  -abstand*0.0618,   -abstand*0.0618,
-    -abstand*0.0618,  -abstand*0.0618,    abstand*0.0618,
-    abstand*0.0618,  -abstand*0.0618,   -abstand*0.0618,
+    -abstand*500,  -abstand*500,   -abstand*500,
+    -abstand*500,  -abstand*500,    abstand*500,
+    abstand*500,  -abstand*500,   -abstand*500,
 
-    -abstand*0.0618,  -abstand*0.0618,   -abstand*0.0618,
-    -abstand*0.0618,   abstand*0.0618,   -abstand*0.0618,
-    abstand*0.0618,  -abstand*0.0618,   -abstand*0.0618,
+    -abstand*500,  -abstand*500,   -abstand*500,
+    -abstand*500,   abstand*500,   -abstand*500,
+    abstand*500,  -abstand*500,   -abstand*500,
     ];
 
   all_vertices[17] = [

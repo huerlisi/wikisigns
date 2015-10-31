@@ -312,6 +312,3 @@ DEPENDENCIES
   simple_form
   sqlite3
   thin
-
-BUNDLED WITH
-   1.10.6
